@@ -1,0 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package session;
+
+import entity.BookedActivity;
+import static entity.BookedActivity_.bookedDate;
+import entity.TrippyEventItem;
+import entity.User;
+import error.NoResultException;
+import java.util.List;
+import javax.ejb.Local;
+
+/**
+ *
+ * @author fengl
+ */
+@Local
+public interface BookedActivitySessionLocal {
+    
+    public void createBookedActivity (BookedActivity b);
+    public BookedActivity getBookedActivityByID(Long bookedActivityID) throws NoResultException;
+    public List<BookedActivity> getBookedActivitesByUser (User u);
+    public List<BookedActivity> getAllBookedActities();
+    public void updateBookedActivity(BookedActivity b) throws NoResultException;
+    public void deleteBookedActivity(Long bookedActivityID) throws NoResultException;
+    
+    
+    
+}
