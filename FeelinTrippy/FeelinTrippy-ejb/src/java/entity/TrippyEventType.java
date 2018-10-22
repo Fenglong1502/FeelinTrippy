@@ -16,7 +16,12 @@ public class TrippyEventType implements Serializable {
     private String typeName;
     private Boolean softDelete;
     
+    public TrippyEventType(){
+        
+    }
+    
     public TrippyEventType (String typeName, Boolean softDelete) {
+        this();
         this.typeName = typeName;
         this.softDelete = softDelete;
     }

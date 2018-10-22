@@ -33,7 +33,13 @@ public class TrippyEventItem implements Serializable {
     //private List<TrippyEventType> eventType;
     private List<String> eventImage;
     
+    public TrippyEventItem(){
+        
+    
+    }
+    
     public TrippyEventItem(String eventName, String eventDescription, Long point, Date startDate, Date endDate, Long price, List<String> eventImage, Boolean softDelete) {
+        this();
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.point = point;
