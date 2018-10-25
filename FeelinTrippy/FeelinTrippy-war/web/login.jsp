@@ -106,7 +106,7 @@
 					</div>
 					<!-- Main Heading Ends -->
 						<!-- Form Starts -->
-                                                <form class="custom-form" method="post" action="LoginServlet">
+                                                <form class="custom-form" method="POST" action="LoginServlet">
 							<!-- Input Field Starts -->
 							<div class="form-group">
 								<input class="form-control" name="email" id="email" placeholder="EMAIL" type="text" required>

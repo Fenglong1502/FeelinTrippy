@@ -37,11 +37,11 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        String path = request.getPathInfo();
-//        path = path.split("/")[1];
-//
-//        switch (path) {
-//            case "doLogin":
+        String path = request.getPathInfo();
+        path = path.split("/")[1];
+
+        switch (path) {
+            case "doLogin":
                 String userName = request.getParameter("email");
                 String password = request.getParameter("password");
 
@@ -50,8 +50,8 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     response.sendRedirect("503.html");
                 }
-//                break;
-//        }
+                break;
+        }
 
 //        response.setContentType("text/html;charset=UTF-8");
 //        try (PrintWriter out = response.getWriter()) {
