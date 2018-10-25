@@ -133,26 +133,7 @@
                 </div>
             </header>
             <!-- Header Ends -->
-            <!-- Banner Starts -->
-            <section class="banner">
-                <div class="content text-center">
-                    <div class="text-center top-text">
-                        <!-- Main Heading Starts -->
-                        <div class="text-center top-text">
-                            <h1>portfolio</h1>
-                        </div> 
-                        <!-- Main Heading Ends -->
-                        <hr>
-                        <!-- Breadcrumb Starts -->
-                        <ul class="breadcrumb">
-                            <li><a href="index-kenburns.html"> home</a></li>
-                            <li>portfolio 3 columns</li>
-                        </ul>
-                        <!-- Breadcrumb Ends -->
-                    </div>
-                </div>
-            </section>
-            <!-- Banner Ends -->
+      
             <!-- Portfolio Section Starts -->
             <section class="portfolio">
                 <!-- Container Starts -->
@@ -181,11 +162,11 @@
                                     <!-- Thumbnail Ends -->
                                     <!-- Caption Starts -->
                                     <div class="caption">
-                                        <a class="title-link" href="image-project.html">
+                                        <a class="title-link" href="activityDetails.jsp">
                                             <h3>Activity 1</h3>
                                         </a>
                                         <p> details of activity 1</p>
-                                        <a class="custom-button" href="image-project.html">Read More</a>
+                                        <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -199,11 +180,11 @@
                                     <!-- Thumbnail Ends -->
                                     <!-- Caption Starts -->
                                     <div class="caption">
-                                        <a class="title-link" href="image-project.html">
+                                        <a class="title-link" href="activityDetails.jsp">
                                             <h3>activity 2</h3>
                                         </a>
                                         <p>details of activity 2</p>
-                                        <a class="custom-button" href="image-project.html">Read More</a>
+                                        <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -217,11 +198,11 @@
                                     <!-- Thumbnail Ends -->
                                     <!-- Caption Starts -->
                                     <div class="caption">
-                                        <a class="title-link" href="image-project.html">
+                                        <a class="title-link" href="activityDetails.jsp">
                                             <h3>Activity 3</h3>
                                         </a>
                                         <p>details of activity 3</p>
-                                        <a class="custom-button" href="image-project.html">Read More</a>
+                                        <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
