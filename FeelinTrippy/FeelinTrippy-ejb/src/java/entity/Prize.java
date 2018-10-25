@@ -22,7 +22,12 @@ public class Prize implements Serializable {
     private List<String> prizeImage;
     private Boolean softDelete;
     
+    public Prize(){
+        
+    }
+    
     public Prize(String prizeName, int prizePoint, String prizeDescription, List<String> prizeImage, Boolean softDelete) {
+        this();
         this.prizeName = prizeName;
         this.prizePoint = prizePoint;
         this.prizeDescription = prizeDescription;
