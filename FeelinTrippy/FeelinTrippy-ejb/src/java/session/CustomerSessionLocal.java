@@ -5,6 +5,9 @@
  */
 package session;
 
+import entity.Customer;
+import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +16,12 @@ import javax.ejb.Local;
  */
 @Local
 public interface CustomerSessionLocal {
+    
+    public Customer getCustomer(Long cId) throws NoResultException;
+    public void createCustomer(Customer c);
+    public List<Customer> searchCustomers(String name);
+    public void updateCustomer(Customer c) throws NoResultException;
+    public void deleteCustomer(Long userID) throws NoResultException;
+    
     
 }
