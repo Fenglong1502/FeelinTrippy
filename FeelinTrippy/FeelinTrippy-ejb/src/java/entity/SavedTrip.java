@@ -30,7 +30,7 @@ public class SavedTrip implements Serializable {
     private Date savedDate;
     private double price;
     private TrippyEventItem eventItem;
-    private User user;
+    private Customer user;
 
     public Long getSavedTripID() {
         return savedTripID;
@@ -64,11 +64,11 @@ public class SavedTrip implements Serializable {
         this.eventItem = eventItem;
     }
 
-    public User getUser() {
+    public Customer getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Customer user) {
         this.user = user;
     }
 

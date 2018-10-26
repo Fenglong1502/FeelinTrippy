@@ -29,7 +29,7 @@ public class BookedActivity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date bookedDate;
     
-    private User bookedBy;
+    private Customer bookedBy;
     private double price;
     private int qty;
     private boolean status;
@@ -101,11 +101,11 @@ public class BookedActivity implements Serializable {
         this.qrDetail = qrDetail;
     }
 
-    public User getBookedBy() {
+    public Customer getBookedBy() {
         return bookedBy;
     }
 
-    public void setBookedBy(User bookedBy) {
+    public void setBookedBy(Customer bookedBy) {
         this.bookedBy = bookedBy;
     }
 

@@ -6,7 +6,7 @@
 package session;
 
 import entity.SavedTrip;
-import entity.User;
+import entity.Customer;
 import error.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,12 +72,12 @@ public class SavedTripSession implements SavedTripSessionLocal {
     }
 
     @Override
-    public List<SavedTrip> getSavedActivityByUser(User u) {
+    public List<SavedTrip> getSavedActivityByCustomer(Customer c) {
         Query q;
-        if (u != null) {
+        if (c != null) {
             q = em.createQuery("SELECT s FROM SavedTrip s WHERE "
-                    + "s.user IN :user");
-            q.setParameter("user", u);
+                    + "s.customer IN :user");
+            q.setParameter("customer", c);
         } else {
             return new ArrayList<SavedTrip>();
         }
