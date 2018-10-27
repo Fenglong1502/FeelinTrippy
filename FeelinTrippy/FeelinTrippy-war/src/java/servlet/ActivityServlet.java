@@ -7,23 +7,18 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import session.BookedActivitySessionLocal;
 
 /**
  *
- * @author fengl
+ * @author Congx2
  */
-@WebServlet(name = "LoginServlet")
-public class LoginServlet extends HttpServlet {
-
-    @EJB
-    BookedActivitySessionLocal bookedActivitySessionLocal;
+@WebServlet(name = "ActivityServlet")
+public class ActivityServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,36 +31,19 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String path = request.getPathInfo();
-        path = path.split("/")[1];
-
-        switch (path) {
-            case "doLogin":
-                String userName = request.getParameter("email");
-                String password = request.getParameter("password");
-
-                if ((userName.equals("admin")) && (password.equals("password"))) {
-                    response.sendRedirect("404.html");
-                } else {
-                    response.sendRedirect("503.html");
-                }
-                break;
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ActivityServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ActivityServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-////            out.println("<!DOCTYPE html>");
-////            out.println("<html>");
-////            out.println("<head>");
-////            out.println("<title>Servlet LoginServlet</title>");            
-////            out.println("</head>");
-////            out.println("<body>");
-////            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-////            out.println("</body>");
-////            out.println("</html>");
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -94,17 +72,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
-        String userName = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        if ((userName.equals("admin")) && (password.equals("password"))) {
-            response.sendRedirect("404.jsp");
-        } else {
-            response.sendRedirect("503.html");
-        }
-
+        processRequest(request, response);
     }
 
     /**

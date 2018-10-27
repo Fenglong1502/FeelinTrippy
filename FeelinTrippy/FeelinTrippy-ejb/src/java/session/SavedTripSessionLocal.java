@@ -6,7 +6,7 @@
 package session;
 
 import entity.SavedTrip;
-import entity.User;
+import entity.Customer;
 import error.NoResultException;
 import java.util.List;
 import javax.ejb.Local;
@@ -23,6 +23,6 @@ public interface SavedTripSessionLocal {
     public void updateSavedTrip (SavedTrip s) throws NoResultException;
     public void deleteSavedTrip (Long savedTripID) throws NoResultException;
     public SavedTrip getSavedTripByID(Long savedTripID) throws NoResultException;
-    public List<SavedTrip> getSavedActivityByUser(User u);
+    public List<SavedTrip> getSavedActivityByCustomer(Customer u);
 
 }

@@ -6,7 +6,7 @@
 package session;
 
 import entity.BookedActivity;
-import entity.User;
+import entity.Customer;
 import error.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +42,12 @@ public class BookedActivitySession implements BookedActivitySessionLocal {
     }
 
     @Override
-    public List<BookedActivity> getBookedActivitesByUser(User u) {
+    public List<BookedActivity> getBookedActivitesByCustomer(Customer c) {
         Query q;
-        if (u != null) {
+        if (c != null) {
             q = em.createQuery("SELECT b FROM BookedActivity b WHERE "
-                    + "u.bookedBy IN :user");
-            q.setParameter("user", u);
+                    + "c.bookedBy IN :customer");
+            q.setParameter("customer", c);
         } else {
             return new ArrayList<BookedActivity>();
         }
@@ -56,8 +56,8 @@ public class BookedActivitySession implements BookedActivitySessionLocal {
     }
 
     @Override
-    public List<BookedActivity> getAllBookedActities() {
-        Query q = em.createQuery("SELECT c FROM Customer c");
+    public List<BookedActivity> getAllBookedActivities() {
+        Query q = em.createQuery("SELECT b FROM BookedActivity b");
         return q.getResultList();
     }
 
