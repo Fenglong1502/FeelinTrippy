@@ -3,6 +3,7 @@ package session;
 import entity.TrippyEventType;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -19,7 +20,13 @@ public class TrippyEventTypeSession implements TrippyEventTypeSessionLocal {
     
     @Override
     public void createTrippyType(TrippyEventType type) {
-        em.persist(type);
+        if (type != null) {
+            try {
+                em.persist(type);
+            } catch (EntityExistsException e) {
+                System.out.println("Trippy type exists.");
+            }
+        }
     }
 
     @Override

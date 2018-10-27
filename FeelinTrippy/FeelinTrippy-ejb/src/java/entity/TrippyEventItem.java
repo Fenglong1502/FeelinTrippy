@@ -30,7 +30,7 @@ public class TrippyEventItem implements Serializable {
     private Long price;
     private Boolean softDelete;
 
-    //private List<TrippyEventType> eventType;
+    private List<TrippyEventType> eventType;
     private List<String> eventImage;
     
     public TrippyEventItem(){
@@ -184,18 +184,18 @@ public class TrippyEventItem implements Serializable {
         this.point = point;
     }
 
-//    /**
-//     * @return the eventType
-//     */
-//    public List<TrippyEventType> getEventType() {
-//        return eventType;
-//    }
-//
-//    /**
-//     * @param eventType the eventType to set
-//     */
-//    public void setEventType(List<TrippyEventType> eventType) {
-//        this.eventType = eventType;
-//    }
+    /**
+     * @return the eventType
+     */
+    public List<TrippyEventType> getEventType() {
+        return eventType;
+    }
+
+    /**
+     * @param eventType the eventType to set
+     */
+    public void setEventType(List<TrippyEventType> eventType) {
+        this.eventType = eventType;
+    }
     
 }

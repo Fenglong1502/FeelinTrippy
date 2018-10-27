@@ -8,6 +8,7 @@ package session;
 import entity.Prize;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -23,7 +24,13 @@ public class PrizeSession implements PrizeSessionLocal {
     private EntityManager em;
     @Override
     public void createPrize(Prize prize) {
-        em.persist(prize);
+        if (prize != null) {
+            try {
+                em.persist(prize);
+            } catch (EntityExistsException e) {
+                System.out.println("Prize exists.");
+            }
+        }
     }
 
     @Override
