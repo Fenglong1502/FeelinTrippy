@@ -7,6 +7,8 @@ package session;
 
 import entity.Customer;
 import entity.Prize;
+import entity.PrizeOrder;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
@@ -79,16 +81,30 @@ public class PrizeSession implements PrizeSessionLocal {
     public boolean redeemPrize(Long customerID, Long prizeID, int qty) {
         Customer c = em.find(Customer.class, customerID);
         Prize toRedeem = em.find(Prize.class, prizeID);
+        PrizeOrder po = null;
         //Check if customer has enough points to redeem prize and if qty customer wants to redeem is <= the amount of prize left.
         if (c.getPoints() >= qty*toRedeem.getPrizePoint() && qty <= toRedeem.getPrizeQty()) {
             c.setPoints(c.getPoints()-qty*toRedeem.getPrizePoint());
             toRedeem.setPrizeQty(toRedeem.getPrizeQty()-qty);
+            po.setCustomerID(customerID);
+            po.setPointsUsed(qty*toRedeem.getPrizePoint());
+            po.setPrizeRedeemed(toRedeem);
+            po.setQuantity(qty);
+            po.setRedemptionDate(new Date());
+            em.persist(po);
             return true;
         }
         else {
             return false;
         }
         
+    }
+    
+    public List<PrizeOrder> getPrizeRedeemed(Long customerID) {
+        Query q;
+        q = em.createQuery("SELECT po FROM PrizeOrder po WHERE po.customerID = :customerID");
+        q.setParameter("customerID", customerID);
+        return q.getResultList();
     }
 
 }
