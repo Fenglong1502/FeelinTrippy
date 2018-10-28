@@ -1,6 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-- 
+    Document   : filterTrip
+    Created on : 28 Oct, 2018, 4:23:54 PM
+    Author     : CheeS
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8" />
         <title>Kenburns, Amira - Creative Multipurpose Template</title>
