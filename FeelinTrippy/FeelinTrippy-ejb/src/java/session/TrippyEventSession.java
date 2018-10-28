@@ -1,7 +1,10 @@
 package session;
 
 import entity.TrippyEventItem;
+import entity.TrippyEventType;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -66,6 +69,33 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
         Query q;
         q = em.createQuery("SELECT t FROM TrippyEventItem t");
         return q.getResultList();
+    }
+
+    @Override
+    public List<TrippyEventItem> searchEventListByConditions(TrippyEventType type, Long price) {
+        Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
+                + "t.price <= :price");
+        q.setParameter("price", price);
+        
+        List<TrippyEventItem> checkList = q.getResultList();
+        List<TrippyEventItem> returnList = new ArrayList<TrippyEventItem>();
+        
+       for(TrippyEventItem tItem: checkList){
+           for(TrippyEventType tType: tItem.getEventType()){
+               if(tType.getTypeName().equals(type.getTypeName())){
+                   returnList.add(tItem);
+               }
+           }
+       }
+        return returnList;
+    }
+
+    @Override
+    public TrippyEventItem randomEvent(TrippyEventType type, Long price) {
+        List<TrippyEventItem> listToRand = searchEventListByConditions(type,price);
+        int listSize = listToRand.size();
+        
+        return listToRand.get(new Random().nextInt(listSize));
     }
 
 }
