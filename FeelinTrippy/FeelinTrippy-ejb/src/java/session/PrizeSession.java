@@ -5,6 +5,7 @@
  */
 package session;
 
+import entity.Customer;
 import entity.Prize;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -64,6 +65,30 @@ public class PrizeSession implements PrizeSessionLocal {
         Query q;
         q = em.createQuery("SELECT p FROM Prize p");
         return q.getResultList();
+    }
+    
+    @Override
+    public List<Prize> searchPrizeByName(String searchTerm) {
+        Query q;
+        q = em.createQuery("SELECT p FROM Prize p WHERE LOWER(p.prizeName) LIKE :searchTerm");
+        q.setParameter("searchTerm", "%" + searchTerm.toLowerCase() + "%");
+        return q.getResultList();
+    }
+    
+    @Override
+    public boolean redeemPrize(Long customerID, Long prizeID, int qty) {
+        Customer c = em.find(Customer.class, customerID);
+        Prize toRedeem = em.find(Prize.class, prizeID);
+        //Check if customer has enough points to redeem prize and if qty customer wants to redeem is <= the amount of prize left.
+        if (c.getPoints() >= qty*toRedeem.getPrizePoint() && qty <= toRedeem.getPrizeQty()) {
+            c.setPoints(c.getPoints()-qty*toRedeem.getPrizePoint());
+            toRedeem.setPrizeQty(toRedeem.getPrizeQty()-qty);
+            return true;
+        }
+        else {
+            return false;
+        }
+        
     }
 
 }
