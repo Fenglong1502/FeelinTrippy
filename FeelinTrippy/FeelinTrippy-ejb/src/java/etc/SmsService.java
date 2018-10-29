@@ -22,9 +22,9 @@ public class SmsService {
        
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-        Message message = Message.creator(new PhoneNumber("+6598315536"),
+        Message message = Message.creator(new PhoneNumber("+6590025633"),
                 new PhoneNumber("+19375836726"),
-                "Testing Message From Twilio").create();
+                "Jiayou for your Wallet o~~~  \nFrom: Feng Long").create();
 
         System.out.println(message.getSid());
         

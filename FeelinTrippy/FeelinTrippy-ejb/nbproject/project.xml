@@ -6,6 +6,10 @@
             <name>FeelinTrippy-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <included-library dirs="200">file.reference.twilio-7.29.0.jar</included-library>
+            <included-library dirs="200">file.reference.commons-codec-1.9.jar</included-library>
+            <included-library dirs="200">file.reference.commons-logging-1.2.jar</included-library>
+            <included-library dirs="200">file.reference.httpclient-4.5.2.jar</included-library>
+            <included-library dirs="200">file.reference.httpcore-4.4.4.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
