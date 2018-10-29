@@ -24,7 +24,7 @@ public class SmsService {
 
         Message message = Message.creator(new PhoneNumber("+6590025633"),
                 new PhoneNumber("+19375836726"),
-                "Jiayou for your Wallet o~~~  \nFrom: Feng Long").create();
+                "Pull, clean and build and deploy then let me know").create();
 
         System.out.println(message.getSid());
         
