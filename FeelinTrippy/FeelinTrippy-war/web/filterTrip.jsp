@@ -7,9 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta charset="utf-8" />
-        <title>Kenburns, Amira - Creative Multipurpose Template</title>
+        <title>FeelinTrippy - Filter Trips</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Favicon -->
@@ -111,7 +112,7 @@
                     output.innerHTML = slider.value;
 
                     slider.oninput = function () {
-                        output.innerHTML = this.value;
+                        output.innerHTML = this.value;h
                     }
                 </script>
 
@@ -123,20 +124,45 @@
                 </div>
 
                 <div class ="buttondiv" style="height:200px">
-                    <a id="btn1" class="first-page-button" href="#btn1" onClick="#">Everything!</a>
-                    <a id="btn2" class="second-page-button" href="#btn2" onClick="#">Adventure!</a>
-                    <a id="btn3" class="third-page-button" href="#btn3" onClick="#">Culture!</a>
-                    <a id="btn4" class="fourth-page-button" href="#btn4" onClick="#">Foodie!</a>
-                    <a id="btn5" class="fifth-page-button" href="#btn5" onClick="#">Nightowl!</a>
-                </div>
+                    <a id="btn1" class="first-page-button" href="#btn1" onClick="showme(1)">Everything!</a>
+                    <a id="btn2" class="second-page-button" href="#btn2" onClick="showme(2)">Adventure!</a>
+                    <a id="btn3" class="third-page-button" href="#btn3" onClick="showme(3)">Culture!</a>
+                    <a id="btn4" class="fourth-page-button" href="#btn4" onClick="showme(4)">Foodie!</a>
+                    <a id="btn5" class="fifth-page-button" href="#btn5" onClick="showme(5)">Nightowl!</a>
+                </div>                
                 <div class ="text-center">
-                    <button class="trippy-button" type="submit"> Trippy! </button>
-
+                    <button class="trippy-button"  type="submit" > Trippy! </button>
                 </div>
             </form>
         </div>
         <!-- Wrapper Ends -->
 
+
+        <!-- The script to get the variable for the item to be pass to the backend to filter -->
+        <script >
+            function showme(count){
+                test = "everything";
+                number = count;
+                switch(number){
+                    case 1: test = "everything"; break;
+                    case 2: test = "adventure"; break;
+                    case 3: test = "culture"; break;
+                    case 4: test = "foodie"; break;
+                    case 5: test = "nightowl"; break;
+                    default: test = "everything";
+                }
+
+            }
+
+            /*
+            function testing(click){
+                alert("You picked "+ test);
+            }*/
+            
+        </script>
+
+    
+        
         <!-- Template JS Files -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/plugins/jquery.easing.1.3.js"></script>

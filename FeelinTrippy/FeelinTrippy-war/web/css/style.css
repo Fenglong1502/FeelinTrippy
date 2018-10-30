@@ -97,7 +97,7 @@ body {
 }
 
 .first-page-button{
-     font-family: Impact, Charcoal, sans-serif;
+    font-family: Impact, Charcoal, sans-serif;
     background-color: rgb(201, 26, 26); 
     border: none;
     color: white;
@@ -109,6 +109,8 @@ body {
     font-size: 25px;
     height: 80%;
     width:18%;
+    background-image: url(../img/backgrounds/everything.jpg);
+    background-size: 100% 100%;
 }
 
 a:target {
@@ -132,6 +134,8 @@ button:active{
     font-size: 25px;
     height: 80%;
     width:18%;
+    background-image: url(../img/backgrounds/adventure.jpg);
+    background-size: 100% 100%;
 }
 .third-page-button{
      font-family: Impact, Charcoal, sans-serif;
@@ -144,8 +148,10 @@ button:active{
     text-decoration: none;
     display: inline-block;
     font-size: 25px;
-        height: 80%;
+    height: 80%;
     width:18%;
+    background-image: url(../img/backgrounds/culture.jpg);
+    background-size: 100% 100%;
 }
 .fourth-page-button{
      font-family: Impact, Charcoal, sans-serif;
@@ -158,11 +164,13 @@ button:active{
     text-decoration: none;
     display: inline-block;
     font-size: 25px;
-        height: 80%;
+    height: 80%;
     width:18%;
+    background-image: url(../img/backgrounds/foodie.jpg);
+    background-size: 100% 100%;
 }
 .fifth-page-button{
-     font-family: Impact, Charcoal, sans-serif;
+    font-family: Impact, Charcoal, sans-serif;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -175,6 +183,8 @@ button:active{
     font-weight: 10px;
     height: 80%;
     width:18%;
+    background-image: url(../img/backgrounds/nightlife.jpg);
+    background-size: 100% 100%;
 }
 
 .trippy-button{
@@ -184,10 +194,11 @@ button:active{
     color: #efefef;
     padding: 15px 32px;
     text-align: center;
+    margin: 0;
+    vertical-align: middle;
     text-decoration: none;
     display: inline-block;
     font-size: 22px;
-    width:10%;
     margin-bottom: 30px;
 }
 
@@ -5078,10 +5089,12 @@ ul.bxslider img {
 /* Banner */
 
 .banner {
-  background-image: url('http://via.placeholder.com/1920x624');
+  background-image: url('../img/backgrounds/rewards.png');
+  background-color: white;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: top center;
   background-attachment: fixed;
+  
 }
 
 .banner.banner-blog-post {
