@@ -1,6 +1,7 @@
 package session;
 
 import entity.TrippyEventItem;
+import entity.TrippyEventType;
 import java.util.List;
 import javax.ejb.Local;
 import javax.persistence.NoResultException;
@@ -12,4 +13,8 @@ public interface TrippyEventSessionLocal {
     public void removeTrippyEvent(TrippyEventItem trippyEventItem) throws NoResultException;
     public TrippyEventItem retrieveEventByEventId(Long eventID);
     public List<TrippyEventItem> retrieveAllEvents();
+    
+    
+    public List<TrippyEventItem> searchEventListByConditions(TrippyEventType type, Long price);
+    public TrippyEventItem randomEvent(TrippyEventType type, Long price);
 }

@@ -17,11 +17,25 @@ import javax.ejb.Local;
 @Local
 public interface CustomerSessionLocal {
     
-    public Customer getCustomer(Long cId) throws NoResultException;
+    public Customer getCustomerById(Long cId) throws NoResultException;
+    public Customer getCustomerByName(String name) throws NoResultException;
+    public Customer getCustomerByEmail(String email) throws NoResultException;
     public void createCustomer(Customer c);
     public List<Customer> searchCustomers(String name);
+    
+    // Login and Registration
+    public boolean Login(Customer c);
+    public void changePasword(Customer c, String newPass);
+    public boolean forgetPassword(Customer c);
+  
+    
+    //Handle Profile
     public void updateCustomer(Customer c) throws NoResultException;
     public void deleteCustomer(Long userID) throws NoResultException;
+    
+    //Points Handling
+    public int deductPoints(Customer c, int pointsDeducted);
+    public int addPoints(Customer c, int pointsToAdd);
     
     
 }

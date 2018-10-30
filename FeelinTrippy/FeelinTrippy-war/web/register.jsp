@@ -1,16 +1,10 @@
-<%-- 
-    Document   : register
-    Created on : 24 Oct, 2018, 6:41:45 PM
-    Author     : Congx2
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 ﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <title>Register, Amira - Creative Multipurpose Template</title>
+    <title>Register, FeelinTrippy - Creative Trip Advisor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
@@ -60,8 +54,8 @@
 						<div class="item active item-1">
 							<div>
 								<blockquote>
-									<p>Amira's Team Was Great To Work With And Interpreted Our Needs Perfectly.</p>
-									<footer><span>Lucy Smith</span>, England</footer>
+									<p>FeelinTrippy's Team Was Great To Work With And Interpreted Our Needs Perfectly.</p>
+									<footer><span>Lucy Smith</span>, Singapore</footer>
 								</blockquote>
 							</div>
 						</div>
@@ -70,8 +64,8 @@
 						<div class="item item-2">
 							<div>
 								<blockquote>
-									<p>The Team Is Endlessly Helpful, Flexible And Always Quick To Respond, Thanks Amira!</p>
-									<footer><span>Rawia Chniti</span>, Russia</footer>
+									<p>The Team Is Endlessly Helpful, Flexible And Always Quick To Respond, Thanks FeelinTrippy!</p>
+									<footer><span>Rawia Chniti</span>, Singapore</footer>
 								</blockquote>
 							</div>
 						</div>
@@ -80,8 +74,8 @@
 						<div class="item item-3">
 							<div>
 								<blockquote>
-									<p>We Are So Appreciative Of Their Creative Efforts, And Love Our New Site!, millions of thanks Amira!</p>
-									<footer><span>Mario Verratti</span>, Spain</footer>
+									<p>We Are So Appreciative Of Their Creative Efforts, And Love All The Events!, Millions Of Thanks FeelinTrippy!</p>
+									<footer><span>Mario Verratti</span>, Singapore</footer>
 								</blockquote>
 							</div>
 						</div>
@@ -133,7 +127,7 @@
 					</div>
 				</div>
 				<!-- Copyright Text Starts -->
-				<p class="text-center copyright-text">Copyright © 2018 Amira All Rights Reserved</p>
+				<p class="text-center copyright-text">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
 				<!-- Copyright Text Ends -->
 			</div>
 		</div>

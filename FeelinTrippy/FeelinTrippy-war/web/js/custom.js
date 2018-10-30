@@ -736,8 +736,7 @@
                             type: "scroll",
                             origo: "slidercenter",
                             speed: 400,
-                            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
-                            type: "scroll",
+                            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55]
                         },
                         shadow: 0,
                         spinner: "off",
@@ -952,7 +951,6 @@
                         jsFileLocation: "js/plugins/revolution/js/",
                         sliderLayout: "fullwidth",
                         dottedOverlay: "none",
-                        sliderLayout: "fullscreen",
                         delay: 9000,
                         navigation: {
                             onHoverStop: "off",
