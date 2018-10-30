@@ -72,7 +72,7 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
     }
 
     @Override
-    public List<TrippyEventItem> searchEventListByConditions(TrippyEventType type, Long price) {
+    public List<TrippyEventItem> searchEventListByConditions(TrippyEventType type, Double price) {
         Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
                 + "t.price <= :price");
         q.setParameter("price", price);
@@ -91,7 +91,7 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
     }
 
     @Override
-    public TrippyEventItem randomEvent(TrippyEventType type, Long price) {
+    public TrippyEventItem randomEvent(TrippyEventType type, Double price) {
         List<TrippyEventItem> listToRand = searchEventListByConditions(type,price);
         int listSize = listToRand.size();
         

@@ -27,7 +27,7 @@ public class TrippyEventItem implements Serializable {
     private String eventDescription;
     //point indicates the number of points users can earn from attending this event
     private Long point;
-    private Long price;
+    private Double price;
     private Boolean softDelete;
 
     private List<TrippyEventType> eventType;
@@ -38,7 +38,7 @@ public class TrippyEventItem implements Serializable {
     
     }
     
-    public TrippyEventItem(String eventName, String eventDescription, Long point, Date startDate, Date endDate, Long price, List<String> eventImage, Boolean softDelete) {
+    public TrippyEventItem(String eventName, String eventDescription, Long point, Date startDate, Date endDate, Double price, List<String> eventImage, List<TrippyEventType> eventType, Boolean softDelete) {
         this();
         this.eventName = eventName;
         this.eventDescription = eventDescription;
@@ -47,7 +47,7 @@ public class TrippyEventItem implements Serializable {
         this.endDate = endDate;
         this.price = price;
         this.eventImage = eventImage;
-//        this.eventType = eventType;
+        this.eventType = eventType;
         this.softDelete = softDelete;
     }
     
@@ -117,14 +117,14 @@ public class TrippyEventItem implements Serializable {
     /**
      * @return the price
      */
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -196,6 +196,20 @@ public class TrippyEventItem implements Serializable {
      */
     public void setEventType(List<TrippyEventType> eventType) {
         this.eventType = eventType;
+    }
+
+    /**
+     * @return the eventImage
+     */
+    public List<String> getEventImage() {
+        return eventImage;
+    }
+
+    /**
+     * @param eventImage the eventImage to set
+     */
+    public void setEventImage(List<String> eventImage) {
+        this.eventImage = eventImage;
     }
     
 }
