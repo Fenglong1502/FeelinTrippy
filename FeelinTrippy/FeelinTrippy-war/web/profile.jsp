@@ -81,63 +81,27 @@
                 </div>
             </header>   
             <!-- Header Ends -->
-            <!-- Banner Starts -->
-            <section class="banner">
-                <div class="content text-center">
-                    <div class="text-center top-text">
-                        <!-- Main Heading Starts -->
-                        <div class="text-center top-text">
-                            <h1>My Profile</h1>
-                        </div> 
-                        <!-- Main Heading Ends -->
-                        <hr>
-                        <!-- Breadcrumb Starts -->
-                        <ul class="breadcrumb">
-                            <li><a href="index-kenburns.html"> home</a></li>
-                            <li>Profile</li>
-                        </ul>
-                        <!-- Breadcrumb Ends -->
-                    </div>
-                </div>
-            </section>
-            <!-- Banner Ends -->
+            
             <!-- About Section Starts -->
             <section class="about">
                 <!-- Container Starts -->
                 <div class="container">
                     <!-- About Content Starts -->
                     <div class="row about-content">
+                        <div><br><br><br><br><br><br></div>
                         <div class="col-sm-12 col-md-6 col-lg-6 about-left-side">
                             <h3 class="title-about">Marcus Choo</h3>
                             <p>38 Years Old Male</p>
                             <hr>
-                            <p>marcuschoo1478@gmail.com<br><br>
-                                Blk 35 Mandalay Road<br>
-                                # 13-37 Mandalay Towers<br>
-                                SINGAPORE 308215</p>
-                            <!-- Tabs Heading Starts -->
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#menu1">About Me</a></li>
-                                <li><a data-toggle="tab" href="#menu2">Interest</a></li>
-
-                            </ul>
-                            <!-- Tabs Heading Ends -->
-                            <!-- Tabs Content Starts -->
-                            <div class="tab-content">
-                                <div id="menu1" class="tab-pane fade in active">
-                                    <p>I enjoy the simple things in life. Being happy is a state of mind, and I don't think people should settle for less than they deserve. I always look toward the next best thing. I like seeing other people happy. When someone else is down, it breaks my heart. I've been through more than most people my age, but hey, it's what has made me stronger. </p>
-                                </div>
-                                <div id="menu2" class="tab-pane fade">
-                                    <p>Playing badminton, Visiting food fairs</p>
-                                </div>
-                            </div>
-                            <!-- Tabs Content Ends -->
-                            <!-- <a class="custom-button" href="portfolio.html">Our Portfolio</a>	-->
+                            <p>81726582<br>
+                                marcuschoo1478@gmail.com<br> 
+                                 Points available to redeem: 18</p>
+                          <a class="custom-button" href="editProfile.jsp">Edit Profile</a>
                         </div>
                         <!-- Image About Us Starts -->
                         <div class="col-md-6 col-lg-6 about-right-side">
                             <div>
-                                <img class="img-responsive" src="http://via.placeholder.com/1024x681" alt="">
+                                <img class="img-responsive" src="http://via.placeholder.com/300x180" alt="">
                             </div>
                         </div>
                         <!-- Image About Us Ends -->

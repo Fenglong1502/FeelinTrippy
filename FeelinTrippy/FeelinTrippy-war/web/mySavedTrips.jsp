@@ -81,26 +81,7 @@
                 </div>
             </header>   
         <!-- Header Ends -->
-        <!-- Banner Starts -->
-        <section class="banner">
-			<div class="content text-center">
-				<div class="text-center top-text">
-                    <!-- Main Heading Starts -->
-					<div class="text-center top-text">
-						<h1>saved trips</h1>
-					</div> 
-					<!-- Main Heading Ends -->
-					<hr>
-                    <!-- Breadcrumb Starts -->
-					<ul class="breadcrumb">
-						<li><a href="index-kenburns.html"> home</a></li>
-						<li>saved trips</li>
-					</ul>
-					<!-- Breadcrumb Ends -->
-                </div>
-			</div>
-		</section>
-		<!-- Banner Ends -->
+       
 		<!-- Portfolio Section Starts -->
         <section class="portfolio">
             <!-- Container Starts -->
