@@ -43,6 +43,7 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
             existingTrippyEvent.setSoftDelete(trippyEventItem.getSoftDelete());
             existingTrippyEvent.setStartDate(trippyEventItem.getStartDate());
             existingTrippyEvent.setEndDate(trippyEventItem.getEndDate());
+            existingTrippyEvent.setAddress(trippyEventItem.getAddress());
         } else {
             throw new NoResultException("Trippy Event not found.");
         }
