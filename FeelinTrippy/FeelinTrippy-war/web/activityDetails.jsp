@@ -165,7 +165,7 @@
                             <p>details of activity</p>
               
                             <a class="custom-button" href="#">Save Activity</a>
-                            <a class="custom-button" href="#">Share Activity // pop up to take in email or QR code</a>
+                            <a class="custom-button" href="#">Share Activity // pop up to take in email or QR code  </a>
 						</div>
 					</div>
 					<!-- Project Details Ends -->
