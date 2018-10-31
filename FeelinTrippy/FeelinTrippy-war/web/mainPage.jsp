@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Creative FrontPage, Amira - Creative Multipurpose Template</title>
+    <title>FeelinTrippy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->

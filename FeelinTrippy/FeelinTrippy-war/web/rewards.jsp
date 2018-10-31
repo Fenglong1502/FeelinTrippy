@@ -19,7 +19,7 @@
     <!-- Template CSS Files -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/skins/yellow.css" />
 
@@ -59,10 +59,7 @@
                         <!-- Toggle Icon for Mobile Starts -->
                         <button class="navbar-toggle navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span id="icon-toggler">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                                
                             </span>
                         </button>
                         <!-- Toggle Icon for Mobile Ends -->
@@ -90,10 +87,11 @@
         <section class="banner">
 			<div class="content text-center">
 				<div class="text-center top-text">
+                        <img src="./img/backgrounds/rewards.png" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="6" class="rev-slidebg" data-no-retina>
                     <!-- Main Heading Starts -->
-					<div class="text-center top-text" >
+					<!-- <div class="text-center top-text" >
                         <h1>Rewards</h1>
-					</div> 
+					</div>  -->
 					<!-- Main Heading Ends -->
 					<hr>
                 </div>
@@ -118,7 +116,7 @@
                             <!-- Caption Starts -->
                             <div class="caption">
                                 <a class="title-link" href="gallery-project.html">
-                                    <h3>McDonald's $5 Voucher</h3>
+                                    <h3>McDonald $5 Voucher</h3>
                                 </a>
                                 <p>"500 points"</p>
                                 <a class="custom-button" href="gallery-project.html">Redeem</a>
