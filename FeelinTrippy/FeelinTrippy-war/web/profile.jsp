@@ -95,8 +95,9 @@
                             <hr>
                             <p>81726582<br>
                                 marcuschoo1478@gmail.com<br> 
-                                 Points available to redeem: 18</p>
-                            <a class="custom-button" href="rewards.jsp">Redeem rewards</a>
+                                Points available to redeem: 18<br>
+                            <a class="custom-button" href="pastRewards.jsp">View Redeemed rewards</a></p>
+                            <a class="custom-button" href="rewards.jsp">Redeem rewards now!</a>
                           <a class="custom-button" href="editProfile.jsp">Edit Profile</a>
                         </div>
                         <!-- Image About Us Starts -->
