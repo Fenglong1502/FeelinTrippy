@@ -12,6 +12,20 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class TrippyEventItem implements Serializable {
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +46,7 @@ public class TrippyEventItem implements Serializable {
 
     private List<TrippyEventType> eventType;
     private List<String> eventImage;
-    
+    private String address;
     public TrippyEventItem(){
         
     
