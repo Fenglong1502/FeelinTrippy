@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login, Amira - Creative Multipurpose Template</title>
+    <title>FeelinTrippy - Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->

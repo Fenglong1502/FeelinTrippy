@@ -66,8 +66,8 @@
                             <ul class="nav navbar-nav" id="main-navigation">
                                 <li><a href="filterTrip.jsp"><i class="fa fa-home"></i> Home</a></li>                               
                                 <li><a href="mySavedTrips.jsp"><i class="fa fa-envelope"></i> Saved Trips</a></li>
-                                <li><a href="myPastTrips.jsp"><i class="fa fa-envelope"></i> Past Trips</a></li>
-                                <li class="active"><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
+                                <li class="active"><a href="myPastTrips.jsp"><i class="fa fa-envelope"></i> Past Trips</a></li>
+                                <li><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
                                 <li><a href="mainPage.jsp"><i class="fa fa-user"></i> Log Out</a></li>
                             </ul>
                             <!-- Main Menu Ends -->
