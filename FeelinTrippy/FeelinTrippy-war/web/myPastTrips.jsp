@@ -27,7 +27,7 @@
     <!-- Preloader Starts -->
     <div class="preloader" id="preloader">
         <div class="logopreloader">
-            <img src="http://via.placeholder.com/159x28" alt="logo">
+            <img src="img/FeelinTrippy.png" alt="logo">
         </div>
         <div class="loader" id="loader"></div>
     </div>
