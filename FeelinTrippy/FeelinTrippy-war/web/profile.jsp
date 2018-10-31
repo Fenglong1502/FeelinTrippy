@@ -72,9 +72,6 @@
                             </ul>
                             <!-- Main Menu Ends -->
                         </div>
-                        <!-- Search Input Starts -->
-
-                        <!-- Search Input Ends -->
                         <!-- Navigation Menu Ends -->
                     </nav>
                     <!-- Navbar Ends -->

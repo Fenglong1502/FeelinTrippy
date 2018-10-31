@@ -75,12 +75,11 @@
                         <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Main Menu Starts -->
                             <ul class="nav navbar-nav" id="main-navigation">
-                                <li class="active"><a href="index-kenburns.html"><i class="fa fa-home"></i> Home</a></li>                               
+                                <li class="active"><a href="filterTrip.jsp"><i class="fa fa-home"></i> Home</a></li>                               
                                 <li><a href="mySavedTrips.jsp"><i class="fa fa-envelope"></i> Saved Trips</a></li>
                                 <li><a href="myPastTrips.jsp"><i class="fa fa-envelope"></i> Past Trips</a></li>
                                 <li><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
                                 <li><a href="mainPage.jsp"><i class="fa fa-user"></i> Log Out</a></li>
-                                <!--<li class="search hidden-xs hidden-sm"><button id="search-button" class="fa fa-search"></button></li> -->
                             </ul>
                             <!-- Main Menu Ends -->
                         </div>
