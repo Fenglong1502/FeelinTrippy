@@ -43,10 +43,10 @@
                         <div class="logo">
                             <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="index-kenburns.html">
                                 <!-- Logo White Starts -->
-                                <img id="logo-light" class="logo-light" src="http://via.placeholder.com/159x28" alt="logo-light" />
+                                <img id="logo-light" class="logo-light" src="img/FeelinTrippy.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
                                 <!-- Logo Black Starts -->
-                                <img id="logo-dark" class="logo-dark" src="http://via.placeholder.com/159x28" alt="logo-dark" />
+                                <img id="logo-dark" class="logo-dark" src="img/FeelinTrippy.png" alt="logo-dark" />
                                 <!-- Logo Black Ends -->
                             </a>
                         </div>
@@ -66,8 +66,8 @@
                             <ul class="nav navbar-nav" id="main-navigation">
                                 <li><a href="filterTrip.jsp"><i class="fa fa-home"></i> Home</a></li>                               
                                 <li><a href="mySavedTrips.jsp"><i class="fa fa-envelope"></i> Saved Trips</a></li>
-                                <li><a href="myPastTrips.jsp"><i class="fa fa-envelope"></i> Past Trips</a></li>
-                                <li class="active"><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
+                                <li class="active"><a href="myPastTrips.jsp"><i class="fa fa-envelope"></i> Past Trips</a></li>
+                                <li><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
                                 <li><a href="mainPage.jsp"><i class="fa fa-user"></i> Log Out</a></li>
                             </ul>
                             <!-- Main Menu Ends -->
@@ -86,13 +86,19 @@
         <section class="portfolio">
             <!-- Container Starts -->
             <div class="container">
+                <div class="text-center top-text">
+                        <br><br><br>
+                        <h1><span>Past</span> Trips</h1>                   
+                    </div>
                 <nav>
                     <ul class="simplefilter nav nav-pills">
                         <!-- Filter Wrapper Items Starts -->
                         <li class="active" data-filter="all"><i class="fa fa-reorder"></i> All Trips</li>
-                        <li data-filter="1">Music & Entertainment</li>
-                        <li data-filter="2">Food</li>
-                        <li data-filter="3">Night Life</li>
+                        <li data-filter="1">Animal & WildLife</li>
+                        <li data-filter="2">Adventure</li><br><br>
+                        <li data-filter="3">Music and Night Life</li>
+                        <li data-filter="4">Art and Culture</li>
+                        <li data-filter="5">Foodie</li>
                         <!-- Filter Wrapper Items Ends -->
                     </ul>
                 </nav>
@@ -115,11 +121,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -141,11 +147,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -167,11 +173,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -193,11 +199,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -219,11 +225,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -245,11 +251,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -271,11 +277,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -297,11 +303,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>
@@ -323,11 +329,11 @@
                                 <!-- Thumbnail Ends -->
                                 <!-- Caption Starts -->
                                 <div class="caption">
-                                    <a class="title-link" href="gallery-project.html">
+                                    <a class="title-link" href="activityDetails.jsp">
                                         <h3>Gallery Photos</h3>
                                     </a>
                                     <p>"Event descriptions"</p>
-                                    <a class="custom-button" href="gallery-project.html">Read More</a>
+                                    <a class="custom-button" href="activityDetails.jsp">Read More</a>
                                 </div>
                                 <!-- Caption Ends -->
                             </div>

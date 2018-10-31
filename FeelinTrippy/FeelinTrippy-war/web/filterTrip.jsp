@@ -52,12 +52,12 @@
                     <nav class="navbar">
                         <!-- Logo Starts -->
                         <div class="logo">
-                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="index-kenburns.html">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
                                 <!-- Logo White Starts -->
-                                <img id="logo-light" class="logo-light" src="http://via.placeholder.com/159x28" alt="logo-light" />
+                                <img id="logo-light" class="logo-light" src="img/FeelinTrippy.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
                                 <!-- Logo Black Starts -->
-                                <img id="logo-dark" class="logo-dark" src="http://via.placeholder.com/159x28" alt="logo-dark" />
+                                <img id="logo-dark" class="logo-dark" src="img/FeelinTrippy.png" alt="logo-dark" />
                                 <!-- Logo Black Ends -->
                             </a>
                         </div>

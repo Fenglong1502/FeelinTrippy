@@ -27,7 +27,7 @@
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="http://via.placeholder.com/159x28" alt="logo">
+                <img src="img/FeelinTrippy.png" alt="logo">
             </div>
             <div class="loader" id="loader"></div>
         </div>
@@ -41,12 +41,12 @@
                     <nav class="navbar">
                         <!-- Logo Starts -->
                         <div class="logo">
-                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="index-kenburns.html">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
                                 <!-- Logo White Starts -->
-                                <img id="logo-light" class="logo-light" src="http://via.placeholder.com/159x28" alt="logo-light" />
+                                <img id="logo-light" class="logo-light" src="img/FeelinTrippy.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
                                 <!-- Logo Black Starts -->
-                                <img id="logo-dark" class="logo-dark" src="http://via.placeholder.com/159x28" alt="logo-dark" />
+                                <img id="logo-dark" class="logo-dark" src="img/FeelinTrippy.png" alt="logo-dark" />
                                 <!-- Logo Black Ends -->
                             </a>
                         </div>
@@ -96,6 +96,7 @@
                             <p>81726582<br>
                                 marcuschoo1478@gmail.com<br> 
                                  Points available to redeem: 18</p>
+                            <a class="custom-button" href="rewards.jsp">Redeem rewards</a>
                           <a class="custom-button" href="editProfile.jsp">Edit Profile</a>
                         </div>
                         <!-- Image About Us Starts -->

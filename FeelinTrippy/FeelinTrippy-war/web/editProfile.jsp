@@ -54,11 +54,11 @@
                         <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Main Menu Starts -->
                             <ul class="nav navbar-nav" id="main-navigation">
-                                <li><a href="index-kenburns.html"><i class="fa fa-home"></i> Home</a></li>
+                                <li><a href="filterTrip.jsp"><i class="fa fa-home"></i> Home</a></li>
                                 <li><a href="mySavedTrips.jsp"><i class="fa fa-user"></i> Saved Trips</a></li>
                                 <li><a href="myPastTrips.jsp"><i class="fa fa-user"></i> Past Trips</a></li>
                                 <li><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>		
-                                <li><a href="contact.html"><i class="fa fa-envelope"></i> Logout</a></li>
+                                <li><a href="mainPage.jsp"><i class="fa fa-envelope"></i> Logout</a></li>
                             </ul>
                             <!-- Main Menu Ends -->
                         </div>
@@ -79,8 +79,8 @@
                 </div>
                 <div>
                     <!-- Logo Starts -->
-                    <a class="visible-xs" href="index-kenburns.html">
-                        <img class="img-responsive mobile-logo" src="http://via.placeholder.com/159x28" alt="logo">
+                    <a class="visible-xs" href="mainPage.jsp">
+                        <img class="img-responsive mobile-logo" src="img/FeelinTrippy.png" alt="logo">
                     </a>
                     <!-- Logo Ends -->
                     <div class="form-container">

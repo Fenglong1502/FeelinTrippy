@@ -103,13 +103,13 @@
                         <!-- Tabs Content Starts -->
                         <div class="tab-content">
                             <div id="menu1" class="tab-pane fade in active">
-                                <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+                                <p>Provide best trip suggestions with just one click!</p>
                             </div>
                             <div id="menu2" class="tab-pane fade">
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                <p>Easy to use! All you have to do is enter your budget & category and we'll do the rest for you!</p>
                             </div>
                             <div id="menu3" class="tab-pane fade">
-                                <p>Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+                                <p>Best user experience!<br>No hidden charges!</p>
                             </div>
                         </div>
                         <!-- Tabs Content Ends -->
