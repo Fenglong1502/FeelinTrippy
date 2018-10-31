@@ -2174,19 +2174,19 @@ body.dark .header.header-fixed .logo a img.logo-dark {
 
 /* The Modal (background) */
 .modal {
-  display: center; /* Hidden by default */
-  position: absolute; /* Stay in place */
+  display: fixed; /* Hidden by default */
+  position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: white; /* Fallback color */
-  background-color: white; /* Black w/ opacity */
   text-decoration-color: black;
   text-align: center;
+  
 }
 
 /* Modal Content/Box */
@@ -2492,7 +2492,7 @@ body.dark .header.header-fixed .logo a img.logo-dark {
 ---------------------------------------- */
 
 .about {
-  background-color: #fff;
+  background-color: black;
 }
 
 .about .about-content .title-about {
@@ -5132,7 +5132,7 @@ ul.bxslider img {
 
 .banner {
   /* background-image: url('../img/backgrounds/rewards.png'); */
-  background-color: white;
+  background-color: black;
   background-repeat: no-repeat;
   background-position: top center;
   background-attachment: fixed;
