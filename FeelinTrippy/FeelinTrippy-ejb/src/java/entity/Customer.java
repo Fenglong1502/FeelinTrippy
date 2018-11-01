@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 public class Customer implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,22 +32,40 @@ public class Customer implements Serializable {
     private String lastName;
     private boolean accountStatus;
     private byte gender;
-    private int mobileNumber;
+    private String mobileNumber;
     private String email;
     private int points;
-    private boolean isAdmin; 
-    
+    private boolean isAdmin;
+
     @Temporal(TemporalType.DATE)
     private Date dateCreated;
-    
+
     private ArrayList<SavedTrip> savedTrips;
     private ArrayList<BookedActivity> bookedActivities;
 
     /**
      * @return the firstName
      */
+    public Customer() {
+
+    }
+
+    public Customer(String username, String password, String firstName, String lastName, boolean accountStatus, byte gender, String mobileNumber, String email, int points, boolean isAdmin) {
+        this();
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountStatus = accountStatus;
+        this.gender = gender;
+        this.mobileNumber = mobileNumber;
+        this.email = email;
+        this.points = points;
+        this.isAdmin = isAdmin;
+    }
+
     public String getFirstName() {
-        return firstName;
+        return firstName;   
     }
 
     /**
@@ -102,14 +120,14 @@ public class Customer implements Serializable {
     /**
      * @return the mobileNumber
      */
-    public int getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
     /**
      * @param mobileNumber the mobileNumber to set
      */
-    public void setMobileNumber(int mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
@@ -257,5 +275,5 @@ public class Customer implements Serializable {
     public void setAccountStatus(boolean accountStatus) {
         this.accountStatus = accountStatus;
     }
-    
+
 }
