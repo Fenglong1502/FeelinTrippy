@@ -36,7 +36,7 @@ public class ActivityServlet extends HttpServlet {
         path = path.split("/")[1];
 
         Long Id = Long.parseLong(request.getParameter("Id"));
-        Activity activity = managedbean.getActivity(id);
+//        Activity activity = managedbean.getActivity(id);
         /* response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. 
