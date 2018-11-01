@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -44,9 +45,12 @@ public class TrippyEventItem implements Serializable {
     private Double price;
     private Boolean softDelete;
 
+    @OneToMany
     private List<TrippyEventType> eventType;
+    @OneToMany
     private List<String> eventImage;
     private String address;
+    
     public TrippyEventItem(){
         
     

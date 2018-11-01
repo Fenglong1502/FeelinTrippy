@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,6 +30,7 @@ public class BookedActivity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date bookedDate;
     
+    @ManyToOne
     private Customer bookedBy;
     private double price;
     private int qty;

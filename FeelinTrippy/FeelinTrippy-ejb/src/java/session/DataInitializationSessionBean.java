@@ -29,8 +29,8 @@ import javax.persistence.PersistenceContext;
 @LocalBean
 public class DataInitializationSessionBean {
 
-    @PersistenceContext(unitName = "")
-    private EntityManager entityManager;
+    @PersistenceContext(unitName = "FeelinTrippy-ejbPU")
+    private EntityManager em;
 
     @EJB
     private TrippyEventSessionLocal trippyEventSessionLocal;
@@ -39,7 +39,10 @@ public class DataInitializationSessionBean {
 
     @PostConstruct
     public void postConstruct() {
-        initializeData();
+        System.out.println("It's here");
+        if(em.find(Customer.class, 1l) == null){
+            initializeData();
+        }
     }
 
     public DataInitializationSessionBean() {
@@ -54,12 +57,11 @@ public class DataInitializationSessionBean {
         Customer c5 = new Customer("user5", encryptPassword("password"), "Victor", "Lim", true, (byte)2, "91234567", "Testing5@example.com", 0, false);
  
         customerSessionLocal.createCustomer(c1);
-        customerSessionLocal.createCustomer(c1);
-        customerSessionLocal.createCustomer(c1);
-        customerSessionLocal.createCustomer(c1);
-        customerSessionLocal.createCustomer(c1);
+        customerSessionLocal.createCustomer(c2);
+        customerSessionLocal.createCustomer(c3);
+        customerSessionLocal.createCustomer(c4);
+        customerSessionLocal.createCustomer(c5);
         
-
         
 
         // Declaring the variables to be used in initialising data

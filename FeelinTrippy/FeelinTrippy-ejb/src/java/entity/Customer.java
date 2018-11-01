@@ -6,12 +6,15 @@
 package entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -40,7 +43,9 @@ public class Customer implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateCreated;
 
+    @OneToMany
     private ArrayList<SavedTrip> savedTrips;
+    @OneToMany
     private ArrayList<BookedActivity> bookedActivities;
 
     /**
@@ -62,6 +67,9 @@ public class Customer implements Serializable {
         this.email = email;
         this.points = points;
         this.isAdmin = isAdmin;
+        dateCreated = java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+        savedTrips = new ArrayList<SavedTrip>();
+        bookedActivities = new ArrayList<BookedActivity>();
     }
 
     public String getFirstName() {
@@ -223,6 +231,32 @@ public class Customer implements Serializable {
         this.userID = userID;
     }
 
+     public byte getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(byte gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the accountStatus
+     */
+    public boolean isAccountStatus() {
+        return accountStatus;
+    }
+
+    /**
+     * @param accountStatus the accountStatus to set
+     */
+    public void setAccountStatus(boolean accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -251,29 +285,5 @@ public class Customer implements Serializable {
     /**
      * @return the gender
      */
-    public byte getGender() {
-        return gender;
-    }
-
-    /**
-     * @param gender the gender to set
-     */
-    public void setGender(byte gender) {
-        this.gender = gender;
-    }
-
-    /**
-     * @return the accountStatus
-     */
-    public boolean isAccountStatus() {
-        return accountStatus;
-    }
-
-    /**
-     * @param accountStatus the accountStatus to set
-     */
-    public void setAccountStatus(boolean accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
+   
 }

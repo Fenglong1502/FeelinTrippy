@@ -25,7 +25,7 @@
     <!-- Preloader Starts -->
     <div class="preloader" id="preloader">
         <div class="logopreloader">
-            <img src="http://via.placeholder.com/159x28" alt="logo">
+            <img src="img/FeelinTrippy.png" alt="logo">
         </div>
         <div class="loader" id="loader"></div>
     </div>
@@ -114,7 +114,7 @@
 							<!-- Submit Form Button Starts -->
 							<div class="form-group">
 								<button class="custom-button login" type="submit">login</button>
-								<p class="text-center">don't have an account ? <a href="register.html">register now</a>
+								<p class="text-center">don't have an account ? <a href="register.jsp">register now</a>
 							</div>
 							<!-- Submit Form Button Ends -->
 						</form>

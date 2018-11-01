@@ -100,17 +100,17 @@ public class CustomerSession implements CustomerSessionLocal {
         Query q;
         if (name != null) {
             q = em.createQuery("SELECT c FROM Customer c WHERE "
-                    + "LOWER(c.name) = :name");
-            q.setParameter("name", name.toLowerCase());
+                    + "LOWER(c.username) = :username");
+            q.setParameter("username", name.toLowerCase());
 
             if (!q.getResultList().isEmpty()) {
                 return (Customer) q.getResultList().get(0);
             } else {
-                throw new NoResultException("No Customer is found");
+                return null;
             }
 
         } else {
-            throw new NoResultException("No Customer is found");
+            return null;
         }
     }
 
@@ -122,7 +122,7 @@ public class CustomerSession implements CustomerSessionLocal {
 
         if (!q.getResultList().isEmpty()) {
             Customer checkC = (Customer) q.getResultList().get(0);
-            if (checkC.getPassword().equals(c.getPassword())) {
+            if(checkC.getPassword().equals(c.getPassword())) {
                 return true;
             }
             return false;
@@ -169,10 +169,10 @@ public class CustomerSession implements CustomerSessionLocal {
             if (!q.getResultList().isEmpty()) {
                 return (Customer) q.getResultList().get(0);
             } else {
-                throw new NoResultException("No Customer is found");
+               return null;
             }
         } else {
-            throw new NoResultException("No Customer is found");
+            return null;
         }
     }
 
