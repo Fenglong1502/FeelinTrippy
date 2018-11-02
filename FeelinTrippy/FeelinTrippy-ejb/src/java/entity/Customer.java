@@ -5,12 +5,16 @@
  */
 package entity;
 
+import error.CustomerAddSavedTripException;
+import error.CustomerRemoveSavedTripException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,16 +47,16 @@ public class Customer implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateCreated;
 
-    @OneToMany
-    private ArrayList<SavedTrip> savedTrips;
-    @OneToMany
-    private ArrayList<BookedActivity> bookedActivities;
+    @OneToMany(mappedBy = "customer")
+    private List<SavedTrip> savedTrips;
 
+    //@OneToMany(fetch = FetchType.LAZY, mappedBy="bookedBy")
+    //private ArrayList<BookedActivity> bookedActivities;
     /**
      * @return the firstName
      */
     public Customer() {
-
+       
     }
 
     public Customer(String username, String password, String firstName, String lastName, boolean accountStatus, byte gender, String mobileNumber, String email, int points, boolean isAdmin) {
@@ -68,12 +72,28 @@ public class Customer implements Serializable {
         this.points = points;
         this.isAdmin = isAdmin;
         dateCreated = java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
-        savedTrips = new ArrayList<SavedTrip>();
-        bookedActivities = new ArrayList<BookedActivity>();
+
+        //bookedActivities = new ArrayList<BookedActivity>();
+    }
+
+    public void addSavedTrip(SavedTrip savedTrip) throws CustomerAddSavedTripException {
+        if (savedTrip != null && !this.getSavedTrips().contains(savedTrip)) {
+            this.getSavedTrips().add(savedTrip);
+        } else {
+            throw new CustomerAddSavedTripException("SavedTrip already added to Customer");
+        }
+    }
+
+    public void removeAppointment(SavedTrip savedTrip) throws CustomerRemoveSavedTripException {
+        if (savedTrip != null && this.getSavedTrips().contains(savedTrip)) {
+            this.getSavedTrips().remove(savedTrip);
+        } else {
+            throw new CustomerRemoveSavedTripException("SavedTrip has not been added to Customer");
+        }
     }
 
     public String getFirstName() {
-        return firstName;   
+        return firstName;
     }
 
     /**
@@ -195,34 +215,6 @@ public class Customer implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    /**
-     * @return the savedTrips
-     */
-    public ArrayList<SavedTrip> getSavedTrips() {
-        return savedTrips;
-    }
-
-    /**
-     * @param savedTrips the savedTrips to set
-     */
-    public void setSavedTrips(ArrayList<SavedTrip> savedTrips) {
-        this.savedTrips = savedTrips;
-    }
-
-    /**
-     * @return the bookedActivities
-     */
-    public ArrayList<BookedActivity> getBookedActivities() {
-        return bookedActivities;
-    }
-
-    /**
-     * @param bookedActivities the bookedActivities to set
-     */
-    public void setBookedActivities(ArrayList<BookedActivity> bookedActivities) {
-        this.bookedActivities = bookedActivities;
-    }
-
     public Long getUserID() {
         return userID;
     }
@@ -231,7 +223,7 @@ public class Customer implements Serializable {
         this.userID = userID;
     }
 
-     public byte getGender() {
+    public byte getGender() {
         return gender;
     }
 
@@ -256,7 +248,6 @@ public class Customer implements Serializable {
         this.accountStatus = accountStatus;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -282,8 +273,15 @@ public class Customer implements Serializable {
         return "entity.Customer[ id=" + userID + " ]";
     }
 
+    public List<SavedTrip> getSavedTrips() {
+        return savedTrips;
+    }
+
+    public void setSavedTrips(List<SavedTrip> savedTrips) {
+        this.savedTrips = savedTrips;
+    }
+
     /**
      * @return the gender
      */
-   
 }
