@@ -6,12 +6,13 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import session.RecommendedActivitySessionLocal;
 
 /**
  *
@@ -19,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ActivityServlet")
 public class ActivityServlet extends HttpServlet {
-
+@EJB
+ RecommendedActivitySessionLocal recommendedActivitySessionLocal;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
