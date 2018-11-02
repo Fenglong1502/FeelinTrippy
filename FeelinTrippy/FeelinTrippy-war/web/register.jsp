@@ -25,8 +25,7 @@
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="img/FeelinTrippy.png" alt="logo">
-            </div>
+<img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            </div>
             <div class="loader" id="loader"></div>
         </div>
         <!-- Preloader Ends -->
@@ -35,8 +34,8 @@
             <div class="container-fluid user-auth">
                 <div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
                     <!-- Logo Starts -->
-                    <a class="logo" href="index-kenburns.html">
-                        <img id="single-logo" class="img-responsive" src="img/FeelinTrippy.png" alt="logo">
+                    <a class="logo" href="filterTrip.jsp">
+                        <img id="single-logo" class="img-responsive" src="./img/logo.png" alt="logo">
                     </a>
                     <!-- Logo Ends -->
                     <!-- Slider Starts -->

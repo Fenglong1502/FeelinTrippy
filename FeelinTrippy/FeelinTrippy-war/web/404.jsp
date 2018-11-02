@@ -31,7 +31,7 @@
     <!-- Preloader Starts -->
     <div class="preloader" id="preloader">
         <div class="logopreloader">
-            <img src="http://via.placeholder.com/159x28" alt="logo">
+            <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">
         </div>
         <div class="loader" id="loader"></div>
     </div>
@@ -42,9 +42,7 @@
 			<div>
 				<div class="text-center">
 					<!-- Logo Starts -->
-					<a class="logo" href="mainPage.jsp">
-						<img class="img-responsive" src="http://via.placeholder.com/159x28" alt="logo">
-					</a>
+					
 					<!-- Logo Ends -->
 					<!-- Error 404 Content Starts -->
 					<div class="big-404">404</div>

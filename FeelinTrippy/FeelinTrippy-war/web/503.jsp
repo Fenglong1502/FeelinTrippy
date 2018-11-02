@@ -31,7 +31,7 @@
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="http://via.placeholder.com/159x28" alt="logo">
+                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">         
             </div>
             <div class="loader" id="loader"></div>
         </div>
@@ -41,11 +41,7 @@
             <div class="container-fluid error">
                 <div>
                     <div class="text-center">
-                        <!-- Logo Starts -->
-                        <a class="logo" href="mainPage.jsp">
-                            <img class="img-responsive" src="img/FeelinTrippy.png" alt="logo">
-                        </a>
-                        <!-- Logo Ends -->
+                        
                         <!-- Error 503 Content Starts -->
                         <div class="big-404">503</div>
                         <h3>Oh no ! ... Server Error</h3>
