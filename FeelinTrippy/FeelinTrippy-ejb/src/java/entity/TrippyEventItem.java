@@ -27,6 +27,7 @@ public class TrippyEventItem implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,9 +46,8 @@ public class TrippyEventItem implements Serializable {
     private Double price;
     private Boolean softDelete;
 
-    @OneToMany
+//    @OneToMany
     private List<TrippyEventType> eventType;
-    @OneToMany
     private List<String> eventImage;
     private String address;
     

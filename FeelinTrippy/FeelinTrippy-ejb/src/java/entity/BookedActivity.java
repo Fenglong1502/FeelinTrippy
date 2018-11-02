@@ -9,10 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,14 +32,30 @@ public class BookedActivity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date bookedDate;
     
+    
     @ManyToOne
     private Customer bookedBy;
     private double price;
     private int qty;
     private boolean status;
+    @OneToOne
     private TrippyEventItem eventItem;
+    @OneToOne
     private QRDetail qrDetail;
 
+    public BookedActivity(){
+        
+    }
+    public BookedActivity(Date bookedDate, double price, int qty, boolean status, TrippyEventItem eventItem, QRDetail qrDetail, Customer bookedBy){
+        this();
+        this.bookedDate = bookedDate;
+        this.bookedBy = bookedBy;
+        this.price = price;
+        this.qty = qty;
+        this.status = status;
+        this.eventItem = eventItem;
+        this.qrDetail = qrDetail;
+    }
     
     public Long getbookedID() {
         return bookedID;

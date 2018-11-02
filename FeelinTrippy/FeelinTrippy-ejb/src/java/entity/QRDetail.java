@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,6 +25,7 @@ public class QRDetail implements Serializable {
     private Long qrDetailID;
     
     private String qrText;
+    @OneToOne(mappedBy = "qrDetail")
     private BookedActivity bookedActivity;
 
   

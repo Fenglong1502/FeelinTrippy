@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,8 +31,10 @@ public class SavedTrip implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date savedDate;
     private double price;
+    @OneToOne
     private TrippyEventItem eventItem;
-    private Customer user;
+    @ManyToOne
+    private Customer customer;
 
     public Long getSavedTripID() {
         return savedTripID;
@@ -64,12 +68,12 @@ public class SavedTrip implements Serializable {
         this.eventItem = eventItem;
     }
 
-    public Customer getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(Customer user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     
