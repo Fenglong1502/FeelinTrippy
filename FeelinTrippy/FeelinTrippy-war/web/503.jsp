@@ -42,7 +42,7 @@
                 <div>
                     <div class="text-center">
                         <!-- Logo Starts -->
-                        <a class="logo" href="index-kenburns.html">
+                        <a class="logo" href="mainPage.jsp">
                             <img class="img-responsive" src="img/FeelinTrippy.png" alt="logo">
                         </a>
                         <!-- Logo Ends -->
