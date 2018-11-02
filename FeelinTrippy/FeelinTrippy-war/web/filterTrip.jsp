@@ -95,7 +95,7 @@
             <div class="text-center" style="margin-top: 150px">
                 <h3>Set Your Budget</h3>
             </div>
-            <form onSubmit="#">
+            <form onSubmit="#" action="ActivityServlet" >
                 <div class="slidecontainer" >
                     <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                     <h3 style="text-align: center">$ <span id="demo"></span></h3>
