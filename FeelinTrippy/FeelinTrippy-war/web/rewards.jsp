@@ -90,6 +90,10 @@
             <!-- Banner Ends -->
             <!-- Portfolio Section Starts -->
             <section class="portfolio">
+                <div id="overlay" onclick="off()">
+                    <!-- add the QR code here -->
+                    <img src="../FeelinTrippyHTML/img/backgrounds/shaw.jpg" alt="Gallery project" style='height: 100%; width: 100%; object-fit: contain'/>
+                </div>
                 <!-- Container Starts -->
                 <div class="container">                    
                     <div>
@@ -106,13 +110,7 @@
                                     <div class="caption">                                        
                                         <h3>McDonald $5 Voucher</h3>                                        
                                         <p>"500 points"</p>
-                                        <button id="myBtn" class="custom-button">Redeem</button>
-                                        <!-- The Modal -->
-                                        <div id="myModal" class="modal">
-                                            <p>QR Code</p>
-                                            <span class="close">&times;</span>                                                                                            
-                                        </div>
-                                        <!-- End of Modal -->   
+                                        <button class="custom-button" onclick="on()">Redeem</button> 
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -130,13 +128,7 @@
                                     <div class="caption">
                                         <h3>Shaw $10 Voucher</h3>
                                         <p>"1000 points"</p>
-                                        <button id="myBtn2" class="custom-button">Redeem</button>
-                                        <!-- The Modal -->
-                                        <div id="myModal2" class="modal">
-                                            <p>QR Code</p>
-                                            <span class="close">&times;</span>                                                                                            
-                                        </div>
-                                        <!-- End of Modal -->  
+                                        <button class="custom-button" onclick="on()">Redeem</button>
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -154,13 +146,7 @@
                                     <div class="caption">
                                         <h3>Safra $10 Voucher</h3>                                    
                                         <p>"1000 points"</p>
-                                        <button id="myBtn3" class="custom-button">Redeem</button>
-                                        <!-- The Modal -->
-                                        <div id="myModal" class="modal">
-                                            <p>QR Code</p>
-                                            <span class="close">&times;</span>                                                                                            
-                                        </div>
-                                        <!-- End of Modal -->  
+                                        <button class="custom-button" onclick="on()">Redeem</button>
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -178,13 +164,7 @@
                                     <div class="caption">
                                         <h3>Thermal Flask</h3>
                                         <p>"2000 points"</p>
-                                        <button id="myBtn4" class="custom-button">Redeem</button>
-                                        <!-- The Modal -->
-                                        <div id="myModal" class="modal">
-                                            <p>QR Code</p>
-                                            <span class="close">&times;</span>                                                                                            
-                                        </div>
-                                        <!-- End of Modal -->  
+                                        <button class="custom-button" onclick="on()">Redeem</button>
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -202,13 +182,7 @@
                                     <div class="caption">
                                         <h3>Travel Pillow</h3>                                        
                                         <p>"2000 points"</p>
-                                        <button id="myBtn5" class="custom-button">Redeem</button>
-                                        <!-- The Modal -->
-                                        <div id="myModal" class="modal">
-                                            <p>QR Code</p>
-                                            <span class="close">&times;</span>                                                                                            
-                                        </div>
-                                        <!-- End of Modal -->  
+                                        <button class="custom-button" onclick="on()">Redeem</button> 
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -226,13 +200,7 @@
                                     <div class="caption">
                                         <h3>Ogawa Massager</h3>
                                         <p>"10000 points"</p>
-                                        <button id="myBtn6" class="custom-button">Redeem</button>
-                                        <!-- The Modal -->
-                                        <div id="myModal" class="modal">
-                                            <p>QR Code</p>
-                                            <span class="close">&times;</span>                                                                                            
-                                        </div>
-                                        <!-- End of Modal -->  
+                                        <button class="custom-button" onclick="on()">Redeem</button>
                                     </div>
                                     <!-- Caption Ends -->
                                 </div>
@@ -273,172 +241,14 @@
             <!-- Back To Top Ends -->
         </div>
         <!-- Wrapper Ends -->
-
+        
         <script>
-            // Get the modal for btn1
-            var modal = document.getElementById('myModal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "block";
+            function on() {
+                document.getElementById("overlay").style.display = "block";
             }
 
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
-        <script>
-            // Get the modal2
-            var modal = document.getElementById('myModal2');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn2");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
-        <script>
-            // Get the modal3
-            var modal = document.getElementById('myModal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn3");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
-        <script>
-            // Get the modal4
-            var modal = document.getElementById('myModal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn4");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
-        <script>
-            // Get the modal5
-            var modal = document.getElementById('myModal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn5");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
-        <script>
-            // Get the modal6
-            var modal = document.getElementById('myModal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn6");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
+            function off() {
+                document.getElementById("overlay").style.display = "none";
             }
         </script>
 
