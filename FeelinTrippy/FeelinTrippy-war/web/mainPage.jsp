@@ -62,6 +62,7 @@
                                 <div class="tp-caption " data-x="['center','center','center','center']" data-hoffset="['7','7','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['101','61','61','41']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:50px(R);opacity:0;s:1500;e:Power4.easeOut;" data-transform_out="y:-50px;opacity:0;s:1000;e:Power2.easeInOut;" data-start="600" data-splitin="none" data-splitout="none" data-responsive_offset="off" data-responsive="off" style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"><a href="./filterTrip.jsp" class="custom-button slider-button scroll-to-target">Let's go!</a></div>
 
                             </li>
+                        </ul>
                         <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
                     </div>
                     <!-- END REVOLUTION SLIDER -->

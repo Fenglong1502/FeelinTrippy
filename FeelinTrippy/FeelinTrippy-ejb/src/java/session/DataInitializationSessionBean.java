@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.LocalBean;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -25,8 +26,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author dk349
  */
+@Startup
 @Singleton
-@LocalBean
 public class DataInitializationSessionBean {
 
     @PersistenceContext(unitName = "FeelinTrippy-ejbPU")
@@ -36,10 +37,11 @@ public class DataInitializationSessionBean {
     private TrippyEventSessionLocal trippyEventSessionLocal;
     @EJB
     private CustomerSessionLocal customerSessionLocal;
-
+    @EJB
+    private TrippyEventTypeSessionLocal trippyEventTypeSessionLocal;
+    
     @PostConstruct
     public void postConstruct() {
-        System.out.println("It's here");
         if(em.find(Customer.class, 1l) == null){
             initializeData();
         }
@@ -77,6 +79,22 @@ public class DataInitializationSessionBean {
         TrippyEventType art_and_culture = new TrippyEventType("Art and Culture", false);
         TrippyEventType foodie = new TrippyEventType("Foodie", false);
 
+        trippyEventTypeSessionLocal.createTrippyType(animals_and_wildlife);
+        trippyEventTypeSessionLocal.createTrippyType(adventure);
+        trippyEventTypeSessionLocal.createTrippyType(music_and_night_life);
+        trippyEventTypeSessionLocal.createTrippyType(art_and_culture);
+        trippyEventTypeSessionLocal.createTrippyType(foodie);
+        
+        animals_and_wildlife = trippyEventTypeSessionLocal.getAllTripType().get(0);
+        adventure = trippyEventTypeSessionLocal.getAllTripType().get(1);
+        music_and_night_life = trippyEventTypeSessionLocal.getAllTripType().get(2);
+        art_and_culture = trippyEventTypeSessionLocal.getAllTripType().get(3);
+        foodie = trippyEventTypeSessionLocal.getAllTripType().get(4);
+        
+        
+        
+        
+        
         // Initialising the events for animals and wildlife   
         startDate.set(2018, Calendar.FEBRUARY, 14);
         endDate.set(2019, Calendar.JANUARY, 13);

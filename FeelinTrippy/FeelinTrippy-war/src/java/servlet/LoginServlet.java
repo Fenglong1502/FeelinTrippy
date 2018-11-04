@@ -6,12 +6,15 @@
 package servlet;
 
 import entity.Customer;
+import error.NoResultException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -102,17 +105,15 @@ public class LoginServlet extends HttpServlet {
         c.setPassword(encryptPassword(password));
 
         if (customerSessionLocal.Login(c)) {
-            try{
-                
-            }
-            catch(NoResultException e){
-                
-            }
             HttpSession httpSession = request.getSession();
-            Customer c = customerSessionLocal.getCustomerByEmail(email);
-            
-            httpSession.setAttribute("user", user);
-            response.sendRedirect("mainPage.jsp");
+            try {
+                c = customerSessionLocal.getCustomerByEmail(email);
+            } catch (NoResultException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            httpSession.setAttribute("user", c);
+            response.sendRedirect("filterTrip.jsp");
         } else {
             PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");

@@ -6,6 +6,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -79,7 +80,33 @@ public class ActivityServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+//
+//        Customer c = new Customer();
+//        c.setEmail(email);
+//        c.setPassword(encryptPassword(password));
+//
+//        if (customerSessionLocal.Login(c)) {
+//            HttpSession httpSession = request.getSession();
+//            try {
+//                c = customerSessionLocal.getCustomerByEmail(email);
+//            } catch (NoResultException ex) {
+//                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//                
+//            httpSession.setAttribute("user", c);
+//            response.sendRedirect("filterTrip.jsp");
+//        } else {
+//            PrintWriter out = response.getWriter();
+//            out.println("<script type=\"text/javascript\">");
+//            out.println("alert('User or password incorrect');");
+//            out.println("location='login.jsp';");
+//            out.println("</script>");
+//            //response.sendRedirect("503.html");
+//        }
+
     }
 
     /**

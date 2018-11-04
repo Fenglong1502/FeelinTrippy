@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="FeelinTrippy-ejbPU" transaction-type="JTA">
-    <jta-data-source>jdbc/feelinTrippyDB</jta-data-source>
+    <jta-data-source>jdbc/feelingTrippyDB</jta-data-source>
+    <class>entity.BookedActivity</class>
+    <class>entity.Customer</class>
+    <class>entity.Prize</class>
+    <class>entity.PrizeOrder</class>
+    <class>entity.QRDetail</class>
+    <class>entity.RecommendedActivity</class>
+    <class>entity.SavedTrip</class>
+    <class>entity.TrippyEventItem</class>
+    <class>entity.TrippyEventType</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>

@@ -139,7 +139,7 @@
                     </div>
                     <!-- Copyright Text Starts -->
                     <f>
-                    <p class="text-center copyright-text">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                  
                     <!-- Copyright Text Ends -->
                 </div>
             </div>

@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,6 +41,7 @@ public class TrippyEventItem implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date endDate;
     
+    @Column(name="eventDescription",columnDefinition="LONG VARCHAR")
     private String eventDescription;
     //point indicates the number of points users can earn from attending this event
     private Long point;
