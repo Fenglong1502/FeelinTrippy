@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import session.BookedActivitySessionLocal;
 import session.CustomerSessionLocal;
 
@@ -82,14 +83,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -101,9 +100,18 @@ public class LoginServlet extends HttpServlet {
         Customer c = new Customer();
         c.setEmail(email);
         c.setPassword(encryptPassword(password));
-        
-        
+
         if (customerSessionLocal.Login(c)) {
+            try{
+                
+            }
+            catch(NoResultException e){
+                
+            }
+            HttpSession httpSession = request.getSession();
+            Customer c = customerSessionLocal.getCustomerByEmail(email);
+            
+            httpSession.setAttribute("user", user);
             response.sendRedirect("mainPage.jsp");
         } else {
             PrintWriter out = response.getWriter();

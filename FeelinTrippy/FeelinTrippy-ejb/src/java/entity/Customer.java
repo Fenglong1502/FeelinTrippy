@@ -50,8 +50,8 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer")
     private List<SavedTrip> savedTrips;
 
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy="bookedBy")
-    //private ArrayList<BookedActivity> bookedActivities;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="bookedBy")
+    private List<BookedActivity> bookedActivities;
     /**
      * @return the firstName
      */
@@ -72,8 +72,6 @@ public class Customer implements Serializable {
         this.points = points;
         this.isAdmin = isAdmin;
         dateCreated = java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
-
-        //bookedActivities = new ArrayList<BookedActivity>();
     }
 
     public void addSavedTrip(SavedTrip savedTrip) throws CustomerAddSavedTripException {
@@ -281,6 +279,15 @@ public class Customer implements Serializable {
         this.savedTrips = savedTrips;
     }
 
+    public List<BookedActivity> getBookedActivities() {
+        return bookedActivities;
+    }
+
+    public void setBookedActivities(List<BookedActivity> bookedActivities) {
+        this.bookedActivities = bookedActivities;
+    }
+
+    
     /**
      * @return the gender
      */
