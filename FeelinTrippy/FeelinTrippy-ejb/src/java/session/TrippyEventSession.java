@@ -35,6 +35,7 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
         TrippyEventItem existingTrippyEvent = em.find(TrippyEventItem.class, trippyEventItem.getEventID());
         
         if (existingTrippyEvent != null) {
+            System.out.println("Found a match!");
             existingTrippyEvent.setEventName(trippyEventItem.getEventName());
             existingTrippyEvent.setEventDescription(trippyEventItem.getEventDescription());
             existingTrippyEvent.setEventType(trippyEventItem.getEventType());
