@@ -58,5 +58,22 @@ public class TrippyEventTypeSession implements TrippyEventTypeSessionLocal {
         return q.getResultList();
     }
 
-    
+    @Override
+    public TrippyEventType searchTrippyEventType(String name) {
+        Query q;
+        if (name != null) {
+            q = em.createQuery("SELECT te FROM TrippyEventType te WHERE "
+                    + "LOWER(te.typeName) = :name");
+            q.setParameter("name", name.toLowerCase());
+
+            if (!q.getResultList().isEmpty()) {
+                return (TrippyEventType) q.getResultList().get(0);
+            } else {
+                return null;
+            }
+
+        } else {
+            return null;
+        }
+    }
 }
