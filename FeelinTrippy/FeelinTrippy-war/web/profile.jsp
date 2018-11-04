@@ -27,8 +27,7 @@
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="img/FeelinTrippy.png" alt="logo">
-            </div>
+                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            </div>
             <div class="loader" id="loader"></div>
         </div>
         <!-- Preloader Ends -->
@@ -41,16 +40,15 @@
                     <nav class="navbar">
                         <!-- Logo Starts -->
                         <div class="logo">
-                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.jsp">
                                 <!-- Logo White Starts -->
-                                <img id="logo-light" class="logo-light" src="img/FeelinTrippy.png" alt="logo-light" />
+                                <img id="logo-light" class="logo-light" src="img/logo.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
                                 <!-- Logo Black Starts -->
-                                <img id="logo-dark" class="logo-dark" src="img/FeelinTrippy.png" alt="logo-dark" />
+                                <img id="logo-dark" class="logo-dark" src="img/logo.png" alt="logo-dark" />
                                 <!-- Logo Black Ends -->
                             </a>
-                        </div>
-                        <!-- Logo Ends -->
+                        </div>                        <!-- Logo Ends -->
                         <!-- Toggle Icon for Mobile Starts -->
                         <button class="navbar-toggle navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span id="icon-toggler">
@@ -78,7 +76,7 @@
                 </div>
             </header>   
             <!-- Header Ends -->
-            
+
             <!-- About Section Starts -->
             <section class="about">
                 <!-- Container Starts -->
@@ -93,9 +91,9 @@
                             <p>81726582<br>
                                 marcuschoo1478@gmail.com<br> 
                                 Points available to redeem: 18<br>
-                            <a class="custom-button" href="pastRewards.jsp">View Redeemed rewards</a></p>
+                                <a class="custom-button" href="pastRewards.jsp">View Redeemed rewards</a></p>
                             <a class="custom-button" href="rewards.jsp">Redeem rewards now!</a>
-                          <a class="custom-button" href="editProfile.jsp">Edit Profile</a>
+                            <a class="custom-button" href="editProfile.jsp">Edit Profile</a>
                         </div>
                         <!-- Image About Us Starts -->
                         <div class="col-md-6 col-lg-6 about-right-side">

@@ -31,7 +31,7 @@
     <!-- Preloader Starts -->
     <div class="preloader" id="preloader">
         <div class="logopreloader">
-            <img src="http://via.placeholder.com/159x28" alt="logo">
+            <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">
         </div>
         <div class="loader" id="loader"></div>
     </div>
@@ -42,15 +42,13 @@
 			<div>
 				<div class="text-center">
 					<!-- Logo Starts -->
-					<a class="logo" href="index-kenburns.html">
-						<img class="img-responsive" src="http://via.placeholder.com/159x28" alt="logo">
-					</a>
+					
 					<!-- Logo Ends -->
 					<!-- Error 404 Content Starts -->
 					<div class="big-404">404</div>
 					<h3>oops ! ... Page not found</h3>
                     <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-					<a class="custom-button" href="index-kenburns.html">take me home</a>
+					<a class="custom-button" href="mainPage.jsp">take me home</a>
 					<!-- Error 404 Content Starts -->
 				</div>
 			</div>

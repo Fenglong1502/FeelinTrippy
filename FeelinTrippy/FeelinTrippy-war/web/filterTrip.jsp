@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <meta charset="utf-8" />
         <title>FeelinTrippy - Filter Trips</title>
@@ -37,14 +37,13 @@
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="http://via.placeholder.com/159x28" alt="logo">
-            </div>
+                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            </div>
             <div class="loader" id="loader"></div>
         </div>
         <!-- Preloader Ends -->
         <!-- Page Wrapper Starts -->
         <div class="wrapper">
-            
+
             <!-- Header Starts -->
             <header class="header">
                 <div class="header-inner">
@@ -54,10 +53,10 @@
                         <div class="logo">
                             <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
                                 <!-- Logo White Starts -->
-                                <img id="logo-light" class="logo-light" src="img/FeelinTrippy.png" alt="logo-light" />
+                                <img id="logo-light" class="logo-light" src="img/logo.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
                                 <!-- Logo Black Starts -->
-                                <img id="logo-dark" class="logo-dark" src="img/FeelinTrippy.png" alt="logo-dark" />
+                                <img id="logo-dark" class="logo-dark" src="img/logo.png" alt="logo-dark" />
                                 <!-- Logo Black Ends -->
                             </a>
                         </div>
@@ -95,7 +94,7 @@
             <div class="text-center" style="margin-top: 150px">
                 <h3>Set Your Budget</h3>
             </div>
-            <form onSubmit="#">
+            <form onSubmit="#" action="ActivityServlet" >
                 <div class="slidecontainer" >
                     <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                     <h3 style="text-align: center">$ <span id="demo"></span></h3>
@@ -111,7 +110,8 @@
                     output.innerHTML = slider.value;
 
                     slider.oninput = function () {
-                        output.innerHTML = this.value;h
+                        output.innerHTML = this.value;
+                        h
                     }
                 </script>
 
@@ -139,29 +139,40 @@
 
         <!-- The script to get the variable for the item to be pass to the backend to filter -->
         <script >
-            function showme(count){
+            function showme(count) {
                 test = "everything";
                 number = count;
-                switch(number){
-                    case 1: test = "everything"; break;
-                    case 2: test = "adventure"; break;
-                    case 3: test = "culture"; break;
-                    case 4: test = "foodie"; break;
-                    case 5: test = "nightowl"; break;
-                    default: test = "everything";
+                switch (number) {
+                    case 1:
+                        test = "everything";
+                        break;
+                    case 2:
+                        test = "adventure";
+                        break;
+                    case 3:
+                        test = "culture";
+                        break;
+                    case 4:
+                        test = "foodie";
+                        break;
+                    case 5:
+                        test = "nightowl";
+                        break;
+                    default:
+                        test = "everything";
                 }
 
             }
 
             /*
-            function testing(click){
-                alert("You picked "+ test);
-            }*/
-            
+             function testing(click){
+             alert("You picked "+ test);
+             }*/
+
         </script>
 
-    
-        
+
+
         <!-- Template JS Files -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/plugins/jquery.easing.1.3.js"></script>
