@@ -100,4 +100,13 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
         return listToRand.get(new Random().nextInt(listSize));
     }
 
+    @Override
+    public List<TrippyEventItem> searchEventListByPrice(Double price) {
+           Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
+                + "t.price <= :price");
+        q.setParameter("price", price);
+        
+        return q.getResultList();
+    }
+
 }

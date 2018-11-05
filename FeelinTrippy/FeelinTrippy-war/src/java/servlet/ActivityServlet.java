@@ -5,15 +5,21 @@
  */
 package servlet;
 
+import entity.TrippyEventItem;
+import entity.TrippyEventType;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import session.RecommendedActivitySessionLocal;
+import session.TrippyEventSessionLocal;
+import session.TrippyEventTypeSessionLocal;
 
 /**
  *
@@ -21,8 +27,14 @@ import session.RecommendedActivitySessionLocal;
  */
 @WebServlet(name = "ActivityServlet")
 public class ActivityServlet extends HttpServlet {
-@EJB
- RecommendedActivitySessionLocal recommendedActivitySessionLocal;
+
+    @EJB
+    RecommendedActivitySessionLocal recommendedActivitySessionLocal;
+    @EJB
+    TrippyEventTypeSessionLocal trippyEventTypeSessionLocal;
+    @EJB
+    TrippyEventSessionLocal trippyEventSessionLocal;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -81,32 +93,22 @@ public class ActivityServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-//
-//        Customer c = new Customer();
-//        c.setEmail(email);
-//        c.setPassword(encryptPassword(password));
-//
-//        if (customerSessionLocal.Login(c)) {
-//            HttpSession httpSession = request.getSession();
-//            try {
-//                c = customerSessionLocal.getCustomerByEmail(email);
-//            } catch (NoResultException ex) {
-//                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//                
-//            httpSession.setAttribute("user", c);
-//            response.sendRedirect("filterTrip.jsp");
-//        } else {
-//            PrintWriter out = response.getWriter();
-//            out.println("<script type=\"text/javascript\">");
-//            out.println("alert('User or password incorrect');");
-//            out.println("location='login.jsp';");
-//            out.println("</script>");
-//            //response.sendRedirect("503.html");
-//        }
+        String btnType = request.getParameter("btnType");
+        int myRange = Integer.parseInt(request.getParameter("myRange"));
+        List<TrippyEventItem> filteredList;
+        TrippyEventType tType = trippyEventTypeSessionLocal.searchTrippyEventType(btnType);
+        
+        if (btnType.equals("everything")) {
+            filteredList = trippyEventSessionLocal.searchEventListByPrice((double) myRange);
+        } else {
+            filteredList = trippyEventSessionLocal.searchEventListByConditions(tType, (double) myRange);
+        }
 
+        HttpSession httpSession = request.getSession();
+        httpSession.setAttribute("user", httpSession.getAttribute("user"));    
+        httpSession.setAttribute("filterList", filteredList);
+        
+        response.sendRedirect("activities.jsp");
     }
 
     /**

@@ -36,11 +36,11 @@
     <body class="double-diagonal dark">
 
         <% if (request.getSession().getAttribute("user") == null) { %>
-                <script type="text/javascript">
-                        alert('Please login to start trippy');
-                        document.location.href = 'login.jsp';
-                    </script>
-            <% }%>
+        <script type="text/javascript">
+            alert('Please login to start trippy');
+            document.location.href = 'login.jsp';
+        </script>
+        <% }%>
 
 
 
@@ -89,10 +89,10 @@
                                 <li><a href="mySavedTrips.jsp"><i class="fa fa-envelope"></i> Saved Trips</a></li>
                                 <li><a href="myPastTrips.jsp"><i class="fa fa-envelope"></i> Past Trips</a></li>
                                 <li><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
-                                <li><a href="javascript:logout();"><i class="fa fa-user"></i>    
+<!--                                <li><a href="javascript:logout();"><i class="fa fa-user"></i>    
                                         Log Out
-                                    
-                                    </a></li>
+
+                                    </a></li>-->
                             </ul>
                             <!-- Main Menu Ends -->
                         </div>
@@ -108,9 +108,9 @@
             <div class="text-center" style="margin-top: 150px">
                 <h3>Set Your Budget</h3>
             </div>
-            <form onSubmit="#" action="ActivityServlet" >
+            <form method="POST" action="ActivityServlet" >
                 <div class="slidecontainer" >
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="1" max="100" value="50" class="slider" name="myRange" id="myRange">
                     <h3 style="text-align: center">$ <span id="demo"></span></h3>
                 </div>
 
@@ -123,8 +123,8 @@
                     var output = document.getElementById("demo");
                     output.innerHTML = slider.value;
                     slider.oninput = function () {
-                    output.innerHTML = this.value;
-                    h
+                        output.innerHTML = this.value;
+
                     }
                 </script>
 
@@ -136,15 +136,24 @@
                 </div>
 
                 <div class ="buttondiv" style="height:200px">
-                    <a id="btn1" class="first-page-button" href="#btn1" onClick="showme(1)">Everything!</a>
-                    <a id="btn2" class="second-page-button" href="#btn2" onClick="showme(2)">Adventure!</a>
-                    <a id="btn3" class="third-page-button" href="#btn3" onClick="showme(3)">Culture!</a>
-                    <a id="btn4" class="fourth-page-button" href="#btn4" onClick="showme(4)">Foodie!</a>
-                    <a id="btn5" class="fifth-page-button" href="#btn5" onClick="showme(5)">Nightowl!</a>
+                    <a id="btn1" class="first-page-button" href="#btn1" onclick="showme(1)">Everything!</a>
+                    <a id="btn2" class="second-page-button" href="#btn2" onclick="showme(2)">Adventure!</a>
+                    <a id="btn3" class="third-page-button" href="#btn3" onclick="showme(3)">Culture!</a>
+                    <a id="btn4" class="fourth-page-button" href="#btn4" onclick="showme(4)">Foodie!</a>
+                    <a id="btn5" class="fifth-page-button" href="#btn5" onclick="showme(5)">Nightowl!</a>
                 </div>                
                 <div class ="text-center">
                     <button class="trippy-button" type="submit" > Trippy! </button>
                 </div>
+                <input 
+                    id="btnType" type="hidden"
+                       name="btnType"
+                       value="" />
+                  <input 
+                    id="userRecord" type="hidden"
+                       name="userRecord"
+                       value="" />
+               
             </form>
         </div>
         <!-- Wrapper Ends -->
@@ -153,34 +162,34 @@
         <!-- The script to get the variable for the item to be pass to the backend to filter -->
         <script >
             function showme(count) {
-            test = "everything";
-            number = count;
-            switch (number) {
-            case 1:
-                    test = "everything";
-            break;
-            case 2:
-                    test = "adventure";
-            break;
-            case 3:
-                    test = "culture";
-            break;
-            case 4:
-                    test = "foodie";
-            break;
-            case 5:
-                    test = "nightowl";
-            break;
-            default:
-                    test = "everything";
-            }
-
+                test = "everything";
+                number = count;
+                switch (number) {
+                    case 1:
+                        test = "everything";
+                        break;
+                    case 2:
+                        test = "Adventure";
+                        break;
+                    case 3:
+                        test = "Art and Culture";
+                        break;
+                    case 4:
+                        test = "Foodie";
+                        break;
+                    case 5:
+                        test = "Music and Night Life";
+                        break;
+                    default:
+                        test = "everything";
+                }
+                document.getElementById("btnType").value = test ;
             }
 
             function logout() {
-                <% session = request.getSession();
-                session.invalidate();%>
-                
+            <% session = request.getSession();
+                    session.invalidate();%>
+
                 alert("Logout Successfully!");
                 document.location.href = 'mainPage.jsp';
             }
