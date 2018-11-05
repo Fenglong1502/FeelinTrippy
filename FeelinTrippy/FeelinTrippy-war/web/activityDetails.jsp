@@ -27,7 +27,15 @@
 
     </head>
 
+     
+    
     <body class="double-diagonal dark portfolio-project">
+          <% if (request.getSession().getAttribute("user") == null) { %>
+                <script type="text/javascript">
+                        alert('Please login to start trippy');
+                        document.location.href = 'login.jsp';
+                    </script>
+            <% }%>
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">

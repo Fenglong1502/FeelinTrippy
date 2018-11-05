@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./adminTemplate.xhtml">
+            <ui:define name="title">
+                Welcome to FeelinTrippy Admin page!
+            </ui:define>
+            <ui:define name="content">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Welcome to Admin console</h1>
+                                #{request.contextPath}
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item active">
+                                        <a href="#{request.contextPath}">Home</a>
+                                    </li>
+                                </ol>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+                <!-- Main content -->
+                <section class="content">
+                    <h:form class="col-sm-5">
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Event Name</div>
+
+                            </div>
+                            <h:inputText class="form-control" value="#{adminManagedBean.eventName}" id="eventName"/>     
+                        </div>
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Start Date</div>
+
+                            </div>
+                            <h:inputText class="form-control" value="#{adminManagedBean.startDate}" id="startDate" converterMessage="Please provide date in dd/mm/yyyy format">
+                                <f:convertDateTime pattern="dd/MM/yyy"/>
+                            </h:inputText>
+                        </div>
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">End Date</div>                           
+                            </div>
+                            <h:inputText class="form-control" value="#{adminManagedBean.endDate}" id="endDate" converterMessage="Please provide date in dd/mm/yyyy format" > 
+                                <f:convertDateTime pattern="dd/MM/yyy"/>
+                            </h:inputText>
+                        </div>
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Event Description</div>                                
+                            </div>
+                            <h:inputText class="form-control" id="description" value="#{adminManagedBean.eventDescription}" />
+                        </div>
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Point</div>
+
+                            </div>
+                            <h:inputText id="point" class="form-control" value="#{adminManagedBean.point}"  />
+                        </div>
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Price</div>
+
+                            </div>
+                            <h:inputText id="price" class="form-control" value="#{adminManagedBean.price}"  />
+                        </div>
+                       
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Address</div>
+
+                            </div>
+                            <h:inputText id="address" class="form-control" value="#{adminManagedBean.address}"  />
+                        </div>
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Event Type</div>
+
+                            </div>
+                            <h:inputText id="eventType" class="form-control" value="#{adminManagedBean.eventTypeString}"  />
+                        </div>
+                        <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Image Links</div>
+
+                            </div>
+                            <h:inputText id="imageLinks" class="form-control" value="#{adminManagedBean.eventImageString}"  />
+                        </div>
+                        <h:commandButton class="btn btn-info" value="Create" action="#{adminManagedBean.createTrippyEventItem()}" title="Create Trippy Event" />
+                    </h:form>
+                </section>
+                <!-- /.content -->
+            </ui:define>
+            <ui:define name="script">
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

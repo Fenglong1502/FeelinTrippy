@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./adminTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Manage Trippy Event</ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="form">
+            <h:dataTable class="table table-hover table-light" var="trippyEvent"
+                         value="#{adminManagedBean.listOfTrippyEvent}">
+
+                <h:column rowHeader="eventID">
+                    <f:facet name="header">Event ID</f:facet>
+                    <h:outputText value="#{trippyEvent.eventID}"/>
+                </h:column>
+
+                <h:column rowHeader="eventName">
+                    <f:facet name="header">Event Name</f:facet>
+                    <h:outputText value="#{trippyEvent.eventName}"/>
+                </h:column>
+
+                <h:column rowHeader="price">
+                    <f:facet name="header">price</f:facet>
+                    <h:outputText value="#{trippyEvent.price}"/>
+                </h:column>
+
+                <h:column rowHeader="startDate">
+                    <f:facet name="header">Start Date</f:facet>
+                    <h:outputText value="#{trippyEvent.startDate}"/>
+                </h:column>
+                <h:column rowHeader="image">
+                    <f:facet name="header">Image Links</f:facet>
+                    <ui:repeat var="link" value="#{trippyEvent.eventImage}">
+                        <h1>#{link}</h1>
+                    </ui:repeat>
+                </h:column>
+
+                <h:column>
+                    <input type="button" value="View" class="btn btn-primary" data-toggle="modal"  data-target="#manageTrippyEventModal" data-name="#{trippyEvent.eventName}" data-start="#{trippyEvent.startDate}" data-end="#{trippyEvent.endDate}" data-description="#{trippyEvent.eventDescription}" data-point="#{trippyEvent.point}" data-price="#{trippyEvent.price}" data-address="#{trippyEvent.address}" data-id="#{trippyEvent.eventID}" />
+                </h:column>
+
+            </h:dataTable>    
+
+            <div class="modal fade" id="manageTrippyEventModal" tabindex="-1" role="dialog" aria-labelledby="manageTrippyEventModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="manageItemModalLabel">Item Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&#215;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group event-ID">
+                                <h:inputHidden id="eventID" value="#{adminManagedBean.eventID}"  />
+                            </div>
+
+                            <div class="form-group eventName">
+                                <label for="eventName" class="col-form-label">Event name:</label>
+                                <h:inputText class="form-control" id="eventName" value="#{adminManagedBean.eventName}" />
+                            </div>
+                            <div class="form-group startDate">
+                                <label for="startDate" class="col-form-label">Start Date:</label>
+                                <h:inputText class="form-control" id="startDate" value="#{adminManagedBean.startDate}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                            <div class="form-group endDate">
+                                <label for="endDate" class="col-form-label">End Date:</label>
+                                <h:inputText class="form-control" id="endDate" value="#{adminManagedBean.endDate}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                            <div class="form-group eventDescription">
+                                <label for="eventDescription" class="col-form-label">Description:</label>
+                                <h:inputText class="form-control" id="eventDescription" value="#{adminManagedBean.eventDescription}"  />
+                            </div>
+                            <div class="form-group eventPoint">
+                                <label for="eventPoint" class="col-form-label">Point:</label>
+                                <h:inputText class="form-control" id="eventPoint" value="#{adminManagedBean.point}"  />
+                            </div>
+                            <div class="form-group eventPrice">
+                                <label for="eventPrice" class="col-form-label">Price:</label>
+                                <h:inputText class="form-control" id="eventPrice" value="#{adminManagedBean.price}" />
+                            </div>
+                            <div class="form-group address">
+                                <label for="address" class="col-form-label">Address:</label>
+                                <h:inputText class="form-control" id="address" value="#{adminManagedBean.address}" />
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">  
+                            <h:commandButton id="updateItemButton" class="btn btn-success" value="Update" action="#{adminManagedBean.updateTrippyEventItem()}" title="Update Trippy Event Item details" />
+                            <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+    <ui:define name="script">
+        <script>
+            $('#manageTrippyEventModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var eventName = button.data('name'); // Extract info from data-* attributes
+                var startDate = button.data('start');
+                startDate = startDate.split(" ");
+                var endDate = button.data('end');
+                endDate = endDate.split(" ");
+                var description = button.data('description');
+                var point = button.data('point');
+                var price = button.data('price');
+                var address = button.data('address');
+                var eventID = button.data('id');
+                var modal = $(this);
+                var day  = startDate[2];
+                var month = startDate[1];
+                var year = startDate[5];
+                if (month == "Jan") {
+                    month = "1";
+                } else if (month == "Feb") {
+                    month = "2";
+                } else if (month == "Mar") {
+                    month = "3";
+                } else if (month == "Apr") {
+                    month = "4";
+                } else if (month == "May") {
+                    month = "5";
+                } else if (month == "Jun") {
+                    month = "6";
+                } else if (month == "Jul") {
+                    month = "7";
+                } else if (month == "Aug") {
+                    month = "8";
+                } else if (month == "Sep") {
+                    month = "9";
+                } else if (month == "Oct") {
+                    month = "10";
+                } else if (month == "Nov") {
+                    month = "11";
+                } else {
+                    month = "12";
+                }
+                var strDate = day + "/" + month + "/" + year;
+                
+                var eDay  = endDate[2];
+                var eMonth = endDate[1];
+                var eYear = endDate[5];
+                if (eMonth == "Jan") {
+                    eMonth = "1";
+                } else if (eMonth == "Feb") {
+                    eMonth = "2";
+                } else if (eMonth == "Mar") {
+                    eMonth = "3";
+                } else if (eMonth == "Apr") {
+                    eMonth = "4";
+                } else if (eMonth == "May") {
+                    eMonth = "5";
+                } else if (eMonth == "Jun") {
+                    eMonth = "6";
+                } else if (eMonth == "Jul") {
+                    eMonth = "7";
+                } else if (eMonth == "Aug") {
+                    eMonth = "8";
+                } else if (eMonth == "Sep") {
+                    eMonth = "9";
+                } else if (eMonth == "Oct") {
+                    eMonth = "10";
+                } else if (eMonth == "Nov") {
+                    eMonth = "11";
+                } else {
+                    eMonth = "12";
+                }
+                var eStrDate = eDay + "/" + eMonth + "/" + eYear;
+                modal.find('.modal-title').text('Detailed Information of ' + eventName + " " + eStrDate);
+                modal.find('.eventName input').val(eventName);
+                modal.find('.startDate input').val(strDate);
+                modal.find('.endDate input').val(eStrDate);
+                modal.find('.eventDescription input').val(description);
+                modal.find('.eventPoint input').val(point);
+                modal.find('.eventPrice input').val(price);
+                modal.find('.address input').val(address);
+                modal.find('.event-ID input').val(eventID);
+//                document.getElementById("imageOutput").src = imageLink;
+
+            });
+        </script>
+    </ui:define>
+</ui:composition>

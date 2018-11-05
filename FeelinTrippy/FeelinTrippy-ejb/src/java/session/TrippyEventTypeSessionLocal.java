@@ -11,4 +11,5 @@ public interface TrippyEventTypeSessionLocal {
     public void updateTrippyType(TrippyEventType type) throws NoResultException;
     public void removeTrippyType(Long trippyTypeID) throws NoResultException;
     public List<TrippyEventType> getAllTripType();
+    public TrippyEventType searchTrippyEventType(String name);
 }

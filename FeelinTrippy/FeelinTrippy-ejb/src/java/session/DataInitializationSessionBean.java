@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.LocalBean;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -25,8 +26,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author dk349
  */
+@Startup
 @Singleton
-@LocalBean
 public class DataInitializationSessionBean {
 
     @PersistenceContext(unitName = "FeelinTrippy-ejbPU")
@@ -36,12 +37,18 @@ public class DataInitializationSessionBean {
     private TrippyEventSessionLocal trippyEventSessionLocal;
     @EJB
     private CustomerSessionLocal customerSessionLocal;
+    @EJB
+    private TrippyEventTypeSessionLocal trippyEventTypeSessionLocal;
 
     @PostConstruct
     public void postConstruct() {
-        System.out.println("It's here");
-        if(em.find(Customer.class, 1l) == null){
-            initializeData();
+        if (em.find(Customer.class, 1l) == null) {
+            try {
+                initializeData();
+            }catch (Exception e) {
+                
+            }
+
         }
     }
 
@@ -50,19 +57,17 @@ public class DataInitializationSessionBean {
 
     private void initializeData() {
         //Initialise new user
-        Customer c1 = new Customer("user1", encryptPassword("password"), "John", "Tan", true, (byte)2, "91234567", "Testing1@example.com", 0, false);
-        Customer c2 = new Customer("user2", encryptPassword("password"), "Peter", "Lee", true, (byte)2, "91234567", "Testing2@example.com", 0, false);
-        Customer c3 = new Customer("user3", encryptPassword("password"), "Jane", "Lee", true, (byte)1, "91234567", "Testing3@example.com", 0, false);
-        Customer c4 = new Customer("user4", encryptPassword("password"), "Mary", "Sim", true, (byte)1, "91234567", "Testing4@example.com", 0, false);
-        Customer c5 = new Customer("user5", encryptPassword("password"), "Victor", "Lim", true, (byte)2, "91234567", "Testing5@example.com", 0, false);
- 
+        Customer c1 = new Customer("user1", encryptPassword("password"), "John", "Tan", true, (byte) 2, "91234567", "Testing1@example.com", 0, false);
+        Customer c2 = new Customer("user2", encryptPassword("password"), "Peter", "Lee", true, (byte) 2, "91234567", "Testing2@example.com", 0, false);
+        Customer c3 = new Customer("user3", encryptPassword("password"), "Jane", "Lee", true, (byte) 1, "91234567", "Testing3@example.com", 0, false);
+        Customer c4 = new Customer("user4", encryptPassword("password"), "Mary", "Sim", true, (byte) 1, "91234567", "Testing4@example.com", 0, false);
+        Customer c5 = new Customer("user5", encryptPassword("password"), "Victor", "Lim", true, (byte) 2, "91234567", "Testing5@example.com", 0, false);
+
         customerSessionLocal.createCustomer(c1);
         customerSessionLocal.createCustomer(c2);
         customerSessionLocal.createCustomer(c3);
         customerSessionLocal.createCustomer(c4);
         customerSessionLocal.createCustomer(c5);
-        
-        
 
         // Declaring the variables to be used in initialising data
         Calendar startDate = Calendar.getInstance();
@@ -76,6 +81,18 @@ public class DataInitializationSessionBean {
         TrippyEventType music_and_night_life = new TrippyEventType("Music and Night Life", false);
         TrippyEventType art_and_culture = new TrippyEventType("Art and Culture", false);
         TrippyEventType foodie = new TrippyEventType("Foodie", false);
+
+        trippyEventTypeSessionLocal.createTrippyType(animals_and_wildlife);
+        trippyEventTypeSessionLocal.createTrippyType(adventure);
+        trippyEventTypeSessionLocal.createTrippyType(music_and_night_life);
+        trippyEventTypeSessionLocal.createTrippyType(art_and_culture);
+        trippyEventTypeSessionLocal.createTrippyType(foodie);
+
+        animals_and_wildlife = trippyEventTypeSessionLocal.getAllTripType().get(0);
+        adventure = trippyEventTypeSessionLocal.getAllTripType().get(1);
+        music_and_night_life = trippyEventTypeSessionLocal.getAllTripType().get(2);
+        art_and_culture = trippyEventTypeSessionLocal.getAllTripType().get(3);
+        foodie = trippyEventTypeSessionLocal.getAllTripType().get(4);
 
         // Initialising the events for animals and wildlife   
         startDate.set(2018, Calendar.FEBRUARY, 14);
@@ -726,8 +743,828 @@ public class DataInitializationSessionBean {
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem32);
 
         // Initialising the events for music and night life
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://zoukclub.com/wp-content/uploads/2016/11/main.jpg");
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem33 = new TrippyEventItem();
+        trippyEventItem33.setEventName("Zouk");
+        trippyEventItem33.setEventDescription("Party with your friends in Singapore number 1 club");
+        trippyEventItem33.setPoint(0L);
+        trippyEventItem33.setStartDate(null);
+        trippyEventItem33.setEndDate(null);
+        trippyEventItem33.setPrice(22.0);
+        trippyEventItem33.setEventImage(eventImages);
+        trippyEventItem33.setEventType(eventTypes);
+        trippyEventItem33.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem33);
+
+        startDate.set(2018, Calendar.AUGUST, 3);
+        endDate.set(2018, Calendar.OCTOBER, 19);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/07/TGIF-Music-Station-Image-credit-to-SCCC-e1532666912190.jpg");
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem34 = new TrippyEventItem();
+        trippyEventItem34.setEventName("TGIF Music Station");
+        trippyEventItem34.setEventDescription("Presented by the Singapore Chinese Cultural Centre, the TGIF Music Station gathers an exciting line-up of homegrown artistes and rising talents from our local music scene performing live to start up your weekend revelries.\nThe series of music performances will be held on every 1st and 3rd Friday of the month, with free admission for all.\n Special lunch time pop-up performances will also be happening at Tanjong Pagar Centre.\nRefer to the website for exact details of each performance.");
+        trippyEventItem34.setPoint(0L);
+        trippyEventItem34.setStartDate(startDate.getTime());
+        trippyEventItem34.setEndDate(endDate.getTime());
+        trippyEventItem34.setPrice(0.0);
+        trippyEventItem34.setEventImage(eventImages);
+        trippyEventItem34.setEventType(eventTypes);
+        trippyEventItem34.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem34);
+
         // Initialising the events for art and culture
+        startDate.set(2018, Calendar.SEPTEMBER, 6);
+        endDate.set(2018, Calendar.DECEMBER, 9);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("http://sipf.sg/wp-content/uploads/2018/07/SIPFWebBanner-01-1024x575.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem35 = new TrippyEventItem();
+        trippyEventItem35.setEventName("6th Singapore International Photography Festival");
+        trippyEventItem35.setEventDescription("The Singapore International Photography Festival invites one and all to admire the works of a wide variety of photographers. This immense festivalspanning several galleries thursts both renowned international shutterbugs and Singapoearn stalwarts into the spotlight");
+        trippyEventItem35.setPoint(0L);
+        trippyEventItem35.setStartDate(startDate.getTime());
+        trippyEventItem35.setEndDate(endDate.getTime());
+        trippyEventItem35.setPrice(15.0);
+        trippyEventItem35.setEventImage(eventImages);
+        trippyEventItem35.setEventType(eventTypes);
+        trippyEventItem35.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem35);
+
+        startDate.set(2018, Calendar.SEPTEMBER, 6);
+        endDate.set(2019, Calendar.JANUARY, 27);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_15.thumbnail.image-path1.350.197.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem36 = new TrippyEventItem();
+        trippyEventItem36.setEventName("A Craftsman's Journey: From Dream to Reality");
+        trippyEventItem36.setEventDescription("Join us to experience how Passion is made Possible with our Singaporean Craftsmen! Our craftsmen will be at the Singapore Visitor Centre @ orchardgateway to showcase their talent and share how they pursue their dreams. Take part in the exclusive interactive workshops conducted by our craftsmen, where you will get first-hand experience in making and tasting local produce. The interactive workshop is scheduled every Thursday to Sunday at 10.30am & 11.30am. No registration needed.");
+        trippyEventItem36.setPoint(0L);
+        trippyEventItem36.setStartDate(startDate.getTime());
+        trippyEventItem36.setEndDate(endDate.getTime());
+        trippyEventItem36.setPrice(0.0);
+        trippyEventItem36.setEventImage(eventImages);
+        trippyEventItem36.setEventType(eventTypes);
+        trippyEventItem36.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem36);
+
+        startDate.set(2018, Calendar.JANUARY, 26);
+        endDate.set(2019, Calendar.SEPTEMBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2017/12/Endgame-Nabilah-Nordin-2015-Credit-Chris-Crocker-_-DISINI-1-smaller-e1514515405119.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem37 = new TrippyEventItem();
+        trippyEventItem37.setEventName("DISINI by Gillman Barracks & Chan + Hori");
+        trippyEventItem37.setEventDescription("DISINI, an inaugural site-specific visual arts festival, comprising a series of public programmes, outdoor sculptures and murals by home-grown, regional and international artists. It celebrates rich heritage of Gillman Barracks as a former military barracks and its current role as Asia’s leading contemporary arts cluster. Highlights include captivating outdoor artworks located across various spaces within the precinct. There will be a multi-functional artist-designed pavilion where a series of exciting and stimulating programmes will take place, with curatorial-led showcases to capture visitors’ attention.");
+        trippyEventItem37.setPoint(0L);
+        trippyEventItem37.setStartDate(startDate.getTime());
+        trippyEventItem37.setEndDate(endDate.getTime());
+        trippyEventItem37.setPrice(0.0);
+        trippyEventItem37.setEventImage(eventImages);
+        trippyEventItem37.setEventType(eventTypes);
+        trippyEventItem37.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem37);
+
+        startDate.set(2018, Calendar.AUGUST, 2);
+        endDate.set(2019, Calendar.JUNE, 9);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/Singapore-River-1962-e1530081235216.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem38 = new TrippyEventItem();
+        trippyEventItem38.setEventName("Lim Cheng Hoe: Painting Singapore");
+        trippyEventItem38.setEventDescription("Step into the past and see the beautiful evolution of Singapore’s landscape between the 1930s and 1970s at this exhibition by Lim Cheng Hoe. Discover over 60 works, from idyllic rural villages and vibrant boat traffic on the Singapore river, to portraits and still life. As one of Singapore’s pioneer artists and a leading watercolour artist of his time, you definitely don’t want to miss Lim’s exhibition.");
+        trippyEventItem38.setPoint(0L);
+        trippyEventItem38.setStartDate(startDate.getTime());
+        trippyEventItem38.setEndDate(endDate.getTime());
+        trippyEventItem38.setPrice(0.0);
+        trippyEventItem38.setEventImage(eventImages);
+        trippyEventItem38.setEventType(eventTypes);
+        trippyEventItem38.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem38);
+
+        startDate.set(2018, Calendar.AUGUST, 1);
+        endDate.set(2018, Calendar.OCTOBER, 29);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/07/Bath%E6%B2%9091x122cm-e1531888302586.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem39 = new TrippyEventItem();
+        trippyEventItem39.setEventName("The Nanyang Space Tour Exhibition");
+        trippyEventItem39.setEventDescription("Over 30 stunning artworks by award-winning artist Tan Ruirong will be on display at Pan Pacific Singapore. Tan combines western painting techniques and strong oriental hues that resemble Chinese calligraphy, allowing viewers to appreciate beauty of Chinese characters. Admire his series of Nanyang style paintings on display, exploring space, lines and colours.");
+        trippyEventItem39.setPoint(0L);
+        trippyEventItem39.setStartDate(startDate.getTime());
+        trippyEventItem39.setEndDate(endDate.getTime());
+        trippyEventItem39.setPrice(0.0);
+        trippyEventItem39.setEventImage(eventImages);
+        trippyEventItem39.setEventType(eventTypes);
+        trippyEventItem39.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem39);
+
+        startDate.set(2018, Calendar.JULY, 29);
+        endDate.set(2018, Calendar.DECEMBER, 31);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/07/Quayside-Sunday-Floral-Market_4-e1531447641363.jpeg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem40 = new TrippyEventItem();
+        trippyEventItem40.setEventName("Quayside's Sunday Floral Market");
+        trippyEventItem40.setEventDescription("Admire and purchase beautiful bespoke flower arrangements at this pop-up flower stall. Using a wide range of seasonal blooms including lilies, peonies, tulips and more, these are insta-worthy and sure to make your friends jealous. You can also take part in a DIY potpourri station or floral arrangement workshops to create your own bouquets. Hello Flowers will be at Quayside every last Sunday of the month from 11am to 4pm.Those visiting the floral market can follow #FlowersatQuayside to stay updated.");
+        trippyEventItem40.setPoint(0L);
+        trippyEventItem40.setStartDate(startDate.getTime());
+        trippyEventItem40.setEndDate(endDate.getTime());
+        trippyEventItem40.setPrice(0.0);
+        trippyEventItem40.setEventImage(eventImages);
+        trippyEventItem40.setEventType(eventTypes);
+        trippyEventItem40.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem40);
+
+        startDate.set(2018, Calendar.SEPTEMBER, 1);
+        endDate.set(2018, Calendar.OCTOBER, 19);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2016/10/8060fa-1855-3rd-Charter-of-Justice.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem41 = new TrippyEventItem();
+        trippyEventItem41.setEventName("Law of the Land: Highlights of Singapore's Constitutional Documents");
+        trippyEventItem41.setEventDescription("This exhibition introduces the rich history of Singapore’s constitutional development from its founding as a British settlement in 1819 to its emergence as a sovereign republic in 1965. Discover rare constitutional documents from the library and archives, each capturing a key moment in Singapore’s legal history and journey to independence.");
+        trippyEventItem41.setPoint(0L);
+        trippyEventItem41.setStartDate(startDate.getTime());
+        trippyEventItem41.setEndDate(endDate.getTime());
+        trippyEventItem41.setPrice(0.0);
+        trippyEventItem41.setEventImage(eventImages);
+        trippyEventItem41.setEventType(eventTypes);
+        trippyEventItem41.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem41);
+
+        startDate.set(2018, Calendar.DECEMBER, 12);
+        endDate.set(2018, Calendar.DECEMBER, 31);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("http://static.asiawebdirect.com/m/phuket/portals/www-singapore-com/homepage/attractions/asian-civilizations-museum/pagePropertiesImage/asian-civilisations-museum-singapore.jpg.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem42 = new TrippyEventItem();
+        trippyEventItem42.setEventName("Ancient Religions");
+        trippyEventItem42.setEventDescription("The ACM permanent galleries on Level 2 explore how artists have masterfully expressed complex ideas about life and existence with religions in sculpture and paintings. Beginning with the Ancient Religions exhibition, which explores early styles and motifs of Buddhism, Hinduism, and Jainism in India and how they spread to China and the larger Southeast Asia, the story continues in the following galleries as the art developed and evolved through the centuries.");
+        trippyEventItem42.setPoint(0L);
+        trippyEventItem42.setStartDate(startDate.getTime());
+        trippyEventItem42.setEndDate(endDate.getTime());
+        trippyEventItem42.setPrice(0.0);
+        trippyEventItem42.setEventImage(eventImages);
+        trippyEventItem42.setEventType(eventTypes);
+        trippyEventItem42.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem42);
+
+        startDate.set(2018, Calendar.MAY, 5);
+        endDate.set(2019, Calendar.FEBRUARY, 3);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/04/Amek-Gambar_Peranakans-and-Photography.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem43 = new TrippyEventItem();
+        trippyEventItem43.setEventName("Amek Gambar: Peranakans and Photography");
+        trippyEventItem43.setEventDescription("The Peranakan Museum will be presenting its first historical exhibition showcasing one of the world’s largest collection of Peranakan photography. Through more than 200 photographs and portraits, the exhibition traces the history and evolution of photography in the region, with a focus on how the Peranakan community captured and projected themselves to the world through the multi-faceted medium of photographs. Besides catching a glimpse of the personal and social lives of the Peranakans, Amek Gambar: Peranakans and Photography will bring visitors back in time to when photography was first invented and arrived in Singapore.");
+        trippyEventItem43.setPoint(0L);
+        trippyEventItem43.setStartDate(startDate.getTime());
+        trippyEventItem43.setEndDate(endDate.getTime());
+        trippyEventItem43.setPrice(0.0);
+        trippyEventItem43.setEventImage(eventImages);
+        trippyEventItem43.setEventType(eventTypes);
+        trippyEventItem43.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem43);
+
+        startDate.set(2018, Calendar.JUNE, 27);
+        endDate.set(2018, Calendar.SEPTEMBER, 2018);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/04/Facebook-banner-Simbakneel-17Aug.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem44 = new TrippyEventItem();
+        trippyEventItem44.setEventName("The Lion King");
+        trippyEventItem44.setEventDescription("More than 95 million people around the world have watched The Lion King and now, this well-loved musical has returned to Marina Bay Sands. Winner of over 70 major international theatre awards, this celebrated musical brings together one of the most innovative and creative teams on Broadway. Brilliantly re-imagined by acclaimed director Julie Taymor, Disney’s beloved film is transformed into a spectacular showcase that will redefine the theatrical experience. The Lion King also features some of world’s most recognisable music, composed by multi-award winning artists Elton John and Tim Rice.  ");
+        trippyEventItem44.setPoint(0L);
+        trippyEventItem44.setStartDate(startDate.getTime());
+        trippyEventItem44.setEndDate(endDate.getTime());
+        trippyEventItem44.setPrice(65.0);
+        trippyEventItem44.setEventImage(eventImages);
+        trippyEventItem44.setEventType(eventTypes);
+        trippyEventItem44.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem44);
+
+        startDate.set(2018, Calendar.JULY, 21);
+        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/06/b84a09-Honeycombers_DSC8158_cropped.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem45 = new TrippyEventItem();
+        trippyEventItem45.setEventName("Trees of Life Exhibition: Knowledge In Material");
+        trippyEventItem45.setEventDescription("NTU Centre for Contemporary Art Singapore is embarking on an inquiry into natural materials, exploring the knowledge they embody as biological forms as well as within social, geopolitical, and historical contexts. Trees of Life – Knowledge in Material is part of the Centre’s long-term research cluster CLIMATES. HABITATS. ENVIRONMENTS.\n"
+                + "This exhibition focuses on four plants deeply rooted in Asia: indigo, lacquer, rattan, and mulberry. The works trace the ongoing involvement with the highlighted plants in the artistic practices of Manish Nai with indigo, Phi Phi Oanh with lacquer, Sopheap Pich with rattan, and Liang Shaoji and Vivian Xu with mulberry silk. While the featured installations serve as a starting point to uncover the materiality of the chosen plants, the study of their natural and cultural DNA allows further exploration into their biological processes and diverse usages.");
+        trippyEventItem45.setPoint(0L);
+        trippyEventItem45.setStartDate(startDate.getTime());
+        trippyEventItem45.setEndDate(endDate.getTime());
+        trippyEventItem45.setPrice(0.0);
+        trippyEventItem45.setEventImage(eventImages);
+        trippyEventItem45.setEventType(eventTypes);
+        trippyEventItem45.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem45);
+
+        startDate.set(2017, Calendar.AUGUST, 17);
+        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/A.I-Ready_webanner_R1.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem46 = new TrippyEventItem();
+        trippyEventItem46.setEventName("A.I Ready @ Science Centre Singapore");
+        trippyEventItem46.setEventDescription("Jointly organised by the Agency for Science, Technology & Research (A*STAR) and Science Centre Singapore, A.I Ready @ Science Centre Singapore invites any and everyone who loves to inquire, imagine and invent to explore the latest scientific developments. This year’s theme of A.I. You Ready explores artificial intelligence and how machines can learn like humans.\n"
+                + "This September, head to the Science Centre Singapore to find out how to be A.I. ready. Learning coding, meet the creator of Singapore’s first digital influencer, our favourite chatbot, Bus Uncle. Gather the fam and work together to complete A.I. tasks, games and activities in the A.I. You Ready gallery trail and redeem a special token.\n"
+                + "Be sure to check out the other impressive science events happening across Singapore including Maker Faire at Our Tampines Hub, Star Lecture on The Language of Life at Mediacorp, Science Buskers at Plaza Singapura, Science Shows at Science Centre Singapore and X-Periment at one-north.");
+        trippyEventItem46.setPoint(0L);
+        trippyEventItem46.setStartDate(startDate.getTime());
+        trippyEventItem46.setEndDate(endDate.getTime());
+        trippyEventItem46.setPrice(0.0);
+        trippyEventItem46.setEventImage(eventImages);
+        trippyEventItem46.setEventType(eventTypes);
+        trippyEventItem46.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem46);
+        
+        startDate.set(2018, Calendar.AUGUST, 25);
+        endDate.set(2018, Calendar.SEPTEMBER, 23);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/2e5848-Honeycombers-Image.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem47 = new TrippyEventItem();
+        trippyEventItem47.setEventName("FX HARSONO | REMINISCENCE");
+        trippyEventItem47.setEventDescription("Seminal Indonesian artist FX Harsono presents ‘Reminiscence’, the artist’s longstanding major project that investigates the genocide and mass graves of ethnic Chinese-Indonesians in Java, Indonesia from 1947 to 1949. Part documentary and part commemoration, the exhibition will see a new series of drawings alongside two major installations that confronts the truth of this history.");
+        trippyEventItem47.setPoint(0L);
+        trippyEventItem47.setStartDate(startDate.getTime());
+        trippyEventItem47.setEndDate(endDate.getTime());
+        trippyEventItem47.setPrice(0.0);
+        trippyEventItem47.setEventImage(eventImages);
+        trippyEventItem47.setEventType(eventTypes);
+        trippyEventItem47.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem47);
+        
+        startDate.set(2018, Calendar.AUGUST, 30);
+        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/9bf19e-rsz_dsc_4327-min-2.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem48 = new TrippyEventItem();
+        trippyEventItem48.setEventName("Vivocity and Disney Tsum Tsum Mid-Autumn Festival of Love");
+        trippyEventItem48.setEventDescription("This Mid-Autumn, VivoCity and The Walt Disney Company Southeast Asia invite all Singaporeans to come together to celebrate the love of family and friends and a month long of Disney magic under the stars with their Disney Tsum Tsum Mid-Autumn Celebration of Love campaign. Held from 30 August to 30 September 2018 at VivoCity Sky Park Level 3, this Mid-Autumn celebration is a visual spectacle and a sight to behold, where over 2,000 Tsum Tsum themed lanterns will light up the night sky. As one of Asia’s largest lantern installations, guests can expect nights of revelry and festivities with their favourite Disney and Disney-Pixar Tsum Tsum characters.");
+        trippyEventItem48.setPoint(0L);
+        trippyEventItem48.setStartDate(startDate.getTime());
+        trippyEventItem48.setEndDate(endDate.getTime());
+        trippyEventItem48.setPrice(0.0);
+        trippyEventItem48.setEventImage(eventImages);
+        trippyEventItem48.setEventType(eventTypes);
+        trippyEventItem48.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem48);
+        
+        startDate.set(2018, Calendar.AUGUST, 31);
+        endDate.set(2018, Calendar.OCTOBER, 7);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/e7404c-Exhibition-compressed.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem49 = new TrippyEventItem();
+        trippyEventItem49.setEventName("Indonesia: Land of Treasures Exhibition");
+        trippyEventItem49.setEventDescription("The Land of Treasures Exhibition features majestic large-scale displays capturing the beauty and essence of cities and islands of Indonesia, right at Changi Airport. Featuring iconic landscapes from Labuan Bajo, Surabaya and more, come experience the ever-intriguing charm of Indonesia as you foray into local culture and adventures, all in one place!\n" +
+"Key highlights of the exhibition:\n" +
+"• Come face-to-face with a replica Komodo Dragon at Labuan Bajo, home to the Komodo National Park Cave, the only remaining natural habitat where the endangered Komodo Dragon still runs wild;\n" +
+"• Check out the spectacular landscapes of Belitung through interactive binoculars at a look-out point high above the exhibition;\n" +
+"• Be inspired by the ancient bells of the world’s largest Buddhist temple and UNESCO World Heritage-listed Borobudur Temple in Yogyakarta;\n" +
+"• Round up your visit at the Instagram-worthy swing floating above crystal clear waters, against the backdrop of an amazing Lombok sunset.");
+        trippyEventItem49.setPoint(0L);
+        trippyEventItem49.setStartDate(startDate.getTime());
+        trippyEventItem49.setEndDate(endDate.getTime());
+        trippyEventItem49.setPrice(0.0);
+        trippyEventItem49.setEventImage(eventImages);
+        trippyEventItem49.setEventType(eventTypes);
+        trippyEventItem49.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem49);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 2);
+        endDate.set(2018, Calendar.NOVEMBER, 11);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/742ca9-Lan-Zhenghui_E04_930-x-550_honeycombers.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem50 = new TrippyEventItem();
+        trippyEventItem50.setEventName("Crossfades and Drawn Forms: Golnaz Fathi and Lan ZhengHui");
+        trippyEventItem50.setEventDescription("Reinterpreting traditional art forms, Iranian artist Golnaz Fathi’s free abstractions of the written word coalesce with Chinese Lan Zhenghui’s monumental ink landscapes at Pearl Lam Galleries. A phenomenal transpiration of the essence of art making, the artists conflate Eastern and Western ideals, cementing their place at the forefront of Asian contemporary art.");
+        trippyEventItem50.setPoint(0L);
+        trippyEventItem50.setStartDate(startDate.getTime());
+        trippyEventItem50.setEndDate(endDate.getTime());
+        trippyEventItem50.setPrice(0.0);
+        trippyEventItem50.setEventImage(eventImages);
+        trippyEventItem50.setEventType(eventTypes);
+        trippyEventItem50.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem50);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 6);
+        endDate.set(2018, Calendar.OCTOBER, 28);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/fdb6cf-honeycombers.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem51 = new TrippyEventItem();
+        trippyEventItem51.setEventName("STREET 2");
+        trippyEventItem51.setEventDescription("To celebrate its first year in Singapore, Mazel Galerie presents Street2 a group show featuring new works from Mazel Galerie’s established and upcoming street artists: stencil artists ill, C215, and MONK, street-pop artist Laurina Paperina, muralist NOIR, and multi-media street artist Fidia Falaschetti.\n" +
+"Each artist will have a message of their own to share with the audience. From MONK’s camouflage series, bringing awareness to endangered animals, to iLL’s stencil works showcasing some of today’s social contradictions, and C215 colourful animal portraits.");
+        trippyEventItem51.setPoint(0L);
+        trippyEventItem51.setStartDate(startDate.getTime());
+        trippyEventItem51.setEndDate(endDate.getTime());
+        trippyEventItem51.setPrice(0.0);
+        trippyEventItem51.setEventImage(eventImages);
+        trippyEventItem51.setEventType(eventTypes);
+        trippyEventItem51.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem51);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 8);
+        endDate.set(2018, Calendar.OCTOBER, 8);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_5.thumbnail.image-path1.350.197.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem52 = new TrippyEventItem();
+        trippyEventItem52.setEventName("Mid-Autumn Festival Light-Up");
+        trippyEventItem52.setEventDescription("Singaporeans celebrate the Mid-Autumn Festival by rolling\n" +
+" out lanterns in a flurry of forms and mooncakes (sweet\n" +
+" traditional pastries) in a multitude of flavours and textures.\n" +
+" Come admire the moon at its brightest, along with the deluge \n" +
+"of decorations that will enliven Chinatown.");
+        trippyEventItem52.setPoint(0L);
+        trippyEventItem52.setStartDate(startDate.getTime());
+        trippyEventItem52.setEndDate(endDate.getTime());
+        trippyEventItem52.setPrice(0.0);
+        trippyEventItem52.setEventImage(eventImages);
+        trippyEventItem52.setEventType(eventTypes);
+        trippyEventItem52.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem52);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 7);
+        endDate.set(2018, Calendar.SEPTEMBER, 24);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/c99760-Street-Bazaar-1-01.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem53 = new TrippyEventItem();
+        trippyEventItem53.setEventName("Chinatown Mid-Autumn Festival 2018");
+        trippyEventItem53.setEventDescription("More than 200 Street vendors offering a wide array of festive must haves and treats like mooncake, tea, and decorative ornaments.");
+        trippyEventItem53.setPoint(0L);
+        trippyEventItem53.setStartDate(startDate.getTime());
+        trippyEventItem53.setEndDate(endDate.getTime());
+        trippyEventItem53.setPrice(0.0);
+        trippyEventItem53.setEventImage(eventImages);
+        trippyEventItem53.setEventType(eventTypes);
+        trippyEventItem53.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem53);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 7);
+        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/f543bf-BalvenieCoC-7-copy.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem54 = new TrippyEventItem();
+        trippyEventItem54.setEventName("The Balvenie House of Craft");
+        trippyEventItem54.setEventDescription("Specially curated by craft purveyors The General Company, The Balvenie House of Craft is a first-ever pop-up event showcasing local craftsmen and artisans. The open house comprises showcases and installations, hands-on craft workshops, supper club dinners, open bar and complimentary whisky tasting, film screenings and community talks. Notable participating craftsmen include marquage painter Cherin Sim, embroidery artist Teresa Lim, hand-lettering artist Ewe Jin Tee, floral artist Josephine Lau, among many others.");
+        trippyEventItem54.setPoint(0L);
+        trippyEventItem54.setStartDate(startDate.getTime());
+        trippyEventItem54.setEndDate(endDate.getTime());
+        trippyEventItem54.setPrice(0.0);
+        trippyEventItem54.setEventImage(eventImages);
+        trippyEventItem54.setEventType(eventTypes);
+        trippyEventItem54.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem54);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 18);
+        endDate.set(2018, Calendar.SEPTEMBER, 22);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/06/0d20db-eventsubmission-copy.jpg");
+        eventTypes.add(art_and_culture);
+
+        TrippyEventItem trippyEventItem55 = new TrippyEventItem();
+        trippyEventItem55.setEventName("Shakespeare's Globe Tour: Iconic Plays and Audience's Choice Performances");
+        trippyEventItem55.setEventDescription("Shakespeare’s Globe is returning to Singapore this 18 – 22 September with three iconic plays – Twelfth Night, The Merchant Of Venice and The Taming Of The Shrew – and Audience Choice shows. The Audience Choice show is a first for Shakespeare’s Globe where the audience can choose what they want to watch. During the last two shows on 22nd September, the company of eight actors will let the audience vote between the three plays, just like how theatre companies would go on tour back in Shakespeare’s days.");
+        trippyEventItem55.setPoint(0L);
+        trippyEventItem55.setStartDate(startDate.getTime());
+        trippyEventItem55.setEndDate(endDate.getTime());
+        trippyEventItem55.setPrice(88.0);
+        trippyEventItem55.setEventImage(eventImages);
+        trippyEventItem55.setEventType(eventTypes);
+        trippyEventItem55.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem55);
+
         // Initialising the events for foodie
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 21);
+        endDate.set(2018, Calendar.SEPTEMBER, 23);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_14.thumbnail.image-path1.350.197.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem56 = new TrippyEventItem();
+        trippyEventItem56.setEventName("Singapore Tea Festival");
+        trippyEventItem56.setEventDescription("With overwhelming support at last year’s debut of Singapore Tea Festival (STF), the second edition of STF will be back this September! Proudly organised by teapasar, the first global omni-channel marketplace featuring local and international tea brands, this year’s STF will be held from 21st – 23rd September at Basement 4, ION Orchard.\n" +
+"This year’s STF is bigger and better with 28 exciting tea and tea-related brands, and 3 days worth of educational and engaging workshops to look forward to! From TIMELESS CLASSICS featuring single-origin tea merchants such as Tea Chapter and Parchmen Academy, to MODERN BLENDS by many of Singapore’s very own tea brands with interesting blends inspired by local flavours such as Durian Tea (SUCRE) and Nyonya Kaya (The 1872 Clipper Tea Co.); to Botanically Cold Brewed (TM) Sparkling Teas (Gryphon Tea), and even 100% compostable tea pods that are also compatible with Nespresso® machines (A.muse Projects). This year’s STF will also feature INTERNATIONAL FLAVOURS such as Matcha soft serve (Matchaya), and teas direct from Japan (Ito En) and Indonesia (Bali Organic Tea). There will also be LIFESTYLE-related merchandise – from quirky tea illustrations by Troops On Print, to hand-crafted ceramics by Euphoramics and &Natural.");
+        trippyEventItem56.setPoint(0L);
+        trippyEventItem56.setStartDate(startDate.getTime());
+        trippyEventItem56.setEndDate(endDate.getTime());
+        trippyEventItem56.setPrice(0.0);
+        trippyEventItem56.setEventImage(eventImages);
+        trippyEventItem56.setEventType(eventTypes);
+        trippyEventItem56.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem56);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 27);
+        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://tgff.com.sg/assets/images/logo.png");
+        eventImages.add("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_9.thumbnail.image-path1.350.197.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem57 = new TrippyEventItem();
+        trippyEventItem57.setEventName("The GREAT Food Festival");
+        trippyEventItem57.setEventDescription("Check out this one-stop gastronomic platform to indulge in the most delectable offerings with our celebrity chefs and patissiers. Be inspired by live demonstrations and perhaps pick up some tricks of the trade from hands-on masterclasses.");
+        trippyEventItem57.setPoint(0L);
+        trippyEventItem57.setStartDate(startDate.getTime());
+        trippyEventItem57.setEndDate(endDate.getTime());
+        trippyEventItem57.setPrice(30.0);
+        trippyEventItem57.setEventImage(eventImages);
+        trippyEventItem57.setEventType(eventTypes);
+        trippyEventItem57.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem57);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 20);
+        endDate.set(2018, Calendar.SEPTEMBER, 21);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/a56df7-CM-Mid-Autumn-2018-Honeycombers.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem58 = new TrippyEventItem();
+        trippyEventItem58.setEventName("COMO Marketplace - Mid-Autumn Festival 2018");
+        trippyEventItem58.setEventDescription("Join us for an evening of traditional treats and a family-friendly lantern parade at COMO Dempsey. Be treated to handcrafted mooncakes and artisan tea in the lush garden, and end the beautiful evening with a lantern parade and a stroll around Dempsey under the moonlight. Be sure to bring your best lantern for a chance to bag the ‘Best Lantern of the Night’ prize.");
+        trippyEventItem58.setPoint(0L);
+        trippyEventItem58.setStartDate(startDate.getTime());
+        trippyEventItem58.setEndDate(endDate.getTime());
+        trippyEventItem58.setPrice(0.0);
+        trippyEventItem58.setEventImage(eventImages);
+        trippyEventItem58.setEventType(eventTypes);
+        trippyEventItem58.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem58);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 26);
+        endDate.set(2018, Calendar.SEPTEMBER, 27);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/7e1faf-Untitled-design-4.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem59 = new TrippyEventItem();
+        trippyEventItem59.setEventName("Food of the Future Festival - Asia's first Experimental Food Event");
+        trippyEventItem59.setEventDescription("Asia’s FIRST Experiential Food Event – Taste, Feel & Learn about the Future of Food.\n" +
+"\n" +
+"Immerse yourself in the future of food with a curated marketplace, hands-on experience zones & empowering speaker keynotes thoughtfully put together to fill up your well-deserved Saturday!\n" +
+"\n" +
+"There will be workshops for kids and parents for a hands-on experience such as building your own hydroponic farm and sustainable beekeeping.\n" +
+"\n" +
+"On top of that, there will also be a vibrant marketplace for you to taste and buy some futures foods home!");
+        trippyEventItem59.setPoint(0L);
+        trippyEventItem59.setStartDate(startDate.getTime());
+        trippyEventItem59.setEndDate(endDate.getTime());
+        trippyEventItem59.setPrice(0.0);
+        trippyEventItem59.setEventImage(eventImages);
+        trippyEventItem59.setEventType(eventTypes);
+        trippyEventItem59.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem59);
+        
+        startDate.set(2018, Calendar.NOVEMBER, 18);
+        endDate.set(2018, Calendar.NOVEMBER, 20);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2016/11/047d7e-2016-11-03-PHOTO-00000304-930x550.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem60 = new TrippyEventItem();
+        trippyEventItem60.setEventName("Food Rebel Fridays");
+        trippyEventItem60.setEventDescription("Calling All Food Rebels! Your favourite organic and clean living cafe in the CBD just got better. Join us for some Friday rebellion as Kitchen By Food Rebel adds world class organic & bio-dynamic wines, gluten free craft beer and tapas dining to its menu. From November 18th we’ll be extending our opening hours every Friday until 8pm giving wine lovers and clean living fans a chance to enjoy our healthy food just that little bit longer.");
+        trippyEventItem60.setPoint(0L);
+        trippyEventItem60.setStartDate(startDate.getTime());
+        trippyEventItem60.setEndDate(endDate.getTime());
+        trippyEventItem60.setPrice(0.0);
+        trippyEventItem60.setEventImage(eventImages);
+        trippyEventItem60.setEventType(eventTypes);
+        trippyEventItem60.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem60);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 26);
+        endDate.set(2018, Calendar.SEPTEMBER, 27);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/1f6b10-AustrianWineDinner_Web-930x550.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem61 = new TrippyEventItem();
+        trippyEventItem61.setEventName("Austrian Wine Dinner at P.S Cafe");
+        trippyEventItem61.setEventDescription("Immerse yourself in the future of food with a curated marketplace, hands-on experience zones & empowering speaker keynotes thoughtfully put together to fill up your well-deserved Saturday!");
+        trippyEventItem61.setPoint(0L);
+        trippyEventItem61.setStartDate(startDate.getTime());
+        trippyEventItem61.setEndDate(endDate.getTime());
+        trippyEventItem61.setPrice(0.0);
+        trippyEventItem61.setEventImage(eventImages);
+        trippyEventItem61.setEventType(eventTypes);
+        trippyEventItem61.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem61);
+        
+        startDate.set(2018, Calendar.APRIL, 1);
+        endDate.set(2018, Calendar.DECEMBER, 31);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/03/8cf50c-1920x500_pb_alacartemenu-930x500.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem62 = new TrippyEventItem();
+        trippyEventItem62.setEventName("New Flavours at Peach Blossoms");
+        trippyEventItem62.setEventDescription("Executive Chinese Chef Edward Chong introduces a new à la carte menu at Peach Blossoms. Signature dishes include Flambéed Chinese Wine Spring Chicken, Roasted Tomahawk Steak in \"Xinjiang\" Style accompanied with Green Papaya Salad, Tom Yum Soup with \"Otak\" served in Whole Coconut and Chilled Abalone with Konbu and Jelly Fish served with Yuzu Sauce.");
+        trippyEventItem62.setPoint(0L);
+        trippyEventItem62.setStartDate(startDate.getTime());
+        trippyEventItem62.setEndDate(endDate.getTime());
+        trippyEventItem62.setPrice(51.0);
+        trippyEventItem62.setEventImage(eventImages);
+        trippyEventItem62.setEventType(eventTypes);
+        trippyEventItem62.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem62);
+        
+        startDate.set(2018, Calendar.JULY, 25);
+        endDate.set(2018, Calendar.SEPTEMBER, 6);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/e0283d-1-min.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem63 = new TrippyEventItem();
+        trippyEventItem63.setEventName("Marina Mandarin's Mid-Autumn Delights");
+        trippyEventItem63.setEventDescription("There will be workshops for kids and parents for a hands-on experience such as building your own hydroponic farm and sustainable beekeeping.");
+        trippyEventItem63.setPoint(0L);
+        trippyEventItem63.setStartDate(startDate.getTime());
+        trippyEventItem63.setEndDate(endDate.getTime());
+        trippyEventItem63.setPrice(64.0);
+        trippyEventItem63.setEventImage(eventImages);
+        trippyEventItem63.setEventType(eventTypes);
+        trippyEventItem63.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem63);
+        
+        startDate.set(2018, Calendar.JULY, 25);
+        endDate.set(2018, Calendar.DECEMBER, 31);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/cb3145-3-min.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem64 = new TrippyEventItem();
+        trippyEventItem64.setEventName("Heritage High Tea at the Atrium Lounge");
+        trippyEventItem64.setEventDescription("Be spoilt for choice and pamper yourself with a delectable array of Asian and Western high tea treats served on a three-tier stand at the Atrium Lounge.");
+        trippyEventItem64.setPoint(0L);
+        trippyEventItem64.setStartDate(startDate.getTime());
+        trippyEventItem64.setEndDate(endDate.getTime());
+        trippyEventItem64.setPrice(38.0);
+        trippyEventItem64.setEventImage(eventImages);
+        trippyEventItem64.setEventType(eventTypes);
+        trippyEventItem64.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem64);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 1);
+        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/3b4526-4-min.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem65 = new TrippyEventItem();
+        trippyEventItem65.setEventName("MARGARITA MADNESS");
+        trippyEventItem65.setEventDescription("On top of that, there will also be a vibrant marketplace for you to taste and buy some futures foods home!");
+        trippyEventItem65.setPoint(0L);
+        trippyEventItem65.setStartDate(startDate.getTime());
+        trippyEventItem65.setEndDate(endDate.getTime());
+        trippyEventItem65.setPrice(18.0);
+        trippyEventItem65.setEventImage(eventImages);
+        trippyEventItem65.setEventType(eventTypes);
+        trippyEventItem65.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem65);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 10);
+        endDate.set(2018, Calendar.SEPTEMBER, 14);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/ff7d57-zmSOAQ0Q-2.jpeg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem66 = new TrippyEventItem();
+        trippyEventItem66.setEventName("A PROVENANCE-LED GASTRONOMIC EXPERIENCE");
+        trippyEventItem66.setEventDescription("An Exclusive Four Hands Collaboration at Origin Grill featuring Winner of MasterChef Brazil Professionals 2017 Pablo Oazen & Heidi Flanagan. Guest Chef Pablo and hosting Chef de Cuisine Heidi Flanagan will present an exclusive 5-day gourmet collaboration at Origin Grill. Focusing on provenance, both chefs will create a gastronomic fare featuring curated, unique and quality-driven ingredients sourced from local and regional producers as well as from Brazil.");
+        trippyEventItem66.setPoint(0L);
+        trippyEventItem66.setStartDate(startDate.getTime());
+        trippyEventItem66.setEndDate(endDate.getTime());
+        trippyEventItem66.setPrice(34.0);
+        trippyEventItem66.setEventImage(eventImages);
+        trippyEventItem66.setEventType(eventTypes);
+        trippyEventItem66.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem66);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 11);
+        endDate.set(2018, Calendar.SEPTEMBER, 17);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/4ba059-2-min.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem67 = new TrippyEventItem();
+        trippyEventItem67.setEventName("REV UP YOUR APPETITE THIS RACE SEASON AT AQUAMARINE");
+        trippyEventItem67.setEventDescription("Go full speed ahead with AquaMarine’s buffet, featuring international specials like the Australian Slow-roasted OP Beef Rib with Chimichurri, the Sicilian Whitefish En Papillote, and the Moroccan Leg of Lamb Shawarma with Pita or Flat Bread.​");
+        trippyEventItem67.setPoint(0L);
+        trippyEventItem67.setStartDate(startDate.getTime());
+        trippyEventItem67.setEndDate(endDate.getTime());
+        trippyEventItem67.setPrice(60.0);
+        trippyEventItem67.setEventImage(eventImages);
+        trippyEventItem67.setEventType(eventTypes);
+        trippyEventItem67.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem67);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 11);
+        endDate.set(2018, Calendar.SEPTEMBER, 17);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/bfce87-7-min.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem68 = new TrippyEventItem();
+        trippyEventItem68.setEventName("HAPPY HOUR JUST GOT HAPPIER");
+        trippyEventItem68.setEventDescription("With happy hour extended to 12 noon to 8pm, you can now get a midday pick-me-up with our variety of house pours at only $12++ per drink at the Atrium Lounge!");
+        trippyEventItem68.setPoint(0L);
+        trippyEventItem68.setStartDate(startDate.getTime());
+        trippyEventItem68.setEndDate(endDate.getTime());
+        trippyEventItem68.setPrice(12.0);
+        trippyEventItem68.setEventImage(eventImages);
+        trippyEventItem68.setEventType(eventTypes);
+        trippyEventItem68.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem68);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 13);
+        endDate.set(2018, Calendar.OCTOBER, 23);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/671f34-WhatsApp-Image-2018-09-04-at-6.18.33-PM.jpeg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem69 = new TrippyEventItem();
+        trippyEventItem69.setEventName("CELEBRATE OKTOBERFEST THE AUTHENTIC GERMAN WAY AT BROTZEIT!");
+        trippyEventItem69.setEventDescription("Everyone’s favourite German festival is just around the corner, and Brotzeit’s got heaps of fun-filled activities, traditional entertainment, food and booze lined up for you this Oktoberfest!");
+        trippyEventItem69.setPoint(0L);
+        trippyEventItem69.setStartDate(startDate.getTime());
+        trippyEventItem69.setEndDate(endDate.getTime());
+        trippyEventItem69.setPrice(0.0);
+        trippyEventItem69.setEventImage(eventImages);
+        trippyEventItem69.setEventType(eventTypes);
+        trippyEventItem69.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem69);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 14);
+        endDate.set(2018, Calendar.SEPTEMBER, 16);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/229164-AngiesOysterBar_Exterior_01-copy-930x550.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem70 = new TrippyEventItem();
+        trippyEventItem70.setEventName("THE LANDMARK CIRCUIT: GLOBAL PITSTOPS");
+        trippyEventItem70.setEventDescription("As Marina Bay becomes the Mediterranean Sea, transport yourself to the glitz and glamour of Monaco at the lavish Oyster Festival. With the décor and mouthwatering delights inspired by the decadent French Riviera hot spot, guests can fuel up on an ‘All You Can Eat’ dinner of seafood favourites from Angie’s signature Oysters to pots of Mussels & Clams.");
+        trippyEventItem70.setPoint(0L);
+        trippyEventItem70.setStartDate(startDate.getTime());
+        trippyEventItem70.setEndDate(endDate.getTime());
+        trippyEventItem70.setPrice(118.0);
+        trippyEventItem70.setEventImage(eventImages);
+        trippyEventItem70.setEventType(eventTypes);
+        trippyEventItem70.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem70);
+        
+        startDate.set(2018, Calendar.SEPTEMBER, 15);
+        endDate.set(2018, Calendar.SEPTEMBER, 16);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/amberlounge_honeycombers.jpeg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem71 = new TrippyEventItem();
+        trippyEventItem71.setEventName("AMBER LOUNGE SINGAPORE GRAND PRIX VIP PARTY 2018");
+        trippyEventItem71.setEventDescription("The exotic island of Singapore, home to Formula 1’s first ever night race is one of Amber Lounge’s most provocative and glamorous destinations. A celebrity and F1 driver hotspot, Amber Lounge Singapore merges the euphoric party spirit of the West with the splendour of the Orient.");
+        trippyEventItem71.setPoint(0L);
+        trippyEventItem71.setStartDate(startDate.getTime());
+        trippyEventItem71.setEndDate(endDate.getTime());
+        trippyEventItem71.setPrice(500.0);
+        trippyEventItem71.setEventImage(eventImages);
+        trippyEventItem71.setEventType(eventTypes);
+        trippyEventItem71.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem71);
+        
+        startDate.set(2018, Calendar.OCTOBER, 1);
+        endDate.set(2018, Calendar.OCTOBER, 30);
+        eventImages.clear();
+        eventTypes.clear();
+        eventImages.add("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/ddbc56-5-min.jpg");
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem72 = new TrippyEventItem();
+        trippyEventItem72.setEventName("PERANAKAN DELIGHTS");
+        trippyEventItem72.setEventDescription("This October, indulge in hearty Peranakan fare at AquaMarine! Blending Chinese ingredients with Malay or Indonesian spices, succulent highlights include Udang Karang Goreng Assam*, Nyonya Spiced Ayam Shawarma with Lotus Bun, Salmon Fillet coated with Otah-Otah Mousse, and Nyonya Itek Sioh.");
+        trippyEventItem72.setPoint(0L);
+        trippyEventItem72.setStartDate(startDate.getTime());
+        trippyEventItem72.setEndDate(endDate.getTime());
+        trippyEventItem72.setPrice(60.0);
+        trippyEventItem72.setEventImage(eventImages);
+        trippyEventItem72.setEventType(eventTypes);
+        trippyEventItem72.setSoftDelete(false);
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem72);
+        
     }
 
     private static String encryptPassword(String password) {

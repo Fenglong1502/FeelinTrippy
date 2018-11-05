@@ -23,6 +23,12 @@
     </head>
 
     <body class="double-diagonal dark portfolio-page">
+        <% if (request.getSession().getAttribute("user") == null) { %>
+        <script type="text/javascript">
+            alert('Please login to start trippy');
+            document.location.href = 'login.jsp';
+        </script>
+        <% }%>
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
@@ -38,7 +44,7 @@
                     <!-- Navbar Starts -->
                     <nav class="navbar">
                         <!-- Logo Starts -->
-                       <div class="logo">
+                        <div class="logo">
                             <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.jsp">
                                 <!-- Logo White Starts -->
                                 <img id="logo-light" class="logo-light" src="img/logo.png" alt="logo-light" />

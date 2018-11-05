@@ -22,7 +22,12 @@
     </head>
 
     <body class="double-diagonal dark auth-page">
-
+        <% if (request.getSession().getAttribute("user") == null) { %>
+        <script type="text/javascript">
+            alert('Please login to start trippy');
+            document.location.href = 'login.jsp';
+        </script>
+        <% }%>
         <!-- Page Wrapper Starts -->
         <div class="wrapper">
             <header class="header">
@@ -110,11 +115,11 @@
                                 <div class="form-group">
                                     <input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password" required>
                                 </div>
-                                    
+
                                 <div class="form-group">
                                     <input class="form-control" name="mobilenumber" id="mobilenumber" placeholder="MOBILE NUMBER" type="text" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <input class="form-control" name="gender" id="gender" placeholder="GENDER" type="text" required>
                                 </div>

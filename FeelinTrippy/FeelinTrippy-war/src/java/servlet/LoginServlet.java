@@ -6,18 +6,22 @@
 package servlet;
 
 import entity.Customer;
+import error.NoResultException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import session.BookedActivitySessionLocal;
 import session.CustomerSessionLocal;
 
@@ -82,14 +86,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -101,10 +103,17 @@ public class LoginServlet extends HttpServlet {
         Customer c = new Customer();
         c.setEmail(email);
         c.setPassword(encryptPassword(password));
-        
-        
+
         if (customerSessionLocal.Login(c)) {
-            response.sendRedirect("mainPage.jsp");
+            HttpSession httpSession = request.getSession();
+            try {
+                c = customerSessionLocal.getCustomerByEmail(email);
+            } catch (NoResultException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            httpSession.setAttribute("user", c);
+            response.sendRedirect("filterTrip.jsp");
         } else {
             PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");

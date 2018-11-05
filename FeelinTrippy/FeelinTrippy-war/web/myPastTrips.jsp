@@ -25,6 +25,13 @@
 
     <body class="double-diagonal dark portfolio-page">
         <!-- Preloader Starts -->
+           <% if (request.getSession().getAttribute("user") == null) { %>
+                <script type="text/javascript">
+                        alert('Please login to start trippy');
+                        document.location.href = 'login.jsp';
+                    </script>
+            <% }%>
+        
         <div class="preloader" id="preloader">
             <div class="logopreloader">
                 <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">        </div>

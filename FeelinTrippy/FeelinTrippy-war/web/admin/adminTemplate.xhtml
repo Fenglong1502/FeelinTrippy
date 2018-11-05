@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Title</ui:insert></title>
+
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="#{request.contextPath}/plugins/font-awesome/css/font-awesome.min.css" />
+        <!-- iCheck for checkboxes and radio inputs -->
+        <link rel="stylesheet" href="#{request.contextPath}/plugins/iCheck/all.css" />
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="#{request.contextPath}/plugins/datepicker/datepicker3.css" />
+        <!-- DataTables -->
+        <link rel="stylesheet" href="#{request.contextPath}/plugins/datatables/dataTables.bootstrap4.css" />
+        <!-- Theme style (comes with Bootstrap) -->
+        <link rel="stylesheet" href="#{request.contextPath}/dist/css/adminlte.min.css" />
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+        <!-- Bootstrap 4.0 -->
+        <!--<link rel="stylesheet" href="#{request.contextPath}/plugins/bootstrap/css/bootstrap.min.css" />-->
+        <!--<link rel="stylesheet" href="#{request.contextPath}/dist/js/plugins/bootstrap/css/bootstrap.min.css" />-->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+    </h:head>
+    <h:body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="#{request.contextPath}" class="brand-link">
+
+                    <span class="brand-text font-weight-light">
+                        <b>Admin console</b>
+                    </span>
+                </a>
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" datawidget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                            with font-awesome or any other icon font library -->
+
+
+                            <li class="nav-item" >
+
+                                <a href="#{request.contextPath}/customer/editProfile.xhtml" class="nav-link" >
+                                    <i class="nav-icon fa fa-plus-circle"></i>
+                                    <p>
+                                        Manage Prize
+                                    </p>
+                                </a>
+
+                            </li>
+                            <li class="nav-item" >
+
+                                <a href="#{request.contextPath}/customer/addItem.xhtml" class="nav-link" >
+                                    <i class="nav-icon fa fa-plus-circle"></i>
+                                    <p>
+                                        Manage Customer
+                                    </p>
+                                </a>
+
+                            </li>
+                            <li class="nav-item" >
+
+                                <a href="#{request.contextPath}/admin/manageTrippyEventType.xhtml" class="nav-link" >
+                                    <i class="nav-icon fa fa-plus-circle"></i>
+                                    <p>
+                                        Manage TrippyEvent Type
+                                    </p>
+                                </a>
+
+                            </li>
+                            <li class="nav-item" >
+
+                                <a href="#{request.contextPath}/admin/createTrippyEventItem.xhtml" class="nav-link" >
+                                    <i class="nav-icon fa fa-plus-circle"></i>
+                                    <p>
+                                        Create TrippyEvent Item
+                                    </p>
+                                </a>
+
+                            </li>
+                            <li class="nav-item" >
+
+                                <a href="#{request.contextPath}/admin/manageTrippyEventItem.xhtml" action="#{authenticationManagedBean.searchMyItemForSale()}" class="nav-link" >
+                                    <i class="nav-icon fa fa-plus-circle"></i>
+                                    <p>
+                                        Manage TrippyEvent Item
+                                    </p>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2018 IS3106 Studios.</strong> All rights
+                reserved.
+            </footer>
+        </div>
+
+        <!-- jQuery -->
+        <script src="#{request.contextPath}/plugins/jquery/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="https://code.jquery.com/ui/1.12.1/jqueryui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>$.widget.bridge('uibutton', $.ui.button);</script>
+        <!-- Bootstrap 4 -->
+        <script src="#{request.contextPath}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- datepicker -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+        <script src="#{request.contextPath}/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <!-- iCheck 1.0.1 -->
+        <script src="#{request.contextPath}/plugins/iCheck/icheck.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="#{request.contextPath}/dist/js/adminlte.js"></script>
+        <!-- DataTables -->
+        <script src="#{request.contextPath}/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="#{request.contextPath}/plugins/datatables/dataTables.bootstrap4.js"></script>
+        <!--<script src="#{request.contextPath}/plugins/jquery/jquery.min.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script>
+            $('.collapse').collapse();
+        </script>
+        <ui:insert name="script">Script</ui:insert>
+    </h:body>
+</html>

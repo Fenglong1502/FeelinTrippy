@@ -34,10 +34,21 @@
     </head>
 
     <body class="double-diagonal dark">
+
+        <% if (request.getSession().getAttribute("user") == null) { %>
+                <script type="text/javascript">
+                        alert('Please login to start trippy');
+                        document.location.href = 'login.jsp';
+                    </script>
+            <% }%>
+
+
+
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            </div>
+                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            
+            </div>
             <div class="loader" id="loader"></div>
         </div>
         <!-- Preloader Ends -->
@@ -74,11 +85,14 @@
                         <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Main Menu Starts -->
                             <ul class="nav navbar-nav" id="main-navigation">
-                                <li class="active"><a href="filterTrip.jsp"><i class="fa fa-home"></i> Home</a></li>                               
+                                <li class="active"><a href="mainpage.jsp"><i class="fa fa-home"></i> Home</a></li>                               
                                 <li><a href="mySavedTrips.jsp"><i class="fa fa-envelope"></i> Saved Trips</a></li>
                                 <li><a href="myPastTrips.jsp"><i class="fa fa-envelope"></i> Past Trips</a></li>
                                 <li><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
-                                <li><a href="mainPage.jsp"><i class="fa fa-user"></i> Log Out</a></li>
+                                <li><a href="javascript:logout();"><i class="fa fa-user"></i>    
+                                        Log Out
+                                    
+                                    </a></li>
                             </ul>
                             <!-- Main Menu Ends -->
                         </div>
@@ -108,10 +122,9 @@
                     var slider = document.getElementById("myRange");
                     var output = document.getElementById("demo");
                     output.innerHTML = slider.value;
-
                     slider.oninput = function () {
-                        output.innerHTML = this.value;
-                        h
+                    output.innerHTML = this.value;
+                    h
                     }
                 </script>
 
@@ -130,7 +143,7 @@
                     <a id="btn5" class="fifth-page-button" href="#btn5" onClick="showme(5)">Nightowl!</a>
                 </div>                
                 <div class ="text-center">
-                    <button class="trippy-button"  type="submit" > Trippy! </button>
+                    <button class="trippy-button" type="submit" > Trippy! </button>
                 </div>
             </form>
         </div>
@@ -140,30 +153,37 @@
         <!-- The script to get the variable for the item to be pass to the backend to filter -->
         <script >
             function showme(count) {
-                test = "everything";
-                number = count;
-                switch (number) {
-                    case 1:
-                        test = "everything";
-                        break;
-                    case 2:
-                        test = "adventure";
-                        break;
-                    case 3:
-                        test = "culture";
-                        break;
-                    case 4:
-                        test = "foodie";
-                        break;
-                    case 5:
-                        test = "nightowl";
-                        break;
-                    default:
-                        test = "everything";
-                }
+            test = "everything";
+            number = count;
+            switch (number) {
+            case 1:
+                    test = "everything";
+            break;
+            case 2:
+                    test = "adventure";
+            break;
+            case 3:
+                    test = "culture";
+            break;
+            case 4:
+                    test = "foodie";
+            break;
+            case 5:
+                    test = "nightowl";
+            break;
+            default:
+                    test = "everything";
+            }
 
             }
 
+            function logout() {
+                <% session = request.getSession();
+                session.invalidate();%>
+                
+                alert("Logout Successfully!");
+                document.location.href = 'mainPage.jsp';
+            }
             /*
              function testing(click){
              alert("You picked "+ test);
