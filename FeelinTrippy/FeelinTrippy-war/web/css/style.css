@@ -5283,15 +5283,15 @@ body.dark.blog-page .banner-blog-post .meta {
 }
 
 #carousel-testimonials .item.item-1 {
-  background-image: url('http://via.placeholder.com/640x1080');
+  background-image: url('../img/testimonial/treetop.JPG');
 }
 
 #carousel-testimonials .item.item-2 {
-  background-image: url('http://via.placeholder.com/640x1080');
+  background-image: url('../img/testimonial/sentosa.JPG');
 }
 
 #carousel-testimonials .item.item-3 {
-  background-image: url('http://via.placeholder.com/640x1080');
+  background-image: url('../img/testimonial/hajilane.jpg');
 }
 
 #carousel-testimonials .carousel-control {
