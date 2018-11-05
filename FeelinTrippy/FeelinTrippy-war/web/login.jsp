@@ -85,11 +85,7 @@
                     <!-- Slider Ends -->
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                    <!-- Logo Starts -->
-                    <a class="visible-xs" href="index-kenburns.html">
-                        <img class="img-responsive mobile-logo" src="http://via.placeholder.com/159x28" alt="logo">
-                    </a>
-                    <!-- Logo Ends -->
+                 
                     <div class="form-container">
                         <div>
                             <!-- Main Heading Starts -->
