@@ -43,7 +43,12 @@ public class DataInitializationSessionBean {
     @PostConstruct
     public void postConstruct() {
         if (em.find(Customer.class, 1l) == null) {
-            initializeData();
+            try {
+                initializeData();
+            }catch (Exception e) {
+                
+            }
+
         }
     }
 

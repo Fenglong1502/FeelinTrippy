@@ -26,49 +26,6 @@ import session.TrippyEventTypeSessionLocal;
 @ManagedBean
 @RequestScoped
 public class adminManagedBean {
-
-    /**
-     * @return the eventTypeStringArray
-     */
-    public List<String> getEventTypeStringArray() {
-        return eventTypeStringArray;
-    }
-
-    /**
-     * @param eventTypeStringArray the eventTypeStringArray to set
-     */
-    public void setEventTypeStringArray(List<String> eventTypeStringArray) {
-        this.eventTypeStringArray = eventTypeStringArray;
-    }
-
-    /**
-     * @return the eventTypeString
-     */
-    public String getEventTypeString() {
-        return eventTypeString;
-    }
-
-    /**
-     * @param eventTypeString the eventTypeString to set
-     */
-    public void setEventTypeString(String eventTypeString) {
-        this.eventTypeString = eventTypeString;
-    }
-
-    /**
-     * @return the eventImageString
-     */
-    public String getEventImageString() {
-        return eventImageString;
-    }
-
-    /**
-     * @param eventImageString the eventImageString to set
-     */
-    public void setEventImageString(String eventImageString) {
-        this.eventImageString = eventImageString;
-    }
-
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
     
@@ -100,7 +57,7 @@ public class adminManagedBean {
         listOfTrippyEvent = trippyEventSessionLocal.retrieveAllEvents();
     }
     
-    public void updateTrippyEventItem() {
+    public String updateTrippyEventItem() throws ParseException {
         System.out.println("Entering updating trippy event item");
         System.out.println("Event name: " + eventName);
         TrippyEventItem toUpdate = new TrippyEventItem();
@@ -111,9 +68,17 @@ public class adminManagedBean {
         toUpdate.setAddress(address);
         toUpdate.setEventDescription(eventDescription);
         toUpdate.setSoftDelete(false);
-        toUpdate.setStartDate(startDate);
-        toUpdate.setEndDate(endDate);
+        SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
+        String stringDate = dt.format(startDate);
+        toUpdate.setStartDate(dt.parse(stringDate));
+        stringDate = dt.format(endDate);
+        toUpdate.setEndDate(dt.parse(stringDate));
+//        toUpdate.setStartDate(startDate);
+//        toUpdate.setEndDate(endDate);
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
+        
+        return "manageTrippyEventItem.xhtml?faces-redirect=true";
+        
     }
 
     public void createTrippyEventItem() throws ParseException {
@@ -318,4 +283,46 @@ public class adminManagedBean {
         this.listOfTrippyEvent = listOfTrippyEvent;
     }
 
+    
+    /**
+     * @return the eventTypeStringArray
+     */
+    public List<String> getEventTypeStringArray() {
+        return eventTypeStringArray;
+    }
+
+    /**
+     * @param eventTypeStringArray the eventTypeStringArray to set
+     */
+    public void setEventTypeStringArray(List<String> eventTypeStringArray) {
+        this.eventTypeStringArray = eventTypeStringArray;
+    }
+
+    /**
+     * @return the eventTypeString
+     */
+    public String getEventTypeString() {
+        return eventTypeString;
+    }
+
+    /**
+     * @param eventTypeString the eventTypeString to set
+     */
+    public void setEventTypeString(String eventTypeString) {
+        this.eventTypeString = eventTypeString;
+    }
+
+    /**
+     * @return the eventImageString
+     */
+    public String getEventImageString() {
+        return eventImageString;
+    }
+
+    /**
+     * @param eventImageString the eventImageString to set
+     */
+    public void setEventImageString(String eventImageString) {
+        this.eventImageString = eventImageString;
+    }
 }
