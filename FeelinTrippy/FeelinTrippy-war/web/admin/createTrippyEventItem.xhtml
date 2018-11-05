@@ -49,7 +49,7 @@
                                 <div class="input-group-text">Start Date</div>
 
                             </div>
-                            <h:inputText class="form-control" value="#{adminManagedBean.startDate}" id="startDate" >
+                            <h:inputText class="form-control" value="#{adminManagedBean.startDate}" id="startDate" converterMessage="Please provide date in dd/mm/yyyy format">
                                 <f:convertDateTime pattern="dd/MM/yyy"/>
                             </h:inputText>
                         </div>
@@ -57,7 +57,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">End Date</div>                           
                             </div>
-                            <h:inputText class="form-control" value="#{adminManagedBean.endDate}" id="endDate"> 
+                            <h:inputText class="form-control" value="#{adminManagedBean.endDate}" id="endDate" converterMessage="Please provide date in dd/mm/yyyy format" > 
                                 <f:convertDateTime pattern="dd/MM/yyy"/>
                             </h:inputText>
                         </div>
