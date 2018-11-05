@@ -4,11 +4,13 @@
 
     <head>
         <meta charset="utf-8" />
+        <!--<link href = "./img/logo.png" rel="shortcut icon">-->
         <title>Register, FeelinTrippy - Creative Trip Advisor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="http://via.placeholder.com/30x30">
+        <!--<link rel = "shortcut icon" href="./img/logo.png">-->
+        <link rel="shortcut icon" href="img/FeelinTrippy.png">
 
         <!-- Template CSS Files -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -25,7 +27,7 @@
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-<img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            </div>
+                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            </div>
             <div class="loader" id="loader"></div>
         </div>
         <!-- Preloader Ends -->
@@ -95,7 +97,7 @@
                             <!-- Main Heading Starts -->
                             <div class="text-center top-text">
                                 <h1><span>get</span> started</h1>
-                            
+
                             </div>
                             <!-- Main Heading Ends -->
                             <!-- Form Starts -->
@@ -139,8 +141,8 @@
                     </div>
                     <!-- Copyright Text Starts -->
                     <f>
-                  
-                    <!-- Copyright Text Ends -->
+
+                        <!-- Copyright Text Ends -->
                 </div>
             </div>
         </div>

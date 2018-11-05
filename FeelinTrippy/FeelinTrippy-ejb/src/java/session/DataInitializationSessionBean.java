@@ -26,8 +26,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author dk349
  */
-@Startup
 @Singleton
+@LocalBean
 public class DataInitializationSessionBean {
 
     @PersistenceContext(unitName = "FeelinTrippy-ejbPU")
@@ -43,12 +43,7 @@ public class DataInitializationSessionBean {
     @PostConstruct
     public void postConstruct() {
         if (em.find(Customer.class, 1l) == null) {
-            try {
-                initializeData();
-            }catch (Exception e) {
-                
-            }
-
+            initializeData();
         }
     }
 
