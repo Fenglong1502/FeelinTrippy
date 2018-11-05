@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/FeelinTrippy.png">
+    <link rel="shortcut icon" href="img/logo.png">
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -71,9 +71,9 @@
         </section>
         <!-- Main Slider Section Ends -->
         <!-- About Section Starts -->
-        <section id="about" class="about">
+        <section style="background-color:white;" id="about" class="about">
             <!-- Container Starts -->
-            <div class="container">
+            <div  class="container">
                 <!-- Main Heading Starts -->
                 <div class="text-center top-text">
                     <h1><span>About</span> Us</h1>
