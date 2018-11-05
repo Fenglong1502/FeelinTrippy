@@ -92,7 +92,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-6 about-left-side">
                         <h3 class="title-about">WE ARE <strong>FeelinTrippy</strong></h3>
                         <hr>
-                        <p>We are a leading company sit amet, consectetur adipisicing elit. Minus obcaecati pariatur officiis molestias eveniet harum laudantium obcaecati pariatur officiis molestias eveniet harum laudantium sed optio iste. </p>
+                        <p>We are a team of NUS students having one goal in mind,to build a better experience for individual hanging out in Singapore. The team consists of Chee Siang, Derek , Jin hao, Feng Long, Meng Chuan and Dian Cong  </p>
                         <!-- Tabs Heading Starts -->
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#menu1">Our Mission</a></li>
@@ -109,26 +109,15 @@
                                 <p>Easy to use! All you have to do is enter your budget & category and we'll do the rest for you!</p>
                             </div>
                             <div id="menu3" class="tab-pane fade">
-                                <p>Best user experience!<br>No hidden charges!</p>
+                                <p>Best user experience to places you don't even know!<br>No hidden charges!</p>
                             </div>
                         </div>
                         <!-- Tabs Content Ends -->
                     </div>
                     <div class="col-md-6 col-lg-6 about-right-side">
-                        <div class="full-image-container hovered">
-                            <img class="img-responsive hidden-xs" src="http://via.placeholder.com/1024x681" alt="">
-                            <div class="full-image-overlay">
-                                <h3>Why <strong>Choose Us</strong></h3>
-                                <ul class="list-why-choose-us">
-                                    <li>Clean Code & Design</li>
-                                    <li>Responsive Layout</li>
-                                    <li>Powerful Documentation</li>
-                                    <li>Browser Compatibility</li>
-                                    <li>Easy Customization</li>
-                                    <li>& Much More ...</li>
-                                </ul>
-                            </div>
-                        </div>
+                        
+                            <img class="img-responsive hidden-xs" src="./img/team.jpg" alt="">
+                      
                     </div>
                 </div>
                 <!-- About Content Ends -->
