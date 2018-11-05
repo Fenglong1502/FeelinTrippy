@@ -28,6 +28,7 @@ import javax.persistence.PersistenceContext;
  */
 @Singleton
 @LocalBean
+@Startup
 public class DataInitializationSessionBean {
 
     @PersistenceContext(unitName = "FeelinTrippy-ejbPU")
