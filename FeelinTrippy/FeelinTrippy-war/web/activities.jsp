@@ -29,7 +29,7 @@
     </head>
 
     <body class="double-diagonal dark portfolio-page">
-           <% if (request.getSession().getAttribute("user") == null) { %>
+           <% if (request.getSession(false).getAttribute("filterList") == null) { %>
                 <script type="text/javascript">
                         alert('Please login to start trippy');
                         document.location.href = 'login.jsp';

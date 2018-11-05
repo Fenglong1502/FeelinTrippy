@@ -16,5 +16,6 @@ public interface TrippyEventSessionLocal {
     
     
     public List<TrippyEventItem> searchEventListByConditions(TrippyEventType type, Double price);
+    public List<TrippyEventItem> searchEventListByPrice(Double price);
     public TrippyEventItem randomEvent(TrippyEventType type, Double price);
 }

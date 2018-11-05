@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./adminTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Manage Reward</ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="form">
+            <h:dataTable class="table table-hover table-light" var="prizeReward"
+                         value="#{adminManagedBean.listOfPrize}">
+
+                <h:column rowHeader="rewardID">
+                    <f:facet name="header">Reward ID</f:facet>
+                    <h:outputText value="#{prizeReward.prizeID}"/>
+                </h:column>
+
+                <h:column rowHeader="rewardName">
+                    <f:facet name="header">Reward Name</f:facet>
+                    <h:outputText value="#{prizeReward.prizeName}"/>
+                </h:column>
+
+                <h:column rowHeader="rewardDescription">
+                    <f:facet name="header">Reward Description</f:facet>
+                    <h:outputText value="#{prizeReward.prizeDescription}"/>
+                </h:column>
+                
+                <h:column rowHeader="points">
+                    <f:facet name="header">Points</f:facet>
+                    <h:outputText value="#{prizeReward.prizePoint}"/>
+                </h:column>
+                
+                <h:column rowHeader="quantity">
+                    <f:facet name="header">Quantity</f:facet>
+                    <h:outputText value="#{prizeReward.prizeQty}"/>
+                </h:column>
+
+                <h:column rowHeader="image">
+                    <f:facet name="header">Image Links</f:facet>
+                    <ui:repeat var="link" value="#{prizeReward.prizeImage}">
+                        <h1>#{link}</h1>
+                    </ui:repeat>
+                </h:column>
+
+                <h:column>
+                    <input type="button" value="View" class="btn btn-primary" data-toggle="modal"  data-target="#managePrizeRewardModal" data-name="#{prizeReward.prizeName}" data-description="#{prizeReward.prizeDescription}" data-point="#{prizeReward.prizePoint}" data-qty="#{prizeReward.prizeQty}" data-id="#{prizeReward.prizeID}" />
+                </h:column>
+
+            </h:dataTable>    
+
+            <div class="modal fade" id="managePrizeRewardModal" tabindex="-1" role="dialog" aria-labelledby="managePrizeRewardModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="manageItemModalLabel">Prize Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&#215;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group prize-ID">
+                                <h:inputHidden id="prizeID" value="#{adminManagedBean.prizeID}"  />
+                            </div>
+
+                            <div class="form-group prizeName">
+                                <label for="prizeName" class="col-form-label">Prize name:</label>
+                                <h:inputText class="form-control" id="prizeName" value="#{adminManagedBean.prizeName}" />
+                            </div>
+                            
+                            <div class="form-group prizeDescription">
+                                <label for="prizeDescription" class="col-form-label">Description:</label>
+                                <h:inputText class="form-control" id="prizeDescription" value="#{adminManagedBean.prizeDescription}"  />
+                            </div>
+                            <div class="form-group prizePoint">
+                                <label for="prizePoint" class="col-form-label">Points:</label>
+                                <h:inputText class="form-control" id="prizePoint" value="#{adminManagedBean.prizePoint}"  />
+                            </div>
+                            <div class="form-group prizeQty">
+                                <label for="prizeQty" class="col-form-label">Quantities:</label>
+                                <h:inputText class="form-control" id="prizeQty" value="#{adminManagedBean.prizeQty}"  />
+                            </div>                            
+                            
+
+                        </div>
+                        <div class="modal-footer">  
+                            <h:commandButton id="updateItemButton" class="btn btn-success" value="Update" action="#{adminManagedBean.updatePrizeRewardItem()}" title="Update Prize Reward Item details" />
+                            <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+    <ui:define name="script">
+        <script>
+            $('#managePrizeRewardModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var prizeName = button.data('prizeName'); // Extract info from data-* attributes
+                var prizeDescription = button.data('prizeDescription');
+                var prizePoint = button.data('prizePoint');
+                var prizeQty = button.data('prizeQty');
+                var eventID = button.data('prizeID');
+
+                var modal = $(this);
+                modal.find('.modal-title').text('Detailed Information of ' + prizeName);
+                modal.find('.prizeName input').val(prizeName);
+                modal.find('.prizeDescription input').val(prizeDescription);
+                modal.find('.prizePoint input').val(prizePoint);
+                modal.find('.prizeQty input').val(prizeQty););
+                modal.find('.prizeID input').val(prizeID);
+//                document.getElementById("imageOutput").src = imageLink;
+
+            });
+        </script>
+    </ui:define>
+</ui:composition>

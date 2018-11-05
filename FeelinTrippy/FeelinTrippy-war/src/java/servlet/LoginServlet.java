@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -111,9 +112,10 @@ public class LoginServlet extends HttpServlet {
             } catch (NoResultException ex) {
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
+
             httpSession.setAttribute("user", c);
-            response.sendRedirect("filterTrip.jsp");
+            
+           response.sendRedirect("mainPage.jsp");
         } else {
             PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");
