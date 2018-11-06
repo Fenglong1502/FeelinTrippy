@@ -45,6 +45,8 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
             existingTrippyEvent.setStartDate(trippyEventItem.getStartDate());
             existingTrippyEvent.setEndDate(trippyEventItem.getEndDate());
             existingTrippyEvent.setAddress(trippyEventItem.getAddress());
+            existingTrippyEvent.setEventTypeString(trippyEventItem.getEventTypeString());
+            existingTrippyEvent.setEventImage(trippyEventItem.getEventImage());
         } else {
             throw new NoResultException("Trippy Event not found.");
         }
