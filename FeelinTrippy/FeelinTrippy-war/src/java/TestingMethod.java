@@ -1,9 +1,8 @@
 
 import etc.RandomPassword;
 import etc.SmsService;
-import javax.ejb.EJB;
 import session.CustomerSession;
-import session.CustomerSessionLocal;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.

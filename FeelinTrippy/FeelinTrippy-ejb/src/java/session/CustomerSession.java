@@ -137,6 +137,18 @@ public class CustomerSession implements CustomerSessionLocal {
         customer.setPassword(newPass);
         em.flush();
     }
+    @Override
+    public void deactivateAccount(Long cId) {
+        Customer customer = em.find(Customer.class, cId);
+        customer.setAccountStatus(false);
+        em.flush();
+    }
+    @Override
+    public void activateAccount(Long cId) {
+        Customer customer = em.find(Customer.class, cId);
+        customer.setAccountStatus(true);
+        em.flush();
+    }
 
     @Override
     public int deductPoints(Customer c, int pointsDeducted) {
