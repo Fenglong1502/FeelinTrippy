@@ -5,7 +5,9 @@
     <head>
         <meta charset="utf-8" />
         <title>FeelinTrippy - Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <head>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="img/logo.png">
