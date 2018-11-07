@@ -5,6 +5,7 @@
  */
 package managedBean;
 
+import entity.Customer;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
 import java.text.ParseException;
@@ -12,10 +13,14 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import session.CustomerSessionLocal;
 import session.TrippyEventSessionLocal;
 import session.TrippyEventTypeSessionLocal;
 
@@ -26,13 +31,33 @@ import session.TrippyEventTypeSessionLocal;
 @ManagedBean
 @RequestScoped
 public class adminManagedBean {
+
+    /**
+     * @return the eventImageStringArray
+     */
+    public List<String> getEventImageStringArray() {
+        return eventImageStringArray;
+    }
+
+    /**
+     * @param eventImageStringArray the eventImageStringArray to set
+     */
+    public void setEventImageStringArray(List<String> eventImageStringArray) {
+        this.eventImageStringArray = eventImageStringArray;
+    }
+
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
-    
+
     @EJB
     TrippyEventTypeSessionLocal trippyEventTypeSessionLocal;
 
+    @EJB
+    CustomerSessionLocal customerSessionLocal;
+
     private Long eventID;
+    private Long typeID;
+    private Long custID;
     private String eventName;
     private Date startDate;
     private Date endDate;
@@ -40,14 +65,18 @@ public class adminManagedBean {
     private Long point;
     private Double price;
     private Boolean softDelete;
-    private List<TrippyEventType> eventType;
+    private Boolean accStatus;
     private List<String> eventImage;
     private String eventTypeString;
     private String eventImageString;
     private String address;
     private List<String> eventTypeStringArray;
+    private List<String> eventImageStringArray;
+    private String eventTypeName;
 
     private List<TrippyEventItem> listOfTrippyEvent;
+    private List<TrippyEventType> eventType;
+    private List<Customer> listOfCustomer;
 
     public adminManagedBean() {
     }
@@ -55,8 +84,22 @@ public class adminManagedBean {
     @PostConstruct
     public void init() {
         listOfTrippyEvent = trippyEventSessionLocal.retrieveAllEvents();
+        eventType = trippyEventTypeSessionLocal.getAllTripType();
+        setListOfCustomer(customerSessionLocal.searchCustomers(null));
     }
     
+    public void activateTrip(TrippyEventItem toUpdate) {
+        System.out.println("Activating trip");
+        toUpdate.setSoftDelete(false);
+        trippyEventSessionLocal.updateTrippyEvent(toUpdate);
+    }
+    
+    public void deactivateTrip(TrippyEventItem toUpdate) {
+        System.out.println("Deactivating trip");
+        toUpdate.setSoftDelete(true);
+        trippyEventSessionLocal.updateTrippyEvent(toUpdate);
+    }
+
     public String updateTrippyEventItem() throws ParseException {
         System.out.println("Entering updating trippy event item");
         System.out.println("Event name: " + eventName);
@@ -73,12 +116,65 @@ public class adminManagedBean {
         toUpdate.setStartDate(dt.parse(stringDate));
         stringDate = dt.format(endDate);
         toUpdate.setEndDate(dt.parse(stringDate));
-//        toUpdate.setStartDate(startDate);
-//        toUpdate.setEndDate(endDate);
+        eventImage = Arrays.asList(eventImageString.split(","));
+        System.out.println("HTML Size: " + eventImage.size());
+        System.out.println("After cutting: " + eventImage);
+        eventTypeStringArray = Arrays.asList(eventTypeString.split(","));
+//        System.out.println("Event type array: " + eventTypeStringArray);
+        int count = 0;
+        TrippyEventType toBeAdded;
+        eventType.clear();
+        eventTypeString="";
+        while (count <= eventTypeStringArray.size() - 1) {
+            try {
+                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count));
+                System.out.println("Tobeadded: " + toBeAdded);
+                if (toBeAdded != null) {
+                    eventType.add(toBeAdded);
+                    eventTypeString += eventTypeStringArray.get(count) + ",";
+                }
+            } catch (Exception e) {
+
+            }
+            count++;
+        }
+        if (eventTypeString.length() != 0) {
+            if (eventTypeString.charAt(eventTypeString.length()-1) == ',') {
+            eventTypeString = eventTypeString.substring(0,eventTypeString.length()-1);
+        }
+        }
+        
+        
+        
+        count = 0;
+//        if (eventImage.size() > 0) {
+//            while (count <= eventImage.size() - 1) {
+////                if(eventImage.get(count).charAt(0) == '[') {
+////                    eventImage.set(count, eventImage.get(count).substring(1,eventImage.get(count).length()-1));
+////                }
+////                System.out.println("After trimming1: " + eventImage.get(count));
+////                if(eventImage.get(count).charAt(eventImage.get(count).length()) == ']') {
+////                    eventImage.set(count, eventImage.get(count).substring(0,eventImage.get(count).length()-2));
+////                }
+////                System.out.println("After trimming2: " + eventImage.get(count));
+//                eventImageStringArray.add(eventImage.get(count));
+//                count++;
+//            }
+//        }
+
+        if (eventType.size() == 0) {
+            System.out.println("found nothing for type!");
+            eventTypeString = "";
+        }
+        System.out.println("Event type: " + eventType);
+        toUpdate.setEventImage(eventImage);
+        toUpdate.setEventTypeString(eventTypeString);
+        toUpdate.setEventImage(eventImage);
+        toUpdate.setEventType(eventType);
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
-        
+//        eventImageStringArray.clear();
         return "manageTrippyEventItem.xhtml?faces-redirect=true";
-        
+
     }
 
     public void createTrippyEventItem() throws ParseException {
@@ -99,20 +195,88 @@ public class adminManagedBean {
         eventTypeStringArray = Arrays.asList(eventTypeString.split(","));
         int count = 0;
         TrippyEventType toBeAdded;
-        while (count <= eventTypeStringArray.size()-1) {
+        eventType.clear();
+        while (count <= eventTypeStringArray.size() - 1) {
             try {
                 toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count));
                 if (toBeAdded != null) {
                     eventType.add(toBeAdded);
                 }
-            } catch(Exception e) {
-                
+            } catch (Exception e) {
+
             }
             count++;
         }
+        count = 0;
+        eventImageStringArray.clear();
+        while (count <= eventImage.size() - 1) {
+            eventImageStringArray.add(eventImage.get(count));
+            count++;
+        }
+        if (eventType.size() == 0) {
+            System.out.println("found nothing for type!");
+            eventTypeString = "";
+        }
+        toCreate.setEventImage(eventImageStringArray);
+        toCreate.setEventTypeString(eventTypeString);
         toCreate.setEventImage(eventImage);
         toCreate.setEventType(eventType);
         trippyEventSessionLocal.createTrippyEvent(toCreate);
+    }
+
+    public void createEventType() {
+        TrippyEventType newType = new TrippyEventType();
+        newType.setTypeName(getEventTypeName());
+        newType.setSoftDelete(getSoftDelete());
+
+        trippyEventTypeSessionLocal.createTrippyType(newType);
+    }
+
+    public void updateEventType() {
+        TrippyEventType newType = new TrippyEventType();
+        newType.setTypeID(getTypeID());
+        newType.setTypeName(getEventTypeName());
+        newType.setSoftDelete(getSoftDelete());
+
+        trippyEventTypeSessionLocal.updateTrippyType(newType);
+    }
+
+    public void activateAccount() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        Map<String, String> params = context.getExternalContext()
+                .getRequestParameterMap();
+        String cIdStr = params.get("cId");
+        Long cId = Long.parseLong(cIdStr);
+
+        try {
+            customerSessionLocal.activateAccount(cId);
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to activate member"));
+            return;
+        }
+        context.addMessage(null, new FacesMessage("Success", "Successfully activated member"));
+        init();
+    }
+
+    public void deactivateAccount() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        Map<String, String> params = context.getExternalContext()
+                .getRequestParameterMap();
+        String cIdStr = params.get("cId");
+        Long cId = Long.parseLong(cIdStr);
+
+        try {
+            customerSessionLocal.deactivateAccount(cId);
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to deactivate member"));
+            return;
+        }
+        context.addMessage(null, new FacesMessage("Success", "Successfully deactivated member"));
+        init();
     }
 
     /**
@@ -283,7 +447,6 @@ public class adminManagedBean {
         this.listOfTrippyEvent = listOfTrippyEvent;
     }
 
-    
     /**
      * @return the eventTypeStringArray
      */
@@ -324,5 +487,75 @@ public class adminManagedBean {
      */
     public void setEventImageString(String eventImageString) {
         this.eventImageString = eventImageString;
+    }
+
+    /**
+     * @return the accStatus
+     */
+    public Boolean getAccStatus() {
+        return accStatus;
+    }
+
+    /**
+     * @param accStatus the accStatus to set
+     */
+    public void setAccStatus(Boolean accStatus) {
+        this.accStatus = accStatus;
+    }
+
+    /**
+     * @return the listOfCustomer
+     */
+    public List<Customer> getListOfCustomer() {
+        return listOfCustomer;
+    }
+
+    /**
+     * @param listOfCustomer the listOfCustomer to set
+     */
+    public void setListOfCustomer(List<Customer> listOfCustomer) {
+        this.listOfCustomer = listOfCustomer;
+    }
+
+    /**
+     * @return the eventTypeName
+     */
+    public String getEventTypeName() {
+        return eventTypeName;
+    }
+
+    /**
+     * @param eventTypeName the eventTypeName to set
+     */
+    public void setEventTypeName(String eventTypeName) {
+        this.eventTypeName = eventTypeName;
+    }
+
+    /**
+     * @return the typeID
+     */
+    public Long getTypeID() {
+        return typeID;
+    }
+
+    /**
+     * @param typeID the typeID to set
+     */
+    public void setTypeID(Long typeID) {
+        this.typeID = typeID;
+    }
+
+    /**
+     * @return the custID
+     */
+    public Long getCustID() {
+        return custID;
+    }
+
+    /**
+     * @param custID the custID to set
+     */
+    public void setCustID(Long custID) {
+        this.custID = custID;
     }
 }

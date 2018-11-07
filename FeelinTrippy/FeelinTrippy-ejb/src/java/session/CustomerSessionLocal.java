@@ -32,6 +32,8 @@ public interface CustomerSessionLocal {
     //Handle Profile
     public void updateCustomer(Customer c) throws NoResultException;
     public void deleteCustomer(Long userID) throws NoResultException;
+    public void deactivateAccount(Long cId) throws NoResultException;
+    public void activateAccount(Long cId) throws NoResultException;
     
     //Points Handling
     public int deductPoints(Customer c, int pointsDeducted);
