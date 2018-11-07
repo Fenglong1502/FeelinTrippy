@@ -34,7 +34,7 @@ public class TrippyEventTypeSession implements TrippyEventTypeSessionLocal {
     public void updateTrippyType(TrippyEventType type) {
         TrippyEventType existingTrippyType = em.find(TrippyEventType.class, type.getTypeID());
         if (existingTrippyType != null) {
-            existingTrippyType.setTypeName(existingTrippyType.getTypeName());
+            existingTrippyType.setTypeName(type.getTypeName());
             existingTrippyType.setSoftDelete(type.getSoftDelete());
         }
         else {

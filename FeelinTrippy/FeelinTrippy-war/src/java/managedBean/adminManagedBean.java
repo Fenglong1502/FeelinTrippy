@@ -268,7 +268,7 @@ public class adminManagedBean {
         return "searchTrippyEventType.xhtml?faces-redirect=true";
     }
 
-    public void updateEventType() {
+    public String updateEventType() {
         if(softDeleteString.equals("true"))
             softDelete = true;
         else
@@ -279,13 +279,14 @@ public class adminManagedBean {
         newType.setSoftDelete(getSoftDelete());
 
         trippyEventTypeSessionLocal.updateTrippyType(newType);
+        
+        return "searchTrippyEventType.xhtml?faces-redirect=true";
     }
     
     public void loadSelectedType(){
         FacesContext context = FacesContext.getCurrentInstance();
 
         try {
-            typeID = (Long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("mId");
             this.selectedType = trippyEventTypeSessionLocal.getTypeById(typeID);
             eventTypeName = selectedType.getTypeName();
             softDelete = selectedType.getSoftDelete();
@@ -295,7 +296,7 @@ public class adminManagedBean {
                 this.softDeleteString = "false";
 
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load member"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to event Type"));
         }
         
         setSelectedType(trippyEventTypeSessionLocal.getTypeById(typeID));
