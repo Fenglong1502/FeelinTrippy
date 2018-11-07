@@ -10,7 +10,7 @@
 
         <!-- Favicon -->
         <!--<link rel = "shortcut icon" href="./img/logo.png">-->
-      <link rel="shortcut icon" href="img/logo.png">
+        <link rel="shortcut icon" href="img/logo.png">
 
         <!-- Template CSS Files -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
