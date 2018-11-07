@@ -14,13 +14,14 @@ and open the template in the editor.
 
         <!-- Favicon -->
        <link rel="shortcut icon" href="img/logo.png">
+       </link>
 
         <!-- Template CSS Files -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/skins/yellow.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >   </link>
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" >   </link>
+        <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" >   </link>
+        <link rel="stylesheet" type="text/css" href="css/style.css" >   </link>
+        <link rel="stylesheet" type="text/css" href="css/skins/yellow.css" >   </link>
 
         <!-- Template JS Files -->
         <script src="js/modernizr.js"></script>
@@ -28,16 +29,16 @@ and open the template in the editor.
     </head>
 
     <body class="double-diagonal dark about-page">
-           <% if (request.getSession().getAttribute("user") == null) { %>
+          <!-- <% if (request.getSession().getAttribute("user") == null) { %>
                 <script type="text/javascript">
                         alert('Please login to start trippy');
                         document.location.href = 'login.jsp';
                     </script>
-            <% }%>
+            <% }%> -->
         <!-- Preloader Starts -->
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">            </div>
+                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">    </img>        </div>
             <div class="loader" id="loader"></div>
         </div>
         <!-- Preloader Ends -->
@@ -93,7 +94,7 @@ and open the template in the editor.
                 <div class="container">
                     <!-- About Content Starts -->
                     <div class="row about-content">
-                        <div><br><br><br><br><br><br></div>
+                        <div><br><br><br><br><br><br></br></br></br></br></br></br></div>
                         <div class="col-sm-12 col-md-6 col-lg-6 about-left-side">
                             <h3 class="title-about">Marcus Choo</h3>
                             <p>38 Years Old Male</p>
@@ -101,7 +102,7 @@ and open the template in the editor.
                             <p>81726582<br>
                                 marcuschoo1478@gmail.com<br> 
                                 Points available to redeem: 18<br>
-                                <a class="custom-button" href="pastRewards.jsp">View Redeemed rewards</a></p>
+                                <a class="custom-button" href="pastRewards.jsp">View Redeemed rewards</p>
                             <a class="custom-button" href="rewards.jsp">Redeem rewards now!</a>
                             <a class="custom-button" href="editProfile.jsp">Edit Profile</a>
                         </div>

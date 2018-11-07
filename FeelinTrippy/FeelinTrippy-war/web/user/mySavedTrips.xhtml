@@ -13,31 +13,33 @@ and open the template in the editor.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-  <link rel="shortcut icon" href="img/logo.png">
+    <link rel="shortcut icon" href="img/logo.png"></link>
 
     <!-- Template CSS Files -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/skins/yellow.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" ></link>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" ></link>
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" ></link>
+    <link rel="stylesheet" type="text/css" href="css/style.css" ></link>
+    <link rel="stylesheet" type="text/css" href="css/skins/yellow.css" ></link>
 
     <!-- Template JS Files -->
-    <script src="js/modernizr.js"></script>
+    <script src="js/modernizr.js">
+        
+    </script>
 
 </head>
 
 <body class="double-diagonal dark portfolio-page">
-       <% if (request.getSession().getAttribute("user") == null) { %>
+    <!--   <% if (request.getSession().getAttribute("user") == null) { %>
                 <script type="text/javascript">
                         alert('Please login to start trippy');
                         document.location.href = 'login.jsp';
                     </script>
-            <% }%>
+            <% }%> -->
     <!-- Preloader Starts -->
     <div class="preloader" id="preloader">
         <div class="logopreloader">
-<img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">        </div>
+            <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">   </img>     </div>
         <div class="loader" id="loader"></div>
     </div>
     <!-- Preloader Ends -->
@@ -96,15 +98,15 @@ and open the template in the editor.
             <!-- Container Starts -->
             <div class="container">
                 <div class="text-center top-text">
-                        <br><br><br>
+                    <br><br><br></br></br></br>
                         <h1><span>Saved</span> Trips</h1>                   
                     </div>
                 <nav>
                     <ul class="simplefilter nav nav-pills">
                         <!-- Filter Wrapper Items Starts -->
                         <li class="active" data-filter="all"><i class="fa fa-reorder"></i> All Trips</li>
-                        <li data-filter="1">Animal & WildLife</li>
-                        <li data-filter="2">Adventure</li><br><br>
+                        <li data-filter="1">Animal and WildLife</li>
+                        <li data-filter="2">Adventure</li><br><br></br></br>
                         <li data-filter="3">Music and Night Life</li>
                         <li data-filter="4">Art and Culture</li>
                         <li data-filter="5">Foodie</li>
@@ -364,7 +366,7 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- Copyright Text Starts -->
-                            <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</a></p>
+                            <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
                             <!-- Copyright Text Ends -->
                         </div>
                     </div>

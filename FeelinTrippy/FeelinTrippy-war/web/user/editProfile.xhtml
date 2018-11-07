@@ -6,33 +6,34 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    
+
     <head>
         <meta charset="utf-8" />
         <title>Register, FeelinTrippy - Creative Trip Advisor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Favicon -->
-    <link rel="shortcut icon" href="img/logo.png">
+        <link rel="shortcut icon" href="img/logo.png">
 
-        <!-- Template CSS Files -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/skins/yellow.css" />
-
+            <!-- Template CSS Files -->  </link>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" >
+        </link>
         <!-- Template JS Files -->
         <script src="js/modernizr.js"></script>
 
     </head>
 
     <body class="double-diagonal dark auth-page">
-        <% if (request.getSession().getAttribute("user") == null) { %>
-        <script type="text/javascript">
-            alert('Please login to start trippy');
-            document.location.href = 'login.jsp';
-        </script>
-        <% }%>
+        <!-- <% if (request.getSession().getAttribute("user") == null) { %>
+         <script type="text/javascript">
+             alert('Please login to start trippy');
+             document.location.href = 'login.jsp';
+         </script>
+         <% }%> -->
         <!-- Page Wrapper Starts -->
         <div class="wrapper">
             <header class="header">
@@ -90,7 +91,7 @@ and open the template in the editor.
                 <div>
                     <!-- Logo Starts -->
                     <a class="visible-xs" href="mainPage.jsp">
-                        <img class="img-responsive mobile-logo" src="img/FeelinTrippy.png" alt="logo">
+                        <img class="img-responsive mobile-logo" src="img/FeelinTrippy.png" alt="logo"></img>
                     </a>
                     <!-- Logo Ends -->
                     <div class="form-container">
@@ -105,28 +106,34 @@ and open the template in the editor.
                             <form class="custom-form">
                                 <!-- Input Field Starts -->
                                 <div class="form-group">
-                                    <input class="form-control" name="firstname" id="firstname" placeholder="FIRST NAME" type="text" required>
+                                    <input class="form-control" name="firstname" id="firstname" placeholder="FIRST NAME" type="text" required="required">
+                                    </input>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="lastname" id="lastname" placeholder="LAST NAME" type="text" required>
-                                </div>
-                                <!-- Input Field Ends -->
-                                <!-- Input Field Starts -->
-                                <div class="form-group">
-                                    <input class="form-control" name="email" id="email" placeholder="EMAIL" type="email" required>
+                                    <input class="form-control" name="lastname" id="lastname" placeholder="LAST NAME" type="text" required="required">
+                                    </input>
                                 </div>
                                 <!-- Input Field Ends -->
                                 <!-- Input Field Starts -->
                                 <div class="form-group">
-                                    <input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password" required>
+                                    <input class="form-control" name="email" id="email" placeholder="EMAIL" type="email" required="required">
+                                    </input>
+                                </div>
+                                <!-- Input Field Ends -->
+                                <!-- Input Field Starts -->
+                                <div class="form-group">
+                                    <input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password" required="required">
+                                    </input>
                                 </div>
 
                                 <div class="form-group">
-                                    <input class="form-control" name="mobilenumber" id="mobilenumber" placeholder="MOBILE NUMBER" type="text" required>
+                                    <input class="form-control" name="mobilenumber" id="mobilenumber" placeholder="MOBILE NUMBER" type="text" required="required">
+                                    </input>
                                 </div>
 
                                 <div class="form-group">
-                                    <input class="form-control" name="gender" id="gender" placeholder="GENDER" type="text" required>
+                                    <input class="form-control" name="gender" id="gender" placeholder="GENDER" type="text" required="required">
+                                    </input>
                                 </div>
                                 <!-- Input Field Ends -->
                                 <!-- Submit Form Button Starts -->
