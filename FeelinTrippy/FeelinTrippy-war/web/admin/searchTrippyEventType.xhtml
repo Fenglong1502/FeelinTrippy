@@ -1,90 +1,54 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://java.sun.com/jsf/core">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 
-    <body>
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./adminTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Manage Users</ui:define>
 
-        <ui:composition template="./adminTemplate.xhtml">
+    <ui:define name="content">
 
-            <ui:define name="title">
-                Search Event Types
-            </ui:define>
+        <h:form id="form">
+            <h:dataTable id="customerTable" class="table table-hover table-light" var="types"
+                         value="#{adminManagedBean.eventType}">
 
-            <ui:define name="content">
-                <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Search Event Types</h1>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item">
-                                        <a href="#{request.contextPath}">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">
-                                        List Customers
-                                    </li>
-                                </ol>
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.container-fluid -->
-                </div>
-                <!-- /.content-header -->
+                <h:column rowHeader="typeID">
+                    <f:facet name="header">Type ID</f:facet>
+                    <h:outputText value="#{types.typeID}"/>
+                </h:column>
+                
+                <h:column rowHeader="typeNa">
+                    <f:facet name="header">Type Name</f:facet>
+                    <h:outputText value="#{types.typeName}"/>
+                </h:column>
 
-                <!-- Main content -->
-                <section class="content">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Search Event Types</h3>
-                                </div>
-                                <div class="card-body">
-                                    <h:form>
-                                        <h:dataTable value="#{trippyEventTypeManagedBean.eventTypes}" var="trippyEventType" border="2"
-                                                     cellspacing="1" cellpadding="1" width="100%">
-                                            <h:column>
-                                                <c:facet name="header">Trippy Event Type</c:facet>
-                                                    #{trippyEventType.typeName}
-                                            </h:column>
-                                            <h:column>
-                                                <c:facet name="header">Soft Delete</c:facet>
-                                                <h:outputText value="True" rendered="#{trippyEventType.softDelete == true}"/>
-                                                <h:outputText value="False" rendered="#{trippyEventType.softDelete == false}"/>
-                                            </h:column>
-                                            
-                                            <h:column>
-                                                <c:facet name="header">Buttons</c:facet>
-                                                <h:button value="Edit Type" outcome="manageTrippyEventType">
-                                                    <f:param name="typeID" value="typeID" />
-                                                </h:button>
-                                                <h:commandButton action="#{trippyEventTypeManagedBean.deleteType}" value="Delete">
-                                                    <f:param name="typeID" value="typeID" />
-                                                </h:commandButton>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </h:form>
-                                </div>
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                        <!-- /.col -->
-                    </div>
+                <h:column rowHeader="softDelete">
+                    <f:facet name="header">Soft Delete</f:facet>
+                    <h:outputText value="#{types.softDelete}"/>
+                </h:column>              
 
+                <h:column>
+                    <h:button value="Edit" outcome="editTrippyEventType.xhtml">
+                        <f:param name="typeID" value="#{types.typeID}" />
+                    </h:button>
+                    <h:commandButton value="Recover" class="btn btn-success" action="#{adminManagedBean.recoverType()}" rendered="#{types.softDelete == true}">
+                        <f:param name="typeID" value="#{types.typeID}" />
+                    </h:commandButton>
+                    <h:commandButton value="Remove" class="btn btn-danger" action="#{adminManagedBean.removeType()}" rendered="#{types.softDelete == false}">
+                        <f:param name="typeID" value="#{types.typeID}" />
+                    </h:commandButton>
+                </h:column>
 
-                </section>
-                <!-- /.content -->
-            </ui:define>    
-        </ui:composition>
-    </body>
-</html>
+            </h:dataTable>            
+        </h:form>
+
+    </ui:define>
+    
+</ui:composition>

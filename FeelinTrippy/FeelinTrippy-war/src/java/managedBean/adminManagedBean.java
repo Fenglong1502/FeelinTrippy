@@ -33,6 +33,34 @@ import session.TrippyEventTypeSessionLocal;
 public class adminManagedBean {
 
     /**
+     * @return the softDeleteString
+     */
+    public String getSoftDeleteString() {
+        return softDeleteString;
+    }
+
+    /**
+     * @param softDeleteString the softDeleteString to set
+     */
+    public void setSoftDeleteString(String softDeleteString) {
+        this.softDeleteString = softDeleteString;
+    }
+
+    /**
+     * @return the selectedType
+     */
+    public TrippyEventType getSelectedType() {
+        return selectedType;
+    }
+
+    /**
+     * @param selectedType the selectedType to set
+     */
+    public void setSelectedType(TrippyEventType selectedType) {
+        this.selectedType = selectedType;
+    }
+
+    /**
      * @return the eventImageStringArray
      */
     public List<String> getEventImageStringArray() {
@@ -73,6 +101,8 @@ public class adminManagedBean {
     private List<String> eventTypeStringArray;
     private List<String> eventImageStringArray;
     private String eventTypeName;
+    private TrippyEventType selectedType;
+    private String softDeleteString;
 
     private List<TrippyEventItem> listOfTrippyEvent;
     private List<TrippyEventType> eventType;
@@ -85,7 +115,7 @@ public class adminManagedBean {
     public void init() {
         listOfTrippyEvent = trippyEventSessionLocal.retrieveAllEvents();
         eventType = trippyEventTypeSessionLocal.getAllTripType();
-        setListOfCustomer(customerSessionLocal.searchCustomers(null));
+        listOfCustomer = customerSessionLocal.retrieveAllCustomer();
     }
     
     public void activateTrip(TrippyEventItem toUpdate) {
@@ -224,15 +254,25 @@ public class adminManagedBean {
         trippyEventSessionLocal.createTrippyEvent(toCreate);
     }
 
-    public void createEventType() {
+    public String createEventType() {
         TrippyEventType newType = new TrippyEventType();
         newType.setTypeName(getEventTypeName());
+        if(softDeleteString.equals("true"))
+            softDelete = true;
+        else
+            softDelete = false;
         newType.setSoftDelete(getSoftDelete());
 
         trippyEventTypeSessionLocal.createTrippyType(newType);
+        
+        return "searchTrippyEventType.xhtml?faces-redirect=true";
     }
 
     public void updateEventType() {
+        if(softDeleteString.equals("true"))
+            softDelete = true;
+        else
+            softDelete = false;
         TrippyEventType newType = new TrippyEventType();
         newType.setTypeID(getTypeID());
         newType.setTypeName(getEventTypeName());
@@ -240,6 +280,76 @@ public class adminManagedBean {
 
         trippyEventTypeSessionLocal.updateTrippyType(newType);
     }
+    
+    public void loadSelectedType(){
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        try {
+            typeID = (Long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("mId");
+            this.selectedType = trippyEventTypeSessionLocal.getTypeById(typeID);
+            eventTypeName = selectedType.getTypeName();
+            softDelete = selectedType.getSoftDelete();
+            if(softDelete == true)
+                this.softDeleteString = "true";
+            else
+                this.softDeleteString = "false";
+
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load member"));
+        }
+        
+        setSelectedType(trippyEventTypeSessionLocal.getTypeById(typeID));
+    }
+    
+    public void deleteType(){
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        Map<String, String> params = context.getExternalContext()
+                .getRequestParameterMap();
+        String tIdStr = params.get("typeID");
+        Long tId = Long.parseLong(tIdStr);
+        
+        trippyEventTypeSessionLocal.removeTrippyType(tId);
+        init();
+    }
+    
+    public void recoverType(){
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        Map<String, String> params = context.getExternalContext()
+                .getRequestParameterMap();
+        String tIdStr = params.get("typeID");
+        Long tId = Long.parseLong(tIdStr);
+
+        try {
+            trippyEventTypeSessionLocal.recoverType(tId);
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to activate member"));
+            return;
+        }
+        context.addMessage(null, new FacesMessage("Success", "Successfully activated member"));
+        init();
+    }
+    public void removeType(){
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        Map<String, String> params = context.getExternalContext()
+                .getRequestParameterMap();
+        String tIdStr = params.get("typeID");
+        Long tId = Long.parseLong(tIdStr);
+
+        try {
+            trippyEventTypeSessionLocal.removeType(tId);
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to remove type"));
+            return;
+        }
+        context.addMessage(null, new FacesMessage("Success", "Successfully removed type"));
+        init();
+    }
+    
 
     public void activateAccount() {
         FacesContext context = FacesContext.getCurrentInstance();

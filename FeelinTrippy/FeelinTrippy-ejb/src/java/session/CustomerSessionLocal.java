@@ -17,6 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface CustomerSessionLocal {
     
+    public List<Customer> retrieveAllCustomer();
     public Customer getCustomerById(Long cId) throws NoResultException;
     public Customer getCustomerByName(String name) throws NoResultException;
     public Customer getCustomerByEmail(String email) throws NoResultException;

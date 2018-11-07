@@ -1,5 +1,6 @@
 package session;
 
+import entity.Customer;
 import entity.TrippyEventType;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -76,5 +77,28 @@ public class TrippyEventTypeSession implements TrippyEventTypeSessionLocal {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public TrippyEventType getTypeById(Long typeID) throws NoResultException {
+        TrippyEventType type = em.find(TrippyEventType.class, typeID);
+
+        if (type != null) {
+            return type;
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
+    @Override
+    public void removeType(Long tId) {
+        TrippyEventType type = em.find(TrippyEventType.class, tId);
+        type.setSoftDelete(true);
+        em.flush();
+    }
+    @Override
+    public void recoverType(Long tId) {
+        TrippyEventType type = em.find(TrippyEventType.class, tId);
+        type.setSoftDelete(false);
+        em.flush();
     }
 }

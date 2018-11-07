@@ -36,6 +36,13 @@ public class CustomerSession implements CustomerSessionLocal {
 
     @PersistenceContext
     private EntityManager em;
+    
+     @Override
+    public List<Customer> retrieveAllCustomer() {
+        Query q;
+        q = em.createQuery("SELECT c FROM Customer c");
+        return q.getResultList();
+    }
 
     @Override
     public Customer getCustomerById(Long cId) throws NoResultException {

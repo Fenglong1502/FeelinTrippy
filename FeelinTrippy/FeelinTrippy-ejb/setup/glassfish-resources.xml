@@ -10,6 +10,6 @@
     <property name="PortNumber" value="1527"/>
     <property name="DatabaseName" value="feelinTrippyDB"/>
     <property name="User" value="administrator"/>
-    <property name="Password" value="administrator"/>
+    <property name="Password" value="password"/>
   </jdbc-connection-pool>
 </resources>
