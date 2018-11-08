@@ -5,7 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <head>
         <meta charset="utf-8" />
@@ -56,7 +57,7 @@ and open the template in the editor.
                     <nav class="navbar">
                         <!-- Logo Starts -->
                         <div class="logo">
-                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.xhtml">
                                 <!-- Logo White Starts -->
                                 <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
@@ -79,10 +80,12 @@ and open the template in the editor.
                         <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Main Menu Starts -->
                             <ul class="nav navbar-nav" id="main-navigation">
-                                <li class="active"><a href="../mainpage.xhtml"><i class="fa fa-home"></i> Home</a></li>                               
+                                <li class="active"><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>                               
                                 <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
                                 <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
                                 <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
+                                <li><a href="logout.xhtml"><i class="fa fa-user"></i> Log out</a></li>
+                                
                                 <!--                                <li><a href="javascript:logout();"><i class="fa fa-user"></i>    
                                                                         Log Out
                                 
@@ -131,7 +134,7 @@ and open the template in the editor.
                 </div>
 
                 <div class ="buttondiv" style="height:200px">
-                    <h:Link id="btn1" class="first-page-button" href="#btn1" onclick="showme(1)" value="Everything!" >
+                  
                     <a id="btn1" class="first-page-button" href="#btn1" onclick="showme(1)">Everything!</a>
                     <a id="btn2" class="second-page-button" href="#btn2" onclick="showme(2)">Adventure!</a>
                     <a id="btn3" class="third-page-button" href="#btn3" onclick="showme(3)">Culture!</a>
@@ -188,7 +191,7 @@ and open the template in the editor.
         session.invalidate();
 
     alert("Logout Successfully!");
-    document.location.href = 'mainPage.jsp';
+    document.location.href = 'mainPage.xhtml';
         }
         /*
         function testing(click){
