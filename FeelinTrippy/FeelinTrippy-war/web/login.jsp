@@ -5,10 +5,12 @@
     <head>
         <meta charset="utf-8" />
         <title>FeelinTrippy - Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="http://via.placeholder.com/30x30">
+        <link rel="shortcut icon" href="img/logo.png">
 
         <!-- Template CSS Files -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -85,11 +87,7 @@
                     <!-- Slider Ends -->
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                    <!-- Logo Starts -->
-                    <a class="visible-xs" href="index-kenburns.html">
-                        <img class="img-responsive mobile-logo" src="http://via.placeholder.com/159x28" alt="logo">
-                    </a>
-                    <!-- Logo Ends -->
+                 
                     <div class="form-container">
                         <div>
                             <!-- Main Heading Starts -->

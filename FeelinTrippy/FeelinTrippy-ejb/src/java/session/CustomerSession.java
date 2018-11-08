@@ -36,6 +36,13 @@ public class CustomerSession implements CustomerSessionLocal {
 
     @PersistenceContext
     private EntityManager em;
+    
+     @Override
+    public List<Customer> retrieveAllCustomer() {
+        Query q;
+        q = em.createQuery("SELECT c FROM Customer c");
+        return q.getResultList();
+    }
 
     @Override
     public Customer getCustomerById(Long cId) throws NoResultException {
@@ -135,6 +142,18 @@ public class CustomerSession implements CustomerSessionLocal {
     public void changePasword(Customer c, String newPass) {
         Customer customer = em.find(Customer.class, c.getUserID());
         customer.setPassword(newPass);
+        em.flush();
+    }
+    @Override
+    public void deactivateAccount(Long cId) {
+        Customer customer = em.find(Customer.class, cId);
+        customer.setAccountStatus(false);
+        em.flush();
+    }
+    @Override
+    public void activateAccount(Long cId) {
+        Customer customer = em.find(Customer.class, cId);
+        customer.setAccountStatus(true);
         em.flush();
     }
 

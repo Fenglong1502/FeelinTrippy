@@ -16,7 +16,7 @@ and open the template in the editor.
     <ui:define name="content">
 
         <h:form id="form">
-            <h:dataTable class="table table-hover table-light" var="trippyEvent"
+            <h:dataTable id="trippyEventTable" class="table table-hover table-light" var="trippyEvent"
                          value="#{adminManagedBean.listOfTrippyEvent}">
 
                 <h:column rowHeader="eventID">
@@ -29,27 +29,22 @@ and open the template in the editor.
                     <h:outputText value="#{trippyEvent.eventName}"/>
                 </h:column>
 
-                <h:column rowHeader="price">
-                    <f:facet name="header">price</f:facet>
-                    <h:outputText value="#{trippyEvent.price}"/>
-                </h:column>
-
                 <h:column rowHeader="startDate">
                     <f:facet name="header">Start Date</f:facet>
                     <h:outputText value="#{trippyEvent.startDate}"/>
                 </h:column>
-                <h:column rowHeader="image">
-                    <f:facet name="header">Image Links</f:facet>
-                    <ui:repeat var="link" value="#{trippyEvent.eventImage}">
-                        <h1>#{link}</h1>
-                    </ui:repeat>
+                <h:column rowHeader="status">
+                    <f:facet name="header">Status</f:facet>
+                    <h:outputText value="#{trippyEvent.softDelete}" />
                 </h:column>
 
                 <h:column>
-                    <input type="button" value="View" class="btn btn-primary" data-toggle="modal"  data-target="#manageTrippyEventModal" data-name="#{trippyEvent.eventName}" data-start="#{trippyEvent.startDate}" data-end="#{trippyEvent.endDate}" data-description="#{trippyEvent.eventDescription}" data-point="#{trippyEvent.point}" data-price="#{trippyEvent.price}" data-address="#{trippyEvent.address}" data-id="#{trippyEvent.eventID}" />
+                    <input type="button" value="View" class="btn btn-primary" data-toggle="modal"  data-target="#manageTrippyEventModal" data-name="#{trippyEvent.eventName}" data-start="#{trippyEvent.startDate}" data-end="#{trippyEvent.endDate}" data-description="#{trippyEvent.eventDescription}" data-point="#{trippyEvent.point}" data-price="#{trippyEvent.price}" data-address="#{trippyEvent.address}" data-id="#{trippyEvent.eventID}" data-typestring="#{trippyEvent.eventTypeString}" data-imagestring="#{trippyEvent.eventImage}" />
+                    <h:commandButton value="Activate" class="btn btn-success" action="#{adminManagedBean.activateTrip(trippyEvent)}" />
+                    <h:commandButton value="Deactivate" class="btn btn-danger" action="#{adminManagedBean.deactivateTrip(trippyEvent)}" />
                 </h:column>
 
-            </h:dataTable>    
+            </h:dataTable> 
 
             <div class="modal fade" id="manageTrippyEventModal" tabindex="-1" role="dialog" aria-labelledby="manageTrippyEventModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -93,6 +88,14 @@ and open the template in the editor.
                                 <label for="eventPrice" class="col-form-label">Price:</label>
                                 <h:inputText class="form-control" id="eventPrice" value="#{adminManagedBean.price}" />
                             </div>
+                            <div class="form-group eventTypeString">
+                                <label for="eventTypeString" class="col-form-label">Event Type:</label>
+                                <h:inputText class="form-control" id="eventTypeString" value="#{adminManagedBean.eventTypeString}" />
+                            </div>
+                            <div class="form-group eventImageString">
+                                <label for="eventImageString" class="col-form-label">Image:</label>
+                                <h:inputText class="form-control" id="eventImageString" value="#{adminManagedBean.eventImageString}" />
+                            </div>
                             <div class="form-group address">
                                 <label for="address" class="col-form-label">Address:</label>
                                 <h:inputText class="form-control" id="address" value="#{adminManagedBean.address}" />
@@ -123,8 +126,10 @@ and open the template in the editor.
                 var price = button.data('price');
                 var address = button.data('address');
                 var eventID = button.data('id');
+                var imageString = button.data('imagestring');
+                var typeString = button.data('typestring');
                 var modal = $(this);
-                var day  = startDate[2];
+                var day = startDate[2];
                 var month = startDate[1];
                 var year = startDate[5];
                 if (month == "Jan") {
@@ -153,8 +158,8 @@ and open the template in the editor.
                     month = "12";
                 }
                 var strDate = day + "/" + month + "/" + year;
-                
-                var eDay  = endDate[2];
+
+                var eDay = endDate[2];
                 var eMonth = endDate[1];
                 var eYear = endDate[5];
                 if (eMonth == "Jan") {
@@ -183,7 +188,7 @@ and open the template in the editor.
                     eMonth = "12";
                 }
                 var eStrDate = eDay + "/" + eMonth + "/" + eYear;
-                modal.find('.modal-title').text('Detailed Information of ' + eventName + " " + eStrDate);
+                modal.find('.modal-title').text('Detailed Information of ' + eventName + " " + imageString + typeString);
                 modal.find('.eventName input').val(eventName);
                 modal.find('.startDate input').val(strDate);
                 modal.find('.endDate input').val(eStrDate);
@@ -192,8 +197,17 @@ and open the template in the editor.
                 modal.find('.eventPrice input').val(price);
                 modal.find('.address input').val(address);
                 modal.find('.event-ID input').val(eventID);
+                modal.find('.eventImageString input').val(imageString);
+                modal.find('.eventTypeString input').val(typeString);
 //                document.getElementById("imageOutput").src = imageLink;
 
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#trippyEventTable').DataTable({
+                    "scrollX": true
+                });
             });
         </script>
     </ui:define>

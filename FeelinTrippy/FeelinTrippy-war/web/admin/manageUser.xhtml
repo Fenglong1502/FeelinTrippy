@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./adminTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Manage Users</ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="form">
+            <h:dataTable id="customerTable" class="table table-hover table-light" var="customer"
+                         value="#{adminManagedBean.listOfCustomer}">
+
+                <h:column rowHeader="userID">
+                    <f:facet name="header">User ID</f:facet>
+                    <h:outputText value="#{customer.userID}"/>
+                </h:column>
+
+                <h:column rowHeader="custName">
+                    <f:facet name="header">Customer Name</f:facet>
+                    <h:outputText value="#{customer.firstName} #{customer.lastName}"/>
+                </h:column>
+
+                <h:column rowHeader="gender">
+                    <f:facet name="header">Gender</f:facet>
+                    <h:outputText value="Male" rendered="#{customer.gender == 2}"/>
+                    <h:outputText value="Female" rendered="#{customer.gender == 1}"/>
+                </h:column>
+                <h:column rowHeader="email">
+                    <f:facet name="header">Email</f:facet>
+                    <h:outputText value="#{customer.email}" />
+                </h:column>
+                
+                <h:column rowHeader="mobileNumber">
+                    <f:facet name="header">Mobile Number</f:facet>
+                    <h:outputText value="#{customer.mobileNumber}" />
+                </h:column>
+                
+                <h:column rowHeader="accountStatus">
+                    <f:facet name="header">Account Status</f:facet>
+                    <h:outputText value="#{customer.accountStatus}" />
+                </h:column>
+
+                <h:column>                   
+                    <h:commandButton value="Activate" class="btn btn-success" action="#{adminManagedBean.activateAccount()}" rendered="#{customer.accountStatus == false}">
+                        <f:param name="cId" value="#{customer.userID}" />
+                    </h:commandButton>
+                    <h:commandButton value="Deactivate" class="btn btn-danger" action="#{adminManagedBean.deactivateAccount()}" rendered="#{customer.accountStatus == true}">
+                        <f:param name="cId" value="#{customer.userID}" />
+                    </h:commandButton>
+                </h:column>
+
+            </h:dataTable>            
+        </h:form>
+
+    </ui:define>
+    
+</ui:composition>

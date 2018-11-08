@@ -16,6 +16,21 @@ import javax.persistence.TemporalType;
 public class TrippyEventItem implements Serializable {
 
     /**
+     * @return the eventTypeString
+     */
+    public String getEventTypeString() {
+        return eventTypeString;
+    }
+
+    /**
+     * @param eventTypeString the eventTypeString to set
+     */
+    public void setEventTypeString(String eventTypeString) {
+        this.eventTypeString = eventTypeString;
+    }
+
+
+    /**
      * @return the address
      */
     public String getAddress() {
@@ -52,6 +67,7 @@ public class TrippyEventItem implements Serializable {
     private List<TrippyEventType> eventType;
     private List<String> eventImage;
     private String address;
+    private String eventTypeString;
     
     public TrippyEventItem(){
         

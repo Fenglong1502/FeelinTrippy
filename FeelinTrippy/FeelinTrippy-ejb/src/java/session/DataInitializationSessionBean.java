@@ -26,8 +26,9 @@ import javax.persistence.PersistenceContext;
  *
  * @author dk349
  */
-@Startup
 @Singleton
+@LocalBean
+@Startup
 public class DataInitializationSessionBean {
 
     @PersistenceContext(unitName = "FeelinTrippy-ejbPU")
@@ -43,12 +44,7 @@ public class DataInitializationSessionBean {
     @PostConstruct
     public void postConstruct() {
         if (em.find(Customer.class, 1l) == null) {
-            try {
-                initializeData();
-            }catch (Exception e) {
-                
-            }
-
+            initializeData();
         }
     }
 
@@ -112,6 +108,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1.setEventImage(eventImages);
         trippyEventItem1.setEventType(eventTypes);
         trippyEventItem1.setSoftDelete(false);
+        trippyEventItem1.setEventTypeString("animals_and_wildlife");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1);
 
@@ -132,6 +129,7 @@ public class DataInitializationSessionBean {
         trippyEventItem2.setEventImage(eventImages);
         trippyEventItem2.setEventType(eventTypes);
         trippyEventItem2.setSoftDelete(false);
+        trippyEventItem2.setEventTypeString("animals_and_wildlife");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem2);
 
@@ -152,6 +150,7 @@ public class DataInitializationSessionBean {
         trippyEventItem3.setEventImage(eventImages);
         trippyEventItem3.setEventType(eventTypes);
         trippyEventItem3.setSoftDelete(false);
+        trippyEventItem3.setEventTypeString("animals_and_wildlife");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem3);
 
@@ -169,6 +168,7 @@ public class DataInitializationSessionBean {
         trippyEventItem4.setEventImage(null);
         trippyEventItem4.setEventType(eventTypes);
         trippyEventItem4.setSoftDelete(false);
+        trippyEventItem4.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem4);
 
@@ -193,6 +193,7 @@ public class DataInitializationSessionBean {
         trippyEventItem5.setEventImage(eventImages);
         trippyEventItem5.setEventType(eventTypes);
         trippyEventItem5.setSoftDelete(false);
+        trippyEventItem5.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem5);
 
@@ -213,6 +214,7 @@ public class DataInitializationSessionBean {
         trippyEventItem6.setEventImage(eventImages);
         trippyEventItem6.setEventType(eventTypes);
         trippyEventItem6.setSoftDelete(false);
+        trippyEventItem6.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem6);
 
@@ -235,7 +237,8 @@ public class DataInitializationSessionBean {
         trippyEventItem7.setEventImage(eventImages);
         trippyEventItem7.setEventType(eventTypes);
         trippyEventItem7.setSoftDelete(false);
-
+        trippyEventItem7.setEventTypeString("adventure");
+        
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem7);
 
         startDate.set(2018, Calendar.SEPTEMBER, 28);
@@ -257,6 +260,7 @@ public class DataInitializationSessionBean {
         trippyEventItem8.setEventImage(eventImages);
         trippyEventItem8.setEventType(eventTypes);
         trippyEventItem8.setSoftDelete(false);
+        trippyEventItem8.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem8);
 
@@ -279,7 +283,8 @@ public class DataInitializationSessionBean {
         trippyEventItem9.setEventImage(eventImages);
         trippyEventItem9.setEventType(eventTypes);
         trippyEventItem9.setSoftDelete(false);
-
+        trippyEventItem9.setEventTypeString("adventure");
+    
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem9);
 
         startDate.set(2017, Calendar.DECEMBER, 15);
@@ -299,7 +304,7 @@ public class DataInitializationSessionBean {
         trippyEventItem10.setEventImage(eventImages);
         trippyEventItem10.setEventType(eventTypes);
         trippyEventItem10.setSoftDelete(false);
-
+        trippyEventItem10.setEventTypeString("adventure");
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem10);
 
         eventImages.clear();
@@ -319,6 +324,7 @@ public class DataInitializationSessionBean {
         trippyEventItem11.setEventImage(eventImages);
         trippyEventItem11.setEventType(eventTypes);
         trippyEventItem11.setSoftDelete(false);
+        trippyEventItem11.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem11);
 
@@ -339,6 +345,7 @@ public class DataInitializationSessionBean {
         trippyEventItem12.setEventImage(eventImages);
         trippyEventItem12.setEventType(eventTypes);
         trippyEventItem12.setSoftDelete(false);
+        trippyEventItem12.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem12);
 
@@ -359,6 +366,7 @@ public class DataInitializationSessionBean {
         trippyEventItem13.setEventImage(eventImages);
         trippyEventItem13.setEventType(eventTypes);
         trippyEventItem13.setSoftDelete(false);
+        trippyEventItem13.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem13);
 
@@ -379,6 +387,7 @@ public class DataInitializationSessionBean {
         trippyEventItem14.setEventImage(eventImages);
         trippyEventItem14.setEventType(eventTypes);
         trippyEventItem14.setSoftDelete(false);
+        trippyEventItem14.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem14);
 
@@ -399,6 +408,7 @@ public class DataInitializationSessionBean {
         trippyEventItem15.setEventImage(eventImages);
         trippyEventItem15.setEventType(eventTypes);
         trippyEventItem15.setSoftDelete(false);
+        trippyEventItem15.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem15);
 
@@ -419,6 +429,7 @@ public class DataInitializationSessionBean {
         trippyEventItem16.setEventImage(eventImages);
         trippyEventItem16.setEventType(eventTypes);
         trippyEventItem16.setSoftDelete(false);
+        trippyEventItem16.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem16);
 
@@ -439,6 +450,7 @@ public class DataInitializationSessionBean {
         trippyEventItem17.setEventImage(eventImages);
         trippyEventItem17.setEventType(eventTypes);
         trippyEventItem17.setSoftDelete(false);
+        trippyEventItem17.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem17);
 
@@ -459,6 +471,7 @@ public class DataInitializationSessionBean {
         trippyEventItem18.setEventImage(eventImages);
         trippyEventItem18.setEventType(eventTypes);
         trippyEventItem18.setSoftDelete(false);
+        trippyEventItem18.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem18);
 
@@ -479,6 +492,7 @@ public class DataInitializationSessionBean {
         trippyEventItem19.setEventImage(eventImages);
         trippyEventItem19.setEventType(eventTypes);
         trippyEventItem19.setSoftDelete(false);
+        trippyEventItem19.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem19);
 
@@ -499,6 +513,7 @@ public class DataInitializationSessionBean {
         trippyEventItem20.setEventImage(eventImages);
         trippyEventItem20.setEventType(eventTypes);
         trippyEventItem20.setSoftDelete(false);
+        trippyEventItem20.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem20);
 
@@ -519,6 +534,7 @@ public class DataInitializationSessionBean {
         trippyEventItem21.setEventImage(eventImages);
         trippyEventItem21.setEventType(eventTypes);
         trippyEventItem21.setSoftDelete(false);
+        trippyEventItem21.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem21);
 
@@ -539,7 +555,8 @@ public class DataInitializationSessionBean {
         trippyEventItem22.setEventImage(eventImages);
         trippyEventItem22.setEventType(eventTypes);
         trippyEventItem22.setSoftDelete(false);
-
+        trippyEventItem22.setEventTypeString("adventure");
+        
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem22);
 
         eventImages.clear();
@@ -559,6 +576,7 @@ public class DataInitializationSessionBean {
         trippyEventItem23.setEventImage(eventImages);
         trippyEventItem23.setEventType(eventTypes);
         trippyEventItem23.setSoftDelete(false);
+        trippyEventItem23.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem23);
 
@@ -579,6 +597,7 @@ public class DataInitializationSessionBean {
         trippyEventItem24.setEventImage(eventImages);
         trippyEventItem24.setEventType(eventTypes);
         trippyEventItem24.setSoftDelete(false);
+        trippyEventItem24.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem24);
 
@@ -599,6 +618,7 @@ public class DataInitializationSessionBean {
         trippyEventItem25.setEventImage(eventImages);
         trippyEventItem25.setEventType(eventTypes);
         trippyEventItem25.setSoftDelete(false);
+        trippyEventItem25.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem25);
 
@@ -619,6 +639,7 @@ public class DataInitializationSessionBean {
         trippyEventItem26.setEventImage(eventImages);
         trippyEventItem26.setEventType(eventTypes);
         trippyEventItem26.setSoftDelete(false);
+        trippyEventItem26.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem26);
 
@@ -639,6 +660,7 @@ public class DataInitializationSessionBean {
         trippyEventItem27.setEventImage(eventImages);
         trippyEventItem27.setEventType(eventTypes);
         trippyEventItem27.setSoftDelete(false);
+        trippyEventItem27.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem27);
 
@@ -659,6 +681,7 @@ public class DataInitializationSessionBean {
         trippyEventItem28.setEventImage(eventImages);
         trippyEventItem28.setEventType(eventTypes);
         trippyEventItem28.setSoftDelete(false);
+        trippyEventItem28.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem28);
 
@@ -679,6 +702,7 @@ public class DataInitializationSessionBean {
         trippyEventItem29.setEventImage(eventImages);
         trippyEventItem29.setEventType(eventTypes);
         trippyEventItem29.setSoftDelete(false);
+        trippyEventItem29.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem29);
 
@@ -699,6 +723,7 @@ public class DataInitializationSessionBean {
         trippyEventItem30.setEventImage(eventImages);
         trippyEventItem30.setEventType(eventTypes);
         trippyEventItem30.setSoftDelete(false);
+        trippyEventItem30.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem30);
 
@@ -719,6 +744,7 @@ public class DataInitializationSessionBean {
         trippyEventItem31.setEventImage(eventImages);
         trippyEventItem31.setEventType(eventTypes);
         trippyEventItem31.setSoftDelete(false);
+        trippyEventItem31.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem31);
 
@@ -739,6 +765,7 @@ public class DataInitializationSessionBean {
         trippyEventItem32.setEventImage(eventImages);
         trippyEventItem32.setEventType(eventTypes);
         trippyEventItem32.setSoftDelete(false);
+        trippyEventItem32.setEventTypeString("adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem32);
 
@@ -758,6 +785,7 @@ public class DataInitializationSessionBean {
         trippyEventItem33.setEventImage(eventImages);
         trippyEventItem33.setEventType(eventTypes);
         trippyEventItem33.setSoftDelete(false);
+        trippyEventItem33.setEventTypeString("music_and_night_life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem33);
 
@@ -778,6 +806,7 @@ public class DataInitializationSessionBean {
         trippyEventItem34.setEventImage(eventImages);
         trippyEventItem34.setEventType(eventTypes);
         trippyEventItem34.setSoftDelete(false);
+        trippyEventItem34.setEventTypeString("music_and_night_life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem34);
 
@@ -799,6 +828,7 @@ public class DataInitializationSessionBean {
         trippyEventItem35.setEventImage(eventImages);
         trippyEventItem35.setEventType(eventTypes);
         trippyEventItem35.setSoftDelete(false);
+        trippyEventItem35.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem35);
 
@@ -819,6 +849,7 @@ public class DataInitializationSessionBean {
         trippyEventItem36.setEventImage(eventImages);
         trippyEventItem36.setEventType(eventTypes);
         trippyEventItem36.setSoftDelete(false);
+        trippyEventItem36.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem36);
 
@@ -839,6 +870,7 @@ public class DataInitializationSessionBean {
         trippyEventItem37.setEventImage(eventImages);
         trippyEventItem37.setEventType(eventTypes);
         trippyEventItem37.setSoftDelete(false);
+        trippyEventItem37.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem37);
 
@@ -859,6 +891,7 @@ public class DataInitializationSessionBean {
         trippyEventItem38.setEventImage(eventImages);
         trippyEventItem38.setEventType(eventTypes);
         trippyEventItem38.setSoftDelete(false);
+        trippyEventItem38.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem38);
 
@@ -879,6 +912,7 @@ public class DataInitializationSessionBean {
         trippyEventItem39.setEventImage(eventImages);
         trippyEventItem39.setEventType(eventTypes);
         trippyEventItem39.setSoftDelete(false);
+        trippyEventItem39.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem39);
 
@@ -899,6 +933,7 @@ public class DataInitializationSessionBean {
         trippyEventItem40.setEventImage(eventImages);
         trippyEventItem40.setEventType(eventTypes);
         trippyEventItem40.setSoftDelete(false);
+        trippyEventItem40.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem40);
 
@@ -919,6 +954,7 @@ public class DataInitializationSessionBean {
         trippyEventItem41.setEventImage(eventImages);
         trippyEventItem41.setEventType(eventTypes);
         trippyEventItem41.setSoftDelete(false);
+        trippyEventItem41.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem41);
 
@@ -939,6 +975,7 @@ public class DataInitializationSessionBean {
         trippyEventItem42.setEventImage(eventImages);
         trippyEventItem42.setEventType(eventTypes);
         trippyEventItem42.setSoftDelete(false);
+        trippyEventItem42.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem42);
 
@@ -959,6 +996,7 @@ public class DataInitializationSessionBean {
         trippyEventItem43.setEventImage(eventImages);
         trippyEventItem43.setEventType(eventTypes);
         trippyEventItem43.setSoftDelete(false);
+        trippyEventItem43.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem43);
 
@@ -979,6 +1017,7 @@ public class DataInitializationSessionBean {
         trippyEventItem44.setEventImage(eventImages);
         trippyEventItem44.setEventType(eventTypes);
         trippyEventItem44.setSoftDelete(false);
+        trippyEventItem44.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem44);
 
@@ -1000,6 +1039,7 @@ public class DataInitializationSessionBean {
         trippyEventItem45.setEventImage(eventImages);
         trippyEventItem45.setEventType(eventTypes);
         trippyEventItem45.setSoftDelete(false);
+        trippyEventItem45.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem45);
 
@@ -1022,6 +1062,7 @@ public class DataInitializationSessionBean {
         trippyEventItem46.setEventImage(eventImages);
         trippyEventItem46.setEventType(eventTypes);
         trippyEventItem46.setSoftDelete(false);
+        trippyEventItem46.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem46);
         
@@ -1042,6 +1083,7 @@ public class DataInitializationSessionBean {
         trippyEventItem47.setEventImage(eventImages);
         trippyEventItem47.setEventType(eventTypes);
         trippyEventItem47.setSoftDelete(false);
+        trippyEventItem47.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem47);
         
@@ -1062,6 +1104,7 @@ public class DataInitializationSessionBean {
         trippyEventItem48.setEventImage(eventImages);
         trippyEventItem48.setEventType(eventTypes);
         trippyEventItem48.setSoftDelete(false);
+        trippyEventItem48.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem48);
         
@@ -1087,6 +1130,7 @@ public class DataInitializationSessionBean {
         trippyEventItem49.setEventImage(eventImages);
         trippyEventItem49.setEventType(eventTypes);
         trippyEventItem49.setSoftDelete(false);
+        trippyEventItem49.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem49);
         
@@ -1107,6 +1151,7 @@ public class DataInitializationSessionBean {
         trippyEventItem50.setEventImage(eventImages);
         trippyEventItem50.setEventType(eventTypes);
         trippyEventItem50.setSoftDelete(false);
+        trippyEventItem50.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem50);
         
@@ -1128,6 +1173,7 @@ public class DataInitializationSessionBean {
         trippyEventItem51.setEventImage(eventImages);
         trippyEventItem51.setEventType(eventTypes);
         trippyEventItem51.setSoftDelete(false);
+        trippyEventItem51.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem51);
         
@@ -1152,6 +1198,7 @@ public class DataInitializationSessionBean {
         trippyEventItem52.setEventImage(eventImages);
         trippyEventItem52.setEventType(eventTypes);
         trippyEventItem52.setSoftDelete(false);
+        trippyEventItem52.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem52);
         
@@ -1172,6 +1219,7 @@ public class DataInitializationSessionBean {
         trippyEventItem53.setEventImage(eventImages);
         trippyEventItem53.setEventType(eventTypes);
         trippyEventItem53.setSoftDelete(false);
+        trippyEventItem53.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem53);
         
@@ -1192,6 +1240,7 @@ public class DataInitializationSessionBean {
         trippyEventItem54.setEventImage(eventImages);
         trippyEventItem54.setEventType(eventTypes);
         trippyEventItem54.setSoftDelete(false);
+        trippyEventItem54.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem54);
         
@@ -1212,6 +1261,7 @@ public class DataInitializationSessionBean {
         trippyEventItem55.setEventImage(eventImages);
         trippyEventItem55.setEventType(eventTypes);
         trippyEventItem55.setSoftDelete(false);
+        trippyEventItem55.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem55);
 
@@ -1235,6 +1285,7 @@ public class DataInitializationSessionBean {
         trippyEventItem56.setEventImage(eventImages);
         trippyEventItem56.setEventType(eventTypes);
         trippyEventItem56.setSoftDelete(false);
+        trippyEventItem56.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem56);
         
@@ -1256,6 +1307,7 @@ public class DataInitializationSessionBean {
         trippyEventItem57.setEventImage(eventImages);
         trippyEventItem57.setEventType(eventTypes);
         trippyEventItem57.setSoftDelete(false);
+        trippyEventItem57.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem57);
         
@@ -1276,6 +1328,7 @@ public class DataInitializationSessionBean {
         trippyEventItem58.setEventImage(eventImages);
         trippyEventItem58.setEventType(eventTypes);
         trippyEventItem58.setSoftDelete(false);
+        trippyEventItem58.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem58);
         
@@ -1302,6 +1355,7 @@ public class DataInitializationSessionBean {
         trippyEventItem59.setEventImage(eventImages);
         trippyEventItem59.setEventType(eventTypes);
         trippyEventItem59.setSoftDelete(false);
+        trippyEventItem59.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem59);
         
@@ -1322,6 +1376,7 @@ public class DataInitializationSessionBean {
         trippyEventItem60.setEventImage(eventImages);
         trippyEventItem60.setEventType(eventTypes);
         trippyEventItem60.setSoftDelete(false);
+        trippyEventItem60.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem60);
         
@@ -1342,6 +1397,7 @@ public class DataInitializationSessionBean {
         trippyEventItem61.setEventImage(eventImages);
         trippyEventItem61.setEventType(eventTypes);
         trippyEventItem61.setSoftDelete(false);
+        trippyEventItem61.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem61);
         
@@ -1362,6 +1418,7 @@ public class DataInitializationSessionBean {
         trippyEventItem62.setEventImage(eventImages);
         trippyEventItem62.setEventType(eventTypes);
         trippyEventItem62.setSoftDelete(false);
+        trippyEventItem62.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem62);
         
@@ -1382,6 +1439,7 @@ public class DataInitializationSessionBean {
         trippyEventItem63.setEventImage(eventImages);
         trippyEventItem63.setEventType(eventTypes);
         trippyEventItem63.setSoftDelete(false);
+        trippyEventItem63.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem63);
         
@@ -1402,6 +1460,7 @@ public class DataInitializationSessionBean {
         trippyEventItem64.setEventImage(eventImages);
         trippyEventItem64.setEventType(eventTypes);
         trippyEventItem64.setSoftDelete(false);
+        trippyEventItem64.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem64);
         
@@ -1422,6 +1481,7 @@ public class DataInitializationSessionBean {
         trippyEventItem65.setEventImage(eventImages);
         trippyEventItem65.setEventType(eventTypes);
         trippyEventItem65.setSoftDelete(false);
+        trippyEventItem65.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem65);
         
@@ -1442,6 +1502,7 @@ public class DataInitializationSessionBean {
         trippyEventItem66.setEventImage(eventImages);
         trippyEventItem66.setEventType(eventTypes);
         trippyEventItem66.setSoftDelete(false);
+        trippyEventItem66.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem66);
         
@@ -1462,6 +1523,7 @@ public class DataInitializationSessionBean {
         trippyEventItem67.setEventImage(eventImages);
         trippyEventItem67.setEventType(eventTypes);
         trippyEventItem67.setSoftDelete(false);
+        trippyEventItem67.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem67);
         
@@ -1482,6 +1544,7 @@ public class DataInitializationSessionBean {
         trippyEventItem68.setEventImage(eventImages);
         trippyEventItem68.setEventType(eventTypes);
         trippyEventItem68.setSoftDelete(false);
+        trippyEventItem68.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem68);
         
@@ -1502,6 +1565,7 @@ public class DataInitializationSessionBean {
         trippyEventItem69.setEventImage(eventImages);
         trippyEventItem69.setEventType(eventTypes);
         trippyEventItem69.setSoftDelete(false);
+        trippyEventItem69.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem69);
         
@@ -1522,6 +1586,7 @@ public class DataInitializationSessionBean {
         trippyEventItem70.setEventImage(eventImages);
         trippyEventItem70.setEventType(eventTypes);
         trippyEventItem70.setSoftDelete(false);
+        trippyEventItem70.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem70);
         
@@ -1542,6 +1607,7 @@ public class DataInitializationSessionBean {
         trippyEventItem71.setEventImage(eventImages);
         trippyEventItem71.setEventType(eventTypes);
         trippyEventItem71.setSoftDelete(false);
+        trippyEventItem71.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem71);
         
@@ -1562,6 +1628,7 @@ public class DataInitializationSessionBean {
         trippyEventItem72.setEventImage(eventImages);
         trippyEventItem72.setEventType(eventTypes);
         trippyEventItem72.setSoftDelete(false);
+        trippyEventItem72.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem72);
         
