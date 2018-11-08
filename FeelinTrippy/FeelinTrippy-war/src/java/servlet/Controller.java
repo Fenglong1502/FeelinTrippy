@@ -6,6 +6,8 @@
 package servlet;
 
 import entity.Customer;
+import entity.TrippyEventItem;
+import entity.TrippyEventType;
 import error.NoResultException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,42 +15,46 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.BookedActivitySessionLocal;
 import session.CustomerSessionLocal;
+import session.TrippyEventSessionLocal;
+import session.TrippyEventTypeSessionLocal;
 
 /**
  *
  * @author fengl
  */
-public class LoginServlet extends HttpServlet {
+public class Controller extends HttpServlet {
 
     @EJB
     BookedActivitySessionLocal bookedActivitySessionLocal;
     @EJB
     CustomerSessionLocal customerSessionLocal;
+    @EJB
+    TrippyEventSessionLocal trippyEventSessionLocal;
+    @EJB
+    TrippyEventTypeSessionLocal trippyEventTypeSessionLocal;
+            /**
+             * Processes requests for both HTTP <code>GET</code> and
+             * <code>POST</code> methods.
+             *
+             * @param request servlet request
+             * @param response servlet response
+             * @throws ServletException if a servlet-specific error occurs
+             * @throws IOException if an I/O error occurs
+             */
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String path = request.getPathInfo();
         path = path.split("/")[1];
 
@@ -81,62 +87,72 @@ public class LoginServlet extends HttpServlet {
                     //response.sendRedirect("503.html");
                 }
                 break;
-        }
 
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-////            out.println("<!DOCTYPE html>");
-////            out.println("<html>");
-////            out.println("<head>");
-////            out.println("<title>Servlet LoginServlet</title>");            
-////            out.println("</head>");
-////            out.println("<body>");
-////            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-////            out.println("</body>");
-////            out.println("</html>");
-//        }
+            case "doRegister":
+
+                break;
+            
+               
+                
+            case "doFilterTrip":
+                String btnType = request.getParameter("btnType");
+                int myRange = Integer.parseInt(request.getParameter("myRange"));
+                List<TrippyEventItem> filteredList;
+                TrippyEventType tType = trippyEventTypeSessionLocal.searchTrippyEventType(btnType);
+
+                if (btnType.equals("everything")) {
+                    filteredList = trippyEventSessionLocal.searchEventListByPrice((double) myRange);
+                } else {
+                    filteredList = trippyEventSessionLocal.searchEventListByConditions(tType, (double) myRange);
+                }
+
+                HttpSession httpSession = request.getSession();
+                // httpSession.setAttribute("user", httpSession.getAttribute("user"));    
+                httpSession.setAttribute("filterList", filteredList);
+
+                response.sendRedirect("activities.jsp");
+                break;
+
+            case "filterTrip.jsp":
+                if (request.getSession().getAttribute("user") == null) {
+                    PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Please login to start trippy');");
+                    out.println("location='login.jsp';");
+                    out.println("</script>");
+                }
+
+                break;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//
-//        Customer c = new Customer();
-//        c.setEmail(email);
-//        c.setPassword(encryptPassword(password));
-//
-//        if (customerSessionLocal.Login(c)) {
-//            HttpSession httpSession = request.getSession();
-//            try {
-//                c = customerSessionLocal.getCustomerByEmail(email);
-//            } catch (NoResultException ex) {
-//                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//            httpSession.setAttribute("user", c);
-//
-//            response.sendRedirect("mainPage.jsp");
-//        } else {
-//            PrintWriter out = response.getWriter();
-//            out.println("<script type=\"text/javascript\">");
-//            out.println("alert('User or password incorrect');");
-//            out.println("location='login.jsp';");
-//            out.println("</script>");
-//            //response.sendRedirect("503.html");
-//        }
-
     }
 
     /**

@@ -49,7 +49,7 @@ public class ActivityServlet extends HttpServlet {
 
         String path = request.getPathInfo();
         path = path.split("/")[1];
-
+        
         Long Id = Long.parseLong(request.getParameter("Id"));
 //        Activity activity = managedbean.getActivity(id);
         /* response.setContentType("text/html;charset=UTF-8");
@@ -105,7 +105,7 @@ public class ActivityServlet extends HttpServlet {
         }
 
         HttpSession httpSession = request.getSession();
-        httpSession.setAttribute("user", httpSession.getAttribute("user"));    
+       // httpSession.setAttribute("user", httpSession.getAttribute("user"));    
         httpSession.setAttribute("filterList", filteredList);
         
         response.sendRedirect("activities.jsp");
