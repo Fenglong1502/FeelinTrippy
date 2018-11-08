@@ -34,12 +34,7 @@ and open the template in the editor.
 
     <body class="double-diagonal dark">
 
-        <!--  <% if (request.getSession().getAttribute("user") == null) { %>
-          <script type="text/javascript">
-              alert('Please login to start trippy');
-              document.location.href = 'login.jsp';
-          </script>
-          <% }%>
+ 
   
         -->
 
@@ -107,7 +102,8 @@ and open the template in the editor.
             <div class="text-center" style="margin-top: 150px">
                 <h3>Set Your Budget</h3>
             </div>
-            <form method="POST" action="ActivityServlet" >
+            <!--<form method="POST" action="ActivityServlet" >-->
+            <h:form>
                 <div class="slidecontainer" >
                     <input type="range" min="1" max="100" value="50" class="slider" name="myRange" id="myRange"> </input>
                         <h3 style="text-align: center">$ <span id="demo"></span></h3>
@@ -135,6 +131,7 @@ and open the template in the editor.
                 </div>
 
                 <div class ="buttondiv" style="height:200px">
+                    <h:Link id="btn1" class="first-page-button" href="#btn1" onclick="showme(1)" value="Everything!" >
                     <a id="btn1" class="first-page-button" href="#btn1" onclick="showme(1)">Everything!</a>
                     <a id="btn2" class="second-page-button" href="#btn2" onclick="showme(2)">Adventure!</a>
                     <a id="btn3" class="third-page-button" href="#btn3" onclick="showme(3)">Culture!</a>
@@ -153,7 +150,8 @@ and open the template in the editor.
                     name="userRecord"
                     value="" />
 
-            </form>
+<!--            </form>-->
+            </h:form>
         </div>
         <!-- Wrapper Ends -->
 

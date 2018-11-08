@@ -50,13 +50,20 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer")
     private List<SavedTrip> savedTrips;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="bookedBy")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookedBy")
     private List<BookedActivity> bookedActivities;
+
     /**
      * @return the firstName
      */
     public Customer() {
-       
+
+    }
+
+    public Customer(String email, String password) {
+        this();
+        this.email = email;
+        this.password = password;
     }
 
     public Customer(String username, String password, String firstName, String lastName, boolean accountStatus, byte gender, String mobileNumber, String email, int points, boolean isAdmin) {
@@ -287,7 +294,6 @@ public class Customer implements Serializable {
         this.bookedActivities = bookedActivities;
     }
 
-    
     /**
      * @return the gender
      */
