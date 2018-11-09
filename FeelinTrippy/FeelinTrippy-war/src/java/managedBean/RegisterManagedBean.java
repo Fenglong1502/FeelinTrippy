@@ -6,7 +6,11 @@
 package managedBean;
 
 import entity.Customer;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.Formatter;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -33,7 +37,7 @@ public class RegisterManagedBean {
     public String register() {
         Customer c = new Customer();
         c.setUsername(username);
-        c.setPassword(password);
+        c.setPassword(encryptPassword(password));
         c.setFirstName(firstName);
         c.setLastName(lastName);
         c.setGender(gender);
@@ -43,8 +47,7 @@ public class RegisterManagedBean {
         c.setIsAdmin(false);
         c.setDateCreated(new Date());
         c.setPoints(0);
-   
-        
+
         customerSessionLocal.createCustomer(c);
         return "/login.xhtml";
     }
@@ -111,4 +114,28 @@ public class RegisterManagedBean {
     public RegisterManagedBean() {
     }
 
+    private String encryptPassword(String password) {
+        String sha1 = "";
+        try {
+            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+            crypt.reset();
+            crypt.update(password.getBytes("UTF-8"));
+            sha1 = byteToHex(crypt.digest());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return sha1;
+    }
+
+    private String byteToHex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash) {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
+    }
 }
