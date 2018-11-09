@@ -5,16 +5,19 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <head>
         <meta charset="utf-8" />
-       
+
         <title>Register, FeelinTrippy - Creative Trip Advisor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Favicon -->
-        
+
         <link rel="shortcut icon" href="img/logo.png">
         </link>
         <!-- Template CSS Files -->
@@ -109,36 +112,49 @@ and open the template in the editor.
                             </div>
                             <!-- Main Heading Ends -->
                             <!-- Form Starts -->
-                            <form class="custom-form" method="POST" action="RegisterServlet" >
+                            <h:form>
                                 <!-- Input Field Starts -->
                                 <div class="form-group">
-                                    <input class="form-control" name="username" id="username" placeholder="USERNAME" type="text" required='required'>
-                                    </input>
+
+                                    <h:inputText class="form-control" value="#{registerManagedBean.username}" id="username" a:placeholder="USERNAME" required="true">
+
+                                    </h:inputText>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="fName" id="fName" placeholder="FIRST NAME" type="text" required='required'>
-                                    </input>
+
+                                    <h:inputText class="form-control" value="#{registerManagedBean.firstName}" id="fName" a:placeholder="FIRST NAME" required="true">
+
+                                    </h:inputText>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="lName" id="lName" placeholder="LAST NAME" type="text" required='required'>
-                                    </input>
+
+                                    <h:inputText class="form-control" value="#{registerManagedBean.lastName}" id="lName" a:placeholder="LAST NAME" required="true">
+
+                                    </h:inputText>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="mobileNumber" id="name" placeholder="MOBILE NUMBER" type="text" required='required'>
-                                    </input>
+
+                                    <h:inputText class="form-control" value="#{registerManagedBean.mobileNumber}" id="mobileNumber" a:placeholder="MOBILE NUMBER" required="true">
+
+                                    </h:inputText>
                                 </div>
                                 <div class="form-group">
-                                    <input type="radio" name="gender" value="2"> Male </input>
-                                    <input type="radio" name="gender" value="1" style="margin-left: 20px"> Female
-                                    </input>
+
+                                    <h:selectOneMenu value="#{registerManagedBean.gender}">
+                                        <f:selectItem itemValue="1" itemLabel="Female" />
+                                        <f:selectItem itemValue="2" itemLabel="Male" />
+                                    </h:selectOneMenu><br/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="email" id="email" placeholder="EMAIL" type="email" required='required'>
-                                    </input>
+
+                                    <h:inputText class="form-control" value="#{registerManagedBean.email}" id="email" a:placeholder="EMAIL" required="true">
+
+                                    </h:inputText>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password" required='required'>
-                                    </input>
+                                   
+                                    <h:inputSecret class="form-control"  value="#{registerManagedBean.password}"  id="password" a:placeholder="PASSWORD" required="true">
+                                    </h:inputSecret>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" name="confirmPassword" id="confirmPassword" placeholder="CONFIRM PASSWORD" type="password" required='required'>
@@ -147,29 +163,30 @@ and open the template in the editor.
                                 <!-- Input Field Ends -->
                                 <!-- Submit Form Button Starts -->
                                 <div class="form-group">
-                                    <button class="custom-button" type="submit">create account</button>
+
+                                    <h:commandButton class="custom-button login" value="Register" action="#{registerManagedBean.register()}"></h:commandButton>
                                     <p class="text-center">already have an account ? <a href="login.xhtml">Login</a></p>
                                 </div>
                                 <!-- Submit Form Button Ends -->
-                            </form>
+                            </h:form>
                             <!-- Form Ends -->
                         </div>
                     </div>
                     <!-- Copyright Text Starts -->
-               
 
-                        <!-- Copyright Text Ends -->
+
+                    <!-- Copyright Text Ends -->
                 </div>
             </div>
             <div class="bottom-footer">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <!-- Copyright Text Starts -->
-                                <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
-                                <!-- Copyright Text Ends -->
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Copyright Text Starts -->
+                        <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                        <!-- Copyright Text Ends -->
                     </div>
+                </div>
+            </div>
         </div>
         <!-- Wrapper Ends -->
 
@@ -180,6 +197,14 @@ and open the template in the editor.
 
         <!-- Main JS Initialization File -->
         <script src="js/custom.js"></script>
+        <script>
+            function check() {
+                if (document.getElementById('password').value !== document.getElementById('confirmPassword').value) {
+                    alert("Passwords are different");
+                    return false;
+                }
+            }
+        </script>
     </body>
 
 </html>
