@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managedBean.AuthenticationManagedBean;
+import managedBean.TrippyManagedBean;
 
 /**
  *
@@ -43,17 +44,20 @@ public class AuthenticationFilter implements Filter {
 
         HttpServletRequest request1 = (HttpServletRequest) request;
         AuthenticationManagedBean bean;
+        TrippyManagedBean trippyManagedBean;
         HttpSession session = request1.getSession(false);
         if (session == null) {
             bean = null;
+            trippyManagedBean = null;
         } else {
             bean = (AuthenticationManagedBean) session.getAttribute("authenticationManagedBean");
+            trippyManagedBean = (TrippyManagedBean) session.getAttribute("trippyManagedBean");
         }
 
         if (bean == null || bean.getId() == -1L) {
-            ((HttpServletResponse) response).sendRedirect(request1.getContextPath() + "/login.xhtml");
+                ((HttpServletResponse) response).sendRedirect(request1.getContextPath() + "/login.xhtml");
         } else {
-            chain.doFilter(request1, response);
+                chain.doFilter(request1, response);
         }
     }
 

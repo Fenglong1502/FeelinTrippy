@@ -1626,7 +1626,7 @@ public class DataInitializationSessionBean {
         trippyEventItem72.setEndDate(endDate.getTime());
         trippyEventItem72.setPrice(60.0);
         trippyEventItem72.setEventImage(eventImages);
-        trippyEventItem72.setEventType(eventTypes);
+            trippyEventItem72.setEventType(eventTypes);
         trippyEventItem72.setSoftDelete(false);
         trippyEventItem72.setEventTypeString("foodie");
 
