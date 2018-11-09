@@ -65,7 +65,8 @@ public class TrippyEventItem implements Serializable {
 
 //    @OneToMany
     private List<TrippyEventType> eventType;
-    private List<String> eventImage;
+    @Column(name="eventImage",columnDefinition="LONG VARCHAR")
+    private String eventImage; //check data out then push. 
     private String address;
     private String eventTypeString;
     
@@ -74,7 +75,7 @@ public class TrippyEventItem implements Serializable {
     
     }
     
-    public TrippyEventItem(String eventName, String eventDescription, Long point, Date startDate, Date endDate, Double price, List<String> eventImage, List<TrippyEventType> eventType, Boolean softDelete) {
+    public TrippyEventItem(String eventName, String eventDescription, Long point, Date startDate, Date endDate, Double price, String eventImage, List<TrippyEventType> eventType, Boolean softDelete) {
         this();
         this.eventName = eventName;
         this.eventDescription = eventDescription;
@@ -237,14 +238,14 @@ public class TrippyEventItem implements Serializable {
     /**
      * @return the eventImage
      */
-    public List<String> getEventImage() {
+    public String getEventImage() {
         return eventImage;
     }
 
     /**
      * @param eventImage the eventImage to set
      */
-    public void setEventImage(List<String> eventImage) {
+    public void setEventImage(String eventImage) {
         this.eventImage = eventImage;
     }
     

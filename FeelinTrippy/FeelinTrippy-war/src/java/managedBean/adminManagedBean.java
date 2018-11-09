@@ -94,7 +94,7 @@ public class adminManagedBean {
     private Double price;
     private Boolean softDelete;
     private Boolean accStatus;
-    private List<String> eventImage;
+    private String eventImage;
     private String eventTypeString;
     private String eventImageString;
     private String address;
@@ -146,8 +146,8 @@ public class adminManagedBean {
         toUpdate.setStartDate(dt.parse(stringDate));
         stringDate = dt.format(endDate);
         toUpdate.setEndDate(dt.parse(stringDate));
-        eventImage = Arrays.asList(eventImageString.split(","));
-        System.out.println("HTML Size: " + eventImage.size());
+//        eventImage = Arrays.asList(eventImageString.split(","));
+//        System.out.println("HTML Size: " + eventImage.size());
         System.out.println("After cutting: " + eventImage);
         eventTypeStringArray = Arrays.asList(eventTypeString.split(","));
 //        System.out.println("Event type array: " + eventTypeStringArray);
@@ -221,7 +221,7 @@ public class adminManagedBean {
         toCreate.setStartDate(dt.parse(stringDate));
         stringDate = dt.format(endDate);
         toCreate.setEndDate(dt.parse(stringDate));
-        eventImage = Arrays.asList(eventImageString.split(","));
+//        eventImage = Arrays.asList(eventImageString.split(","));
         eventTypeStringArray = Arrays.asList(eventTypeString.split(","));
         int count = 0;
         TrippyEventType toBeAdded;
@@ -237,17 +237,17 @@ public class adminManagedBean {
             }
             count++;
         }
-        count = 0;
-        eventImageStringArray.clear();
-        while (count <= eventImage.size() - 1) {
-            eventImageStringArray.add(eventImage.get(count));
-            count++;
-        }
+//        count = 0;
+//        eventImageStringArray.clear();
+//        while (count <= eventImage.size() - 1) {
+//            eventImageStringArray.add(eventImage.get(count));
+//            count++;
+//        }
         if (eventType.size() == 0) {
             System.out.println("found nothing for type!");
             eventTypeString = "";
         }
-        toCreate.setEventImage(eventImageStringArray);
+        toCreate.setEventImage(eventImage);
         toCreate.setEventTypeString(eventTypeString);
         toCreate.setEventImage(eventImage);
         toCreate.setEventType(eventType);
@@ -519,14 +519,14 @@ public class adminManagedBean {
     /**
      * @return the eventImage
      */
-    public List<String> getEventImage() {
+    public String getEventImage() {
         return eventImage;
     }
 
     /**
      * @param eventImage the eventImage to set
      */
-    public void setEventImage(List<String> eventImage) {
+    public void setEventImage(String eventImage) {
         this.eventImage = eventImage;
     }
 
