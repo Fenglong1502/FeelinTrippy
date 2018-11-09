@@ -6,7 +6,9 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <head>
         <meta charset="utf-8" />
@@ -35,8 +37,8 @@ and open the template in the editor.
 
     <body class="double-diagonal dark">
 
- 
-  
+
+
         -->
 
         <!-- Preloader Starts -->
@@ -57,7 +59,7 @@ and open the template in the editor.
                     <nav class="navbar">
                         <!-- Logo Starts -->
                         <div class="logo">
-                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.xhtml">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
                                 <!-- Logo White Starts -->
                                 <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
@@ -80,12 +82,10 @@ and open the template in the editor.
                         <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Main Menu Starts -->
                             <ul class="nav navbar-nav" id="main-navigation">
-                                <li class="active"><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>                               
+                                <li class="active"><a href="../mainpage.xhtml"><i class="fa fa-home"></i> Home</a></li>                               
                                 <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
                                 <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
                                 <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
-                                <li><a href="logout.xhtml"><i class="fa fa-user"></i> Log out</a></li>
-                                
                                 <!--                                <li><a href="javascript:logout();"><i class="fa fa-user"></i>    
                                                                         Log Out
                                 
@@ -106,10 +106,13 @@ and open the template in the editor.
                 <h3>Set Your Budget</h3>
             </div>
             <!--<form method="POST" action="ActivityServlet" >-->
-            <h:form>
+            <h:form id="form">
                 <div class="slidecontainer" >
-                    <input type="range" min="1" max="100" value="50" class="slider" name="myRange" id="myRange"> </input>
-                        <h3 style="text-align: center">$ <span id="demo"></span></h3>
+<!--                    <h:inputText value="#{trippyManagedBean.searchValue}" a:name="myRange" class="slider" id="myRange"> 
+                     <f:validateLongRange minimum="1" maximum="100" />
+                    </h:inputText>-->
+                    <input type="range" max="100" min="1" value="50" name="myRange" class="slider" id="myRange" />
+                    <h3 style="text-align: center">$ <span id="demo"></span></h3>
                 </div>
 
                 <div class="text-center" style="margin-top: 30px">
@@ -122,7 +125,6 @@ and open the template in the editor.
                     output.innerHTML = slider.value;
                     slider.oninput = function () {
                         output.innerHTML = this.value;
-
                     }
                 </script>
 
@@ -134,7 +136,13 @@ and open the template in the editor.
                 </div>
 
                 <div class ="buttondiv" style="height:200px">
-                  
+        <!--                    <h:commandLink class="first-page-button" action="#{trippyManagedBean.setEverything()}"  value="EVERYTHING!" actionListener="#form:btn1" id="btn1" ></h:commandLink>
+                            <h:outputLink id="btn3" class="first-page-button" value="#form:btn3">Culture!</h:outputLink>
+                            <h:commandLink ><a id="btn1"  class="first-page-button" href="#btn1" onclick="showme(1)">Everything!</a></h:commandLink>
+                            <h:commandLink id="btn2" class="second-page-button" value="Adventure!" actionListener="#{trippyManagedBean.setEverything()}" action="filterTrip.xhtml#btn4?faces-redirect=false">  </h:commandLink>
+                            <h:commandLink><a id="btn3" class="third-page-button" href="#btn3" onclick="showme(3)">Culture!</a></h:commandLink>
+                            <h:commandLink><a id="btn4" class="fourth-page-button" href="#btn4" onclick="showme(4)">Foodie!</a></h:commandLink>
+                            <h:commandLink><a id="btn5" class="fifth-page-button" href="#btn5" onclick="showme(5)">Nightowl!</a></h:commandLink>-->
                     <a id="btn1" class="first-page-button" href="#btn1" onclick="showme(1)">Everything!</a>
                     <a id="btn2" class="second-page-button" href="#btn2" onclick="showme(2)">Adventure!</a>
                     <a id="btn3" class="third-page-button" href="#btn3" onclick="showme(3)">Culture!</a>
@@ -142,28 +150,32 @@ and open the template in the editor.
                     <a id="btn5" class="fifth-page-button" href="#btn5" onclick="showme(5)">Nightowl!</a>
                 </div>                
                 <div class ="text-center">
-                    <button class="trippy-button" type="submit" > Trippy! </button>
-                </div>
-                <input 
-                    id="btnType" type="hidden"
-                    name="btnType"
-                    value="" />
-                <input 
-                    id="userRecord" type="hidden"
-                    name="userRecord"
-                    value="" />
+                    <h:commandButton class="trippy-button" value="Trippy!" action="#{trippyManagedBean.generateRandomEvent()}" />
 
-<!--            </form>-->
+                    <!--<button class="trippy-button" type="submit" > Trippy! </button>-->
+                </div>
+                <h:inputHidden value="#{trippyManagedBean.searchTypeStr}" a:name="btnType" id = "btnType" />
+
+
+                <!--                <input 
+                                    id="btnType" type="hidden"
+                                    name="btnType"
+                                    value="" />-->
+                <!--                <h:inputHidden
+                                    id="btnType" 
+                                    value="" />-->
+
+                <!--            </form>-->
             </h:form>
             <div class="bottom-footer">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <!-- Copyright Text Starts -->
-                                <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
-                                <!-- Copyright Text Ends -->
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Copyright Text Starts -->
+                        <p class="text-center">Copyright � 2018 FeelinTrippy All Rights Reserved</p>
+                        <!-- Copyright Text Ends -->
                     </div>
+                </div>
+            </div>
         </div>
         <!-- Wrapper Ends -->
 
@@ -176,38 +188,45 @@ and open the template in the editor.
                 switch (number) {
                     case 1:
                         test = "everything";
+                        btnType = test;
                         break;
                     case 2:
                         test = "Adventure";
+                        btnType = test;
                         break;
                     case 3:
                         test = "Art and Culture";
+                        btnType = test;
                         break;
                     case 4:
                         test = "Foodie";
+                        btnType = test;
                         break;
                     case 5:
                         test = "Music and Night Life";
+                        btnType = test;
                         break;
                     default:
                         test = "everything";
+                        btnType = test;
                 }
+            #{trippyManagedBean.searchTypeStr} = test;
                 document.getElementById("btnType").value = test;
             }
 
             function logout() {
-        session = request.getSession();
-        session.invalidate();
+                session = request.getSession();
+                session.invalidate();
 
-    alert("Logout Successfully!");
-    document.location.href = 'mainPage.xhtml';
-        }
-        /*
-        function testing(click){
-                    alert("You picked " + test);
+                alert("Logout Successfully!");
+                document.location.href = 'mainPage.jsp';
+            }
+            /*
+             function testing(click){
+             alert("You picked " + test);
              }*/
-              
-              </script>
+
+        </script>
 
 
 
