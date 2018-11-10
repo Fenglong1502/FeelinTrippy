@@ -24,7 +24,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" ></link>
 
         <!-- Template JS Files -->
-        <script src="js/modernizr.js"></script>
+        <script src="../js/modernizr.js"></script>
 
 
     </head>
@@ -132,8 +132,8 @@ and open the template in the editor.
                                         <p>#{trippyManagedBean.selectedEventItem.eventDescription}</p>
 
 
-                                        <h:commandLink value = "Save Activity" class="custom-button" action="mySavedTrips.xhtml?faces-redirect=true" /> 
-
+                                        <h:commandButton value = "Save Activity" class="custom-button" action="mySavedTrips.xhtml?faces-redirect=true" /> 
+                                 
                                         <h:commandButton value="Share Activity" class="custom-button" action="#{trippyManagedBean.addSavedTrip()}" />
 
 
