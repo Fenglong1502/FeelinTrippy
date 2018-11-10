@@ -81,6 +81,20 @@ public class AuthenticationManagedBean implements Serializable {
         this.points = points;
     }
 
+    public String logout() {
+        loggedInCustomer = null;
+        email = null;
+        password = null;
+        firstName = null;
+        lastName = null;
+        gender = 0;
+        mobileNumber = null;
+        points = 0;
+        id = -1L;
+
+        return "/login.xhtml?faces-redirect=true";
+    }
+
     public String update() {
         loggedInCustomer.setFirstName(firstName);
         loggedInCustomer.setLastName(lastName);
