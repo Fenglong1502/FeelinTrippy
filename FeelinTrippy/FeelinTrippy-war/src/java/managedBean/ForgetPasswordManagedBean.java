@@ -17,15 +17,27 @@ import session.CustomerSessionLocal;
 @Named(value = "forgetPasswordManagedBean")
 @RequestScoped
 public class ForgetPasswordManagedBean {
-@EJB
-CustomerSessionLocal customerSessionLocal;
+
+    @EJB
+    CustomerSessionLocal customerSessionLocal;
     /**
      * Creates a new instance of ForgetPasswordManagedBean
      */
+    private String email;
 
+    public String submit() {
+        return null;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public ForgetPasswordManagedBean() {
     }
-    
+
 }
