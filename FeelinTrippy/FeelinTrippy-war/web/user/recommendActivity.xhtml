@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <head>
         <meta charset="utf-8" />
@@ -16,18 +17,18 @@ and open the template in the editor.
         <!-- Favicon -->
         <link rel="shortcut icon" href="../img/logo.png">
         </link>
-            <!-- Template CSS Files -->
-            <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >
-            </link>
-            <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" >
+        <!-- Template CSS Files -->
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >
         </link>
-            <link rel="stylesheet" type="text/css" href="../css/style.css" ></link>
-            
-            <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" >
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" >
+        </link>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" ></link>
+
+        <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" >
         </link>
 
-            <!-- Template JS Files -->
-            <script src="../js/modernizr.js"></script>
+        <!-- Template JS Files -->
+        <script src="../js/modernizr.js"></script>
 
     </head>
 
@@ -102,33 +103,63 @@ and open the template in the editor.
                             </div>
                             <!-- Main Heading Ends -->
                             <!-- Form Starts -->
-                                 <h:form>
+                            <h:form enctype="multipart/form-data">
                                 <!-- Input Field Starts -->
                                 <div class="form-group">
-                                    
-                                    <h:inputText class="form-control" value="" id="eventName" a:placeholder="eventName" required="true">
+
+                                    <h:inputText class="form-control" value="#{recommendActivityManagedBean.eventName}" id="eventName" a:placeholder="eventName" required="true">
 
                                     </h:inputText>
-                                </div>
-                               
-                               
-                              
-                                <!-- Input Field Ends -->
-                                <!-- Submit Form Button Starts -->
-                                <div class="form-group">
-                                    <button class="custom-button" type="submit">update</button>
+                                    <br></br>
+                                    <h:inputTextarea  rows = "10" cols = "15" class="form-control" value="#{recommendActivityManagedBean.eventDescription}" id="eventDescription" a:placeholder="eventDescription" required="true">
+
+                                    </h:inputTextarea>
+                                    <br></br>
+                                    <h:inputText   class="form-control" value="#{recommendActivityManagedBean.price}" id="price" a:placeholder="price" required="true">
+
+                                    </h:inputText>
+                                    <br></br>
+                                    <h:selectOneMenu id="eventType" value="#{recommendActivityManagedBean.eventType}">
+                                        <f:selectItem itemValue="Adventure" itemLabel="Adventure" />
+                                        <f:selectItem itemValue="Culture" itemLabel="Culture" />
+                                        <f:selectItem itemValue="Foodie" itemLabel="Foodie" />
+                                        <f:selectItem itemValue="Nightowl" itemLabel="Nightowl" />
+                                    </h:selectOneMenu>
+                                    <br></br>
+                                    <br></br>
+                                    <h:inputFile value="#{recommendActivityManagedBean.imgFile}">
+                                        <!--<f:ajax listener="" />-->
+                                    </h:inputFile>
+                                    
+                                    <br></br>
+                                    <h:inputTextarea  rows = "5" cols = "5" class="form-control" value="#{recommendActivityManagedBean.address}" id="address" a:placeholder="address" required="true">
+
+                                    </h:inputTextarea>
+                                    <br></br>
+                                    <h:commandButton class="custom-button login" value="Submit Activity" action="#{recommendActivityManagedBean.save(authenticationManagedBean.loggedInCustomer)}" ></h:commandButton>
 
                                 </div>
+
+
+
+                                <!-- Input Field Ends -->
+                                <!-- Submit Form Button Starts -->
                                 <!-- Submit Form Button Ends -->
-                         </h:form>
+                            </h:form>
                             <!-- Form Ends -->
                         </div>
                     </div>
                     <!-- Copyright Text Starts -->
-                    <p class="text-center copyright-text">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                  
+            </div>
+                  
+                                <p class="text-center">Recommend Activity to us <a href ="recommendActivity.xhtml">here</a></p>
+                                <!-- Copyright Text Starts -->
+                                <p class="text-center">Copyright � 2018 FeelinTrippy All Rights Reserved</p>
+                                <!-- Copyright Text Ends -->
+                         
                     <!-- Copyright Text Ends -->
                 </div>
-            </div>
         </div>
         <!-- Wrapper Ends -->
 

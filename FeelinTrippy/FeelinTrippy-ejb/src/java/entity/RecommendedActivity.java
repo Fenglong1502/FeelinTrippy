@@ -44,6 +44,24 @@ public class RecommendedActivity implements Serializable {
     private String recStatus;
     private String recImages;
     private Long recByCustomerID; 
+    private String eventType;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
     
     
 
