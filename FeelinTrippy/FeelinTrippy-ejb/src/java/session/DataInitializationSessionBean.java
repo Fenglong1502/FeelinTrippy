@@ -1358,7 +1358,7 @@ public class DataInitializationSessionBean {
         trippyEventItem65.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem65.setEventType(eventTypes);
         trippyEventItem65.setSoftDelete(false);
-        trippyEventItem65.setEventTypeString("foodie");
+        trippyEventItem65.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem65);
 
@@ -1418,7 +1418,7 @@ public class DataInitializationSessionBean {
         trippyEventItem68.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem68.setEventType(eventTypes);
         trippyEventItem68.setSoftDelete(false);
-        trippyEventItem68.setEventTypeString("foodie");
+        trippyEventItem68.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem68);
 
@@ -1498,7 +1498,7 @@ public class DataInitializationSessionBean {
         trippyEventItem72.setAddress("6 Raffles Boulevard Level 4 Marina Square, Singapore 039594");
         trippyEventItem72.setEventType(eventTypes);
         trippyEventItem72.setSoftDelete(false);
-        trippyEventItem72.setEventTypeString("foodie");
+        trippyEventItem72.setEventTypeString("Foodie");
         
 
 

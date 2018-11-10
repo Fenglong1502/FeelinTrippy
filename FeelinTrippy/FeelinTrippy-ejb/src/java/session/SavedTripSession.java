@@ -28,6 +28,7 @@ public class SavedTripSession implements SavedTripSessionLocal {
     @Override
     public void createdSavedTrip(SavedTrip s) {
         em.persist(s);
+        em.flush();
     }
 
     @Override

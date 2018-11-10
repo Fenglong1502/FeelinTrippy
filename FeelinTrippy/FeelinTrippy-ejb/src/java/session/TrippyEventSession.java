@@ -116,7 +116,7 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
         
         TrippyEventItem returnItem;
         Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
-                + "LOWER(t.eventName) <= :eventName");
+                + "LOWER(t.eventName) = :eventName");
         q.setParameter("eventName", eventName.toLowerCase());
 
         returnItem =  (TrippyEventItem)q.getResultList().get(0);

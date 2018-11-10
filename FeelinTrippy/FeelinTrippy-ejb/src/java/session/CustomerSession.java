@@ -9,11 +9,14 @@ import etc.RandomPassword;
 import entity.BookedActivity;
 import entity.Customer;
 import entity.SavedTrip;
+import entity.TrippyEventItem;
+import entity.TrippyEventType;
 import error.CustomerAddSavedTripException;
 import error.NoResultException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Properties;
@@ -280,6 +283,33 @@ public class CustomerSession implements CustomerSessionLocal {
         } catch (CustomerAddSavedTripException ex) {
             Logger.getLogger(CustomerSession.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c) {
+        List<SavedTrip> returnList = new ArrayList<SavedTrip>();
+        List<SavedTrip> filterList = c.getSavedTrips();
+        for(SavedTrip s: filterList){
+            if(s.getEventItem().getEventTypeString().equals(type.getTypeName())){
+                returnList.add(s);
+            }
+        }
+        return returnList;
+    }
+
+    @Override
+    public boolean isEventExist(TrippyEventItem item, Long id) {
+        boolean returnValue = false;
+        Customer c = em.find(Customer.class, id);
+        List<SavedTrip> savedList = c.getSavedTrips();
+        for(SavedTrip s : savedList){
+            if(s.getEventItem().getEventID() == item.getEventID()){
+                return true;
+            }
+        }
+        
+        
+        return returnValue;
     }
 
 }
