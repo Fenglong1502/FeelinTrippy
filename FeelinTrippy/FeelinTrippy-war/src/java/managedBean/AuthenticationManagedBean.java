@@ -28,6 +28,12 @@ public class AuthenticationManagedBean implements Serializable {
 
     private String email = null;
     private String password = null;
+    private String firstName;
+    private String lastName;
+    private byte gender;
+    private String mobileNumber;
+    private int points;
+
     private Long id = -1L;
     @EJB
     private CustomerSessionLocal customerSessionLocal;
@@ -42,16 +48,20 @@ public class AuthenticationManagedBean implements Serializable {
             return "/admin/adminIndex.xhtml?faces-redirect=true";
         } else {
             Customer u = new Customer(email, encryptPassword(password));
-            if(customerSessionLocal.Login(u) == true){
-                if(customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false){
+            if (customerSessionLocal.Login(u) == true) {
+                if (customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false) {
                     return "/login.xhtml";
-                }
-                else{
+                } else {
                     loggedInCustomer = customerSessionLocal.getCustomerByEmail(email);
                     id = loggedInCustomer.getUserID();
-                    
+                    setFirstName(loggedInCustomer.getFirstName());
+                    setLastName(loggedInCustomer.getLastName());
+                    setGender(loggedInCustomer.getGender());
+                    setMobileNumber(loggedInCustomer.getMobileNumber());
+                    setPoints(loggedInCustomer.getPoints());
+
                     return "/user/filterTrip.xhtml?faces-redirect=true";
-                }   
+                }
             } else {
 
                 email = null;
@@ -61,6 +71,28 @@ public class AuthenticationManagedBean implements Serializable {
                 return "/login.xhtml";
             }
         }
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public String update() {
+        loggedInCustomer.setFirstName(firstName);
+        loggedInCustomer.setLastName(lastName);
+        loggedInCustomer.setPassword(password);
+        loggedInCustomer.setMobileNumber(mobileNumber);
+        loggedInCustomer.setGender(gender);
+        try {
+            customerSessionLocal.updateCustomer(loggedInCustomer);
+        } catch (Exception e) {
+            return "503.jsp";
+        }
+        return "editProfile.xhtml";
     }
 
     public String getEmail() {
@@ -103,6 +135,38 @@ public class AuthenticationManagedBean implements Serializable {
         this.loggedInCustomer = loggedInCustomer;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public byte getGender() {
+        return gender;
+    }
+
+    public void setGender(byte gender) {
+        this.gender = gender;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
     private static String encryptPassword(String password) {
         String sha1 = "";
         try {
@@ -117,8 +181,8 @@ public class AuthenticationManagedBean implements Serializable {
         }
         return sha1;
     }
-    
-     private static String byteToHex(final byte[] hash) {
+
+    private static String byteToHex(final byte[] hash) {
         Formatter formatter = new Formatter();
         for (byte b : hash) {
             formatter.format("%02x", b);

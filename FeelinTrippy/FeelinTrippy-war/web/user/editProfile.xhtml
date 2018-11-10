@@ -106,40 +106,36 @@ and open the template in the editor.
                             <h:form>
                                 <!-- Input Field Starts -->
                                 <div class="form-group">
-                                    <h:inputText  id="firstname" value="" a:placeholder="Authe" required="true">
+                                    <h:inputText  id="firstname" value="#{authenticationManagedBean.firstName}" a:placeholder="#{authenticationManagedBean.firstName}" >
                                     </h:inputText>
-                                   
+
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="lastname" id="lastname" placeholder="LAST NAME" type="text" required="required">
-                                    </input>
-                                </div>
-                                <!-- Input Field Ends -->
-                                <!-- Input Field Starts -->
-                                <div class="form-group">
-                                    <input class="form-control" name="email" id="email" placeholder="EMAIL" type="email" required="required">
-                                    </input>
+                                    <h:inputText  id="lastname" value="#{authenticationManagedBean.lastName}" a:placeholder="#{authenticationManagedBean.lastName}" >
+                                    </h:inputText>
                                 </div>
                                 <!-- Input Field Ends -->
+                       
                                 <!-- Input Field Starts -->
                                 <div class="form-group">
-                                    <input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password" required="required">
-                                    </input>
+                                    <h:inputSecret  id="password" value="#{authenticationManagedBean.password}">
+                                    </h:inputSecret>
                                 </div>
 
                                 <div class="form-group">
-                                    <input class="form-control" name="mobilenumber" id="mobilenumber" placeholder="MOBILE NUMBER" type="text" required="required">
-                                    </input>
-                                </div>
 
-                                <div class="form-group">
-                                    <input class="form-control" name="gender" id="gender" placeholder="GENDER" type="text" required="required">
-                                    </input>
+                                    <h:selectOneMenu value="#{authenticationManagedBean.gender}">
+                                        <f:selectItem itemValue="1" itemLabel="Female" />
+                                        <f:selectItem itemValue="2" itemLabel="Male" />
+                                    </h:selectOneMenu><br/>
                                 </div>
-                                <!-- Input Field Ends -->
-                                <!-- Submit Form Button Starts -->
+                                 <div class="form-group">
+                                     <h:inputText  id="mobilenumber" value="#{authenticationManagedBean.mobileNumber}" a:placeholder="#{authenticationManagedBean.mobileNumber}" >
+                                    </h:inputText>
+                                </div>
+                            
                                 <div class="form-group">
-                                    <button class="custom-button" type="submit">update</button>
+                                    <h:commandButton class="custom-button" value="Update" action="#{authenticationManagedBean.update()}"></h:commandButton>
 
                                 </div>
                                 <!-- Submit Form Button Ends -->
