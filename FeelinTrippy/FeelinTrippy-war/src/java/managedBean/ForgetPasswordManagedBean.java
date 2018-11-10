@@ -5,8 +5,10 @@
  */
 package managedBean;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import session.CustomerSessionLocal;
 
 /**
  *
@@ -15,10 +17,14 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "forgetPasswordManagedBean")
 @RequestScoped
 public class ForgetPasswordManagedBean {
-
+@EJB
+CustomerSessionLocal customerSessionLocal;
     /**
      * Creates a new instance of ForgetPasswordManagedBean
      */
+
+
+
     public ForgetPasswordManagedBean() {
     }
     
