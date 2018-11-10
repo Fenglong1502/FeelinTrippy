@@ -5,6 +5,7 @@
  */
 package managedBean;
 
+import entity.BookedActivity;
 import entity.Customer;
 import entity.SavedTrip;
 import entity.TrippyEventItem;
@@ -119,6 +120,16 @@ public class TrippyManagedBean implements Serializable {
         return customerSessionLocal.getSavedTripByType(type, c);
     }
 
+    
+     public List<BookedActivity> getPastByCategory(String eventType) {
+        TrippyEventType type = trippyEventTypeSessionLocal.searchTrippyEventType(eventType);
+        FacesContext context = FacesContext.getCurrentInstance();
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+
+        return customerSessionLocal.getPastTripByType(type, c);
+    }
+
+    
 //    public void assignSelectedEventItem(ActionEvent event) {
 //        
 //	selectedEventItem = (TrippyEventItem)event.getComponent().getAttributes().get("event");

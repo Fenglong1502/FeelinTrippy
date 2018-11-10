@@ -275,7 +275,7 @@ public class CustomerSession implements CustomerSessionLocal {
     }
 
     @Override
-    public void addSavedTrip(Long id, SavedTrip s){
+    public void addSavedTrip(Long id, SavedTrip s) {
         Customer c = em.find(Customer.class, id);
         try {
             c.addSavedTrip(s);
@@ -289,8 +289,8 @@ public class CustomerSession implements CustomerSessionLocal {
     public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c) {
         List<SavedTrip> returnList = new ArrayList<SavedTrip>();
         List<SavedTrip> filterList = c.getSavedTrips();
-        for(SavedTrip s: filterList){
-            if(s.getEventItem().getEventTypeString().equals(type.getTypeName())){
+        for (SavedTrip s : filterList) {
+            if (s.getEventItem().getEventTypeString().equals(type.getTypeName())) {
                 returnList.add(s);
             }
         }
@@ -302,14 +302,24 @@ public class CustomerSession implements CustomerSessionLocal {
         boolean returnValue = false;
         Customer c = em.find(Customer.class, id);
         List<SavedTrip> savedList = c.getSavedTrips();
-        for(SavedTrip s : savedList){
-            if(s.getEventItem().getEventID() == item.getEventID()){
+        for (SavedTrip s : savedList) {
+            if (s.getEventItem().getEventID() == item.getEventID()) {
                 return true;
             }
         }
-        
-        
         return returnValue;
+    }
+
+    @Override
+    public List<BookedActivity> getPastTripByType(TrippyEventType type, Customer c) {
+        List<BookedActivity> returnList = new ArrayList<BookedActivity>();
+        List<BookedActivity> filterList = c.getBookedActivities();
+        for (BookedActivity b : filterList) {
+            if (b.getEventItem().getEventTypeString().equals(type.getTypeName())) {
+                returnList.add(b);
+            }
+        }
+        return returnList;
     }
 
 }

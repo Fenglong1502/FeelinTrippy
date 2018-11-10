@@ -47,7 +47,7 @@ public class BookedActivity implements Serializable {
     public BookedActivity(){
         
     }
-    public BookedActivity(Date bookedDate, double price, int qty, boolean status, TrippyEventItem eventItem, QRDetail qrDetail, Customer bookedBy){
+    public BookedActivity(Date bookedDate, double price, int qty, boolean status, TrippyEventItem eventItem, QRDetail qrDetail, Customer bookedBy, boolean isDone){
         this();
         this.bookedDate = bookedDate;
         this.bookedBy = bookedBy;
@@ -56,6 +56,7 @@ public class BookedActivity implements Serializable {
         this.status = status;
         this.eventItem = eventItem;
         this.qrDetail = qrDetail;
+        this.isDone = isDone;
     }
     
     public Long getbookedID() {

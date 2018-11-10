@@ -5,6 +5,7 @@
  */
 package session;
 
+import entity.BookedActivity;
 import entity.Customer;
 import entity.SavedTrip;
 import entity.TrippyEventItem;
@@ -48,5 +49,6 @@ public interface CustomerSessionLocal {
     public void addSavedTrip(Long id, SavedTrip s);
     public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c);
     public boolean isEventExist(TrippyEventItem item, Long id);
+    public List<BookedActivity> getPastTripByType(TrippyEventType type, Customer c);
     
 }

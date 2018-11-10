@@ -57,7 +57,7 @@ public class AuthenticationFilter implements Filter {
         if (bean == null || bean.getId() == -1L) {
                 ((HttpServletResponse) response).sendRedirect(request1.getContextPath() + "/login.xhtml");
         } else {
-                chain.doFilter(request1, response);
+                    chain.doFilter(request1, response);
         }
     }
 
