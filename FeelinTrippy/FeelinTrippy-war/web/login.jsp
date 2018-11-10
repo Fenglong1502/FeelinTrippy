@@ -24,10 +24,10 @@
     </head>
 
     <body class="double-diagonal dark auth-page">
-        <!-- Preloader Starts -->
+
         <div class="preloader" id="preloader">
             <div class="logopreloader">
-                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo">        </div>
+                <img src="./img/preloaders/walking-man.png" height="128" width="100" alt="logo"></div>
             <div class="loader" id="loader"></div>
         </div>
         <!-- Preloader Ends -->
