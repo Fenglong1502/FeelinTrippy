@@ -6,6 +6,7 @@
 package managedBean;
 
 import entity.Customer;
+import entity.Prize;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
 import java.text.ParseException;
@@ -21,6 +22,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import session.CustomerSessionLocal;
+import session.PrizeSessionLocal;
 import session.TrippyEventSessionLocal;
 import session.TrippyEventTypeSessionLocal;
 
@@ -32,48 +34,6 @@ import session.TrippyEventTypeSessionLocal;
 @RequestScoped
 public class adminManagedBean {
 
-    /**
-     * @return the softDeleteString
-     */
-    public String getSoftDeleteString() {
-        return softDeleteString;
-    }
-
-    /**
-     * @param softDeleteString the softDeleteString to set
-     */
-    public void setSoftDeleteString(String softDeleteString) {
-        this.softDeleteString = softDeleteString;
-    }
-
-    /**
-     * @return the selectedType
-     */
-    public TrippyEventType getSelectedType() {
-        return selectedType;
-    }
-
-    /**
-     * @param selectedType the selectedType to set
-     */
-    public void setSelectedType(TrippyEventType selectedType) {
-        this.selectedType = selectedType;
-    }
-
-    /**
-     * @return the eventImageStringArray
-     */
-    public List<String> getEventImageStringArray() {
-        return eventImageStringArray;
-    }
-
-    /**
-     * @param eventImageStringArray the eventImageStringArray to set
-     */
-    public void setEventImageStringArray(List<String> eventImageStringArray) {
-        this.eventImageStringArray = eventImageStringArray;
-    }
-
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
 
@@ -82,6 +42,9 @@ public class adminManagedBean {
 
     @EJB
     CustomerSessionLocal customerSessionLocal;
+    
+    @EJB
+    PrizeSessionLocal prizeSessionLocal;
 
     private Long eventID;
     private Long typeID;
@@ -103,19 +66,31 @@ public class adminManagedBean {
     private String eventTypeName;
     private TrippyEventType selectedType;
     private String softDeleteString;
+    private Long prizeID;
+    private String prizeName;
+    private String prizeDescription;
+    private int prizePoint;
+    private int prizeQty;
+    private String prizeString;
+    private String prizeImageString;
+    private String prizeImage;    
+    private List<String> prizeStringArray;
+    private List<String> prizeImageStringArray;
 
     private List<TrippyEventItem> listOfTrippyEvent;
     private List<TrippyEventType> eventType;
     private List<Customer> listOfCustomer;
+    private List<Prize> listOfPrize;
 
     public adminManagedBean() {
     }
 
     @PostConstruct
     public void init() {
-        listOfTrippyEvent = trippyEventSessionLocal.retrieveAllEvents();
-        eventType = trippyEventTypeSessionLocal.getAllTripType();
-        listOfCustomer = customerSessionLocal.retrieveAllCustomer();
+        setListOfTrippyEvent(trippyEventSessionLocal.retrieveAllEvents());
+        setEventType(trippyEventTypeSessionLocal.getAllTripType());
+        setListOfCustomer(customerSessionLocal.retrieveAllCustomer());
+        setListOfPrize(prizeSessionLocal.getAllPrize());
     }
     
     public void activateTrip(TrippyEventItem toUpdate) {
@@ -136,41 +111,41 @@ public class adminManagedBean {
 //        System.out.println("Entering updating trippy event item");
 //        System.out.println("Event name: " + eventName);
         TrippyEventItem toUpdate = new TrippyEventItem();
-        toUpdate.setEventID(eventID);
-        toUpdate.setEventName(eventName);
-        toUpdate.setPoint(point);
-        toUpdate.setPrice(price);
-        toUpdate.setAddress(address);
-        toUpdate.setEventDescription(eventDescription);
+        toUpdate.setEventID(getEventID());
+        toUpdate.setEventName(getEventName());
+        toUpdate.setPoint(getPoint());
+        toUpdate.setPrice(getPrice());
+        toUpdate.setAddress(getAddress());
+        toUpdate.setEventDescription(getEventDescription());
         toUpdate.setSoftDelete(false);
         SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
-        String stringDate = dt.format(startDate);
+        String stringDate = dt.format(getStartDate());
         toUpdate.setStartDate(dt.parse(stringDate));
-        stringDate = dt.format(endDate);
+        stringDate = dt.format(getEndDate());
         toUpdate.setEndDate(dt.parse(stringDate));
-        eventTypeStringArray = Arrays.asList(eventTypeString.split(","));
+        setEventTypeStringArray(Arrays.asList(getEventTypeString().split(",")));
 //        System.out.println("Event type array: " + eventTypeStringArray);
         int count = 0;
         TrippyEventType toBeAdded;
-        eventType.clear();
-        eventTypeString="";
-        while (count <= eventTypeStringArray.size() - 1) {
+        getEventType().clear();
+        setEventTypeString("");
+        while (count <= getEventTypeStringArray().size() - 1) {
             try {
-                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count).trim());
+                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(getEventTypeStringArray().get(count).trim());
 //                System.out.println("Tobeadded: " + toBeAdded);
 //                System.out.println("Checking: " + eventTypeStringArray.get(count));
                 if (toBeAdded != null) {
-                    eventType.add(toBeAdded);
-                    eventTypeString += eventTypeStringArray.get(count).trim() + ",";
+                    getEventType().add(toBeAdded);
+                    setEventTypeString(getEventTypeString() + getEventTypeStringArray().get(count).trim() + ",");
                 }
             } catch (Exception e) {
 
             }
             count++;
         }
-        if (eventTypeString.length() != 0) {
-            if (eventTypeString.charAt(eventTypeString.length()-1) == ',') {
-            eventTypeString = eventTypeString.substring(0,eventTypeString.length()-1);
+        if (getEventTypeString().length() != 0) {
+            if (getEventTypeString().charAt(getEventTypeString().length()-1) == ',') {
+            setEventTypeString(getEventTypeString().substring(0, getEventTypeString().length() - 1));
         }
         }
         
@@ -192,17 +167,17 @@ public class adminManagedBean {
 //            }
 //        }
 
-        if (eventType.size() == 0) {
+        if (getEventType().size() == 0) {
 //            System.out.println("found nothing for type!");
-            eventTypeString = "";
+            setEventTypeString("");
         }
 //        System.out.println("Event type: " + eventType);
-        toUpdate.setEventImage(eventImage);
-        toUpdate.setEventTypeString(eventTypeString);
-        toUpdate.setEventImage(eventImageString);
-        toUpdate.setEventType(eventType);
+        toUpdate.setEventImage(getEventImage());
+        toUpdate.setEventTypeString(getEventTypeString());
+        toUpdate.setEventImage(getEventImageString());
+        toUpdate.setEventType(getEventType());
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
-        listOfTrippyEvent = trippyEventSessionLocal.retrieveAllEvents();
+        setListOfTrippyEvent(trippyEventSessionLocal.retrieveAllEvents());
 //        eventImageStringArray.clear();
         return "manageTrippyEventItem.xhtml?faces-redirect=true";
 
@@ -211,31 +186,31 @@ public class adminManagedBean {
     public void createTrippyEventItem() throws ParseException {
 //        System.out.println("Entering creating trippy event item");
         TrippyEventItem toCreate = new TrippyEventItem();
-        toCreate.setEventName(eventName);
-        toCreate.setPoint(point);
-        toCreate.setPrice(price);
-        toCreate.setAddress(address);
-        toCreate.setEventDescription(eventDescription);
+        toCreate.setEventName(getEventName());
+        toCreate.setPoint(getPoint());
+        toCreate.setPrice(getPrice());
+        toCreate.setAddress(getAddress());
+        toCreate.setEventDescription(getEventDescription());
         toCreate.setSoftDelete(false);
         SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
-        String stringDate = dt.format(startDate);
+        String stringDate = dt.format(getStartDate());
         toCreate.setStartDate(dt.parse(stringDate));
-        stringDate = dt.format(endDate);
+        stringDate = dt.format(getEndDate());
         toCreate.setEndDate(dt.parse(stringDate));
 //        eventImage = Arrays.asList(eventImageString.split(","));
-        eventTypeStringArray = Arrays.asList(eventTypeString.split(","));
+        setEventTypeStringArray(Arrays.asList(getEventTypeString().split(",")));
         int count = 0;
         TrippyEventType toBeAdded;
-        eventType.clear();
-        eventTypeString = "";
-        while (count <= eventTypeStringArray.size() - 1) {
+        getEventType().clear();
+        setEventTypeString("");
+        while (count <= getEventTypeStringArray().size() - 1) {
             try {
-                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count).trim());
+                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(getEventTypeStringArray().get(count).trim());
 //                System.out.println("Tobeadded: " + toBeAdded);
 //                System.out.println("Checking: " + eventTypeStringArray.get(count));
                 if (toBeAdded != null) {
-                    eventType.add(toBeAdded);
-                    eventTypeString += eventTypeStringArray.get(count).trim() + ",";
+                    getEventType().add(toBeAdded);
+                    setEventTypeString(getEventTypeString() + getEventTypeStringArray().get(count).trim() + ",");
                 }
             } catch (Exception e) {
 
@@ -243,9 +218,9 @@ public class adminManagedBean {
             count++;
         }
         
-        if (eventTypeString.length() != 0) {
-            if (eventTypeString.charAt(eventTypeString.length()-1) == ',') {
-            eventTypeString = eventTypeString.substring(0,eventTypeString.length()-1);
+        if (getEventTypeString().length() != 0) {
+            if (getEventTypeString().charAt(getEventTypeString().length()-1) == ',') {
+            setEventTypeString(getEventTypeString().substring(0, getEventTypeString().length() - 1));
         }
         }
 //        count = 0;
@@ -255,9 +230,9 @@ public class adminManagedBean {
 //            count++;
 //        }
 
-        toCreate.setEventImage(eventImageString);
-        toCreate.setEventTypeString(eventTypeString);
-        toCreate.setEventType(eventType);
+        toCreate.setEventImage(getEventImageString());
+        toCreate.setEventTypeString(getEventTypeString());
+        toCreate.setEventType(getEventType());
         trippyEventSessionLocal.createTrippyEvent(toCreate);
         init();
     }
@@ -265,10 +240,10 @@ public class adminManagedBean {
     public String createEventType() {
         TrippyEventType newType = new TrippyEventType();
         newType.setTypeName(getEventTypeName());
-        if(softDeleteString.equals("true"))
-            softDelete = true;
+        if(getSoftDeleteString().equals("true"))
+            setSoftDelete((Boolean) true);
         else
-            softDelete = false;
+            setSoftDelete((Boolean) false);
         newType.setSoftDelete(getSoftDelete());
 
         trippyEventTypeSessionLocal.createTrippyType(newType);
@@ -277,10 +252,10 @@ public class adminManagedBean {
     }
 
     public String updateEventType() {
-        if(softDeleteString.equals("true"))
-            softDelete = true;
+        if(getSoftDeleteString().equals("true"))
+            setSoftDelete((Boolean) true);
         else
-            softDelete = false;
+            setSoftDelete((Boolean) false);
         TrippyEventType newType = new TrippyEventType();
         newType.setTypeID(getTypeID());
         newType.setTypeName(getEventTypeName());
@@ -295,19 +270,19 @@ public class adminManagedBean {
         FacesContext context = FacesContext.getCurrentInstance();
 
         try {
-            this.selectedType = trippyEventTypeSessionLocal.getTypeById(typeID);
-            eventTypeName = selectedType.getTypeName();
-            softDelete = selectedType.getSoftDelete();
-            if(softDelete == true)
-                this.softDeleteString = "true";
+            this.setSelectedType(trippyEventTypeSessionLocal.getTypeById(getTypeID()));
+            setEventTypeName(getSelectedType().getTypeName());
+            setSoftDelete(getSelectedType().getSoftDelete());
+            if(getSoftDelete() == true)
+                this.setSoftDeleteString("true");
             else
-                this.softDeleteString = "false";
+                this.setSoftDeleteString("false");
 
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to event Type"));
         }
         
-        setSelectedType(trippyEventTypeSessionLocal.getTypeById(typeID));
+        setSelectedType(trippyEventTypeSessionLocal.getTypeById(getTypeID()));
     }
     
     public void deleteType(){
@@ -359,6 +334,48 @@ public class adminManagedBean {
         init();
     }
     
+    public String updatePrize() throws ParseException {
+        System.out.println("Entering updating prize");
+        System.out.println("Prize name: " + getPrizeName());
+        Prize toUpdate = new Prize();
+        toUpdate.setPrizeID(getPrizeID());
+        toUpdate.setPrizeName(getPrizeName());
+        toUpdate.setPrizePoint(getPrizePoint());
+        toUpdate.setPrizeQty(getPrizeQty());
+        toUpdate.setPrizeDescription(getPrizeDescription());
+        toUpdate.setSoftDelete(false);
+        System.out.println("After cutting: " + getEventImage());
+        setPrizeStringArray(Arrays.asList(getPrizeString().split(",")));
+
+        toUpdate.setPrizeImage(getPrizeImage());
+        toUpdate.setPrizeImage(getPrizeImage());
+        prizeSessionLocal.updatePrize(toUpdate);
+        return "managePrize.xhtml?faces-redirect=true";
+
+    }
+    
+    public String createPrize() throws ParseException {
+        System.out.println("Entering creating prize");
+        Prize toCreate = new Prize();
+        toCreate.setPrizeName(getPrizeName());
+        toCreate.setPrizePoint(getPrizePoint());
+        toCreate.setPrizeQty(getPrizeQty());
+        toCreate.setPrizeDescription(getPrizeDescription());
+        toCreate.setSoftDelete(false);
+
+
+//        count = 0;
+//        eventImageStringArray.clear();
+//        while (count <= eventImage.size() - 1) {
+//            eventImageStringArray.add(eventImage.get(count));
+//            count++;
+//        }
+
+        toCreate.setPrizeImage(prizeImage);
+        prizeSessionLocal.createPrize(toCreate);
+        
+        return "manageTrippyEventItem.xhtml?faces-redirect=true";
+}
 
     public void activateAccount() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -676,5 +693,201 @@ public class adminManagedBean {
      */
     public void setCustID(Long custID) {
         this.custID = custID;
+    }
+    
+    /**
+     * @return the softDeleteString
+     */
+    public String getSoftDeleteString() {
+        return softDeleteString;
+    }
+
+    /**
+     * @param softDeleteString the softDeleteString to set
+     */
+    public void setSoftDeleteString(String softDeleteString) {
+        this.softDeleteString = softDeleteString;
+    }
+
+    /**
+     * @return the selectedType
+     */
+    public TrippyEventType getSelectedType() {
+        return selectedType;
+    }
+
+    /**
+     * @param selectedType the selectedType to set
+     */
+    public void setSelectedType(TrippyEventType selectedType) {
+        this.selectedType = selectedType;
+    }
+
+    /**
+     * @return the eventImageStringArray
+     */
+    public List<String> getEventImageStringArray() {
+        return eventImageStringArray;
+    }
+
+    /**
+     * @param eventImageStringArray the eventImageStringArray to set
+     */
+    public void setEventImageStringArray(List<String> eventImageStringArray) {
+        this.eventImageStringArray = eventImageStringArray;
+    }
+    
+        /**
+     * @return the prizeID
+     */
+    public Long getPrizeID() {
+        return prizeID;
+    }
+
+    /**
+     * @param prizeID the prizeID to set
+     */
+    public void setPrizeID(Long prizeID) {
+        this.prizeID = prizeID;
+    }
+
+    /**
+     * @return the prizeName
+     */
+    public String getPrizeName() {
+        return prizeName;
+    }
+
+    /**
+     * @param prizeName the prizeName to set
+     */
+    public void setPrizeName(String prizeName) {
+        this.prizeName = prizeName;
+    }
+
+    /**
+     * @return the prizeDescription
+     */
+    public String getPrizeDescription() {
+        return prizeDescription;
+    }
+
+    /**
+     * @param prizeDescription the prizeDescription to set
+     */
+    public void setPrizeDescription(String prizeDescription) {
+        this.prizeDescription = prizeDescription;
+    }
+
+    /**
+     * @return the prizePoint
+     */
+    public int getPrizePoint() {
+        return prizePoint;
+    }
+
+    /**
+     * @param prizePoint the prizePoint to set
+     */
+    public void setPrizePoint(int prizePoint) {
+        this.prizePoint = prizePoint;
+    }
+
+    /**
+     * @return the prizeQty
+     */
+    public int getPrizeQty() {
+        return prizeQty;
+    }
+
+    /**
+     * @param prizeQty the prizeQty to set
+     */
+    public void setPrizeQty(int prizeQty) {
+        this.prizeQty = prizeQty;
+    }
+
+    /**
+     * @return the prizeString
+     */
+    public String getPrizeString() {
+        return prizeString;
+    }
+
+    /**
+     * @param prizeString the prizeString to set
+     */
+    public void setPrizeString(String prizeString) {
+        this.prizeString = prizeString;
+    }
+
+    /**
+     * @return the prizeImageString
+     */
+    public String getPrizeImageString() {
+        return prizeImageString;
+    }
+
+    /**
+     * @param prizeImageString the prizeImageString to set
+     */
+    public void setPrizeImageString(String prizeImageString) {
+        this.prizeImageString = prizeImageString;
+    }
+
+    /**
+     * @return the prizeImage
+     */
+    public String getPrizeImage() {
+        return prizeImage;
+    }
+
+    /**
+     * @param prizeImage the prizeImage to set
+     */
+    public void setPrizeImage(String prizeImage) {
+        this.prizeImage = prizeImage;
+    }
+
+    /**
+     * @return the prizeStringArray
+     */
+    public List<String> getPrizeStringArray() {
+        return prizeStringArray;
+    }
+
+    /**
+     * @param prizeStringArray the prizeStringArray to set
+     */
+    public void setPrizeStringArray(List<String> prizeStringArray) {
+        this.prizeStringArray = prizeStringArray;
+    }
+
+    /**
+     * @return the prizeImageStringArray
+     */
+    public List<String> getPrizeImageStringArray() {
+        return prizeImageStringArray;
+    }
+
+    /**
+     * @param prizeImageStringArray the prizeImageStringArray to set
+     */
+    public void setPrizeImageStringArray(List<String> prizeImageStringArray) {
+        this.prizeImageStringArray = prizeImageStringArray;
+    }
+
+    /**
+     * @return the listOfPrize
+     */
+    public List<Prize> getListOfPrize() {
+        return listOfPrize;
+    }
+
+    /**
+     * @param listOfPrize the listOfPrize to set
+     */
+    public void setListOfPrize(List<Prize> listOfPrize) {
+        this.listOfPrize = listOfPrize;
     }
 }
