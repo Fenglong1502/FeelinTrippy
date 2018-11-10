@@ -132,9 +132,9 @@ and open the template in the editor.
                                         <p>#{trippyManagedBean.selectedEventItem.eventDescription}</p>
 
 
-                                        <h:commandButton value = "Save Activity" class="custom-button" action="mySavedTrips.xhtml?faces-redirect=true" /> 
+                                        <h:commandButton value = "Save Activity" class="custom-button" action="#{trippyManagedBean.addSavedTrip()}" /> 
                                  
-                                        <h:commandButton value="Share Activity" class="custom-button" action="#{trippyManagedBean.addSavedTrip()}" />
+                                        <!--<h:commandButton value="Share Activity" class="custom-button" action="mySavedTrips.xhtml?faces-redirect=true" /> -->
 
 
                                     </hr>

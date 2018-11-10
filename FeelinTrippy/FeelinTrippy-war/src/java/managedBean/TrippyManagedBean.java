@@ -103,8 +103,8 @@ public class TrippyManagedBean implements Serializable {
             s.setPrice(selectedEventItem.getPrice());
             s.setEventItem(selectedEventItem);
             s.setSavedDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
-            s.setCustomer(c);
-            savedTripSessionLocal.createdSavedTrip(s);
+          
+            savedTripSessionLocal.createdSavedTrip(s,c);
             s = savedTripSessionLocal.getNewlyAddSavedTrip();
             customerSessionLocal.addSavedTrip(c.getUserID(), s);
         }

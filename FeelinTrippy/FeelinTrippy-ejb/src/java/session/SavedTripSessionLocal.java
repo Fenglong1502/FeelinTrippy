@@ -17,13 +17,21 @@ import javax.ejb.Local;
  */
 @Local
 public interface SavedTripSessionLocal {
-    
+
     public void createdSavedTrip(SavedTrip s);
+
+    public void createdSavedTrip(SavedTrip s, Customer c);
+
     public List<SavedTrip> getAllSavedTrip();
-    public void updateSavedTrip (SavedTrip s) throws NoResultException;
-    public void deleteSavedTrip (Long savedTripID) throws NoResultException;
+
+    public void updateSavedTrip(SavedTrip s) throws NoResultException;
+
+    public void deleteSavedTrip(Long savedTripID) throws NoResultException;
+
     public SavedTrip getSavedTripByID(Long savedTripID) throws NoResultException;
+
     public List<SavedTrip> getSavedActivityByCustomer(Customer u);
+
     public SavedTrip getNewlyAddSavedTrip();
 
 }

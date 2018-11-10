@@ -21,10 +21,10 @@ import javax.persistence.Query;
  */
 @Stateless
 public class SavedTripSession implements SavedTripSessionLocal {
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void createdSavedTrip(SavedTrip s) {
         em.persist(s);
@@ -33,41 +33,38 @@ public class SavedTripSession implements SavedTripSessionLocal {
 
     @Override
     public List<SavedTrip> getAllSavedTrip() {
-         Query q = em.createQuery("SELECT s FROM SavedTrip s");
-         return q.getResultList();
+        Query q = em.createQuery("SELECT s FROM SavedTrip s");
+        return q.getResultList();
     }
 
     @Override
     public void updateSavedTrip(SavedTrip s) throws NoResultException {
-        SavedTrip oldS = em.find(SavedTrip.class,s.getSavedTripID());
-        if (oldS != null){
+        SavedTrip oldS = em.find(SavedTrip.class, s.getSavedTripID());
+        if (oldS != null) {
             oldS.setPrice(s.getPrice());
             oldS.setSavedDate(s.getSavedDate());
             oldS.setEventItem(s.getEventItem());
-        }
-        else {
+        } else {
             throw new NoResultException("Saved Trip not found!");
-        }    
+        }
     }
 
     @Override
     public void deleteSavedTrip(Long savedTripID) throws NoResultException {
-        SavedTrip s = em.find(SavedTrip.class,savedTripID);
-        if (s != null){
+        SavedTrip s = em.find(SavedTrip.class, savedTripID);
+        if (s != null) {
             em.remove(s);
-        }
-        else {
+        } else {
             throw new NoResultException("Saved Trip not found!");
         }
     }
 
     @Override
     public SavedTrip getSavedTripByID(Long savedTripID) throws NoResultException {
-        SavedTrip s = em.find(SavedTrip.class,savedTripID);
-        if (s != null){
+        SavedTrip s = em.find(SavedTrip.class, savedTripID);
+        if (s != null) {
             return s;
-        }
-        else {
+        } else {
             throw new NoResultException("Saved Trip not found!");
         }
     }
@@ -84,7 +81,7 @@ public class SavedTripSession implements SavedTripSessionLocal {
         }
         return q.getResultList();
     }
-    
+
     @Override
     public SavedTrip getNewlyAddSavedTrip() {
         Query q = em.createQuery("SELECT s FROM SavedTrip s ORDER BY s.savedTripID DESC");
@@ -93,4 +90,11 @@ public class SavedTripSession implements SavedTripSessionLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    @Override
+    public void createdSavedTrip(SavedTrip s, Customer c) {
+        s.setCustomer(c);
+        em.persist(s);
+        em.flush();
+
+    }
 }
