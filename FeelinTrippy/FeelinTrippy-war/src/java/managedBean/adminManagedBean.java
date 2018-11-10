@@ -6,6 +6,7 @@
 package managedBean;
 
 import entity.Customer;
+import entity.Prize;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
 import java.text.ParseException;
@@ -21,6 +22,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import session.CustomerSessionLocal;
+import session.PrizeSessionLocal;
 import session.TrippyEventSessionLocal;
 import session.TrippyEventTypeSessionLocal;
 
@@ -32,48 +34,6 @@ import session.TrippyEventTypeSessionLocal;
 @RequestScoped
 public class adminManagedBean {
 
-    /**
-     * @return the softDeleteString
-     */
-    public String getSoftDeleteString() {
-        return softDeleteString;
-    }
-
-    /**
-     * @param softDeleteString the softDeleteString to set
-     */
-    public void setSoftDeleteString(String softDeleteString) {
-        this.softDeleteString = softDeleteString;
-    }
-
-    /**
-     * @return the selectedType
-     */
-    public TrippyEventType getSelectedType() {
-        return selectedType;
-    }
-
-    /**
-     * @param selectedType the selectedType to set
-     */
-    public void setSelectedType(TrippyEventType selectedType) {
-        this.selectedType = selectedType;
-    }
-
-    /**
-     * @return the eventImageStringArray
-     */
-    public List<String> getEventImageStringArray() {
-        return eventImageStringArray;
-    }
-
-    /**
-     * @param eventImageStringArray the eventImageStringArray to set
-     */
-    public void setEventImageStringArray(List<String> eventImageStringArray) {
-        this.eventImageStringArray = eventImageStringArray;
-    }
-
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
 
@@ -82,6 +42,9 @@ public class adminManagedBean {
 
     @EJB
     CustomerSessionLocal customerSessionLocal;
+    
+    @EJB
+    PrizeSessionLocal prizeSessionLocal;
 
     private Long eventID;
     private Long typeID;
@@ -103,10 +66,21 @@ public class adminManagedBean {
     private String eventTypeName;
     private TrippyEventType selectedType;
     private String softDeleteString;
+    private Long prizeID;
+    private String prizeName;
+    private String prizeDescription;
+    private int prizePoint;
+    private int prizeQty;
+    private String prizeString;
+    private String prizeImageString;
+    private List<String> prizeImage;    
+    private List<String> prizeStringArray;
+    private List<String> prizeImageStringArray;
 
     private List<TrippyEventItem> listOfTrippyEvent;
     private List<TrippyEventType> eventType;
     private List<Customer> listOfCustomer;
+    private List<Prize> listOfPrize;
 
     public adminManagedBean() {
     }
@@ -116,6 +90,7 @@ public class adminManagedBean {
         listOfTrippyEvent = trippyEventSessionLocal.retrieveAllEvents();
         eventType = trippyEventTypeSessionLocal.getAllTripType();
         listOfCustomer = customerSessionLocal.retrieveAllCustomer();
+        listOfPrize = prizeSessionLocal.getAllPrize();
     }
     
     public void activateTrip(TrippyEventItem toUpdate) {
@@ -359,6 +334,39 @@ public class adminManagedBean {
         init();
     }
     
+    public String updatePrize() throws ParseException {
+        System.out.println("Entering updating prize");
+        System.out.println("Prize name: " + prizeName);
+        Prize toUpdate = new Prize();
+        toUpdate.setPrizeID(prizeID);
+        toUpdate.setPrizeName(prizeName);
+        toUpdate.setPrizePoint(prizePoint);
+        toUpdate.setPrizeQty(prizeQty);
+        toUpdate.setPrizeDescription(prizeDescription);
+        toUpdate.setSoftDelete(false);
+        System.out.println("After cutting: " + eventImage);
+        prizeStringArray = Arrays.asList(prizeString.split(","));
+
+        toUpdate.setPrizeImage(prizeImage);
+        toUpdate.setPrizeImage(prizeImage);
+        prizeSessionLocal.updatePrize(toUpdate);
+        return "managePrize.xhtml?faces-redirect=true";
+
+    }
+    
+    public void createPrize() throws ParseException {
+        System.out.println("Entering creating prize");
+        Prize toCreate = new Prize();
+        toCreate.setPrizeName(prizeName);
+        toCreate.setPrizePoint(prizePoint);
+        toCreate.setPrizeQty(prizeQty);
+        toCreate.setPrizeDescription(prizeDescription);
+        toCreate.setSoftDelete(false);
+
+        toCreate.setPrizeImage(prizeImage);
+        toCreate.setPrizeImage(prizeImage);
+        prizeSessionLocal.createPrize(toCreate);
+}
 
     public void activateAccount() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -676,5 +684,201 @@ public class adminManagedBean {
      */
     public void setCustID(Long custID) {
         this.custID = custID;
+    }
+    
+    /**
+     * @return the softDeleteString
+     */
+    public String getSoftDeleteString() {
+        return softDeleteString;
+    }
+
+    /**
+     * @param softDeleteString the softDeleteString to set
+     */
+    public void setSoftDeleteString(String softDeleteString) {
+        this.softDeleteString = softDeleteString;
+    }
+
+    /**
+     * @return the selectedType
+     */
+    public TrippyEventType getSelectedType() {
+        return selectedType;
+    }
+
+    /**
+     * @param selectedType the selectedType to set
+     */
+    public void setSelectedType(TrippyEventType selectedType) {
+        this.selectedType = selectedType;
+    }
+
+    /**
+     * @return the eventImageStringArray
+     */
+    public List<String> getEventImageStringArray() {
+        return eventImageStringArray;
+    }
+
+    /**
+     * @param eventImageStringArray the eventImageStringArray to set
+     */
+    public void setEventImageStringArray(List<String> eventImageStringArray) {
+        this.eventImageStringArray = eventImageStringArray;
+    }
+    
+        /**
+     * @return the prizeID
+     */
+    public Long getPrizeID() {
+        return prizeID;
+    }
+
+    /**
+     * @param prizeID the prizeID to set
+     */
+    public void setPrizeID(Long prizeID) {
+        this.prizeID = prizeID;
+    }
+
+    /**
+     * @return the prizeName
+     */
+    public String getPrizeName() {
+        return prizeName;
+    }
+
+    /**
+     * @param prizeName the prizeName to set
+     */
+    public void setPrizeName(String prizeName) {
+        this.prizeName = prizeName;
+    }
+
+    /**
+     * @return the prizeDescription
+     */
+    public String getPrizeDescription() {
+        return prizeDescription;
+    }
+
+    /**
+     * @param prizeDescription the prizeDescription to set
+     */
+    public void setPrizeDescription(String prizeDescription) {
+        this.prizeDescription = prizeDescription;
+    }
+
+    /**
+     * @return the prizePoint
+     */
+    public int getPrizePoint() {
+        return prizePoint;
+    }
+
+    /**
+     * @param prizePoint the prizePoint to set
+     */
+    public void setPrizePoint(int prizePoint) {
+        this.prizePoint = prizePoint;
+    }
+
+    /**
+     * @return the prizeQty
+     */
+    public int getPrizeQty() {
+        return prizeQty;
+    }
+
+    /**
+     * @param prizeQty the prizeQty to set
+     */
+    public void setPrizeQty(int prizeQty) {
+        this.prizeQty = prizeQty;
+    }
+
+    /**
+     * @return the prizeString
+     */
+    public String getPrizeString() {
+        return prizeString;
+    }
+
+    /**
+     * @param prizeString the prizeString to set
+     */
+    public void setPrizeString(String prizeString) {
+        this.prizeString = prizeString;
+    }
+
+    /**
+     * @return the prizeImageString
+     */
+    public String getPrizeImageString() {
+        return prizeImageString;
+    }
+
+    /**
+     * @param prizeImageString the prizeImageString to set
+     */
+    public void setPrizeImageString(String prizeImageString) {
+        this.prizeImageString = prizeImageString;
+    }
+
+    /**
+     * @return the prizeImage
+     */
+    public List<String> getPrizeImage() {
+        return prizeImage;
+    }
+
+    /**
+     * @param prizeImage the prizeImage to set
+     */
+    public void setPrizeImage(List<String> prizeImage) {
+        this.prizeImage = prizeImage;
+    }
+
+    /**
+     * @return the prizeStringArray
+     */
+    public List<String> getPrizeStringArray() {
+        return prizeStringArray;
+    }
+
+    /**
+     * @param prizeStringArray the prizeStringArray to set
+     */
+    public void setPrizeStringArray(List<String> prizeStringArray) {
+        this.prizeStringArray = prizeStringArray;
+    }
+
+    /**
+     * @return the prizeImageStringArray
+     */
+    public List<String> getPrizeImageStringArray() {
+        return prizeImageStringArray;
+    }
+
+    /**
+     * @param prizeImageStringArray the prizeImageStringArray to set
+     */
+    public void setPrizeImageStringArray(List<String> prizeImageStringArray) {
+        this.prizeImageStringArray = prizeImageStringArray;
+    }
+
+    /**
+     * @return the listOfPrize
+     */
+    public List<Prize> getListOfPrize() {
+        return listOfPrize;
+    }
+
+    /**
+     * @param listOfPrize the listOfPrize to set
+     */
+    public void setListOfPrize(List<Prize> listOfPrize) {
+        this.listOfPrize = listOfPrize;
     }
 }
