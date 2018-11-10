@@ -5,6 +5,8 @@
  */
 package managedBean;
 
+import entity.Customer;
+import error.NoResultException;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -26,7 +28,16 @@ public class ForgetPasswordManagedBean {
     private String email;
 
     public String submit() {
-        return null;
+        try {
+            Customer c = customerSessionLocal.getCustomerByEmail(email);
+            if (c != null) {
+                return "emailExist.xhtml";
+            } else {
+                return "emailDoesNotExist.xhtml";
+            }
+        } catch (NoResultException e) {
+            return "emailDoesNotExist.xhtml";
+        }
     }
 
     public String getEmail() {
