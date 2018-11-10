@@ -92,7 +92,7 @@ public class AuthenticationManagedBean implements Serializable {
         } catch (Exception e) {
             return "503.jsp";
         }
-        return "editProfile.xhtml";
+        return "profile.xhtml";
     }
 
     public String getEmail() {
