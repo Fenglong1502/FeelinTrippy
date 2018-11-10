@@ -102,7 +102,7 @@ and open the template in the editor.
                             <!-- Project Main Content Starts -->
                             <div class="col-md-6">
                                 <div class="project-main-content">
-                                    <h:graphicImage alt="#{trippyManagedBean.selectedEventItem.eventImage}" class="img-responsive" value = "#{trippyManagedBean.selectedEventItem.eventImage}"/> 
+                                    <h:graphicImage alt="https://houseofcasesg.website/image-upload/trippyImages/#{trippyManagedBean.selectedEventItem.eventImage}" class="img-responsive" value = "https://houseofcasesg.website/image-upload/trippyImages/#{trippyManagedBean.selectedEventItem.eventImage}"/> 
                                     <!--<img class="img-responsive" src="#{trippyManagedBean.selectedEventItem.eventImage}" alt="image" />-->
                                 </div>
                                 <div class="project-navigation">
@@ -121,7 +121,7 @@ and open the template in the editor.
                                     <ul class="unstyled">
                                         <li><i class="fa fa-user"></i><span class="detail-name">Location </span>: <span class="detail-value"><h:outputText value="#{trippyManagedBean.selectedEventItem.address}" /></span></li>
                                         <li><i class="fa fa-calendar"></i><span class="detail-name"> Date</span>: <span class="detail-value"><h:outputText value="#{trippyManagedBean.selectedEventItem.startDate} - #{trippyManagedBean.selectedEventItem.endDate}" /> </span></li>
-                                        <li><i class="fa fa-cogs"></i><span class="detail-name"> Price </span>: <span class="detail-value">><h:outputText value="$#{trippyManagedBean.selectedEventItem.price}" /></span></li>
+                                        <li><i class="fa fa-cogs"></i><span class="detail-name"> Price </span>: <span class="detail-value">><h:outputText value="$#{trippyManagedBean.selectedEventItem.price}0" /></span></li>
                                     </ul>
                                     <hr>
                                         <p>#{trippyManagedBean.selectedEventItem.eventDescription}</p>
