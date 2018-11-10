@@ -84,7 +84,7 @@ public class AuthenticationManagedBean implements Serializable {
     public String update() {
         loggedInCustomer.setFirstName(firstName);
         loggedInCustomer.setLastName(lastName);
-        loggedInCustomer.setPassword(password);
+        loggedInCustomer.setPassword(encryptPassword(password));
         loggedInCustomer.setMobileNumber(mobileNumber);
         loggedInCustomer.setGender(gender);
         try {
