@@ -24,5 +24,6 @@ public interface SavedTripSessionLocal {
     public void deleteSavedTrip (Long savedTripID) throws NoResultException;
     public SavedTrip getSavedTripByID(Long savedTripID) throws NoResultException;
     public List<SavedTrip> getSavedActivityByCustomer(Customer u);
+    public SavedTrip getNewlyAddSavedTrip();
 
 }

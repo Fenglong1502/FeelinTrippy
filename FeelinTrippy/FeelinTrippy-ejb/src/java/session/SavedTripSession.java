@@ -83,6 +83,12 @@ public class SavedTripSession implements SavedTripSessionLocal {
         }
         return q.getResultList();
     }
+    
+    @Override
+    public SavedTrip getNewlyAddSavedTrip() {
+        Query q = em.createQuery("SELECT s FROM SavedTrip s ORDER BY s.savedTripID DESC");
+        return (SavedTrip) q.getResultList().get(0);
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

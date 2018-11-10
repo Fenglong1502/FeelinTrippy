@@ -12,7 +12,9 @@ public interface TrippyEventSessionLocal {
     public void updateTrippyEvent(TrippyEventItem trippyEventItem) throws NoResultException;
     public void removeTrippyEvent(TrippyEventItem trippyEventItem) throws NoResultException;
     public TrippyEventItem retrieveEventByEventId(Long eventID);
+    public TrippyEventItem retrieveEventByEventName(String eventName);
     public List<TrippyEventItem> retrieveAllEvents();
+    
     
     
     public List<TrippyEventItem> searchEventListByConditions(TrippyEventType type, Double price);

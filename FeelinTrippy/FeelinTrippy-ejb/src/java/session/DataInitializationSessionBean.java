@@ -6,14 +6,19 @@
 package session;
 
 import entity.Customer;
+import entity.SavedTrip;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
+import error.CustomerAddSavedTripException;
+import error.NoResultException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Formatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -40,6 +45,8 @@ public class DataInitializationSessionBean {
     private CustomerSessionLocal customerSessionLocal;
     @EJB
     private TrippyEventTypeSessionLocal trippyEventTypeSessionLocal;
+    @EJB
+    private SavedTripSessionLocal savedTripSessionLocal;
 
     @PostConstruct
     public void postConstruct() {
@@ -53,6 +60,7 @@ public class DataInitializationSessionBean {
 
     private void initializeData() {
         //Initialise new user
+        
         Customer c1 = new Customer("user1", encryptPassword("password"), "John", "Tan", true, (byte) 2, "91234567", "Testing1@example.com", 0, false);
         Customer c2 = new Customer("user2", encryptPassword("password"), "Peter", "Lee", true, (byte) 2, "91234567", "Testing2@example.com", 0, false);
         Customer c3 = new Customer("user3", encryptPassword("password"), "Jane", "Lee", true, (byte) 1, "91234567", "Testing3@example.com", 0, false);
@@ -118,7 +126,7 @@ public class DataInitializationSessionBean {
         TrippyEventItem trippyEventItem2 = new TrippyEventItem();
         trippyEventItem2.setEventName("Paws for a Good Cause: Pet Adoption Drive");
         trippyEventItem2.setEventDescription("");
-        trippyEventItem2.setPoint(0L);
+        trippyEventItem2.setPoint(0L); 
         trippyEventItem2.setStartDate(startDate.getTime());
         trippyEventItem2.setEndDate(endDate.getTime());
         trippyEventItem2.setPrice(0.0);
@@ -159,7 +167,7 @@ public class DataInitializationSessionBean {
         trippyEventItem4.setStartDate(null);
         trippyEventItem4.setEndDate(null);
         trippyEventItem4.setPrice(15.0);
-        trippyEventItem4.setEventImage(null);
+        trippyEventItem4.setEventImage("http://www.xcape.sg/wp-content/uploads/2017/08/Xcape%20Logo.jpg");
         trippyEventItem4.setEventType(eventTypes);
         trippyEventItem4.setSoftDelete(false);
         trippyEventItem4.setEventTypeString("adventure");
@@ -224,7 +232,7 @@ public class DataInitializationSessionBean {
         trippyEventItem7.setEventType(eventTypes);
         trippyEventItem7.setSoftDelete(false);
         trippyEventItem7.setEventTypeString("adventure");
-        
+
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem7);
 
         startDate.set(2018, Calendar.SEPTEMBER, 28);
@@ -262,7 +270,7 @@ public class DataInitializationSessionBean {
         trippyEventItem9.setEventType(eventTypes);
         trippyEventItem9.setSoftDelete(false);
         trippyEventItem9.setEventTypeString("adventure");
-    
+
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem9);
 
         startDate.set(2017, Calendar.DECEMBER, 15);
@@ -484,7 +492,7 @@ public class DataInitializationSessionBean {
         trippyEventItem22.setEventType(eventTypes);
         trippyEventItem22.setSoftDelete(false);
         trippyEventItem22.setEventTypeString("adventure");
-        
+
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem22);
 
         eventTypes.clear();
@@ -492,7 +500,7 @@ public class DataInitializationSessionBean {
 
         TrippyEventItem trippyEventItem23 = new TrippyEventItem();
         trippyEventItem23.setEventName("O-Ride Singapore Mini Segway Tours");
-        trippyEventItem22.setEventDescription("O-Ride Marina Bay Sands Mini Segway Tour starts at Singapore Sports Hub and reach Marina Bay Sands area, then return to Singapore Sports Hub. The duration of the guided tour is about 3 hours. O-Ride tour guides will help travelers to take beautiful scenery photos at no additional cost. Just relax and enjoy the breeze along the journey. O-Ride Singapore tour guides will teach some of Singapore interesting cultural stuffs to the tourists during the sight-seeing tour.");
+        trippyEventItem23.setEventDescription("O-Ride Marina Bay Sands Mini Segway Tour starts at Singapore Sports Hub and reach Marina Bay Sands area, then return to Singapore Sports Hub. The duration of the guided tour is about 3 hours. O-Ride tour guides will help travelers to take beautiful scenery photos at no additional cost. Just relax and enjoy the breeze along the journey. O-Ride Singapore tour guides will teach some of Singapore interesting cultural stuffs to the tourists during the sight-seeing tour.");
         trippyEventItem23.setPoint(0L);
         trippyEventItem23.setStartDate(null);
         trippyEventItem23.setEndDate(null);
@@ -925,7 +933,7 @@ public class DataInitializationSessionBean {
         trippyEventItem46.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem46);
-        
+
         startDate.set(2018, Calendar.AUGUST, 25);
         endDate.set(2018, Calendar.SEPTEMBER, 23);
         eventTypes.clear();
@@ -944,7 +952,7 @@ public class DataInitializationSessionBean {
         trippyEventItem47.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem47);
-        
+
         startDate.set(2018, Calendar.AUGUST, 30);
         endDate.set(2018, Calendar.SEPTEMBER, 30);
         eventTypes.clear();
@@ -963,7 +971,7 @@ public class DataInitializationSessionBean {
         trippyEventItem48.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem48);
-        
+
         startDate.set(2018, Calendar.AUGUST, 31);
         endDate.set(2018, Calendar.OCTOBER, 7);
         eventTypes.clear();
@@ -971,12 +979,12 @@ public class DataInitializationSessionBean {
 
         TrippyEventItem trippyEventItem49 = new TrippyEventItem();
         trippyEventItem49.setEventName("Indonesia: Land of Treasures Exhibition");
-        trippyEventItem49.setEventDescription("The Land of Treasures Exhibition features majestic large-scale displays capturing the beauty and essence of cities and islands of Indonesia, right at Changi Airport. Featuring iconic landscapes from Labuan Bajo, Surabaya and more, come experience the ever-intriguing charm of Indonesia as you foray into local culture and adventures, all in one place!\n" +
-"Key highlights of the exhibition:\n" +
-"• Come face-to-face with a replica Komodo Dragon at Labuan Bajo, home to the Komodo National Park Cave, the only remaining natural habitat where the endangered Komodo Dragon still runs wild;\n" +
-"• Check out the spectacular landscapes of Belitung through interactive binoculars at a look-out point high above the exhibition;\n" +
-"• Be inspired by the ancient bells of the world’s largest Buddhist temple and UNESCO World Heritage-listed Borobudur Temple in Yogyakarta;\n" +
-"• Round up your visit at the Instagram-worthy swing floating above crystal clear waters, against the backdrop of an amazing Lombok sunset.");
+        trippyEventItem49.setEventDescription("The Land of Treasures Exhibition features majestic large-scale displays capturing the beauty and essence of cities and islands of Indonesia, right at Changi Airport. Featuring iconic landscapes from Labuan Bajo, Surabaya and more, come experience the ever-intriguing charm of Indonesia as you foray into local culture and adventures, all in one place!\n"
+                + "Key highlights of the exhibition:\n"
+                + "• Come face-to-face with a replica Komodo Dragon at Labuan Bajo, home to the Komodo National Park Cave, the only remaining natural habitat where the endangered Komodo Dragon still runs wild;\n"
+                + "• Check out the spectacular landscapes of Belitung through interactive binoculars at a look-out point high above the exhibition;\n"
+                + "• Be inspired by the ancient bells of the world’s largest Buddhist temple and UNESCO World Heritage-listed Borobudur Temple in Yogyakarta;\n"
+                + "• Round up your visit at the Instagram-worthy swing floating above crystal clear waters, against the backdrop of an amazing Lombok sunset.");
         trippyEventItem49.setPoint(0L);
         trippyEventItem49.setStartDate(startDate.getTime());
         trippyEventItem49.setEndDate(endDate.getTime());
@@ -987,7 +995,7 @@ public class DataInitializationSessionBean {
         trippyEventItem49.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem49);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 2);
         endDate.set(2018, Calendar.NOVEMBER, 11);
         eventTypes.clear();
@@ -1006,7 +1014,7 @@ public class DataInitializationSessionBean {
         trippyEventItem50.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem50);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 6);
         endDate.set(2018, Calendar.OCTOBER, 28);
         eventTypes.clear();
@@ -1014,8 +1022,8 @@ public class DataInitializationSessionBean {
 
         TrippyEventItem trippyEventItem51 = new TrippyEventItem();
         trippyEventItem51.setEventName("STREET 2");
-        trippyEventItem51.setEventDescription("To celebrate its first year in Singapore, Mazel Galerie presents Street2 a group show featuring new works from Mazel Galerie’s established and upcoming street artists: stencil artists ill, C215, and MONK, street-pop artist Laurina Paperina, muralist NOIR, and multi-media street artist Fidia Falaschetti.\n" +
-"Each artist will have a message of their own to share with the audience. From MONK’s camouflage series, bringing awareness to endangered animals, to iLL’s stencil works showcasing some of today’s social contradictions, and C215 colourful animal portraits.");
+        trippyEventItem51.setEventDescription("To celebrate its first year in Singapore, Mazel Galerie presents Street2 a group show featuring new works from Mazel Galerie’s established and upcoming street artists: stencil artists ill, C215, and MONK, street-pop artist Laurina Paperina, muralist NOIR, and multi-media street artist Fidia Falaschetti.\n"
+                + "Each artist will have a message of their own to share with the audience. From MONK’s camouflage series, bringing awareness to endangered animals, to iLL’s stencil works showcasing some of today’s social contradictions, and C215 colourful animal portraits.");
         trippyEventItem51.setPoint(0L);
         trippyEventItem51.setStartDate(startDate.getTime());
         trippyEventItem51.setEndDate(endDate.getTime());
@@ -1026,7 +1034,7 @@ public class DataInitializationSessionBean {
         trippyEventItem51.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem51);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 8);
         endDate.set(2018, Calendar.OCTOBER, 8);
         eventTypes.clear();
@@ -1034,11 +1042,11 @@ public class DataInitializationSessionBean {
 
         TrippyEventItem trippyEventItem52 = new TrippyEventItem();
         trippyEventItem52.setEventName("Mid-Autumn Festival Light-Up");
-        trippyEventItem52.setEventDescription("Singaporeans celebrate the Mid-Autumn Festival by rolling\n" +
-" out lanterns in a flurry of forms and mooncakes (sweet\n" +
-" traditional pastries) in a multitude of flavours and textures.\n" +
-" Come admire the moon at its brightest, along with the deluge \n" +
-"of decorations that will enliven Chinatown.");
+        trippyEventItem52.setEventDescription("Singaporeans celebrate the Mid-Autumn Festival by rolling\n"
+                + " out lanterns in a flurry of forms and mooncakes (sweet\n"
+                + " traditional pastries) in a multitude of flavours and textures.\n"
+                + " Come admire the moon at its brightest, along with the deluge \n"
+                + "of decorations that will enliven Chinatown.");
         trippyEventItem52.setPoint(0L);
         trippyEventItem52.setStartDate(startDate.getTime());
         trippyEventItem52.setEndDate(endDate.getTime());
@@ -1049,7 +1057,7 @@ public class DataInitializationSessionBean {
         trippyEventItem52.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem52);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 7);
         endDate.set(2018, Calendar.SEPTEMBER, 24);
         eventTypes.clear();
@@ -1068,7 +1076,7 @@ public class DataInitializationSessionBean {
         trippyEventItem53.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem53);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 7);
         endDate.set(2018, Calendar.SEPTEMBER, 30);
         eventTypes.clear();
@@ -1087,7 +1095,7 @@ public class DataInitializationSessionBean {
         trippyEventItem54.setEventTypeString("art_and_culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem54);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 18);
         endDate.set(2018, Calendar.SEPTEMBER, 22);
         eventTypes.clear();
@@ -1108,7 +1116,6 @@ public class DataInitializationSessionBean {
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem55);
 
         // Initialising the events for foodie
-        
         startDate.set(2018, Calendar.SEPTEMBER, 21);
         endDate.set(2018, Calendar.SEPTEMBER, 23);
         eventTypes.clear();
@@ -1116,8 +1123,8 @@ public class DataInitializationSessionBean {
 
         TrippyEventItem trippyEventItem56 = new TrippyEventItem();
         trippyEventItem56.setEventName("Singapore Tea Festival");
-        trippyEventItem56.setEventDescription("With overwhelming support at last year’s debut of Singapore Tea Festival (STF), the second edition of STF will be back this September! Proudly organised by teapasar, the first global omni-channel marketplace featuring local and international tea brands, this year’s STF will be held from 21st – 23rd September at Basement 4, ION Orchard.\n" +
-"This year’s STF is bigger and better with 28 exciting tea and tea-related brands, and 3 days worth of educational and engaging workshops to look forward to! From TIMELESS CLASSICS featuring single-origin tea merchants such as Tea Chapter and Parchmen Academy, to MODERN BLENDS by many of Singapore’s very own tea brands with interesting blends inspired by local flavours such as Durian Tea (SUCRE) and Nyonya Kaya (The 1872 Clipper Tea Co.); to Botanically Cold Brewed (TM) Sparkling Teas (Gryphon Tea), and even 100% compostable tea pods that are also compatible with Nespresso® machines (A.muse Projects). This year’s STF will also feature INTERNATIONAL FLAVOURS such as Matcha soft serve (Matchaya), and teas direct from Japan (Ito En) and Indonesia (Bali Organic Tea). There will also be LIFESTYLE-related merchandise – from quirky tea illustrations by Troops On Print, to hand-crafted ceramics by Euphoramics and &Natural.");
+        trippyEventItem56.setEventDescription("With overwhelming support at last year’s debut of Singapore Tea Festival (STF), the second edition of STF will be back this September! Proudly organised by teapasar, the first global omni-channel marketplace featuring local and international tea brands, this year’s STF will be held from 21st – 23rd September at Basement 4, ION Orchard.\n"
+                + "This year’s STF is bigger and better with 28 exciting tea and tea-related brands, and 3 days worth of educational and engaging workshops to look forward to! From TIMELESS CLASSICS featuring single-origin tea merchants such as Tea Chapter and Parchmen Academy, to MODERN BLENDS by many of Singapore’s very own tea brands with interesting blends inspired by local flavours such as Durian Tea (SUCRE) and Nyonya Kaya (The 1872 Clipper Tea Co.); to Botanically Cold Brewed (TM) Sparkling Teas (Gryphon Tea), and even 100% compostable tea pods that are also compatible with Nespresso® machines (A.muse Projects). This year’s STF will also feature INTERNATIONAL FLAVOURS such as Matcha soft serve (Matchaya), and teas direct from Japan (Ito En) and Indonesia (Bali Organic Tea). There will also be LIFESTYLE-related merchandise – from quirky tea illustrations by Troops On Print, to hand-crafted ceramics by Euphoramics and &Natural.");
         trippyEventItem56.setPoint(0L);
         trippyEventItem56.setStartDate(startDate.getTime());
         trippyEventItem56.setEndDate(endDate.getTime());
@@ -1128,7 +1135,7 @@ public class DataInitializationSessionBean {
         trippyEventItem56.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem56);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 27);
         endDate.set(2018, Calendar.SEPTEMBER, 30);
         eventTypes.clear();
@@ -1147,7 +1154,7 @@ public class DataInitializationSessionBean {
         trippyEventItem57.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem57);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 20);
         endDate.set(2018, Calendar.SEPTEMBER, 21);
         eventTypes.clear();
@@ -1166,7 +1173,7 @@ public class DataInitializationSessionBean {
         trippyEventItem58.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem58);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 26);
         endDate.set(2018, Calendar.SEPTEMBER, 27);
         eventTypes.clear();
@@ -1174,13 +1181,13 @@ public class DataInitializationSessionBean {
 
         TrippyEventItem trippyEventItem59 = new TrippyEventItem();
         trippyEventItem59.setEventName("Food of the Future Festival - Asia's first Experimental Food Event");
-        trippyEventItem59.setEventDescription("Asia’s FIRST Experiential Food Event – Taste, Feel & Learn about the Future of Food.\n" +
-"\n" +
-"Immerse yourself in the future of food with a curated marketplace, hands-on experience zones & empowering speaker keynotes thoughtfully put together to fill up your well-deserved Saturday!\n" +
-"\n" +
-"There will be workshops for kids and parents for a hands-on experience such as building your own hydroponic farm and sustainable beekeeping.\n" +
-"\n" +
-"On top of that, there will also be a vibrant marketplace for you to taste and buy some futures foods home!");
+        trippyEventItem59.setEventDescription("Asia’s FIRST Experiential Food Event – Taste, Feel & Learn about the Future of Food.\n"
+                + "\n"
+                + "Immerse yourself in the future of food with a curated marketplace, hands-on experience zones & empowering speaker keynotes thoughtfully put together to fill up your well-deserved Saturday!\n"
+                + "\n"
+                + "There will be workshops for kids and parents for a hands-on experience such as building your own hydroponic farm and sustainable beekeeping.\n"
+                + "\n"
+                + "On top of that, there will also be a vibrant marketplace for you to taste and buy some futures foods home!");
         trippyEventItem59.setPoint(0L);
         trippyEventItem59.setStartDate(startDate.getTime());
         trippyEventItem59.setEndDate(endDate.getTime());
@@ -1191,7 +1198,7 @@ public class DataInitializationSessionBean {
         trippyEventItem59.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem59);
-        
+
         startDate.set(2018, Calendar.NOVEMBER, 18);
         endDate.set(2018, Calendar.NOVEMBER, 20);
         eventTypes.clear();
@@ -1210,7 +1217,7 @@ public class DataInitializationSessionBean {
         trippyEventItem60.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem60);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 26);
         endDate.set(2018, Calendar.SEPTEMBER, 27);
         eventTypes.clear();
@@ -1229,7 +1236,7 @@ public class DataInitializationSessionBean {
         trippyEventItem61.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem61);
-        
+
         startDate.set(2018, Calendar.APRIL, 1);
         endDate.set(2018, Calendar.DECEMBER, 31);
         eventTypes.clear();
@@ -1248,7 +1255,7 @@ public class DataInitializationSessionBean {
         trippyEventItem62.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem62);
-        
+
         startDate.set(2018, Calendar.JULY, 25);
         endDate.set(2018, Calendar.SEPTEMBER, 6);
         eventTypes.clear();
@@ -1267,7 +1274,7 @@ public class DataInitializationSessionBean {
         trippyEventItem63.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem63);
-        
+
         startDate.set(2018, Calendar.JULY, 25);
         endDate.set(2018, Calendar.DECEMBER, 31);
         eventTypes.clear();
@@ -1286,7 +1293,7 @@ public class DataInitializationSessionBean {
         trippyEventItem64.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem64);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 1);
         endDate.set(2018, Calendar.SEPTEMBER, 30);
         eventTypes.clear();
@@ -1305,7 +1312,7 @@ public class DataInitializationSessionBean {
         trippyEventItem65.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem65);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 10);
         endDate.set(2018, Calendar.SEPTEMBER, 14);
         eventTypes.clear();
@@ -1324,7 +1331,7 @@ public class DataInitializationSessionBean {
         trippyEventItem66.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem66);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 11);
         endDate.set(2018, Calendar.SEPTEMBER, 17);
         eventTypes.clear();
@@ -1343,7 +1350,7 @@ public class DataInitializationSessionBean {
         trippyEventItem67.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem67);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 11);
         endDate.set(2018, Calendar.SEPTEMBER, 17);
         eventTypes.clear();
@@ -1362,7 +1369,7 @@ public class DataInitializationSessionBean {
         trippyEventItem68.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem68);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 13);
         endDate.set(2018, Calendar.OCTOBER, 23);
         eventTypes.clear();
@@ -1381,7 +1388,7 @@ public class DataInitializationSessionBean {
         trippyEventItem69.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem69);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 14);
         endDate.set(2018, Calendar.SEPTEMBER, 16);
         eventTypes.clear();
@@ -1400,7 +1407,7 @@ public class DataInitializationSessionBean {
         trippyEventItem70.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem70);
-        
+
         startDate.set(2018, Calendar.SEPTEMBER, 15);
         endDate.set(2018, Calendar.SEPTEMBER, 16);
         eventTypes.clear();
@@ -1419,7 +1426,7 @@ public class DataInitializationSessionBean {
         trippyEventItem71.setEventTypeString("foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem71);
-        
+
         startDate.set(2018, Calendar.OCTOBER, 1);
         endDate.set(2018, Calendar.OCTOBER, 30);
         eventTypes.clear();
@@ -1436,9 +1443,52 @@ public class DataInitializationSessionBean {
         trippyEventItem72.setEventType(eventTypes);
         trippyEventItem72.setSoftDelete(false);
         trippyEventItem72.setEventTypeString("foodie");
+        
+
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem72);
-        
+
+        try {
+            //adding saved trips and past trips to c1
+            Customer newC1 = customerSessionLocal.getCustomerByEmail("Testing1@example.com");
+
+            SavedTrip savedTrip1 = new SavedTrip();
+            startDate.set(2018, Calendar.SEPTEMBER, 15); //should be current date. 
+            savedTrip1.setSavedDate(startDate.getTime());
+            savedTrip1.setPrice(60.0);
+            savedTrip1.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("PERANAKAN DELIGHTS")); 
+            savedTrip1.setCustomer(newC1);
+            savedTripSessionLocal.createdSavedTrip(savedTrip1);
+            
+           
+            newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
+            
+            SavedTrip savedTrip2 = new SavedTrip();
+            startDate.set(2018, Calendar.SEPTEMBER, 15); //should be current date. 
+            savedTrip2.setSavedDate(startDate.getTime());
+            savedTrip2.setPrice(500.0);
+            savedTrip2.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("HAPPY HOUR JUST GOT HAPPIER"));
+            savedTrip2.setCustomer(newC1);
+            savedTripSessionLocal.createdSavedTrip(savedTrip2);
+            newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
+            
+            
+            SavedTrip savedTrip3 = new SavedTrip();
+            startDate.set(2018, Calendar.SEPTEMBER, 15); //should be current date. 
+            savedTrip3.setSavedDate(startDate.getTime());
+            savedTrip3.setPrice(118.0); //should get from TrippyEvent.getPrice
+            savedTrip3.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("MARGARITA MADNESS"));
+            savedTrip3.setCustomer(newC1); 
+            savedTripSessionLocal.createdSavedTrip(savedTrip3);
+            newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
+            
+
+        } catch (NoResultException ex) {
+            Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CustomerAddSavedTripException ex) {
+            Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     private static String encryptPassword(String password) {
