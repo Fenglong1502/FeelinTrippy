@@ -7,6 +7,8 @@ package session;
 
 import entity.Customer;
 import entity.SavedTrip;
+import entity.TrippyEventItem;
+import entity.TrippyEventType;
 import error.CustomerAddSavedTripException;
 import error.NoResultException;
 import java.util.List;
@@ -42,6 +44,9 @@ public interface CustomerSessionLocal {
     public int deductPoints(Customer c, int pointsDeducted);
     public int addPoints(Customer c, int pointsToAdd);
     
-    //Update Customer savedTrip and pastTrip
+    //Hnadling CRUD for Customer savedTrip and pastTrip
     public void addSavedTrip(Long id, SavedTrip s);
+    public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c);
+    public boolean isEventExist(TrippyEventItem item, Long id);
+    
 }

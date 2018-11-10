@@ -94,37 +94,40 @@ public class TrippyManagedBean implements Serializable {
         return "activities.xhtml?faces-redirect=true";
     }
 
-    public String addSavedTrip(){
+    public String addSavedTrip() {
         FacesContext context = FacesContext.getCurrentInstance();
         Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
-        SavedTrip s = new SavedTrip();
-        s.setPrice(selectedEventItem.getPrice());
-        s.setEventItem(selectedEventItem);
-        s.setSavedDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
-        s.setCustomer(c);
-        savedTripSessionLocal.createdSavedTrip(s);
-        s = savedTripSessionLocal.getNewlyAddSavedTrip();
-        customerSessionLocal.addSavedTrip(c.getUserID(), s);
-        
+        if (customerSessionLocal.isEventExist(selectedEventItem, c.getUserID()) == false) {
+            SavedTrip s = new SavedTrip();
+            s.setPrice(selectedEventItem.getPrice());
+            s.setEventItem(selectedEventItem);
+            s.setSavedDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+            s.setCustomer(c);
+            savedTripSessionLocal.createdSavedTrip(s);
+            s = savedTripSessionLocal.getNewlyAddSavedTrip();
+            customerSessionLocal.addSavedTrip(c.getUserID(), s);
+        }
+
         return "mySavedTrips.xhtml?faces-redirect=true";
     }
-    
-    
-    public List<SavedTrip> getSavedTripByCategory(String eventType){
-        
-        
-        return null;
+
+    public List<SavedTrip> getSavedTripByCategory(String eventType) {
+        TrippyEventType type = trippyEventTypeSessionLocal.searchTrippyEventType(eventType);
+        FacesContext context = FacesContext.getCurrentInstance();
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+
+        return customerSessionLocal.getSavedTripByType(type, c);
     }
-    
+
 //    public void assignSelectedEventItem(ActionEvent event) {
 //        
 //	selectedEventItem = (TrippyEventItem)event.getComponent().getAttributes().get("event");
 //         
 //    }
 //    
-    public String selectEvent(TrippyEventItem tei){
+    public String selectEvent(TrippyEventItem tei) {
         selectedEventItem = tei;
-        
+
         return "activityDetails.xhtml?faces-redirect=true";
     }
 
