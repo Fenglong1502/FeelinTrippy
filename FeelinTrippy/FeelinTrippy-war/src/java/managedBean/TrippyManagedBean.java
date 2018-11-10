@@ -110,11 +110,11 @@ public class TrippyManagedBean implements Serializable {
     }
     
     
- //   public List<SavedTrip> getSavedTripByCategory(String eventType){
+    public List<SavedTrip> getSavedTripByCategory(String eventType){
         
         
-        
- //   }
+        return null;
+    }
     
 //    public void assignSelectedEventItem(ActionEvent event) {
 //        
