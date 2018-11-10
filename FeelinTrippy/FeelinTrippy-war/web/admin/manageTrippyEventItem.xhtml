@@ -29,19 +29,16 @@ and open the template in the editor.
                     <h:outputText value="#{trippyEvent.eventName}"/>
                 </h:column>
 
-                <h:column rowHeader="startDate">
-                    <f:facet name="header">Start Date</f:facet>
-                    <h:outputText value="#{trippyEvent.startDate}"/>
-                </h:column>
-                <h:column rowHeader="status">
-                    <f:facet name="header">Status</f:facet>
+
+                <h:column rowHeader="Soft Delete">
+                    <f:facet name="header">Soft Delete</f:facet>
                     <h:outputText value="#{trippyEvent.softDelete}" />
                 </h:column>
 
                 <h:column>
                     <input type="button" value="View" class="btn btn-primary" data-toggle="modal"  data-target="#manageTrippyEventModal" data-name="#{trippyEvent.eventName}" data-start="#{trippyEvent.startDate}" data-end="#{trippyEvent.endDate}" data-description="#{trippyEvent.eventDescription}" data-point="#{trippyEvent.point}" data-price="#{trippyEvent.price}" data-address="#{trippyEvent.address}" data-id="#{trippyEvent.eventID}" data-typestring="#{trippyEvent.eventTypeString}" data-imagestring="#{trippyEvent.eventImage}" />
-                    <h:commandButton value="Activate" class="btn btn-success" action="#{adminManagedBean.activateTrip(trippyEvent)}" />
-                    <h:commandButton value="Deactivate" class="btn btn-danger" action="#{adminManagedBean.deactivateTrip(trippyEvent)}" />
+                    <h:commandButton value="Activate" class="btn btn-success" action="#{adminManagedBean.activateTrip(trippyEvent)}" rendered="#{trippyEvent.softDelete == true}" />
+                    <h:commandButton value="Deactivate" class="btn btn-danger" action="#{adminManagedBean.deactivateTrip(trippyEvent)}" rendered="#{trippyEvent.softDelete == false}" />
                 </h:column>
 
             </h:dataTable> 
@@ -188,7 +185,7 @@ and open the template in the editor.
                     eMonth = "12";
                 }
                 var eStrDate = eDay + "/" + eMonth + "/" + eYear;
-                modal.find('.modal-title').text('Detailed Information of ' + eventName + " " + imageString + typeString);
+                modal.find('.modal-title').text('Detailed Information of ' + eventName);
                 modal.find('.eventName input').val(eventName);
                 modal.find('.startDate input').val(strDate);
                 modal.find('.endDate input').val(eStrDate);

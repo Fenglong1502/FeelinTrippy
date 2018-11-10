@@ -122,17 +122,19 @@ public class adminManagedBean {
         System.out.println("Activating trip");
         toUpdate.setSoftDelete(false);
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
+        init();
     }
     
     public void deactivateTrip(TrippyEventItem toUpdate) {
         System.out.println("Deactivating trip");
         toUpdate.setSoftDelete(true);
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
+        init();
     }
 
     public String updateTrippyEventItem() throws ParseException {
-        System.out.println("Entering updating trippy event item");
-        System.out.println("Event name: " + eventName);
+//        System.out.println("Entering updating trippy event item");
+//        System.out.println("Event name: " + eventName);
         TrippyEventItem toUpdate = new TrippyEventItem();
         toUpdate.setEventID(eventID);
         toUpdate.setEventName(eventName);
@@ -146,9 +148,6 @@ public class adminManagedBean {
         toUpdate.setStartDate(dt.parse(stringDate));
         stringDate = dt.format(endDate);
         toUpdate.setEndDate(dt.parse(stringDate));
-//        eventImage = Arrays.asList(eventImageString.split(","));
-//        System.out.println("HTML Size: " + eventImage.size());
-        System.out.println("After cutting: " + eventImage);
         eventTypeStringArray = Arrays.asList(eventTypeString.split(","));
 //        System.out.println("Event type array: " + eventTypeStringArray);
         int count = 0;
@@ -157,11 +156,12 @@ public class adminManagedBean {
         eventTypeString="";
         while (count <= eventTypeStringArray.size() - 1) {
             try {
-                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count));
-                System.out.println("Tobeadded: " + toBeAdded);
+                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count).trim());
+//                System.out.println("Tobeadded: " + toBeAdded);
+//                System.out.println("Checking: " + eventTypeStringArray.get(count));
                 if (toBeAdded != null) {
                     eventType.add(toBeAdded);
-                    eventTypeString += eventTypeStringArray.get(count) + ",";
+                    eventTypeString += eventTypeStringArray.get(count).trim() + ",";
                 }
             } catch (Exception e) {
 
@@ -193,22 +193,23 @@ public class adminManagedBean {
 //        }
 
         if (eventType.size() == 0) {
-            System.out.println("found nothing for type!");
+//            System.out.println("found nothing for type!");
             eventTypeString = "";
         }
-        System.out.println("Event type: " + eventType);
+//        System.out.println("Event type: " + eventType);
         toUpdate.setEventImage(eventImage);
         toUpdate.setEventTypeString(eventTypeString);
-        toUpdate.setEventImage(eventImage);
+        toUpdate.setEventImage(eventImageString);
         toUpdate.setEventType(eventType);
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
+        listOfTrippyEvent = trippyEventSessionLocal.retrieveAllEvents();
 //        eventImageStringArray.clear();
         return "manageTrippyEventItem.xhtml?faces-redirect=true";
 
     }
 
     public void createTrippyEventItem() throws ParseException {
-        System.out.println("Entering creating trippy event item");
+//        System.out.println("Entering creating trippy event item");
         TrippyEventItem toCreate = new TrippyEventItem();
         toCreate.setEventName(eventName);
         toCreate.setPoint(point);
@@ -226,16 +227,26 @@ public class adminManagedBean {
         int count = 0;
         TrippyEventType toBeAdded;
         eventType.clear();
+        eventTypeString = "";
         while (count <= eventTypeStringArray.size() - 1) {
             try {
-                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count));
+                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(eventTypeStringArray.get(count).trim());
+//                System.out.println("Tobeadded: " + toBeAdded);
+//                System.out.println("Checking: " + eventTypeStringArray.get(count));
                 if (toBeAdded != null) {
                     eventType.add(toBeAdded);
+                    eventTypeString += eventTypeStringArray.get(count).trim() + ",";
                 }
             } catch (Exception e) {
 
             }
             count++;
+        }
+        
+        if (eventTypeString.length() != 0) {
+            if (eventTypeString.charAt(eventTypeString.length()-1) == ',') {
+            eventTypeString = eventTypeString.substring(0,eventTypeString.length()-1);
+        }
         }
 //        count = 0;
 //        eventImageStringArray.clear();
@@ -243,15 +254,12 @@ public class adminManagedBean {
 //            eventImageStringArray.add(eventImage.get(count));
 //            count++;
 //        }
-        if (eventType.size() == 0) {
-            System.out.println("found nothing for type!");
-            eventTypeString = "";
-        }
-        toCreate.setEventImage(eventImage);
+
+        toCreate.setEventImage(eventImageString);
         toCreate.setEventTypeString(eventTypeString);
-        toCreate.setEventImage(eventImage);
         toCreate.setEventType(eventType);
         trippyEventSessionLocal.createTrippyEvent(toCreate);
+        init();
     }
 
     public String createEventType() {
