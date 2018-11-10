@@ -36,6 +36,9 @@ public class SavedTrip implements Serializable {
     @ManyToOne
     private Customer customer;
 
+    public SavedTrip() {
+    }
+    
     public Long getSavedTripID() {
         return savedTripID;
     }

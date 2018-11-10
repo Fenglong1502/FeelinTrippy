@@ -33,7 +33,7 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
     public void updateTrippyEvent(TrippyEventItem trippyEventItem) {
 
         TrippyEventItem existingTrippyEvent = em.find(TrippyEventItem.class, trippyEventItem.getEventID());
-        
+
         if (existingTrippyEvent != null) {
             System.out.println("Found a match!");
             existingTrippyEvent.setEventName(trippyEventItem.getEventName());
@@ -80,35 +80,53 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
         Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
                 + "t.price <= :price");
         q.setParameter("price", price);
-        
+
         List<TrippyEventItem> checkList = q.getResultList();
         List<TrippyEventItem> returnList = new ArrayList<TrippyEventItem>();
-        
-       for(TrippyEventItem tItem: checkList){
-           for(TrippyEventType tType: tItem.getEventType()){
-               if(tType.getTypeName().equals(type.getTypeName())){
-                   returnList.add(tItem);
-               }
-           }
-       }
+
+        for (TrippyEventItem tItem : checkList) {
+            for (TrippyEventType tType : tItem.getEventType()) {
+                if (tType.getTypeName().equals(type.getTypeName())) {
+                    returnList.add(tItem);
+                }
+            }
+        }
         return returnList;
     }
 
     @Override
     public TrippyEventItem randomEvent(TrippyEventType type, Double price) {
-        List<TrippyEventItem> listToRand = searchEventListByConditions(type,price);
+        List<TrippyEventItem> listToRand = searchEventListByConditions(type, price);
         int listSize = listToRand.size();
-        
+
         return listToRand.get(new Random().nextInt(listSize));
     }
 
     @Override
     public List<TrippyEventItem> searchEventListByPrice(Double price) {
-           Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
+        Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
                 + "t.price <= :price");
         q.setParameter("price", price);
-        
+
         return q.getResultList();
+    }
+
+    @Override
+    public TrippyEventItem retrieveEventByEventName(String eventName) {
+        
+        TrippyEventItem returnItem;
+        Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
+                + "LOWER(t.eventName) <= :eventName");
+        q.setParameter("eventName", eventName.toLowerCase());
+
+        returnItem =  (TrippyEventItem)q.getResultList().get(0);
+        
+        if(returnItem == null){
+            return retrieveAllEvents().get(0);
+        }
+        else{
+            return returnItem;
+        }
     }
 
 }
