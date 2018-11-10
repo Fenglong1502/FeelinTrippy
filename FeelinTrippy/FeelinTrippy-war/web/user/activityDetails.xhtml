@@ -5,7 +5,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <head>
         <meta charset="utf-8" />
@@ -30,13 +32,19 @@ and open the template in the editor.
 
 
     <body class="double-diagonal dark portfolio-project">
-     
-        <!-- Preloader Starts -->
-        <div class="preloader" id="preloader">
-            <div class="logopreloader">
-                <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">  </img>      </div>
-            <div class="loader" id="loader"></div>
-        </div>
+
+        <h:form>
+
+            <!-- Preloader Starts -->
+            <div class="preloader" id="preloader">
+                <div class="logopreloader">
+                    <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">  </img>      </div>
+                <div class="loader" id="loader"></div>
+                <f:metadata>
+                    <f:viewParam name="event" value="#{trippyManagedBean.selectedEventItem}" />
+                </f:metadata>
+            </div>
+        </h:form>
         <!-- Preloader Ends -->
         <!-- Page Wrapper Starts -->
         <div class="wrapper">
@@ -82,48 +90,53 @@ and open the template in the editor.
                     </nav>
                     <!-- Navbar Ends -->
                 </div>
+
             </header>
             <!-- Header Ends -->
 
-            <!-- Project Starts -->
-            <section class="project">
-                <div class="container">
-                    <div class="row">
-                        <!-- Project Main Content Starts -->
-                        <div class="col-md-6">
-                            <div class="project-main-content">
-                                <img class="img-responsive" src="http://via.placeholder.com/700x470" alt="image" />
+            <h:form>
+                <!-- Project Starts -->
+                <section class="project">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Project Main Content Starts -->
+                            <div class="col-md-6">
+                                <div class="project-main-content">
+                                    <h:graphicImage alt="#{trippyManagedBean.selectedEventItem.eventImage}" class="img-responsive" value = "#{trippyManagedBean.selectedEventItem.eventImage}"/> 
+                                    <!--<img class="img-responsive" src="#{trippyManagedBean.selectedEventItem.eventImage}" alt="image" />-->
+                                </div>
+                                <div class="project-navigation">
+                                    <nav>
+                                        <ul class="unstyled">
+                                            <li><a href="activities.xhtml"><i class="fa fa-angle-double-left"></i>Back</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
-                            <div class="project-navigation">
-                                <nav>
+                            <!-- Project Main Content Ends -->
+                            <!-- Project Details Starts -->
+                            <div class="col-md-6">
+                                <div class="project-details">
+                                    <h3><h:outputText value="#{trippyManagedBean.selectedEventItem.eventName}" /></h3>
                                     <ul class="unstyled">
-                                        <li><a href="activities.xhtml"><i class="fa fa-angle-double-left"></i>Back</a></li>
+                                        <li><i class="fa fa-user"></i><span class="detail-name">Location </span>: <span class="detail-value"><h:outputText value="#{trippyManagedBean.selectedEventItem.address}" /></span></li>
+                                        <li><i class="fa fa-calendar"></i><span class="detail-name"> Date</span>: <span class="detail-value"><h:outputText value="#{trippyManagedBean.selectedEventItem.startDate} - #{trippyManagedBean.selectedEventItem.endDate}" /> </span></li>
+                                        <li><i class="fa fa-cogs"></i><span class="detail-name"> Price </span>: <span class="detail-value">><h:outputText value="$#{trippyManagedBean.selectedEventItem.price}" /></span></li>
                                     </ul>
-                                </nav>
+                                    <hr>
+                                        <p>#{trippyManagedBean.selectedEventItem.eventDescription}</p>
+                                        
+                                        <h:commandButton value="Save Activity" class="custom-button" action="#{trippyManagedBean.addSavedTrip()}" />
+                                        <!--<a class="custom-button" href="#">Save Activity</a>-->
+                                        <a class="custom-button" href="#">Share Activity </a>
+                                    </hr>
+                                </div>
                             </div>
+                            <!-- Project Details Ends -->
                         </div>
-                        <!-- Project Main Content Ends -->
-                        <!-- Project Details Starts -->
-                        <div class="col-md-6">
-                            <div class="project-details">
-                                <h3>Activity Name</h3>
-                                <ul class="unstyled">
-                                    <li><i class="fa fa-user"></i><span class="detail-name"> Location </span>: <span class="detail-value">location</span></li>
-                                    <li><i class="fa fa-calendar"></i><span class="detail-name"> Date Available </span>: <span class="detail-value">02/11/2017</span></li>
-                                    <li><i class="fa fa-cogs"></i><span class="detail-name"> price </span>: <span class="detail-value">$$$</span></li>
-                                </ul>
-                                <hr>
-                                    <p>details of activity</p>
-
-                                    <a class="custom-button" href="#">Save Activity</a>
-                                    <a class="custom-button" href="#">Share Activity // pop up to take in email or QR code  </a>
-                                </hr>
-                            </div>
-                        </div>
-                        <!-- Project Details Ends -->
                     </div>
-                </div>
-            </section>
+                </section>
+            </h:form>
             <!-- Project Ends -->
             <!-- Footer Section Starts -->
             <footer class="footer">
@@ -132,15 +145,15 @@ and open the template in the editor.
                     <div class="row">
 
                         <!-- Footer Bottom Area Starts -->
-                      <div class="bottom-footer">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <!-- Copyright Text Starts -->
-                                <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
-                                <!-- Copyright Text Ends -->
+                        <div class="bottom-footer">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <!-- Copyright Text Starts -->
+                                    <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                                    <!-- Copyright Text Ends -->
+                                </div>
                             </div>
                         </div>
-                    </div>
                         <!-- Footer Bottom Area Ends -->
                     </div>
                     <!-- Footer Top Area Ends -->

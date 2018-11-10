@@ -5,7 +5,11 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
 
@@ -90,78 +94,111 @@ and open the template in the editor.
             <section class="portfolio">
                 <!-- Container Starts -->
                 <div class="container">
-                    <!-- Filter Wrapper Starts -->
-                    <nav>
-                        <ul class="simplefilter nav nav-pills">
-                            <!-- Filter Wrapper Items Starts -->
-                            <li class="active" data-filter="all"><i class="fa fa-reorder"></i> All Activities</li>
-                            <li data-filter="1">category 1</li>
-                            <li data-filter="2">category 2</li>
-                            <li data-filter="3">category 3</li>
-                            <!-- Filter Wrapper Items Ends -->
-                        </ul>
-                    </nav>
-                    <!-- Filter Wrapper Ends -->
-                    <div>
-                        <div class="filtr-container">
+                    <h:form>
+                        <!-- Filter Wrapper Starts -->
+                        <div class="simplefilter nav nav-pills"></div>       
+                          <div class="simplefilter nav nav-pills"></div>       
+<!--                        <nav>
 
-                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
-                                <div class="magnific-popup-gallery">
-                                    <!-- Thumbnail Starts -->
-                                    <figure class="thumbnail thumbnail__portfolio">
-                                        <a class="image-wrap" href="http://via.placeholder.com/700x470" data-gal="magnific-pop-up[image]" title="Image project"><img class="img-responsive" src="http://via.placeholder.com/700x470" alt="Image Project" /><span class="zoom-icon"></span></a>
-                                    </figure>
-                                    <!-- Thumbnail Ends -->
-                                    <!-- Caption Starts -->
-                                    <div class="caption">
-                                        <a class="title-link" href="activityDetails.xhtml">
-                                            <h3>Activity 1</h3>
-                                        </a>
-                                        <p> details of activity 1</p>
-                                        <a class="custom-button" href="activityDetails.xhtml">Read More</a>
-                                    </div>
-                                    <!-- Caption Ends -->
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="2">
-                                <div class="magnific-popup-gallery">
-                                    <!-- Thumbnail Starts -->
-                                    <figure class="thumbnail thumbnail__portfolio">
-                                        <a class="image-wrap" href="http://via.placeholder.com/700x470" data-gal="magnific-pop-up[image]" title="Image project"><img class="img-responsive" src="http://via.placeholder.com/700x470" alt="Image Project" /><span class="zoom-icon"></span></a>
-                                    </figure>
-                                    <!-- Thumbnail Ends -->
-                                    <!-- Caption Starts -->
-                                    <div class="caption">
-                                        <a class="title-link" href="activityDetails.xhtml">
-                                            <h3>activity 2</h3>
-                                        </a>
-                                        <p>details of activity 2</p>
-                                        <a class="custom-button" href="activityDetails.xhtml">Read More</a>
-                                    </div>
-                                    <!-- Caption Ends -->
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="3">
-                                <div class="magnific-popup-gallery">
-                                    <!-- Thumbnail Starts -->
-                                    <figure class="thumbnail thumbnail__portfolio">
-                                        <a class="image-wrap" href="http://via.placeholder.com/700x470" data-gal="magnific-pop-up[image]" title="Image project"><img class="img-responsive" src="http://via.placeholder.com/700x470" alt="Image Project" /><span class="zoom-icon"></span></a>
-                                    </figure>
-                                    <!-- Thumbnail Ends -->
-                                    <!-- Caption Starts -->
-                                    <div class="caption">
-                                        <a class="title-link" href="activityDetails.xhtml">
-                                            <h3>Activity 3</h3>
-                                        </a>
-                                        <p>details of activity 3</p>
-                                        <a class="custom-button" href="activityDetails.xhtml">Read More</a>
-                                    </div>
-                                    <!-- Caption Ends -->
-                                </div>
-                            </div>
+                            <ul class="simplefilter nav nav-pills">
+                                                                 Filter Wrapper Items Starts 
+                                                                <li class="active" data-filter="all"><i class="fa fa-reorder"></i> All Activities</li>
+                                                                <li data-filter="1">category 1</li>
+                                                                <li data-filter="2">category 2</li>
+                                                                <li data-filter="3">category 3</li>
+                                                                 Filter Wrapper Items Ends 
+                            </ul>                                               
+                        </nav>-->
+                        <!-- Filter Wrapper Ends -->
+                        <div class="row mt-5 mb-5"></div>
+                        <div class="row mt-5">
+                            <div class="filtr-container">
+                                <c:forEach items="${trippyManagedBean.searchEvents}" var="event">
+                                    <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
+                                        <div class="magnific-popup-gallery">
+                                            <figure class="thumbnail thumbnail__portfolio">
+                                                <h:link class="image-wrap" title="Image project"><h:graphicImage style="width: 360px; height: 202px;" class="img-responsive" value = "#{event.eventImage}"/> </h:link>
+                                                <!--<a class="image-wrap" href="http://via.placeholder.com/700x470" data-gal="magnific-pop-up[image]" title="Image project"><img class="img-responsive" src="http://via.placeholder.com/700x470" alt="Image Project" /><span class="zoom-icon"></span></a>-->
+                                            </figure>
 
+                                            <div class="caption">
+                                                <a class="title-link" href="activityDetails.xhtml">
+                                                    <h3><h:outputText value="#{event.eventName}"/></h3>
+                                                </a>
+                                                <p>
+                                                    <h:outputText value="#{event.eventDescription}" rendered="#{event.eventDescription.length() lt 100}"/>
+                                                    <h:outputText value="#{event.eventDescription.substring(0,100)}...." rendered="#{event.eventDescription.length() ge 100}"/>
+                                                </p>
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(event)}">
+                                                </h:commandButton>
+<!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </c:forEach>
+
+
+
+
+                                <!--                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
+                                                                <div class="magnific-popup-gallery">
+                                                                     Thumbnail Starts 
+                                                                    <figure class="thumbnail thumbnail__portfolio">
+                                                                        <a class="image-wrap" href="http://via.placeholder.com/700x470" data-gal="magnific-pop-up[image]" title="Image project"><img class="img-responsive" src="http://via.placeholder.com/700x470" alt="Image Project" /><span class="zoom-icon"></span></a>
+                                                                    </figure>
+                                                                     Thumbnail Ends 
+                                                                     Caption Starts 
+                                                                    <div class="caption">
+                                                                        <a class="title-link" href="activityDetails.xhtml">
+                                                                            <h3>Activity 1</h3>
+                                                                        </a>
+                                                                        <p> details of activity 1</p>
+                                                                        <a class="custom-button" href="activityDetails.xhtml">Read More</a>
+                                                                    </div>
+                                                                     Caption Ends 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="2">
+                                                                <div class="magnific-popup-gallery">
+                                                                     Thumbnail Starts 
+                                                                    <figure class="thumbnail thumbnail__portfolio">
+                                                                        <a class="image-wrap" href="http://via.placeholder.com/700x470" data-gal="magnific-pop-up[image]" title="Image project"><img class="img-responsive" src="http://via.placeholder.com/700x470" alt="Image Project" /><span class="zoom-icon"></span></a>
+                                                                    </figure>
+                                                                     Thumbnail Ends 
+                                                                     Caption Starts 
+                                                                    <div class="caption">
+                                                                        <a class="title-link" href="activityDetails.xhtml">
+                                                                            <h3>activity 2</h3>
+                                                                        </a>
+                                                                        <p>details of activity 2</p>
+                                                                        <a class="custom-button" href="activityDetails.xhtml">Read More</a>
+                                                                    </div>
+                                                                     Caption Ends 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="3">
+                                                                <div class="magnific-popup-gallery">
+                                                                     Thumbnail Starts 
+                                                                    <figure class="thumbnail thumbnail__portfolio">
+                                                                        <a class="image-wrap" href="http://via.placeholder.com/700x470" data-gal="magnific-pop-up[image]" title="Image project"><img class="img-responsive" src="http://via.placeholder.com/700x470" alt="Image Project" /><span class="zoom-icon"></span></a>
+                                                                    </figure>
+                                                                     Thumbnail Ends 
+                                                                     Caption Starts 
+                                                                    <div class="caption">
+                                                                        <a class="title-link" href="activityDetails.xhtml">
+                                                                            <h3>Activity 3</h3>
+                                                                        </a>
+                                                                        <p>details of activity 3</p>
+                                                                        <a class="custom-button" href="activityDetails.xhtml">Read More</a>
+                                                                    </div>
+                                                                     Caption Ends 
+                                                                </div>
+                                                            </div>-->
+
+                            </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
                 <!-- Container Ends -->
             </section>
@@ -173,14 +210,14 @@ and open the template in the editor.
                     <div class="row">                    
                         <!-- Footer Bottom Area Starts -->
                         <div class="bottom-footer">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <!-- Copyright Text Starts -->
-                                <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
-                                <!-- Copyright Text Ends -->
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <!-- Copyright Text Starts -->
+                                    <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                                    <!-- Copyright Text Ends -->
+                                </div>
                             </div>
                         </div>
-                    </div>
                         <!-- Footer Bottom Area Ends -->
                     </div>
                     <!-- Footer Top Area Ends -->

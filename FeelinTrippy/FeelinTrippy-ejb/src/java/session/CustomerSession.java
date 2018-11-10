@@ -9,6 +9,7 @@ import etc.RandomPassword;
 import entity.BookedActivity;
 import entity.Customer;
 import entity.SavedTrip;
+import error.CustomerAddSavedTripException;
 import error.NoResultException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -16,6 +17,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -28,7 +31,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
- /*
+/*
  * @author MC
  */
 @Stateless
@@ -36,8 +39,8 @@ public class CustomerSession implements CustomerSessionLocal {
 
     @PersistenceContext
     private EntityManager em;
-    
-     @Override
+
+    @Override
     public List<Customer> retrieveAllCustomer() {
         Query q;
         q = em.createQuery("SELECT c FROM Customer c");
@@ -129,7 +132,7 @@ public class CustomerSession implements CustomerSessionLocal {
 
         if (!q.getResultList().isEmpty()) {
             Customer checkC = (Customer) q.getResultList().get(0);
-            if(checkC.getPassword().equals(c.getPassword())) {
+            if (checkC.getPassword().equals(c.getPassword())) {
                 return true;
             }
             return false;
@@ -144,12 +147,14 @@ public class CustomerSession implements CustomerSessionLocal {
         customer.setPassword(newPass);
         em.flush();
     }
+
     @Override
     public void deactivateAccount(Long cId) {
         Customer customer = em.find(Customer.class, cId);
         customer.setAccountStatus(false);
         em.flush();
     }
+
     @Override
     public void activateAccount(Long cId) {
         Customer customer = em.find(Customer.class, cId);
@@ -188,7 +193,7 @@ public class CustomerSession implements CustomerSessionLocal {
             if (!q.getResultList().isEmpty()) {
                 return (Customer) q.getResultList().get(0);
             } else {
-               return null;
+                return null;
             }
         } else {
             return null;
@@ -241,8 +246,6 @@ public class CustomerSession implements CustomerSessionLocal {
         }
     }
 
-    
-
     private static String encryptPassword(String password) {
         String sha1 = "";
         try {
@@ -266,6 +269,17 @@ public class CustomerSession implements CustomerSessionLocal {
         String result = formatter.toString();
         formatter.close();
         return result;
+    }
+
+    @Override
+    public void addSavedTrip(Long id, SavedTrip s){
+        Customer c = em.find(Customer.class, id);
+        try {
+            c.addSavedTrip(s);
+            em.flush();
+        } catch (CustomerAddSavedTripException ex) {
+            Logger.getLogger(CustomerSession.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
