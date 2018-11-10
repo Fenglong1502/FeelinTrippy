@@ -22,14 +22,14 @@ public class RecommendedActivity implements Serializable {
     /**
      * @return the recImages
      */
-    public ArrayList<String> getRecImages() {
+    public String getRecImages() {
         return recImages;
     }
 
     /**
      * @param recImages the recImages to set
      */
-    public void setRecImages(ArrayList<String> recImages) {
+    public void setRecImages(String recImages) {
         this.recImages = recImages;
     }
     
@@ -42,7 +42,7 @@ public class RecommendedActivity implements Serializable {
     private float recPrice;
     private String recDescription;
     private String recStatus;
-    private ArrayList<String> recImages;
+    private String recImages;
     private Long recByCustomerID; 
     
     
