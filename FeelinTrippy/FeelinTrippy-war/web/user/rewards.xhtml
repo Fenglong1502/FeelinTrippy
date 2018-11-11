@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <head>
         <meta charset="utf-8" />
@@ -102,116 +103,28 @@ and open the template in the editor.
                     <!-- Container Starts -->
                     <div class="container">                    
                         <div>
-                            <div class="filtr-container">
-                                <!-- Project Starts -->
-                                <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
-                                    <div class="magnific-popup-gallery">
-                                        <!-- Thumbnail Starts -->
-                                        <figure class="thumbnail thumbnail__portfolio">
-                                            <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/mcdonald.jpg" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/mcdonald.jpg" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
-                                        </figure>
-                                        <!-- Thumbnail Ends -->
-                                        <!-- Caption Starts -->
-                                        <div class="caption">                                        
-                                            <h3>McDonald $5 Voucher</h3>                                        
-                                            <p>"500 points"</p>
-                                            <button class="custom-button" onclick="on()">Redeem</button> 
+                            <h:form>
+                                <ui:repeat var="o" value="#{trippyManagedBean.getPrizes()}" varStatus="prize">
+                                    <div class="col-xs-12 col-sm-4 col-md-4 filtr-item">
+                                        <div class="magnific-popup-gallery">
+                                            <!-- Thumbnail Starts -->
+                                            <figure class="thumbnail thumbnail__portfolio">
+                                                <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
+                                            </figure>
+                                            <!-- Thumbnail Ends -->
+                                            <!-- Caption Starts -->
+                                            <div class="caption">                                        
+                                                <h3>#{o.prizeName}</h3>                                        
+                                                <p>#{o.prizePoint} points</p>
+                                                <p>#{o.prizeQty} left</p>
+                                                <p>#{o.prizeDescription}</p>
+                                                <button class="custom-button" onclick="on()">Redeem</button> 
+                                            </div>
+                                            <!-- Caption Ends -->
                                         </div>
-                                        <!-- Caption Ends -->
                                     </div>
-                                </div>
-                                <!-- Project Ends -->
-                                <!-- Project Starts -->
-                                <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="2">
-                                    <div class="magnific-popup-gallery">
-                                        <!-- Thumbnail Starts -->
-                                        <figure class="thumbnail thumbnail__portfolio">
-                                            <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/shaw.jpg" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/shaw.jpg" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
-                                        </figure>
-                                        <!-- Thumbnail Ends -->
-                                        <!-- Caption Starts -->
-                                        <div class="caption">
-                                            <h3>Shaw $10 Voucher</h3>
-                                            <p>"1000 points"</p>
-                                            <button class="custom-button" onclick="on()">Redeem</button>
-                                        </div>
-                                        <!-- Caption Ends -->
-                                    </div>
-                                </div>
-                                <!-- Project Ends -->
-                                <!-- Project Starts -->
-                                <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="3">
-                                    <div class="magnific-popup-gallery">
-                                        <!-- Thumbnail Starts -->
-                                        <figure class="thumbnail thumbnail__portfolio">
-                                            <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/safra.jpg" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/safra.jpg" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
-                                        </figure>
-                                        <!-- Thumbnail Ends -->
-                                        <!-- Caption Starts -->
-                                        <div class="caption">
-                                            <h3>Safra $10 Voucher</h3>                                    
-                                            <p>"1000 points"</p>
-                                            <button class="custom-button" onclick="on()">Redeem</button>
-                                        </div>
-                                        <!-- Caption Ends -->
-                                    </div>
-                                </div>
-                                <!-- Project Ends -->
-                                <!-- Project Starts -->
-                                <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="4">
-                                    <div class="magnific-popup-gallery">
-                                        <!-- Thumbnail Starts -->
-                                        <figure class="thumbnail thumbnail__portfolio">
-                                            <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/bottle.jpg" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/bottle.jpg" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
-                                        </figure>
-                                        <!-- Thumbnail Ends -->
-                                        <!-- Caption Starts -->
-                                        <div class="caption">
-                                            <h3>Thermal Flask</h3>
-                                            <p>"2000 points"</p>
-                                            <button class="custom-button" onclick="on()">Redeem</button>
-                                        </div>
-                                        <!-- Caption Ends -->
-                                    </div>
-                                </div>
-                                <!-- Project Ends -->
-                                <!-- Project Starts -->
-                                <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
-                                    <div class="magnific-popup-gallery">
-                                        <!-- Thumbnail Starts -->
-                                        <figure class="thumbnail thumbnail__portfolio">
-                                            <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/pillow.jpg" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/pillow.jpg" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
-                                        </figure>
-                                        <!-- Thumbnail Ends -->
-                                        <!-- Caption Starts -->
-                                        <div class="caption">
-                                            <h3>Travel Pillow</h3>                                        
-                                            <p>"2000 points"</p>
-                                            <button class="custom-button" onclick="on()">Redeem</button> 
-                                        </div>
-                                        <!-- Caption Ends -->
-                                    </div>
-                                </div>
-                                <!-- Project Ends -->
-                                <!-- Project Starts -->
-                                <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
-                                    <div class="magnific-popup-gallery">
-                                        <!-- Thumbnail Starts -->
-                                        <figure class="thumbnail thumbnail__portfolio">
-                                            <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/massage.jpg" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/massage.jpg" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
-                                        </figure>
-                                        <!-- Thumbnail Ends -->
-                                        <!-- Caption Starts -->
-                                        <div class="caption">
-                                            <h3>Ogawa Massager</h3>
-                                            <p>"10000 points"</p>
-                                            <button class="custom-button" onclick="on()">Redeem</button>
-                                        </div>
-                                        <!-- Caption Ends -->
-                                    </div>
-                                </div>
-                                <!-- Project Ends -->                                                                
-                            </div>
+                                </ui:repeat>
+                            </h:form>
                         </div>
                     </div>      <!-- Container Ends -->
                 </section>
@@ -250,6 +163,7 @@ and open the template in the editor.
         <script>
             function on() {
                 document.getElementById("overlay").style.display = "block";
+               
             }
 
             function off() {

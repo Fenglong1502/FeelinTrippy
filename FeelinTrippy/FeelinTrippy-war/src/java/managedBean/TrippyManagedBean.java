@@ -7,11 +7,11 @@ package managedBean;
 
 import entity.BookedActivity;
 import entity.Customer;
+import entity.Prize;
 import entity.SavedTrip;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
 import error.NoResultException;
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -23,9 +23,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import session.CustomerSessionLocal;
+import session.PrizeSessionLocal;
 import session.SavedTripSessionLocal;
 import session.TrippyEventSessionLocal;
 import session.TrippyEventTypeSessionLocal;
@@ -54,12 +53,17 @@ public class TrippyManagedBean implements Serializable {
     SavedTripSessionLocal savedTripSessionLocal;
     @EJB
     CustomerSessionLocal customerSessionLocal;
+    @EJB
+    PrizeSessionLocal prizeSessionLocal;
 
     @ManagedProperty(value = "#{authenticationManagedBean}")
     private AuthenticationManagedBean authBean;
 
     public AuthenticationManagedBean getAuthBean() {
         return authBean;
+    }
+    public List<Prize> getPrizes(){
+      return prizeSessionLocal.getAllPrize();
     }
 
     public void setAuthBean(AuthenticationManagedBean authBean) {
