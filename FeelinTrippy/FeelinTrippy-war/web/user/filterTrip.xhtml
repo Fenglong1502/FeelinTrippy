@@ -10,7 +10,7 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <head>
+    <h:head>
         <meta charset="utf-8" />
         <title>FeelinTrippy - Filter Trips</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,86 +33,83 @@ and open the template in the editor.
         <!-- Template JS Files -->
         <script src="../js/modernizr.js"></script>
 
-    </head>
+    </h:head>
 
-    <body class="double-diagonal dark">
+    <h:body class="double-diagonal dark">
 
+        <h:form id="form">
 
+            -->
 
-        -->
-
-        <!-- Preloader Starts -->
-        <div class="preloader" id="preloader">
-            <div class="logopreloader">
-                <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">     </img>       
-            </div>
-            <div class="loader" id="loader"></div>
-        </div>
-        <!-- Preloader Ends -->
-        <!-- Page Wrapper Starts -->
-        <div class="wrapper">
-
-            <!-- Header Starts -->
-            <header class="header">
-                <div class="header-inner">
-                    <!-- Navbar Starts -->
-                    <nav class="navbar">
-                        <!-- Logo Starts -->
-                        <div class="logo">
-                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
-                                <!-- Logo White Starts -->
-                                <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
-                                <!-- Logo White Ends -->
-                                <!-- Logo Black Starts -->
-                                <img id="logo-dark" class="logo-dark" src="../img/logo.png" alt="logo-dark" />
-                                <!-- Logo Black Ends -->
-                            </a>
-                        </div>
-                        <!-- Logo Ends -->
-                        <!-- Toggle Icon for Mobile Starts -->
-                        <button class="navbar-toggle navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span id="icon-toggler">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </button>
-                        <!-- Toggle Icon for Mobile Ends -->
-                        <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
-                            <!-- Main Menu Starts -->
-                            <ul class="nav navbar-nav" id="main-navigation">
-                                <li class="active"><a href="../mainpage.xhtml"><i class="fa fa-home"></i> Home</a></li>                               
-                                <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
-                                <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
-                                <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
-                                <!--                                <li><a href="javascript:logout();"><i class="fa fa-user"></i>    
-                                                                        Log Out
-                                
-                                                                    </a></li>-->
-                            </ul>
-                            <!-- Main Menu Ends -->
-                        </div>
-                        <!-- Navigation Menu Ends -->
-                    </nav>
-                    <!-- Navbar Ends -->
+            <!-- Preloader Starts -->
+            <div class="preloader" id="preloader">
+                <div class="logopreloader">
+                    <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">     </img>       
                 </div>
-            </header>
-            <!-- Header Ends -->
-
-
-
-            <div class="text-center" style="margin-top: 150px">
-                <h3>Set Your Budget</h3>
+                <div class="loader" id="loader"></div>
             </div>
-            <!--<form method="POST" action="ActivityServlet" >-->
-            <h:form id="form">
+            <!-- Preloader Ends -->
+            <!-- Page Wrapper Starts -->
+            <div class="wrapper">
+
+                <!-- Header Starts -->
+                <header class="header">
+                    <div class="header-inner">
+                        <!-- Navbar Starts -->
+                        <nav class="navbar">
+                            <!-- Logo Starts -->
+                            <div class="logo">
+                                <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="mainPage.jsp">
+                                    <!-- Logo White Starts -->
+                                    <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
+                                    <!-- Logo White Ends -->
+                                    <!-- Logo Black Starts -->
+                                    <img id="logo-dark" class="logo-dark" src="../img/logo.png" alt="logo-dark" />
+                                    <!-- Logo Black Ends -->
+                                </a>
+                            </div>
+                            <!-- Logo Ends -->
+                            <!-- Toggle Icon for Mobile Starts -->
+                            <button class="navbar-toggle navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span id="icon-toggler">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </button>
+                            <!-- Toggle Icon for Mobile Ends -->
+                            <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
+                                <!-- Main Menu Starts -->
+                                <ul class="nav navbar-nav" id="main-navigation">
+                                    <li class="active"><a href="../mainpage.xhtml"><i class="fa fa-home"></i> Home</a></li>                               
+                                    <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
+                                    <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
+                                    <li><a href="recommendActivity.xhtml"><i class="fa fa-envelope"></i> Recommend Trip</a></li>
+                                    <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
+                                    <li><h:commandLink action="#{authenticationManagedBean.logout()}" ><i class="fa fa-user"></i> Log Out</h:commandLink></li>
+                                </ul>
+                                <!-- Main Menu Ends -->
+                            </div>
+                            <!-- Navigation Menu Ends -->
+                        </nav>
+                        <!-- Navbar Ends -->
+                    </div>
+                </header>
+                <!-- Header Ends -->
+
+
+
+                <div class="text-center" style="margin-top: 150px">
+                    <h3>Set Your Budget</h3>
+                </div>
+                <!--<form method="POST" action="ActivityServlet" >-->
+
                 <div class="slidecontainer" >
-<!--                    <h:inputText value="#{trippyManagedBean.searchValue}" a:name="myRange" class="slider" id="myRange"> 
-                     <f:validateLongRange minimum="1" maximum="100" />
-                    </h:inputText>-->
-                    <input type="range" max="100" min="1" value="50" name="myRange" class="slider" id="myRange" />
-                    <h3 style="text-align: center">$ <span id="demo"></span></h3>
+                    <h:inputText value="#{trippyManagedBean.searchValue}" a:type="range" a:max="100" a:min="1" a:name="myRange" class="slider" id="myRange" /> 
+
+                    <!--<input type="range" max="100" min="1" value="50" name="myRange" class="slider" id="myRange" />-->
+                    <h3 style="text-align: center">$<h:outputText value="#{trippyManagedBean.searchValue}" /> <span id="demo"></span></h3>
                 </div>
 
                 <div class="text-center" style="margin-top: 30px">
@@ -136,93 +133,89 @@ and open the template in the editor.
                 </div>
 
                 <div class ="buttondiv" style="height:200px">
-            
-        <!--                    <h:commandLink class="first-page-button" action="#{trippyManagedBean.setEverything()}"  value="EVERYTHING!" actionListener="#form:btn1" id="btn1" ></h:commandLink>
-                            <h:outputLink id="btn3" class="first-page-button" value="#form:btn3">Culture!</h:outputLink>
-                            <h:commandLink ><a id="btn1"  class="first-page-button" href="#btn1" onclick="showme(1)">Everything!</a></h:commandLink>
-                            <h:commandLink id="btn2" class="second-page-button" value="Adventure!" actionListener="#{trippyManagedBean.setEverything()}" action="filterTrip.xhtml#btn4?faces-redirect=false">  </h:commandLink>
-                            <h:commandLink><a id="btn3" class="third-page-button" href="#btn3" onclick="showme(3)">Culture!</a></h:commandLink>
-                            <h:commandLink><a id="btn4" class="fourth-page-button" href="#btn4" onclick="showme(4)">Foodie!</a></h:commandLink>
-                            <h:commandLink><a id="btn5" class="fifth-page-button" href="#btn5" onclick="showme(5)">Nightowl!</a></h:commandLink>-->
-                    <a id="btn1" class="first-page-button" href="#btn1" onclick="showme(1)">Everything!</a>
-                    <a id="btn2" class="second-page-button" href="#btn2" onclick="showme(2)">Adventure!</a>
-                    <a id="btn3" class="third-page-button" href="#btn3" onclick="showme(3)">Culture!</a>
-                    <a id="btn4" class="fourth-page-button" href="#btn4" onclick="showme(4)">Foodie!</a>
-                    <a id="btn5" class="fifth-page-button" href="#btn5" onclick="showme(5)">Nightowl!</a>
+
+                    <h:commandButton style="display:none" id="animalLink" action="#{trippyManagedBean.changeTypeToAnimal()}" 
+                                     value="click">
+                        <f:ajax/>
+                    </h:commandButton>
+                    <h:commandButton style="display:none" id="adventureLink" action="#{trippyManagedBean.changeTypeToAdventure()}" 
+                                     value="click">
+                        <f:ajax/>
+                    </h:commandButton>
+                    <h:commandButton style="display:none" id="foodieLink" action="#{trippyManagedBean.changeTypeToFoodie()}" 
+                                     value="click">
+                        <f:ajax/>
+                    </h:commandButton>
+                    <h:commandButton style="display:none" id="musicLink" action="#{trippyManagedBean.changeTypeToMusic()}" 
+                                     value="click">
+                        <f:ajax/>
+                    </h:commandButton>
+                    <h:commandButton style="display:none" id="cultureLink" action="#{trippyManagedBean.changeTypeToCulture()}" 
+                                     value="click">
+                        <f:ajax/>
+                    </h:commandButton>
+
+
+
+                    <a id="btn1" class="first-page-button" href="#btn1" onclick="invokeAnimalButton()">Animals!</a>
+                    <!--Adventure Animals and Wild Life-->
+                    <a id="btn2" class="second-page-button" href="#btn2" onclick="invokeAdventureButton()">Adventure!</a>
+                    <a id="btn3" class="third-page-button" href="#btn3" onclick="invokeCultureButton()">Culture!</a>
+                    <a id="btn4" class="fourth-page-button" href="#btn4" onclick="invokeFoodieButton()">Foodie!</a>
+                    <a id="btn5" class="fifth-page-button" href="#btn5" onclick="invokeMusicButton())">Nightowl!</a>
                 </div>                
                 <div class ="text-center">
                     <h:commandButton class="trippy-button" value="Trippy!" action="#{trippyManagedBean.generateRandomEvent()}" />
 
                     <!--<button class="trippy-button" type="submit" > Trippy! </button>-->
                 </div>
-                <h:inputHidden value="#{trippyManagedBean.searchTypeStr}" a:name="btnType" id = "btnType" />
 
 
-                <!--                <input 
-                                    id="btnType" type="hidden"
-                                    name="btnType"
-                                    value="" />-->
-                <!--                <h:inputHidden
-                                    id="btnType" 
-                                    value="" />-->
+                <div class="bottom-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
 
-                <!--            </form>-->
-            </h:form>
-            <div class="bottom-footer">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p class="text-center">Recommend Activity to us <a href ="recommendActivity.xhtml">here</a></p>
-                        <!-- Copyright Text Starts -->
-                        <p class="text-center">Copyright � 2018 FeelinTrippy All Rights Reserved</p>
-                        <!-- Copyright Text Ends -->
+                            <!-- Copyright Text Starts -->
+                            <p class="text-center">Copyright � 2018 FeelinTrippy All Rights Reserved</p>
+                            <!-- Copyright Text Ends -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Wrapper Ends -->
+            <!-- Wrapper Ends -->
 
-
+        </h:form>
         <!-- The script to get the variable for the item to be pass to the backend to filter -->
         <script >
-            function showme(count) {
-                test = "everything";
-                number = count;
-                switch (number) {
-                    case 1:
-                        test = "everything";
-                        btnType = test;
-                        break;
-                    case 2:
-                        test = "Adventure";
-                        btnType = test;
-                        break;
-                    case 3:
-                        test = "Art and Culture";
-                        btnType = test;
-                        break;
-                    case 4:
-                        test = "Foodie";
-                        btnType = test;
-                        break;
-                    case 5:
-                        test = "Music and Night Life";
-                        btnType = test;
-                        break;
-                    default:
-                        test = "everything";
-                        btnType = test;
-                }
-            #{trippyManagedBean.searchTypeStr} = test;
-                document.getElementById("btnType").value = test;
+
+            function invokeAnimalButton() {
+                var jsfCommandLink = document.getElementById("form:animalLink");
+                jsfCommandLink.click();
             }
 
-            function logout() {
-                session = request.getSession();
-                session.invalidate();
-
-                alert("Logout Successfully!");
-                document.location.href = 'mainPage.jsp';
+            function invokeAdventureButton() {
+                var jsfCommandLink = document.getElementById("form:adventureLink");
+                jsfCommandLink.click();
             }
+
+            function invokeMusicButton() {
+                var jsfCommandLink = document.getElementById("form:musicLink");
+                jsfCommandLink.click();
+            }
+
+            function invokeCultureButton() {
+                var jsfCommandLink = document.getElementById("form:cultureLink");
+                jsfCommandLink.click();
+            }
+
+            function invokeFoodieButton() {
+                var jsfCommandLink = document.getElementById("form:foodieLink");
+                jsfCommandLink.click();
+            }
+
+
+
+
             /*
              function testing(click){
              alert("You picked " + test);
@@ -259,6 +252,6 @@ and open the template in the editor.
         <!-- Main JS Initialization File -->
         <script src="../js/custom.js"></script>
 
-    </body>
+    </h:body>
 
 </html>

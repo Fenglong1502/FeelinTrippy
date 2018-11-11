@@ -85,10 +85,10 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
         List<TrippyEventItem> returnList = new ArrayList<TrippyEventItem>();
 
         for (TrippyEventItem tItem : checkList) {
-            for (TrippyEventType tType : tItem.getEventType()) {
-                if (tType.getTypeName().equals(type.getTypeName())) {
+            
+                if (tItem.getEventTypeString().equals(type.getTypeName())) {
                     returnList.add(tItem);
-                }
+                
             }
         }
         return returnList;

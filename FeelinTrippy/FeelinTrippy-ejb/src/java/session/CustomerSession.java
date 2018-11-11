@@ -208,6 +208,8 @@ public class CustomerSession implements CustomerSessionLocal {
         Customer cust = em.find(Customer.class, c.getUserID());
         String recipientEmail = cust.getEmail();
         String newPassword = new RandomPassword().generateRandomPassword();
+        cust.setPassword(encryptPassword(newPassword));
+        em.flush();
 
         String msg = "Your password has been reset! Please login with the new password:\n\"" + newPassword + "\"";
         sendEmail(recipientEmail, "Reset Password", msg);

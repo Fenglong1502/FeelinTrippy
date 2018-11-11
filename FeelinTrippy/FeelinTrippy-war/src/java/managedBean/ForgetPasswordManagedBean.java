@@ -31,6 +31,8 @@ public class ForgetPasswordManagedBean {
         try {
             Customer c = customerSessionLocal.getCustomerByEmail(email);
             if (c != null) {
+                customerSessionLocal.forgetPassword(c);
+                
                 return "emailExist.xhtml";
             } else {
                 return "emailDoesNotExist.xhtml";
