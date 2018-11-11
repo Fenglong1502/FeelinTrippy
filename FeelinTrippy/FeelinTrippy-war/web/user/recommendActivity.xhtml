@@ -85,87 +85,88 @@ and open the template in the editor.
                     <!-- Navbar Ends -->
                 </div>
             </header>  
-            <div class="container-fluid user-auth">
-                <div>
 
-                    <!-- Slider Starts -->
-
-                    <!-- Slider Ends -->
-                </div>
-                <div>
+            <section class="portfolio">
+                <!-- Container Starts -->
+                <div class="container">
                     <!-- Logo Starts -->
                     <a class="visible-xs" href="filterTrip.xhtml">
                         <img class="img-responsive mobile-logo" src="../img/logo.png" alt="logo"></img>
                     </a>
                     <!-- Logo Ends -->
-                    <div class="filtr-container">
-                        <div class="form-container">
-                            <section class="content">
-                                <!-- Main Heading Starts -->
-                                <div class="text-center top-text">
-                                    <h1><span>Recommend</span> Activity</h1>
-                                    <p></p>
+
+                    <div class="form-container">
+
+                        <section class="content">
+
+                            <!-- Main Heading Starts -->
+                            <div class="text-center top-text">
+                                <h1><span>Recommend</span> Activity</h1>
+                                <p></p>
+                            </div>
+                            <!-- Main Heading Ends -->
+                            <!-- Form Starts -->
+                            <h:form enctype="multipart/form-data">
+                                <!-- Input Field Starts -->
+                                <div class="form-group-sm">
+
+                                    <h:inputText class="form-control" value="#{recommendActivityManagedBean.eventName}" id="eventName" a:placeholder="Trip Name" required="true">
+                                        
+                                    </h:inputText>
+                                    <h:messages for="eventName"  globalOnly="true" errorStyle="color: red"/>
+                                    <br></br>
+                                    <h:inputTextarea  rows = "7" cols = "15" class="form-control" value="#{recommendActivityManagedBean.eventDescription}" id="eventDescription" a:placeholder="Trip Description" required="true">
+
+                                    </h:inputTextarea>
+                                    <br></br>
+                                    <h:inputText   class="form-control" value="#{recommendActivityManagedBean.price}" id="price" a:placeholder="Trip Price" required="true">
+
+                                    </h:inputText>
+                                    <br></br>
+                                    <h:selectOneMenu id="eventType" value="#{recommendActivityManagedBean.eventType}">
+                                        <f:selectItem itemValue="Adventure" itemLabel="Animal" />
+                                        <f:selectItem itemValue="Adventure" itemLabel="Adventure" />
+                                        <f:selectItem itemValue="Culture" itemLabel="Culture" />
+                                        <f:selectItem itemValue="Foodie" itemLabel="Foodie" />
+                                        <f:selectItem itemValue="Nightowl" itemLabel="Nightowl" />
+                                    </h:selectOneMenu>
+                                    <br></br>
+                                    <br></br>
+                                    <h:inputFile value="#{recommendActivityManagedBean.file}">
+                                        <f:passThroughAttribute name="accept" value="image/jpeg"/>
+                                    </h:inputFile>
+
+
+                                    <br></br>
+                                    <h:inputText class="form-control" value="#{recommendActivityManagedBean.address}" id="address" a:placeholder="Trip Address" required="true" />
+
+                                    <br></br>
+                                    <h:commandButton class="custom-button login" value="Submit Activity" action="#{recommendActivityManagedBean.save(authenticationManagedBean.loggedInCustomer)}" ></h:commandButton>
+
                                 </div>
-                                <!-- Main Heading Ends -->
-                                <!-- Form Starts -->
-                                <h:form enctype="multipart/form-data">
-                                    <!-- Input Field Starts -->
-                                    <div class="form-group">
-
-                                        <h:inputText class="form-control" value="#{recommendActivityManagedBean.eventName}" id="eventName" a:placeholder="eventName" required="true">
-
-                                        </h:inputText>
-                                        <br></br>
-                                        <h:inputTextarea  rows = "10" cols = "15" class="form-control" value="#{recommendActivityManagedBean.eventDescription}" id="eventDescription" a:placeholder="eventDescription" required="true">
-
-                                        </h:inputTextarea>
-                                        <br></br>
-                                        <h:inputText   class="form-control" value="#{recommendActivityManagedBean.price}" id="price" a:placeholder="price" required="true">
-
-                                        </h:inputText>
-                                        <br></br>
-                                        <h:selectOneMenu id="eventType" value="#{recommendActivityManagedBean.eventType}">
-                                            <f:selectItem itemValue="Adventure" itemLabel="Animal" />
-                                            <f:selectItem itemValue="Adventure" itemLabel="Adventure" />
-                                            <f:selectItem itemValue="Culture" itemLabel="Culture" />
-                                            <f:selectItem itemValue="Foodie" itemLabel="Foodie" />
-                                            <f:selectItem itemValue="Nightowl" itemLabel="Nightowl" />
-                                        </h:selectOneMenu>
-                                        <br></br>
-                                        <br></br>
-                                        <h:inputFile value="#{recommendActivityManagedBean.imgFile}">
-                                            <!--<f:ajax listener="" />-->
-                                        </h:inputFile>
-
-                                        <br></br>
-                                        <h:inputTextarea  rows = "5" cols = "5" class="form-control" value="#{recommendActivityManagedBean.address}" id="address" a:placeholder="address" required="true">
-
-                                        </h:inputTextarea>
-                                        <br></br>
-                                        <h:commandButton class="custom-button login" value="Submit Activity" action="#{recommendActivityManagedBean.save(authenticationManagedBean.loggedInCustomer)}" ></h:commandButton>
-
-                                    </div>
 
 
 
-                                    <!-- Input Field Ends -->
-                                    <!-- Submit Form Button Starts -->
-                                    <!-- Submit Form Button Ends -->
-                                </h:form>
-                                <!-- Form Ends -->
-                            </section>
-                        </div>
-                        <!-- Copyright Text Starts -->
+                                <!-- Input Field Ends -->
+                                <!-- Submit Form Button Starts -->
+                                <!-- Submit Form Button Ends -->
+                            </h:form>
+
+                            <!-- Form Ends -->
+                        </section>
+
                     </div>
+                    <!-- Copyright Text Starts -->
+
 
                 </div>
+            </section>
+            <!-- Copyright Text Starts -->
+            <p class="text-center">Copyright � 2018 FeelinTrippy All Rights Reserved</p>
+            <!-- Copyright Text Ends -->
 
-                <!-- Copyright Text Starts -->
-                <p class="text-center">Copyright � 2018 FeelinTrippy All Rights Reserved</p>
-                <!-- Copyright Text Ends -->
+            <!-- Copyright Text Ends -->
 
-                <!-- Copyright Text Ends -->
-            </div>
         </div>
         <!-- Wrapper Ends -->
 

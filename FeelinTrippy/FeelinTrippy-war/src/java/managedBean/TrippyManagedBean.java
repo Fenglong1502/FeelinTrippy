@@ -67,7 +67,7 @@ public class TrippyManagedBean implements Serializable {
     }
 
     public TrippyManagedBean() {
-        
+
     }
 
     public String generateRandomEvent() {
@@ -121,7 +121,7 @@ public class TrippyManagedBean implements Serializable {
         }
         c = customerSessionLocal.getCustomerById(c.getUserID());
         authBean.setLoggedInCustomer(c);
-        
+
         return "mySavedTrips.xhtml?faces-redirect=true";
     }
 
@@ -161,6 +161,11 @@ public class TrippyManagedBean implements Serializable {
         searchTypeStr = "Foodie";
     }
 
+    public boolean checkIfTripExist() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Long cId = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
+        return customerSessionLocal.isEventExist(selectedEventItem, cId);
+    }
 //    public void assignSelectedEventItem(ActionEvent event) {
 //        
 //	selectedEventItem = (TrippyEventItem)event.getComponent().getAttributes().get("event");

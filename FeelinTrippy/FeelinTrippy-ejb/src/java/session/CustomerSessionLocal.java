@@ -51,4 +51,6 @@ public interface CustomerSessionLocal {
     public boolean isEventExist(TrippyEventItem item, Long id);
     public List<BookedActivity> getPastTripByType(TrippyEventType type, Customer c);
     
+    //For ActivityDetails Button Check
+    
 }
