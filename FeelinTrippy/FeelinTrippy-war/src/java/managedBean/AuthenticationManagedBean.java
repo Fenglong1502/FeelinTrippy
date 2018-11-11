@@ -44,8 +44,6 @@ public class AuthenticationManagedBean implements Serializable {
     }
 
     public String login() throws NoResultException {
-        if (email.equals("admin")) {
-//            id = 0L;
             Customer u = new Customer(email, encryptPassword(password));
             if (customerSessionLocal.Login(u) == true) {
                 if (customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false) {
@@ -64,7 +62,6 @@ public class AuthenticationManagedBean implements Serializable {
                     } else {
                         return "/user/filterTrip.xhtml?faces-redirect=true";
                     }
-
                 }
             } else {
 
@@ -74,32 +71,7 @@ public class AuthenticationManagedBean implements Serializable {
 
                 return "/login.xhtml";
             }
-//            return "/admin/adminIndex.xhtml?faces-redirect=true";
-        } else {
-            Customer u = new Customer(email, encryptPassword(password));
-            if (customerSessionLocal.Login(u) == true) {
-                if (customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false) {
-                    return "/login.xhtml";
-                } else {
-                    loggedInCustomer = customerSessionLocal.getCustomerByEmail(email);
-                    id = loggedInCustomer.getUserID();
-                    setFirstName(loggedInCustomer.getFirstName());
-                    setLastName(loggedInCustomer.getLastName());
-                    setGender(loggedInCustomer.getGender());
-                    setMobileNumber(loggedInCustomer.getMobileNumber());
-                    setPoints(loggedInCustomer.getPoints());
-
-                    return "/user/filterTrip.xhtml?faces-redirect=true";
-                }
-            } else {
-
-                email = null;
-                password = null;
-                id = -1L;
-
-                return "/login.xhtml";
-            }
-        }
+       
     }
     public boolean getIsAdmin() {
         return isAdmin;
