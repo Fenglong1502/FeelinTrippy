@@ -95,7 +95,7 @@ and open the template in the editor.
                     </a>
                     <!-- Logo Ends -->
 
-                    <div class="form-container">
+                    <div class="filtr-container">
 
                         <section class="content">
 
@@ -106,51 +106,53 @@ and open the template in the editor.
                             </div>
                             <!-- Main Heading Ends -->
                             <!-- Form Starts -->
-                            <h:form enctype="multipart/form-data">
-                                <!-- Input Field Starts -->
-                                <div class="form-group-sm">
+                            <div class="filtr-container">
+                                <h:form enctype="multipart/form-data">
+                                    <!-- Input Field Starts -->
+                                    <div class="form-group-sm">
 
-                                    <h:inputText class="form-control" value="#{recommendActivityManagedBean.eventName}" id="eventName" a:placeholder="Trip Name" required="true">
-                                        
-                                    </h:inputText>
-                                    <h:messages for="eventName"  globalOnly="true" errorStyle="color: red"/>
-                                    <br></br>
-                                    <h:inputTextarea  rows = "7" cols = "15" class="form-control" value="#{recommendActivityManagedBean.eventDescription}" id="eventDescription" a:placeholder="Trip Description" required="true">
+                                        <h:inputText class="form-control" value="#{recommendActivityManagedBean.eventName}" id="eventName" a:placeholder="Trip Name" required="true">
 
-                                    </h:inputTextarea>
-                                    <br></br>
-                                    <h:inputText   class="form-control" value="#{recommendActivityManagedBean.price}" id="price" a:placeholder="Trip Price" required="true">
+                                        </h:inputText>
+                                        <h:messages for="eventName"  globalOnly="true" errorStyle="color: red"/>
+                                        <br></br>
+                                        <h:inputTextarea  rows = "7" cols = "15" class="form-control" value="#{recommendActivityManagedBean.eventDescription}" id="eventDescription" a:placeholder="Trip Description" required="true">
 
-                                    </h:inputText>
-                                    <br></br>
-                                    <h:selectOneMenu id="eventType" value="#{recommendActivityManagedBean.eventType}">
-                                        <f:selectItem itemValue="Adventure" itemLabel="Animal" />
-                                        <f:selectItem itemValue="Adventure" itemLabel="Adventure" />
-                                        <f:selectItem itemValue="Culture" itemLabel="Culture" />
-                                        <f:selectItem itemValue="Foodie" itemLabel="Foodie" />
-                                        <f:selectItem itemValue="Nightowl" itemLabel="Nightowl" />
-                                    </h:selectOneMenu>
-                                    <br></br>
-                                    <br></br>
-                                    <h:inputFile value="#{recommendActivityManagedBean.file}">
-                                        <f:passThroughAttribute name="accept" value="image/jpeg"/>
-                                    </h:inputFile>
+                                        </h:inputTextarea>
+                                        <br></br>
+                                        <h:inputText   class="form-control" value="#{recommendActivityManagedBean.price}" id="price" a:placeholder="Trip Price" required="true">
 
-
-                                    <br></br>
-                                    <h:inputText class="form-control" value="#{recommendActivityManagedBean.address}" id="address" a:placeholder="Trip Address" required="true" />
-
-                                    <br></br>
-                                    <h:commandButton class="custom-button login" value="Submit Activity" action="#{recommendActivityManagedBean.save(authenticationManagedBean.loggedInCustomer)}" ></h:commandButton>
-
-                                </div>
+                                        </h:inputText>
+                                        <br></br>
+                                        <h:selectOneMenu id="eventType" value="#{recommendActivityManagedBean.eventType}">
+                                            <f:selectItem itemValue="Animal" itemLabel="Animal" />
+                                            <f:selectItem itemValue="Adventure" itemLabel="Adventure" />
+                                            <f:selectItem itemValue="Culture" itemLabel="Culture" />
+                                            <f:selectItem itemValue="Foodie" itemLabel="Foodie" />
+                                            <f:selectItem itemValue="Nightowl" itemLabel="Nightowl" />
+                                        </h:selectOneMenu>
+                                        <br></br>
+                                        <br></br>
+                                        <h:inputFile value="#{recommendActivityManagedBean.file}">
+                                            <f:passThroughAttribute name="accept" value="image/jpeg"/>
+                                        </h:inputFile>
 
 
+                                        <br></br>
+                                        <h:inputText class="form-control" value="#{recommendActivityManagedBean.address}" id="address" a:placeholder="Trip Address" required="true" />
 
-                                <!-- Input Field Ends -->
-                                <!-- Submit Form Button Starts -->
-                                <!-- Submit Form Button Ends -->
-                            </h:form>
+                                        <br></br>
+                                        <h:commandButton class="custom-button login" value="Submit Activity" action="#{recommendActivityManagedBean.save(authenticationManagedBean.loggedInCustomer)}" ></h:commandButton>
+
+                                    </div>
+
+
+
+                                    <!-- Input Field Ends -->
+                                    <!-- Submit Form Button Starts -->
+                                    <!-- Submit Form Button Ends -->
+                                </h:form>
+                            </div>
 
                             <!-- Form Ends -->
                         </section>
