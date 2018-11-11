@@ -317,7 +317,7 @@ public class adminManagedBean {
                 this.setSoftDeleteString("false");
 
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to event Type"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to get Prize"));
         }
         
         setSelectedPrize(prizeSessionLocal.getPrizeById(getPrizeID()));
@@ -381,11 +381,20 @@ public class adminManagedBean {
         toUpdate.setPrizePoint(getPrizePoint());
         toUpdate.setPrizeQty(getPrizeQty());
         toUpdate.setPrizeDescription(getPrizeDescription());
-        toUpdate.setSoftDelete(false);
+        if(getSoftDeleteString().equals("true"))
+            toUpdate.setSoftDelete(true);
+        else
+            toUpdate.setSoftDelete(false);
+        
+        
+//        if(getSoftDeleteString().equals("true"))
+//            toUpdate.setSoftDelete((Boolean) true);
+//        else
+//            toUpdate.setSoftDelete((Boolean) false);
+//        //toUpdate.setSoftDelete(getSoftDelete());
         toUpdate.setPrizeImage(getPrizeImage());
         prizeSessionLocal.updatePrize(toUpdate);
         return "managePrize.xhtml?faces-redirect=true";
-
     }
     
     public String createPrize() throws ParseException {

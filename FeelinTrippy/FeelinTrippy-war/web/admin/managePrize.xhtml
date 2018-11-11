@@ -11,54 +11,54 @@ and open the template in the editor.
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./adminTemplate.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">Manage Reward</ui:define>
+    <ui:define name="title">Manage Prize</ui:define>
 
     <ui:define name="content">
 
         <h:form id="form">
-            <h:dataTable class="table table-hover table-light" var="prizeReward"
+            <h:dataTable class="table table-hover table-light" var="prize"
                          value="#{adminManagedBean.listOfPrize}">
 
-                <h:column rowHeader="rewardID">
-                    <f:facet name="header">Reward ID</f:facet>
-                    <h:outputText value="#{prizeReward.prizeID}"/>
+                <h:column rowHeader="prizeID">
+                    <f:facet name="header">Prize ID</f:facet>
+                    <h:outputText value="#{prize.prizeID}"/>
                 </h:column>
 
-                <h:column rowHeader="rewardName">
-                    <f:facet name="header">Reward Name</f:facet>
-                    <h:outputText value="#{prizeReward.prizeName}"/>
+                <h:column rowHeader="prizeName">
+                    <f:facet name="header">Prize Name</f:facet>
+                    <h:outputText value="#{prize.prizeName}"/>
                 </h:column>
 
-                <h:column rowHeader="rewardDescription">
-                    <f:facet name="header">Reward Description</f:facet>
-                    <h:outputText value="#{prizeReward.prizeDescription}"/>
+                <h:column rowHeader="prizeDescription">
+                    <f:facet name="header">Prize Description</f:facet>
+                    <h:outputText value="#{prize.prizeDescription}"/>
                 </h:column>
 
-                <h:column rowHeader="points">
-                    <f:facet name="header">Points</f:facet>
-                    <h:outputText value="#{prizeReward.prizePoint}"/>
+                <h:column rowHeader="prizePoints">
+                    <f:facet name="header">Prize Points</f:facet>
+                    <h:outputText value="#{prize.prizePoint}"/>
                 </h:column>
 
-                <h:column rowHeader="quantity">
-                    <f:facet name="header">Quantity</f:facet>
-                    <h:outputText value="#{prizeReward.prizeQty}"/>
+                <h:column rowHeader="prize Quantity">
+                    <f:facet name="header">Prize Quantity</f:facet>
+                    <h:outputText value="#{prize.prizeQty}"/>
                 </h:column>
 
                 <h:column rowHeader="image">
-                    <f:facet name="header">Image Link</f:facet>
-                    <h:outputText value="#{prizeReward.prizeImage}"/>
+                    <f:facet name="header">Prize Image Link</f:facet>
+                    <h:outputText value="#{prize.prizeImage}"/>
 
                 </h:column>
                 
                 <h:column rowHeader="softdelete">
                     <f:facet name="header">Soft Delete</f:facet>
-                    <h:outputText value="#{prizeReward.softDelete}"/>
+                    <h:outputText value="#{prize.softDelete}"/>
 
                 </h:column>
 
                 <h:column>
                     <h:button value="Edit" outcome="editPrize.xhtml">
-                        <f:param name="prizeID" value="#{prizeReward.prizeID}" />
+                        <f:param name="prizeID" value="#{prize.prizeID}" />
                     </h:button>
                 </h:column>
 
