@@ -32,70 +32,65 @@ and open the template in the editor.
 
     </head>
 
-    <body class="double-diagonal dark auth-page">
-        <h:form>
-            <!-- Page Wrapper Starts -->
-            <div class="wrapper">
-                <header class="header">
-                    <div class="header-inner">
-                        <!-- Navbar Starts -->
-                        <nav class="navbar">
-                            <!-- Logo Starts -->
-                            <div class="logo">
-                                <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.jsp">
-                                    <!-- Logo White Starts -->
-                                    <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
-                                    <!-- Logo White Ends -->
-                                    <!-- Logo Black Starts -->
-                                    <img id="logo-dark" class="logo-dark" src="../img/logo.png" alt="logo-dark" />
-                                    <!-- Logo Black Ends -->
-                                </a>
-                            </div>
-                            <!-- Logo Ends -->
-                            <!-- Toggle Icon for Mobile Starts -->
-                            <button class="navbar-toggle navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span id="icon-toggler">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </span>
-                            </button>
-                            <!-- Toggle Icon for Mobile Ends -->
-                            <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
-                                <!-- Main Menu Starts -->
-                                <ul class="nav navbar-nav" id="main-navigation">
-                                    <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
-                                    <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
-                                    <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
-                                    <li><a href="recommendActivity.xhtml"><i class="fa fa-envelope"></i> Recommend Trip</a></li>
-                                    <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>		
-                                    <li><h:commandLink action="#{authenticationManagedBean.logout()}" ><i class="fa fa-user"></i> Log Out</h:commandLink></li>
-                                </ul>
-                                <!-- Main Menu Ends -->
-                            </div>
-                            <!-- Search Input Starts -->
+    <body class="double-diagonal dark portfolio-page">
 
-                            <!-- Search Input Ends -->
-                            <!-- Navigation Menu Ends -->
-                        </nav>
-                        <!-- Navbar Ends -->
-                    </div>
-                </header>  
-                <div class="container-fluid user-auth">
-                    <div>
-
-                        <!-- Slider Starts -->
-
-                        <!-- Slider Ends -->
-                    </div>
-                    <div>
+        <!-- Page Wrapper Starts -->
+        <div class="wrapper">
+            <header class="header">
+                <div class="header-inner">
+                    <!-- Navbar Starts -->
+                    <nav class="navbar">
                         <!-- Logo Starts -->
+                        <div class="logo">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.jsp">
+                                <!-- Logo White Starts -->
+                                <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
+                                <!-- Logo White Ends -->
+                                <!-- Logo Black Starts -->
+                                <img id="logo-dark" class="logo-dark" src="../img/logo.png" alt="logo-dark" />
+                                <!-- Logo Black Ends -->
+                            </a>
+                        </div>
+                        <!-- Logo Ends -->
+                        <!-- Toggle Icon for Mobile Starts -->
+                        <button class="navbar-toggle navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span id="icon-toggler">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </button>
+                        <!-- Toggle Icon for Mobile Ends -->
+                        <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
+                            <!-- Main Menu Starts -->
+                            <ul class="nav navbar-nav" id="main-navigation">
+                                <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
+                                <li><a href="mySavedTrips.xhtml"><i class="fa fa-user"></i> Saved Trips</a></li>
+                                <li><a href="myPastTrips.xhtml"><i class="fa fa-user"></i> Past Trips</a></li>
+                                <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>		
+                                <li><a href="logout.xhtml"><i class="fa fa-envelope"></i> Logout</a></li>
+                            </ul>
+                            <!-- Main Menu Ends -->
+                        </div>
+                        <!-- Search Input Starts -->
+
+                        <!-- Search Input Ends -->
+                        <!-- Navigation Menu Ends -->
+                    </nav>
+                    <!-- Navbar Ends -->
+                </div>
+            </header>  
+            <div class="container-fluid user-auth">
+                <section class="portfolio">
+                    <div  class="container">
+                        <!-- Logo Starts -->
+
                         <a class="visible-xs" href="filterTrip.xhtml">
                             <img class="img-responsive mobile-logo" src="../img/logo.png" alt="logo"></img>
                         </a>
                         <!-- Logo Ends -->
-                        <div class="form-container">
+                        <div class="form-container" >
                             <div>
                                 <!-- Main Heading Starts -->
                                 <div class="text-center top-text">
@@ -104,54 +99,56 @@ and open the template in the editor.
                                 </div>
                                 <!-- Main Heading Ends -->
                                 <!-- Form Starts -->
+                                <h:form>
+                                    <!-- Input Field Starts -->
+                                    <div class="form-group">
+                                        <h:inputText  id="firstname" value="#{authenticationManagedBean.firstName}"  >
+                                        </h:inputText>
 
-                                <!-- Input Field Starts -->
-                                <div class="form-group">
-                                    <h:inputText  id="firstname" value="#{authenticationManagedBean.firstName}"  >
-                                    </h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputText  id="lastname" value="#{authenticationManagedBean.lastName}" >
+                                        </h:inputText>
+                                    </div>
+                                    <!-- Input Field Ends -->
 
-                                </div>
-                                <div class="form-group">
-                                    <h:inputText  id="lastname" value="#{authenticationManagedBean.lastName}" >
-                                    </h:inputText>
-                                </div>
-                                <!-- Input Field Ends -->
+                                    <!-- Input Field Starts -->
+                                    <div class="form-group">
+                                        <h:inputSecret  id="password" value="#{authenticationManagedBean.password}">
+                                        </h:inputSecret>
+                                    </div>
 
-                                <!-- Input Field Starts -->
-                                <div class="form-group">
-                                    <h:inputSecret  id="password" value="#{authenticationManagedBean.password}">
-                                    </h:inputSecret>
-                                </div>
+                                    <div class="form-group">
 
-                                <div class="form-group">
+                                        <h:selectOneMenu value="#{authenticationManagedBean.gender}">
+                                            <f:selectItem itemValue="1" itemLabel="Female" />
+                                            <f:selectItem itemValue="2" itemLabel="Male" />
+                                        </h:selectOneMenu><br/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputText  id="mobilenumber" value="#{authenticationManagedBean.mobileNumber}"  >
+                                        </h:inputText>
+                                    </div>
 
-                                    <h:selectOneMenu value="#{authenticationManagedBean.gender}">
-                                        <f:selectItem itemValue="1" itemLabel="Female" />
-                                        <f:selectItem itemValue="2" itemLabel="Male" />
-                                    </h:selectOneMenu><br/>
-                                </div>
-                                <div class="form-group">
-                                    <h:inputText  id="mobilenumber" value="#{authenticationManagedBean.mobileNumber}"  >
-                                    </h:inputText>
-                                </div>
+                                    <div class="form-group">
+                                        <h:commandButton class="custom-button" value="Update" action="#{authenticationManagedBean.update()}"></h:commandButton>
 
-                                <div class="form-group">
-                                    <h:commandButton class="custom-button" value="Update" action="#{authenticationManagedBean.update()}"></h:commandButton>
-
-                                </div>
-                                <!-- Submit Form Button Ends -->
-
+                                    </div>
+                                    <!-- Submit Form Button Ends -->
+                                </h:form>
                                 <!-- Form Ends -->
                             </div>
                         </div>
-                        <!-- Copyright Text Starts -->
-                        <p class="text-center copyright-text">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
-                        <!-- Copyright Text Ends -->
                     </div>
-                </div>
+                </section>
+                <!-- Copyright Text Starts -->
+                <p class="text-center copyright-text">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                <!-- Copyright Text Ends -->
             </div>
-            <!-- Wrapper Ends -->
-        </h:form>
+        </div>
+
+        <!-- Wrapper Ends -->
+
         <!-- Template JS Files -->
         <script src="../js/jquery-2.2.4.min.js"></script>
         <script src="../js/plugins/jquery.easing.1.3.js"></script>
