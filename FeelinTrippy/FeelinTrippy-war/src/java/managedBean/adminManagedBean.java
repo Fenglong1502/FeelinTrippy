@@ -21,6 +21,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.NoResultException;
 import session.CustomerSessionLocal;
 import session.PrizeSessionLocal;
 import session.TrippyEventSessionLocal;
@@ -56,7 +57,7 @@ public class adminManagedBean {
 
     @EJB
     CustomerSessionLocal customerSessionLocal;
-    
+
     @EJB
     PrizeSessionLocal prizeSessionLocal;
 
@@ -88,7 +89,7 @@ public class adminManagedBean {
     private int prizeQty;
     private String prizeString;
     private String prizeImageString;
-    private String prizeImage;    
+    private String prizeImage;
     private List<String> prizeStringArray;
     private List<String> prizeImageStringArray;
 
@@ -107,14 +108,14 @@ public class adminManagedBean {
         setListOfCustomer(customerSessionLocal.retrieveAllCustomer());
         setListOfPrize(prizeSessionLocal.getAllPrize());
     }
-    
+
     public void activateTrip(TrippyEventItem toUpdate) {
         System.out.println("Activating trip");
         toUpdate.setSoftDelete(false);
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
         init();
     }
-    
+
     public void deactivateTrip(TrippyEventItem toUpdate) {
         System.out.println("Deactivating trip");
         toUpdate.setSoftDelete(true);
@@ -159,13 +160,11 @@ public class adminManagedBean {
             count++;
         }
         if (getEventTypeString().length() != 0) {
-            if (getEventTypeString().charAt(getEventTypeString().length()-1) == ',') {
-            setEventTypeString(getEventTypeString().substring(0, getEventTypeString().length() - 1));
+            if (getEventTypeString().charAt(getEventTypeString().length() - 1) == ',') {
+                setEventTypeString(getEventTypeString().substring(0, getEventTypeString().length() - 1));
+            }
         }
-        }
-        
-        
-        
+
         count = 0;
 //        if (eventImage.size() > 0) {
 //            while (count <= eventImage.size() - 1) {
@@ -200,44 +199,45 @@ public class adminManagedBean {
 
     public void createTrippyEventItem() throws ParseException {
 //        System.out.println("Entering creating trippy event item");
-        TrippyEventItem toCreate = new TrippyEventItem();
-        toCreate.setEventName(getEventName());
-        toCreate.setPoint(getPoint());
-        toCreate.setPrice(getPrice());
-        toCreate.setAddress(getAddress());
-        toCreate.setEventDescription(getEventDescription());
-        toCreate.setSoftDelete(false);
-        SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
-        String stringDate = dt.format(getStartDate());
-        toCreate.setStartDate(dt.parse(stringDate));
-        stringDate = dt.format(getEndDate());
-        toCreate.setEndDate(dt.parse(stringDate));
+        try {
+            TrippyEventItem toCreate = new TrippyEventItem();
+            toCreate.setEventName(getEventName());
+            toCreate.setPoint(getPoint());
+            toCreate.setPrice(getPrice());
+            toCreate.setAddress(getAddress());
+            toCreate.setEventDescription(getEventDescription());
+            toCreate.setSoftDelete(false);
+            SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
+            String stringDate = dt.format(getStartDate());
+            toCreate.setStartDate(dt.parse(stringDate));
+            stringDate = dt.format(getEndDate());
+            toCreate.setEndDate(dt.parse(stringDate));
 //        eventImage = Arrays.asList(eventImageString.split(","));
-        setEventTypeStringArray(Arrays.asList(getEventTypeString().split(",")));
-        int count = 0;
-        TrippyEventType toBeAdded;
-        getEventType().clear();
-        setEventTypeString("");
-        while (count <= getEventTypeStringArray().size() - 1) {
-            try {
-                toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(getEventTypeStringArray().get(count).trim());
+            setEventTypeStringArray(Arrays.asList(getEventTypeString().split(",")));
+            int count = 0;
+            TrippyEventType toBeAdded;
+            getEventType().clear();
+            setEventTypeString("");
+            while (count <= getEventTypeStringArray().size() - 1) {
+                try {
+                    toBeAdded = trippyEventTypeSessionLocal.searchTrippyEventType(getEventTypeStringArray().get(count).trim());
 //                System.out.println("Tobeadded: " + toBeAdded);
 //                System.out.println("Checking: " + eventTypeStringArray.get(count));
-                if (toBeAdded != null) {
-                    getEventType().add(toBeAdded);
-                    setEventTypeString(getEventTypeString() + getEventTypeStringArray().get(count).trim() + ",");
-                }
-            } catch (Exception e) {
+                    if (toBeAdded != null) {
+                        getEventType().add(toBeAdded);
+                        setEventTypeString(getEventTypeString() + getEventTypeStringArray().get(count).trim() + ",");
+                    }
+                } catch (Exception e) {
 
+                }
+                count++;
             }
-            count++;
-        }
-        
-        if (getEventTypeString().length() != 0) {
-            if (getEventTypeString().charAt(getEventTypeString().length()-1) == ',') {
-            setEventTypeString(getEventTypeString().substring(0, getEventTypeString().length() - 1));
-        }
-        }
+
+            if (getEventTypeString().length() != 0) {
+                if (getEventTypeString().charAt(getEventTypeString().length() - 1) == ',') {
+                    setEventTypeString(getEventTypeString().substring(0, getEventTypeString().length() - 1));
+                }
+            }
 //        count = 0;
 //        eventImageStringArray.clear();
 //        while (count <= eventImage.size() - 1) {
@@ -245,62 +245,69 @@ public class adminManagedBean {
 //            count++;
 //        }
 
-        toCreate.setEventImage(getEventImageString());
-        toCreate.setEventTypeString(getEventTypeString());
-        toCreate.setEventType(getEventType());
-        trippyEventSessionLocal.createTrippyEvent(toCreate);
+            toCreate.setEventImage(getEventImageString());
+            toCreate.setEventTypeString(getEventTypeString());
+            toCreate.setEventType(getEventType());
+
+            trippyEventSessionLocal.createTrippyEvent(toCreate);
+        } catch (Exception e) {
+
+        }
+
         init();
     }
 
     public String createEventType() {
         TrippyEventType newType = new TrippyEventType();
         newType.setTypeName(getEventTypeName());
-        if(getSoftDeleteString().equals("true"))
+        if (getSoftDeleteString().equals("true")) {
             setSoftDelete((Boolean) true);
-        else
+        } else {
             setSoftDelete((Boolean) false);
+        }
         newType.setSoftDelete(getSoftDelete());
 
         trippyEventTypeSessionLocal.createTrippyType(newType);
-        
+
         return "searchTrippyEventType.xhtml?faces-redirect=true";
     }
 
     public String updateEventType() {
-        if(getSoftDeleteString().equals("true"))
+        if (getSoftDeleteString().equals("true")) {
             setSoftDelete((Boolean) true);
-        else
+        } else {
             setSoftDelete((Boolean) false);
+        }
         TrippyEventType newType = new TrippyEventType();
         newType.setTypeID(getTypeID());
         newType.setTypeName(getEventTypeName());
         newType.setSoftDelete(getSoftDelete());
 
         trippyEventTypeSessionLocal.updateTrippyType(newType);
-        
+
         return "searchTrippyEventType.xhtml?faces-redirect=true";
     }
-    
-    public void loadSelectedType(){
+
+    public void loadSelectedType() {
         FacesContext context = FacesContext.getCurrentInstance();
 
         try {
             this.setSelectedType(trippyEventTypeSessionLocal.getTypeById(getTypeID()));
             setEventTypeName(getSelectedType().getTypeName());
             setSoftDelete(getSelectedType().getSoftDelete());
-            if(getSoftDelete() == true)
+            if (getSoftDelete() == true) {
                 this.setSoftDeleteString("true");
-            else
+            } else {
                 this.setSoftDeleteString("false");
-
+            }
+            setSelectedType(trippyEventTypeSessionLocal.getTypeById(getTypeID()));
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to event Type"));
         }
-        
-        setSelectedType(trippyEventTypeSessionLocal.getTypeById(getTypeID()));
+            
     }
-    
-    public void loadSelectedPrize(){
+
+    public void loadSelectedPrize() {
         FacesContext context = FacesContext.getCurrentInstance();
 
         try {
@@ -311,31 +318,35 @@ public class adminManagedBean {
             this.prizePoint = selectedPrize.getPrizePoint();
             this.prizeQty = selectedPrize.getPrizeQty();
             setSoftDelete(getSelectedPrize().getSoftDelete());
-            if(getSoftDelete() == true)
+            if (getSoftDelete() == true) {
                 this.setSoftDeleteString("true");
-            else
+            } else {
                 this.setSoftDeleteString("false");
+            }
 
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to get Prize"));
         }
-        
-        setSelectedPrize(prizeSessionLocal.getPrizeById(getPrizeID()));
+        try {
+            setSelectedPrize(prizeSessionLocal.getPrizeById(getPrizeID()));
+        } catch (Exception e) {
+
+        }
     }
-    
-    public void deleteType(){
+
+    public void deleteType() {
         FacesContext context = FacesContext.getCurrentInstance();
 
         Map<String, String> params = context.getExternalContext()
                 .getRequestParameterMap();
         String tIdStr = params.get("typeID");
         Long tId = Long.parseLong(tIdStr);
-        
+
         trippyEventTypeSessionLocal.removeTrippyType(tId);
         init();
     }
-    
-    public void recoverType(){
+
+    public void recoverType() {
         FacesContext context = FacesContext.getCurrentInstance();
 
         Map<String, String> params = context.getExternalContext()
@@ -353,7 +364,8 @@ public class adminManagedBean {
         context.addMessage(null, new FacesMessage("Success", "Successfully activated member"));
         init();
     }
-    public void removeType(){
+
+    public void removeType() {
         FacesContext context = FacesContext.getCurrentInstance();
 
         Map<String, String> params = context.getExternalContext()
@@ -371,7 +383,7 @@ public class adminManagedBean {
         context.addMessage(null, new FacesMessage("Success", "Successfully removed type"));
         init();
     }
-    
+
     public String updatePrize() throws ParseException {
         System.out.println("Entering updating prize");
         System.out.println("Prize name: " + getPrizeName());
@@ -381,22 +393,26 @@ public class adminManagedBean {
         toUpdate.setPrizePoint(getPrizePoint());
         toUpdate.setPrizeQty(getPrizeQty());
         toUpdate.setPrizeDescription(getPrizeDescription());
-        if(getSoftDeleteString().equals("true"))
+        if (getSoftDeleteString().equals("true")) {
             toUpdate.setSoftDelete(true);
-        else
+        } else {
             toUpdate.setSoftDelete(false);
-        
-        
+        }
+
 //        if(getSoftDeleteString().equals("true"))
 //            toUpdate.setSoftDelete((Boolean) true);
 //        else
 //            toUpdate.setSoftDelete((Boolean) false);
 //        //toUpdate.setSoftDelete(getSoftDelete());
         toUpdate.setPrizeImage(getPrizeImage());
-        prizeSessionLocal.updatePrize(toUpdate);
+        try {
+            prizeSessionLocal.updatePrize(toUpdate);
+        } catch (Exception e) {
+
+        }
         return "managePrize.xhtml?faces-redirect=true";
     }
-    
+
     public String createPrize() throws ParseException {
         System.out.println("Entering creating prize");
         Prize toCreate = new Prize();
@@ -406,19 +422,17 @@ public class adminManagedBean {
         toCreate.setPrizeDescription(getPrizeDescription());
         toCreate.setSoftDelete(false);
 
-
 //        count = 0;
 //        eventImageStringArray.clear();
 //        while (count <= eventImage.size() - 1) {
 //            eventImageStringArray.add(eventImage.get(count));
 //            count++;
 //        }
-
         toCreate.setPrizeImage(prizeImage);
         prizeSessionLocal.createPrize(toCreate);
-        
+
         return "managePrize.xhtml?faces-redirect=true";
-}
+    }
 
     public void activateAccount() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -737,7 +751,7 @@ public class adminManagedBean {
     public void setCustID(Long custID) {
         this.custID = custID;
     }
-    
+
     /**
      * @return the softDeleteString
      */
@@ -779,8 +793,8 @@ public class adminManagedBean {
     public void setEventImageStringArray(List<String> eventImageStringArray) {
         this.eventImageStringArray = eventImageStringArray;
     }
-    
-        /**
+
+    /**
      * @return the prizeID
      */
     public Long getPrizeID() {

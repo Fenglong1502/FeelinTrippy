@@ -195,7 +195,7 @@ public class Customer implements Serializable {
     /**
      * @return the isAdmin
      */
-    public boolean isIsAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
