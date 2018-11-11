@@ -35,6 +35,16 @@ public class PrizeSession implements PrizeSessionLocal {
             }
         }
     }
+    @Override
+    public Prize getPrizeById(Long prizeID) throws NoResultException {
+        Prize prize = em.find(Prize.class, prizeID);
+
+        if (prize != null) {
+            return prize;
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
 
     @Override
     public void updatePrize(Prize prize) {

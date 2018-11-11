@@ -24,4 +24,5 @@ public interface PrizeSessionLocal {
     public List<Prize> searchPrizeByName(String searchTerm);
     public boolean redeemPrize(Long customerID, Long prizeID, int qty);
     public List<PrizeOrder> getPrizeRedeemed(Long customerID);
+    public Prize getPrizeById(Long prizeID) throws NoResultException;
 }

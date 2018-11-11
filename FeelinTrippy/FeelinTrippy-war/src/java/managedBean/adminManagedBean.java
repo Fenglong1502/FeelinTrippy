@@ -34,6 +34,20 @@ import session.TrippyEventTypeSessionLocal;
 @RequestScoped
 public class adminManagedBean {
 
+    /**
+     * @return the selectedPrize
+     */
+    public Prize getSelectedPrize() {
+        return selectedPrize;
+    }
+
+    /**
+     * @param selectedPrize the selectedPrize to set
+     */
+    public void setSelectedPrize(Prize selectedPrize) {
+        this.selectedPrize = selectedPrize;
+    }
+
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
 
@@ -65,6 +79,7 @@ public class adminManagedBean {
     private List<String> eventImageStringArray;
     private String eventTypeName;
     private TrippyEventType selectedType;
+    private Prize selectedPrize;
     private String softDeleteString;
     private Long prizeID;
     private String prizeName;
@@ -285,6 +300,29 @@ public class adminManagedBean {
         setSelectedType(trippyEventTypeSessionLocal.getTypeById(getTypeID()));
     }
     
+    public void loadSelectedPrize(){
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        try {
+            this.setSelectedPrize(prizeSessionLocal.getPrizeById(getPrizeID()));
+            setPrizeName(selectedPrize.getPrizeName());
+            this.prizeDescription = selectedPrize.getPrizeDescription();
+            this.prizeImage = selectedPrize.getPrizeImage();
+            this.prizePoint = selectedPrize.getPrizePoint();
+            this.prizeQty = selectedPrize.getPrizeQty();
+            setSoftDelete(getSelectedPrize().getSoftDelete());
+            if(getSoftDelete() == true)
+                this.setSoftDeleteString("true");
+            else
+                this.setSoftDeleteString("false");
+
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to event Type"));
+        }
+        
+        setSelectedPrize(prizeSessionLocal.getPrizeById(getPrizeID()));
+    }
+    
     public void deleteType(){
         FacesContext context = FacesContext.getCurrentInstance();
 
@@ -344,10 +382,6 @@ public class adminManagedBean {
         toUpdate.setPrizeQty(getPrizeQty());
         toUpdate.setPrizeDescription(getPrizeDescription());
         toUpdate.setSoftDelete(false);
-        System.out.println("After cutting: " + getEventImage());
-        setPrizeStringArray(Arrays.asList(getPrizeString().split(",")));
-
-        toUpdate.setPrizeImage(getPrizeImage());
         toUpdate.setPrizeImage(getPrizeImage());
         prizeSessionLocal.updatePrize(toUpdate);
         return "managePrize.xhtml?faces-redirect=true";
@@ -374,7 +408,7 @@ public class adminManagedBean {
         toCreate.setPrizeImage(prizeImage);
         prizeSessionLocal.createPrize(toCreate);
         
-        return "manageTrippyEventItem.xhtml?faces-redirect=true";
+        return "managePrize.xhtml?faces-redirect=true";
 }
 
     public void activateAccount() {
