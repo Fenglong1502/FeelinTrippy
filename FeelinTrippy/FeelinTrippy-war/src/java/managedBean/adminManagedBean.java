@@ -117,7 +117,7 @@ public class adminManagedBean {
         toUpdate.setPrice(getPrice());
         toUpdate.setAddress(getAddress());
         toUpdate.setEventDescription(getEventDescription());
-        toUpdate.setSoftDelete(false);
+        toUpdate.setSoftDelete(null);
         SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
         String stringDate = dt.format(getStartDate());
         toUpdate.setStartDate(dt.parse(stringDate));

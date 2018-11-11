@@ -41,7 +41,9 @@ public class TrippyEventSession implements TrippyEventSessionLocal {
             existingTrippyEvent.setEventType(trippyEventItem.getEventType());
             existingTrippyEvent.setPoint(trippyEventItem.getPoint());
             existingTrippyEvent.setPrice(trippyEventItem.getPrice());
-            existingTrippyEvent.setSoftDelete(trippyEventItem.getSoftDelete());
+            if (trippyEventItem.getSoftDelete() != null) {
+                existingTrippyEvent.setSoftDelete(trippyEventItem.getSoftDelete());
+            }       
             existingTrippyEvent.setStartDate(trippyEventItem.getStartDate());
             existingTrippyEvent.setEndDate(trippyEventItem.getEndDate());
             existingTrippyEvent.setAddress(trippyEventItem.getAddress());
