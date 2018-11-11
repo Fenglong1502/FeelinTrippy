@@ -6,6 +6,7 @@
 package session;
 
 import entity.Customer;
+import entity.Prize;
 import entity.SavedTrip;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
@@ -17,7 +18,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Formatter;
-import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -48,6 +48,8 @@ public class DataInitializationSessionBean {
     private TrippyEventTypeSessionLocal trippyEventTypeSessionLocal;
     @EJB
     private SavedTripSessionLocal savedTripSessionLocal;
+    @EJB
+    private PrizeSessionLocal prizeSessionLocal;
 
     @PostConstruct
     public void postConstruct() {
@@ -1537,13 +1539,67 @@ public class DataInitializationSessionBean {
             savedTrip3.setCustomer(newC1); 
             savedTripSessionLocal.createdSavedTrip(savedTrip3);
             newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
-            
-
+                               
         } catch (NoResultException ex) {
             Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CustomerAddSavedTripException ex) {
             Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+            Prize prize1 = new Prize();
+            prize1.setPrizeName("MCDONALD $5 VOUCHER");
+            prize1.setPrizeQty(100);
+            prize1.setPrizeDescription("Put some yummy in your friends’ tummies! Surprise your loved ones with McDonald’s Gift Certificates. It’s the perfect gift for any occasion.");
+            prize1.setPrizePoint(500);
+            prize1.setPrizeImage("mcdonald.jpg");
+            prize1.setSoftDelete(false);
+            prizeSessionLocal.createPrize(prize1);
+            
+            Prize prize2 = new Prize();
+            prize2.setPrizeName("SHAW $10 VOUCHER");
+            prize2.setPrizeQty(100);
+            prize2.setPrizeDescription("Enjoy greater savings with Shaw Theatres movie vouchers!");
+            prize2.setPrizePoint(1000);
+            prize2.setPrizeImage("shaw.jpg");
+            prize2.setSoftDelete(false);
+            prizeSessionLocal.createPrize(prize2);
+            
+            Prize prize3 = new Prize();
+            prize3.setPrizeName("SAFRA $10 VOUCHER");
+            prize3.setPrizeQty(100);
+            prize3.setPrizeDescription("Enjoy greater savings with SAFRA voucher at participating SAFRA club merchants!");
+            prize3.setPrizePoint(1000);
+            prize3.setPrizeImage("safra.jpg");
+            prize3.setSoftDelete(false);
+            prizeSessionLocal.createPrize(prize3);
+            
+            Prize prize4 = new Prize();
+            prize4.setPrizeName("THERMAL FLASK");
+            prize4.setPrizeQty(100);
+            prize4.setPrizeDescription("ENDO Japan New Double Stainless Steel Vacuumised Bottle / 480ml / CX-5117. Heat Retention up to 6 hours!");
+            prize4.setPrizePoint(2000);
+            prize4.setPrizeImage("bottle.jpg");
+            prize4.setSoftDelete(false);
+            prizeSessionLocal.createPrize(prize4);
+            
+            Prize prize5 = new Prize();
+            prize5.setPrizeName("TRAVEL PILLOW");
+            prize5.setPrizeQty(100);
+            prize5.setPrizeDescription("OGAWA Plush Touch - Luxurious Travel Pillow with MEMORY FOAM Cushioning");
+            prize5.setPrizePoint(2000);
+            prize5.setPrizeImage("pillow.jpg");
+            prize5.setSoftDelete(false);
+            prizeSessionLocal.createPrize(prize5);
+            
+            Prize prize6 = new Prize();
+            prize6.setPrizeName("OGAWA MASSAGER");
+            prize6.setPrizeQty(10);
+            prize6.setPrizeDescription("OGAWA Handhel Body Massager. For use at anytime, anywhere. Multi Functional Massager. Convenient Design.");
+            prize6.setPrizePoint(10000);
+            prize6.setPrizeImage("massage.jpg");
+            prize6.setSoftDelete(false);
+            prizeSessionLocal.createPrize(prize6);
 
     }
 
