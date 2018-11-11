@@ -7,10 +7,21 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>TODO supply a title</title>
+        <title>Forget Password</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <body>
-        <div>SCript to logout </div>
+    <body onload="pop()">
+      
+        <script>
+            function pop(){
+                
+                alert("Email does not exist, type email again");
+                window.location.replace("forgetPassword.xhtml");
+                
+            }
+            
+            
+            
+        </script>
     </body>
 </html>

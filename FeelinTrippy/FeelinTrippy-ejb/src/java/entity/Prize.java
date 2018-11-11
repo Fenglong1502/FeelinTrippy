@@ -19,14 +19,14 @@ public class Prize implements Serializable {
     private String prizeDescription;
     private int prizePoint;
     //Soft delete is used to remove/hide prizes which is not offered on Trippy
-    private List<String> prizeImage;
+    private String prizeImage;
     private Boolean softDelete;
     
     public Prize(){
         
     }
     
-    public Prize(String prizeName, int prizePoint, String prizeDescription, List<String> prizeImage, Boolean softDelete) {
+    public Prize(String prizeName, int prizePoint, String prizeDescription, String prizeImage, Boolean softDelete) {
         this();
         this.prizeName = prizeName;
         this.prizePoint = prizePoint;
@@ -142,14 +142,14 @@ public class Prize implements Serializable {
     /**
      * @return the prizeImage
      */
-    public List<String> getPrizeImage() {
+    public String getPrizeImage() {
         return prizeImage;
     }
 
     /**
      * @param prizeImage the prizeImage to set
      */
-    public void setPrizeImage(List<String> prizeImage) {
+    public void setPrizeImage(String prizeImage) {
         this.prizeImage = prizeImage;
     }
     

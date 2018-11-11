@@ -17,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Formatter;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -111,10 +112,11 @@ public class DataInitializationSessionBean {
         trippyEventItem1.setStartDate(startDate.getTime());
         trippyEventItem1.setEndDate(endDate.getTime());
         trippyEventItem1.setPrice(0.0);
-        trippyEventItem1.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/All-About-Dogs-Exhibition.jpg");
+        trippyEventItem1.setEventImage("trippyEventItem1.jpg");
+        trippyEventItem1.setAddress("23-B Coleman St, Singapore 179807");
         trippyEventItem1.setEventType(eventTypes);
         trippyEventItem1.setSoftDelete(false);
-        trippyEventItem1.setEventTypeString("animals_and_wildlife");
+        trippyEventItem1.setEventTypeString("Animals and Wildlife");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1);
 
@@ -130,10 +132,11 @@ public class DataInitializationSessionBean {
         trippyEventItem2.setStartDate(startDate.getTime());
         trippyEventItem2.setEndDate(endDate.getTime());
         trippyEventItem2.setPrice(0.0);
-        trippyEventItem2.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/City-Square-Mall-Quayside-Isle_Paws-for-a-Good-Cause-1.jpg");
+        trippyEventItem2.setEventImage("trippyEventItem2.jpg");
+        trippyEventItem2.setAddress("31 Ocean Way, Singapore 098375");
         trippyEventItem2.setEventType(eventTypes);
         trippyEventItem2.setSoftDelete(false);
-        trippyEventItem2.setEventTypeString("animals_and_wildlife");
+        trippyEventItem2.setEventTypeString("Animals and Wildlife");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem2);
 
@@ -149,30 +152,15 @@ public class DataInitializationSessionBean {
         trippyEventItem3.setStartDate(startDate.getTime());
         trippyEventItem3.setEndDate(endDate.getTime());
         trippyEventItem3.setPrice(20.0);
-        trippyEventItem3.setEventImage("https://rainforestlumina.wrs.com.sg/images/img-map.jpg");
+        trippyEventItem3.setEventImage("trippyEventItem3.jpg");
+        trippyEventItem3.setAddress("80 Mandai Lake Rd, Singapore 729826");
         trippyEventItem3.setEventType(eventTypes);
         trippyEventItem3.setSoftDelete(false);
-        trippyEventItem3.setEventTypeString("animals_and_wildlife");
+        trippyEventItem3.setEventTypeString("Animals and Wildlife");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem3);
 
         // Initialising the events for adventure
-        eventTypes.clear();
-        eventTypes.add(adventure);
-
-        TrippyEventItem trippyEventItem4 = new TrippyEventItem();
-        trippyEventItem4.setEventName("Escape room");
-        trippyEventItem4.setEventDescription("escape from rooms through puzzle with friends");
-        trippyEventItem4.setPoint(0L);
-        trippyEventItem4.setStartDate(null);
-        trippyEventItem4.setEndDate(null);
-        trippyEventItem4.setPrice(15.0);
-        trippyEventItem4.setEventImage("http://www.xcape.sg/wp-content/uploads/2017/08/Xcape%20Logo.jpg");
-        trippyEventItem4.setEventType(eventTypes);
-        trippyEventItem4.setSoftDelete(false);
-        trippyEventItem4.setEventTypeString("adventure");
-
-        trippyEventSessionLocal.createTrippyEvent(trippyEventItem4);
 
         startDate.set(2018, Calendar.SEPTEMBER, 1);
         endDate.set(2018, Calendar.SEPTEMBER, 16);
@@ -190,10 +178,11 @@ public class DataInitializationSessionBean {
         trippyEventItem5.setStartDate(startDate.getTime());
         trippyEventItem5.setEndDate(endDate.getTime());
         trippyEventItem5.setPrice(0.0);
-        trippyEventItem5.setEventImage("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_3.thumbnail.image-path1.350.197.jpg");
+        trippyEventItem5.setEventImage("trippyEventItem5.jpg");
+        trippyEventItem5.setAddress("Siloso Beach, Sentosa");
         trippyEventItem5.setEventType(eventTypes);
         trippyEventItem5.setSoftDelete(false);
-        trippyEventItem5.setEventTypeString("adventure");
+        trippyEventItem5.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem5);
 
@@ -209,10 +198,11 @@ public class DataInitializationSessionBean {
         trippyEventItem6.setStartDate(startDate.getTime());
         trippyEventItem6.setEndDate(endDate.getTime());
         trippyEventItem6.setPrice(0.0);
-        trippyEventItem6.setEventImage("https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/707cb66b-%E6%96%B0%E5%8A%A0%E5%9D%A1%E7%A7%91%E5%AD%A6%E9%A6%86-+-%E4%B8%87%E8%B1%A1%E9%A6%86---Klook%E5%AE%A2%E8%B7%AF/ScienceCentreSingapore+OmniTheatreMovie+ButterfliesUp-Close.jpg");
+        trippyEventItem6.setEventImage("trippyEventItem6.jpg");
+        trippyEventItem6.setAddress("15 Science Centre Rd, Singapore 609081");
         trippyEventItem6.setEventType(eventTypes);
         trippyEventItem6.setSoftDelete(false);
-        trippyEventItem6.setEventTypeString("adventure");
+        trippyEventItem6.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem6);
 
@@ -228,10 +218,11 @@ public class DataInitializationSessionBean {
         trippyEventItem7.setStartDate(startDate.getTime());
         trippyEventItem7.setEndDate(endDate.getTime());
         trippyEventItem7.setPrice(0.0);
-        trippyEventItem7.setEventImage("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_10.thumbnail.image-path1.350.197.jpg");
+        trippyEventItem7.setEventImage("trippyEventItem7.jpg");
+        trippyEventItem7.setAddress("#03-01 National Library Building, 100 Victoria St, Singapore 188064");
         trippyEventItem7.setEventType(eventTypes);
         trippyEventItem7.setSoftDelete(false);
-        trippyEventItem7.setEventTypeString("adventure");
+        trippyEventItem7.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem7);
 
@@ -247,10 +238,11 @@ public class DataInitializationSessionBean {
         trippyEventItem8.setStartDate(startDate.getTime());
         trippyEventItem8.setEndDate(endDate.getTime());
         trippyEventItem8.setPrice(58.0);
-        trippyEventItem8.setEventImage("https://dejiki.com/wp-content/uploads/2018/04/2018_HHN8_HeroL.jpg");
+        trippyEventItem8.setEventImage("trippyEventItem8.jpg");
+        trippyEventItem8.setAddress("8 Sentosa Gateway, Sentosa Island, 098269");
         trippyEventItem8.setEventType(eventTypes);
         trippyEventItem8.setSoftDelete(false);
-        trippyEventItem8.setEventTypeString("adventure");
+        trippyEventItem8.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem8);
 
@@ -266,10 +258,11 @@ public class DataInitializationSessionBean {
         trippyEventItem9.setStartDate(startDate.getTime());
         trippyEventItem9.setEndDate(endDate.getTime());
         trippyEventItem9.setPrice(0.0);
-        trippyEventItem9.setEventImage("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_13.thumbnail.image-path1.350.197.jpg");
+        trippyEventItem9.setEventImage("trippyEventItem9.jpg");
+        trippyEventItem9.setAddress("8 Sentosa Gateway, Sentosa Island, 098269");
         trippyEventItem9.setEventType(eventTypes);
         trippyEventItem9.setSoftDelete(false);
-        trippyEventItem9.setEventTypeString("adventure");
+        trippyEventItem9.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem9);
 
@@ -285,10 +278,11 @@ public class DataInitializationSessionBean {
         trippyEventItem10.setStartDate(startDate.getTime());
         trippyEventItem10.setEndDate(endDate.getTime());
         trippyEventItem10.setPrice(0.0);
-        trippyEventItem10.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2017/12/Madame-Tussuads_Marvel_4D_KV1.jpg");
+        trippyEventItem10.setEventImage("trippyEventItem10.jpg");
+        trippyEventItem10.setAddress("40 Imbiah Rd, Imbiah Lookout, 099700");
         trippyEventItem10.setEventType(eventTypes);
         trippyEventItem10.setSoftDelete(false);
-        trippyEventItem10.setEventTypeString("adventure");
+        trippyEventItem10.setEventTypeString("Adventure");
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem10);
 
         eventTypes.clear();
@@ -301,10 +295,11 @@ public class DataInitializationSessionBean {
         trippyEventItem11.setStartDate(null);
         trippyEventItem11.setEndDate(null);
         trippyEventItem11.setPrice(0.0);
-        trippyEventItem11.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/09/e3/f3/c1/the-southern-ridges.jpg");
+        trippyEventItem11.setEventImage("trippyEventItem11.jpg");
+        trippyEventItem11.setAddress("Alexandra Road | Mount Faber Park | Telok Blangah Hill Park | Kent Ridge Park");
         trippyEventItem11.setEventType(eventTypes);
         trippyEventItem11.setSoftDelete(false);
-        trippyEventItem11.setEventTypeString("adventure");
+        trippyEventItem11.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem11);
 
@@ -318,10 +313,11 @@ public class DataInitializationSessionBean {
         trippyEventItem12.setStartDate(null);
         trippyEventItem12.setEndDate(null);
         trippyEventItem12.setPrice(0.0);
-        trippyEventItem12.setEventImage("http://www.bukitpanjang.com/uploads/2/3/7/3/23733606/1261221_orig.jpg");
+        trippyEventItem12.setEventImage("trippyEventItem12.jpg");
+        trippyEventItem12.setAddress("177 Hindhede Drive Bukit Timah Vhf Station, Singapore 589333");
         trippyEventItem12.setEventType(eventTypes);
         trippyEventItem12.setSoftDelete(false);
-        trippyEventItem12.setEventTypeString("adventure");
+        trippyEventItem12.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem12);
 
@@ -335,10 +331,11 @@ public class DataInitializationSessionBean {
         trippyEventItem13.setStartDate(null);
         trippyEventItem13.setEndDate(null);
         trippyEventItem13.setPrice(0.0);
-        trippyEventItem13.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/11/3b/69/77/faber-peak-singapore.jpg");
+        trippyEventItem13.setEventImage("trippyEventItem13.jpg");
+        trippyEventItem13.setAddress("109 Mount Faber Road Faber Peak, Singapore 099203");
         trippyEventItem13.setEventType(eventTypes);
         trippyEventItem13.setSoftDelete(false);
-        trippyEventItem13.setEventTypeString("adventure");
+        trippyEventItem13.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem13);
 
@@ -352,10 +349,11 @@ public class DataInitializationSessionBean {
         trippyEventItem14.setStartDate(null);
         trippyEventItem14.setEndDate(null);
         trippyEventItem14.setPrice(69.0);
-        trippyEventItem14.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/11/71/14/5f/look-forward-to-some.jpg");
+        trippyEventItem14.setEventImage("trippyEventItem14.jpg");
+        trippyEventItem14.setAddress("80 Mandai Lake Road Singapore Zoological Gardens, Singapore 729826");
         trippyEventItem14.setEventType(eventTypes);
         trippyEventItem14.setSoftDelete(false);
-        trippyEventItem14.setEventTypeString("adventure");
+        trippyEventItem14.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem14);
 
@@ -369,10 +367,11 @@ public class DataInitializationSessionBean {
         trippyEventItem15.setStartDate(null);
         trippyEventItem15.setEndDate(null);
         trippyEventItem15.setPrice(0.0);
-        trippyEventItem15.setEventImage("https://www.nparks.gov.sg/-/media/nparks-real-content/gardens-parks-and-nature/parks-and-nature-reserve/dairy-farm/dairyfarmthumb.jpg");
+        trippyEventItem15.setEventImage("trippyEventItem15.jpg");
+        trippyEventItem15.setAddress("100 Dairy Farm Road, Singapore 679057");
         trippyEventItem15.setEventType(eventTypes);
         trippyEventItem15.setSoftDelete(false);
-        trippyEventItem15.setEventTypeString("adventure");
+        trippyEventItem15.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem15);
 
@@ -386,10 +385,11 @@ public class DataInitializationSessionBean {
         trippyEventItem16.setStartDate(null);
         trippyEventItem16.setEndDate(null);
         trippyEventItem16.setPrice(66.0);
-        trippyEventItem16.setEventImage("https://assets.isango.com/productimages/product/2247/singapore_5084_3.jpg");
+        trippyEventItem16.setEventImage("trippyEventItem16.jpg");
+        trippyEventItem16.setAddress("91 Joo Chiat Road, Singapore 427385");
         trippyEventItem16.setEventType(eventTypes);
         trippyEventItem16.setSoftDelete(false);
-        trippyEventItem16.setEventTypeString("adventure");
+        trippyEventItem16.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem16);
 
@@ -403,10 +403,11 @@ public class DataInitializationSessionBean {
         trippyEventItem17.setStartDate(null);
         trippyEventItem17.setEndDate(null);
         trippyEventItem17.setPrice(0.0);
-        trippyEventItem17.setEventImage("https://storage.googleapis.com/ehimages/2017/12/9/img_8e563a276be0d83fd39daf5a56db306e_1512844510234_original.jpg");
+        trippyEventItem17.setEventImage("trippyEventItem17.jpg");
+        trippyEventItem17.setAddress("10 Sentul Crescent Road, Singapore 828851");
         trippyEventItem17.setEventType(eventTypes);
         trippyEventItem17.setSoftDelete(false);
-        trippyEventItem17.setEventTypeString("adventure");
+        trippyEventItem17.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem17);
 
@@ -420,10 +421,11 @@ public class DataInitializationSessionBean {
         trippyEventItem18.setStartDate(null);
         trippyEventItem18.setEndDate(null);
         trippyEventItem18.setPrice(0.0);
-        trippyEventItem18.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/09/50/d9/92/coney-island-park.jpg");
+        trippyEventItem18.setEventImage("trippyEventItem18.jpg");
+        trippyEventItem18.setAddress("Punggol Promenade Nature Walk, Singapore 829325");
         trippyEventItem18.setEventType(eventTypes);
         trippyEventItem18.setSoftDelete(false);
-        trippyEventItem18.setEventTypeString("adventure");
+        trippyEventItem18.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem18);
 
@@ -437,10 +439,11 @@ public class DataInitializationSessionBean {
         trippyEventItem19.setStartDate(null);
         trippyEventItem19.setEndDate(null);
         trippyEventItem19.setPrice(0.0);
-        trippyEventItem19.setEventImage("https://www.singaporemtb.com/wp-content/uploads/2015/07/Sworks_Enduro_29-19-1078x516.jpg");
+        trippyEventItem19.setEventImage("trippyEventItem19.jpg");
+        trippyEventItem19.setAddress("451 Mandai Road, Singapore 729753");
         trippyEventItem19.setEventType(eventTypes);
         trippyEventItem19.setSoftDelete(false);
-        trippyEventItem19.setEventTypeString("adventure");
+        trippyEventItem19.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem19);
 
@@ -454,10 +457,11 @@ public class DataInitializationSessionBean {
         trippyEventItem20.setStartDate(null);
         trippyEventItem20.setEndDate(null);
         trippyEventItem20.setPrice(77.0);
-        trippyEventItem20.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/10/bd/49/c6/swannie.jpg");
+        trippyEventItem20.setEventImage("trippyEventItem20.jpg");
+        trippyEventItem20.setAddress("30 Siloso Beach Walk, Singapore 099011");
         trippyEventItem20.setEventType(eventTypes);
         trippyEventItem20.setSoftDelete(false);
-        trippyEventItem20.setEventTypeString("adventure");
+        trippyEventItem20.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem20);
 
@@ -471,10 +475,11 @@ public class DataInitializationSessionBean {
         trippyEventItem21.setStartDate(null);
         trippyEventItem21.setEndDate(null);
         trippyEventItem21.setPrice(50.0);
-        trippyEventItem21.setEventImage("https://www.littledayout.com/wp-content/uploads/articles/2017/06-June/20170619-Forest-Adventure/e-forestadventure3.png");
+        trippyEventItem21.setEventImage("trippyEventItem21.jpg");
+        trippyEventItem21.setAddress("825 Bedok Reservoir Road | Bedok Reservoir Park, Singapore 479244");
         trippyEventItem21.setEventType(eventTypes);
         trippyEventItem21.setSoftDelete(false);
-        trippyEventItem21.setEventTypeString("adventure");
+        trippyEventItem21.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem21);
 
@@ -488,10 +493,11 @@ public class DataInitializationSessionBean {
         trippyEventItem22.setStartDate(null);
         trippyEventItem22.setEndDate(null);
         trippyEventItem22.setPrice(0.0);
-        trippyEventItem22.setEventImage("http://singaporemotherhood.com/articles/wp-content/uploads/2016/04/IMG_0288.jpg?x17934");
+        trippyEventItem22.setEventImage("trippyEventItem22.jpg");
+        trippyEventItem22.setAddress("1 Stadium Walk Kallang Theatre, Singapore 397688");
         trippyEventItem22.setEventType(eventTypes);
         trippyEventItem22.setSoftDelete(false);
-        trippyEventItem22.setEventTypeString("adventure");
+        trippyEventItem22.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem22);
 
@@ -505,10 +511,11 @@ public class DataInitializationSessionBean {
         trippyEventItem23.setStartDate(null);
         trippyEventItem23.setEndDate(null);
         trippyEventItem23.setPrice(120.0);
-        trippyEventItem23.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/10/d0/5a/a7/now-you-can-tell-people.jpg");
+        trippyEventItem23.setEventImage("trippyEventItem23.jpg");
+        trippyEventItem23.setAddress("1 Stadium Place | #02-19 Kallang Wave Mall, Singapore 397688");
         trippyEventItem23.setEventType(eventTypes);
         trippyEventItem23.setSoftDelete(false);
-        trippyEventItem23.setEventTypeString("adventure");
+        trippyEventItem23.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem23);
 
@@ -522,10 +529,11 @@ public class DataInitializationSessionBean {
         trippyEventItem24.setStartDate(null);
         trippyEventItem24.setEndDate(null);
         trippyEventItem24.setPrice(85.0);
-        trippyEventItem24.setEventImage("https://www.threeplaygrounds.com/public/siteevent_event/64/9f/09/98cce_3464.JPG");
+        trippyEventItem24.setEventImage("trippyEventItem24.jpg");
+        trippyEventItem24.setAddress("21 Bukit Batok Crescent #15-75 Wcega Tower, Singapore 658065");
         trippyEventItem24.setEventType(eventTypes);
         trippyEventItem24.setSoftDelete(false);
-        trippyEventItem24.setEventTypeString("adventure");
+        trippyEventItem24.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem24);
 
@@ -539,10 +547,11 @@ public class DataInitializationSessionBean {
         trippyEventItem25.setStartDate(null);
         trippyEventItem25.setEndDate(null);
         trippyEventItem25.setPrice(150.0);
-        trippyEventItem25.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/13/ed/8e/62/kayak-fishing-with-an.jpg");
+        trippyEventItem25.setEventImage("trippyEventItem25.jpg");
+        trippyEventItem25.setAddress("120 Tanjong Beach Walk, Singapore 098942");
         trippyEventItem25.setEventType(eventTypes);
         trippyEventItem25.setSoftDelete(false);
-        trippyEventItem25.setEventTypeString("adventure");
+        trippyEventItem25.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem25);
 
@@ -556,10 +565,11 @@ public class DataInitializationSessionBean {
         trippyEventItem26.setStartDate(null);
         trippyEventItem26.setEndDate(null);
         trippyEventItem26.setPrice(60.0);
-        trippyEventItem26.setEventImage("http://www.supschool.com.sg/wp-content/uploads/2016/03/celine.jpg");
+        trippyEventItem26.setEventImage("trippyEventItem26.jpg");
+        trippyEventItem26.setAddress("112 Tanjong Beach Walk, Singapore 098945");
         trippyEventItem26.setEventType(eventTypes);
         trippyEventItem26.setSoftDelete(false);
-        trippyEventItem26.setEventTypeString("adventure");
+        trippyEventItem26.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem26);
 
@@ -573,10 +583,11 @@ public class DataInitializationSessionBean {
         trippyEventItem27.setStartDate(null);
         trippyEventItem27.setEndDate(null);
         trippyEventItem27.setPrice(15.0);
-        trippyEventItem27.setEventImage("https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/1a10eec0-Snow-Play-Session-in-Snow-City-Singapore/SnowCitySingapore.jpg");
+        trippyEventItem27.setEventImage("trippyEventItem27.jpg");
+        trippyEventItem27.setAddress("21 Jurong Town Hall Road, Singapore 609433");
         trippyEventItem27.setEventType(eventTypes);
         trippyEventItem27.setSoftDelete(false);
-        trippyEventItem27.setEventTypeString("adventure");
+        trippyEventItem27.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem27);
 
@@ -590,10 +601,11 @@ public class DataInitializationSessionBean {
         trippyEventItem28.setStartDate(null);
         trippyEventItem28.setEndDate(null);
         trippyEventItem28.setPrice(21.90);
-        trippyEventItem28.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/07/66/2a/9d/lost-sg.jpg");
+        trippyEventItem28.setEventImage("trippyEventItem28.jpg");
+        trippyEventItem28.setAddress("1 Sophia Road, #03-01/02/03, Singapore 228149");
         trippyEventItem28.setEventType(eventTypes);
         trippyEventItem28.setSoftDelete(false);
-        trippyEventItem28.setEventTypeString("adventure");
+        trippyEventItem28.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem28);
 
@@ -607,10 +619,11 @@ public class DataInitializationSessionBean {
         trippyEventItem29.setStartDate(null);
         trippyEventItem29.setEndDate(null);
         trippyEventItem29.setPrice(110.0);
-        trippyEventItem29.setEventImage("https://media-cdn.tripadvisor.com/media/photo-s/08/20/c8/46/xcape-singapore.jpg");
+        trippyEventItem29.setEventImage("trippyEventItem29.jpg");
+        trippyEventItem29.setAddress("Bugis Village, 160A Rochor Road, 188435");
         trippyEventItem29.setEventType(eventTypes);
         trippyEventItem29.setSoftDelete(false);
-        trippyEventItem29.setEventTypeString("adventure");
+        trippyEventItem29.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem29);
 
@@ -624,10 +637,11 @@ public class DataInitializationSessionBean {
         trippyEventItem30.setStartDate(null);
         trippyEventItem30.setEndDate(null);
         trippyEventItem30.setPrice(35.0);
-        trippyEventItem30.setEventImage("http://static.asiawebdirect.com/m/phuket/portals/www-singapore-com/homepage/activities/wave-house-sentosa/allParagraphs/BucketComponent/ListingContainer/0/BucketList/0/image1/Wave-House-Sentosa-2.jpg");
+        trippyEventItem30.setEventImage("trippyEventItem30.jpg");
+        trippyEventItem30.setAddress("36 Siloso Beach Walk, Singapore 099007");
         trippyEventItem30.setEventType(eventTypes);
         trippyEventItem30.setSoftDelete(false);
-        trippyEventItem30.setEventTypeString("adventure");
+        trippyEventItem30.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem30);
 
@@ -641,10 +655,11 @@ public class DataInitializationSessionBean {
         trippyEventItem31.setStartDate(null);
         trippyEventItem31.setEndDate(null);
         trippyEventItem31.setPrice(15.0);
-        trippyEventItem31.setEventImage("https://www.alexisjetsets.com/wp-content/uploads/2017/10/pulau-ubin-puaka-hill-alexisjetsets-10-e1507789615399.jpg");
+        trippyEventItem31.setEventImage("trippyEventItem31.jpg");
+        trippyEventItem31.setAddress("Pulau Ubin");
         trippyEventItem31.setEventType(eventTypes);
         trippyEventItem31.setSoftDelete(false);
-        trippyEventItem31.setEventTypeString("adventure");
+        trippyEventItem31.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem31);
 
@@ -658,10 +673,11 @@ public class DataInitializationSessionBean {
         trippyEventItem32.setStartDate(null);
         trippyEventItem32.setEndDate(null);
         trippyEventItem32.setPrice(53.0);
-        trippyEventItem32.setEventImage("https://www.mysuitcasejourneys.com/wp-content/uploads/2016/07/Singapore-Universal-Studios-01.jpg");
+        trippyEventItem32.setEventImage("trippyEventItem32.jpg");
+        trippyEventItem32.setAddress("8 Sentosa Gateway, Singapore 098269");
         trippyEventItem32.setEventType(eventTypes);
         trippyEventItem32.setSoftDelete(false);
-        trippyEventItem32.setEventTypeString("adventure");
+        trippyEventItem32.setEventTypeString("Adventure");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem32);
 
@@ -676,10 +692,11 @@ public class DataInitializationSessionBean {
         trippyEventItem33.setStartDate(null);
         trippyEventItem33.setEndDate(null);
         trippyEventItem33.setPrice(22.0);
-        trippyEventItem33.setEventImage("https://zoukclub.com/wp-content/uploads/2016/11/main.jpg");
+        trippyEventItem33.setEventImage("trippyEventItem33.jpg");
+        trippyEventItem33.setAddress("3C River Valley Road, The Cannery, Singapore 179022");
         trippyEventItem33.setEventType(eventTypes);
         trippyEventItem33.setSoftDelete(false);
-        trippyEventItem33.setEventTypeString("music_and_night_life");
+        trippyEventItem33.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem33);
 
@@ -695,10 +712,11 @@ public class DataInitializationSessionBean {
         trippyEventItem34.setStartDate(startDate.getTime());
         trippyEventItem34.setEndDate(endDate.getTime());
         trippyEventItem34.setPrice(0.0);
-        trippyEventItem34.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/07/TGIF-Music-Station-Image-credit-to-SCCC-e1532666912190.jpg");
+        trippyEventItem34.setEventImage("trippyEventItem34.jpg");
+        trippyEventItem34.setAddress("1 Straits Boulevard, Singapore 018906");
         trippyEventItem34.setEventType(eventTypes);
         trippyEventItem34.setSoftDelete(false);
-        trippyEventItem34.setEventTypeString("music_and_night_life");
+        trippyEventItem34.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem34);
 
@@ -715,10 +733,11 @@ public class DataInitializationSessionBean {
         trippyEventItem35.setStartDate(startDate.getTime());
         trippyEventItem35.setEndDate(endDate.getTime());
         trippyEventItem35.setPrice(15.0);
-        trippyEventItem35.setEventImage("http://sipf.sg/wp-content/uploads/2018/07/SIPFWebBanner-01-1024x575.jpg");
+        trippyEventItem35.setEventImage("trippyEventItem35.jpg");
+        trippyEventItem35.setAddress("120A Prinsep St | DECK, Singapore 187937");
         trippyEventItem35.setEventType(eventTypes);
         trippyEventItem35.setSoftDelete(false);
-        trippyEventItem35.setEventTypeString("art_and_culture");
+        trippyEventItem35.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem35);
 
@@ -734,10 +753,11 @@ public class DataInitializationSessionBean {
         trippyEventItem36.setStartDate(startDate.getTime());
         trippyEventItem36.setEndDate(endDate.getTime());
         trippyEventItem36.setPrice(0.0);
-        trippyEventItem36.setEventImage("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_15.thumbnail.image-path1.350.197.jpg");
+        trippyEventItem36.setEventImage("trippyEventItem36.jpg");
+        trippyEventItem36.setAddress("216 Orchard Road, orchardgateway@emerald, Singapore 238898");
         trippyEventItem36.setEventType(eventTypes);
         trippyEventItem36.setSoftDelete(false);
-        trippyEventItem36.setEventTypeString("art_and_culture");
+        trippyEventItem36.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem36);
 
@@ -753,10 +773,11 @@ public class DataInitializationSessionBean {
         trippyEventItem37.setStartDate(startDate.getTime());
         trippyEventItem37.setEndDate(endDate.getTime());
         trippyEventItem37.setPrice(0.0);
-        trippyEventItem37.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2017/12/Endgame-Nabilah-Nordin-2015-Credit-Chris-Crocker-_-DISINI-1-smaller-e1514515405119.jpg");
+        trippyEventItem37.setEventImage("trippyEventItem37.jpg");
+        trippyEventItem37.setAddress("9 Lock Rd, Singapore 108937");
         trippyEventItem37.setEventType(eventTypes);
         trippyEventItem37.setSoftDelete(false);
-        trippyEventItem37.setEventTypeString("art_and_culture");
+        trippyEventItem37.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem37);
 
@@ -772,10 +793,11 @@ public class DataInitializationSessionBean {
         trippyEventItem38.setStartDate(startDate.getTime());
         trippyEventItem38.setEndDate(endDate.getTime());
         trippyEventItem38.setPrice(0.0);
-        trippyEventItem38.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/Singapore-River-1962-e1530081235216.jpg");
+        trippyEventItem38.setEventImage("trippyEventItem38.jpg");
+        trippyEventItem38.setAddress("1 St Andrew's Rd, Singapore 178957");
         trippyEventItem38.setEventType(eventTypes);
         trippyEventItem38.setSoftDelete(false);
-        trippyEventItem38.setEventTypeString("art_and_culture");
+        trippyEventItem38.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem38);
 
@@ -791,10 +813,11 @@ public class DataInitializationSessionBean {
         trippyEventItem39.setStartDate(startDate.getTime());
         trippyEventItem39.setEndDate(endDate.getTime());
         trippyEventItem39.setPrice(0.0);
-        trippyEventItem39.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/07/Bath%E6%B2%9091x122cm-e1531888302586.jpg");
+        trippyEventItem39.setEventImage("trippyEventItem39.jpg");
+        trippyEventItem39.setAddress("Pan Pacific Singapore, 7 Raffles Boulevard Level 2, Singapore 039595");
         trippyEventItem39.setEventType(eventTypes);
         trippyEventItem39.setSoftDelete(false);
-        trippyEventItem39.setEventTypeString("art_and_culture");
+        trippyEventItem39.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem39);
 
@@ -810,10 +833,11 @@ public class DataInitializationSessionBean {
         trippyEventItem40.setStartDate(startDate.getTime());
         trippyEventItem40.setEndDate(endDate.getTime());
         trippyEventItem40.setPrice(0.0);
-        trippyEventItem40.setEventImage("https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2018/07/Quayside-Sunday-Floral-Market_4-e1531447641363.jpeg");
+        trippyEventItem40.setEventImage("trippyEventItem40.jpg");
+        trippyEventItem40.setAddress("60 Robertson Quay, Singapore 238252");
         trippyEventItem40.setEventType(eventTypes);
         trippyEventItem40.setSoftDelete(false);
-        trippyEventItem40.setEventTypeString("art_and_culture");
+        trippyEventItem40.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem40);
 
@@ -829,10 +853,11 @@ public class DataInitializationSessionBean {
         trippyEventItem41.setStartDate(startDate.getTime());
         trippyEventItem41.setEndDate(endDate.getTime());
         trippyEventItem41.setPrice(0.0);
-        trippyEventItem41.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2016/10/8060fa-1855-3rd-Charter-of-Justice.jpg");
+        trippyEventItem41.setEventImage("trippyEventItem41.jpg");
+        trippyEventItem41.setAddress("1 St Andrew's Rd, Singapore 178957");
         trippyEventItem41.setEventType(eventTypes);
         trippyEventItem41.setSoftDelete(false);
-        trippyEventItem41.setEventTypeString("art_and_culture");
+        trippyEventItem41.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem41);
 
@@ -848,10 +873,11 @@ public class DataInitializationSessionBean {
         trippyEventItem42.setStartDate(startDate.getTime());
         trippyEventItem42.setEndDate(endDate.getTime());
         trippyEventItem42.setPrice(0.0);
-        trippyEventItem42.setEventImage("http://static.asiawebdirect.com/m/phuket/portals/www-singapore-com/homepage/attractions/asian-civilizations-museum/pagePropertiesImage/asian-civilisations-museum-singapore.jpg.jpg");
+        trippyEventItem42.setEventImage("trippyEventItem42.jpg");
+        trippyEventItem42.setAddress("1 Empress Pl, Singapore 179555");
         trippyEventItem42.setEventType(eventTypes);
         trippyEventItem42.setSoftDelete(false);
-        trippyEventItem42.setEventTypeString("art_and_culture");
+        trippyEventItem42.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem42);
 
@@ -867,10 +893,11 @@ public class DataInitializationSessionBean {
         trippyEventItem43.setStartDate(startDate.getTime());
         trippyEventItem43.setEndDate(endDate.getTime());
         trippyEventItem43.setPrice(0.0);
-        trippyEventItem43.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/04/Amek-Gambar_Peranakans-and-Photography.jpg");
+        trippyEventItem43.setEventImage("trippyEventItem43.jpg");
+        trippyEventItem43.setAddress("39 Armenian St, Singapore 179941");
         trippyEventItem43.setEventType(eventTypes);
         trippyEventItem43.setSoftDelete(false);
-        trippyEventItem43.setEventTypeString("art_and_culture");
+        trippyEventItem43.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem43);
 
@@ -886,10 +913,11 @@ public class DataInitializationSessionBean {
         trippyEventItem44.setStartDate(startDate.getTime());
         trippyEventItem44.setEndDate(endDate.getTime());
         trippyEventItem44.setPrice(65.0);
-        trippyEventItem44.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/04/Facebook-banner-Simbakneel-17Aug.jpg");
+        trippyEventItem44.setEventImage("trippyEventItem44.jpg");
+        trippyEventItem44.setAddress("10 Bayfront Ave, Singapore 018956");
         trippyEventItem44.setEventType(eventTypes);
         trippyEventItem44.setSoftDelete(false);
-        trippyEventItem44.setEventTypeString("art_and_culture");
+        trippyEventItem44.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem44);
 
@@ -906,10 +934,11 @@ public class DataInitializationSessionBean {
         trippyEventItem45.setStartDate(startDate.getTime());
         trippyEventItem45.setEndDate(endDate.getTime());
         trippyEventItem45.setPrice(0.0);
-        trippyEventItem45.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/06/b84a09-Honeycombers_DSC8158_cropped.jpg");
+        trippyEventItem45.setEventImage("trippyEventItem45.jpg");
+        trippyEventItem45.setAddress("Block 43 Malan Road, Gillman Barracks, 109443");
         trippyEventItem45.setEventType(eventTypes);
         trippyEventItem45.setSoftDelete(false);
-        trippyEventItem45.setEventTypeString("art_and_culture");
+        trippyEventItem45.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem45);
 
@@ -927,10 +956,11 @@ public class DataInitializationSessionBean {
         trippyEventItem46.setStartDate(startDate.getTime());
         trippyEventItem46.setEndDate(endDate.getTime());
         trippyEventItem46.setPrice(0.0);
-        trippyEventItem46.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/A.I-Ready_webanner_R1.jpg");
+        trippyEventItem46.setEventImage("trippyEventItem46.jpg");
+        trippyEventItem46.setAddress("15 Science Centre Rd, Singapore 609081");
         trippyEventItem46.setEventType(eventTypes);
         trippyEventItem46.setSoftDelete(false);
-        trippyEventItem46.setEventTypeString("art_and_culture");
+        trippyEventItem46.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem46);
 
@@ -946,10 +976,11 @@ public class DataInitializationSessionBean {
         trippyEventItem47.setStartDate(startDate.getTime());
         trippyEventItem47.setEndDate(endDate.getTime());
         trippyEventItem47.setPrice(0.0);
-        trippyEventItem47.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/2e5848-Honeycombers-Image.jpg");
+        trippyEventItem47.setEventImage("trippyEventItem47.jpg");
+        trippyEventItem47.setAddress("5 Lock Road #01-06, Singapore 108933");
         trippyEventItem47.setEventType(eventTypes);
         trippyEventItem47.setSoftDelete(false);
-        trippyEventItem47.setEventTypeString("art_and_culture");
+        trippyEventItem47.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem47);
 
@@ -965,10 +996,11 @@ public class DataInitializationSessionBean {
         trippyEventItem48.setStartDate(startDate.getTime());
         trippyEventItem48.setEndDate(endDate.getTime());
         trippyEventItem48.setPrice(0.0);
-        trippyEventItem48.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/9bf19e-rsz_dsc_4327-min-2.jpg");
+        trippyEventItem48.setEventImage("trippyEventItem48.jpg");
+        trippyEventItem48.setAddress("1 Harbourfront Walk | VivoCity SkyPark@Level 3, Singapore 098585");
         trippyEventItem48.setEventType(eventTypes);
         trippyEventItem48.setSoftDelete(false);
-        trippyEventItem48.setEventTypeString("art_and_culture");
+        trippyEventItem48.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem48);
 
@@ -989,10 +1021,11 @@ public class DataInitializationSessionBean {
         trippyEventItem49.setStartDate(startDate.getTime());
         trippyEventItem49.setEndDate(endDate.getTime());
         trippyEventItem49.setPrice(0.0);
-        trippyEventItem49.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/e7404c-Exhibition-compressed.jpg");
+        trippyEventItem49.setEventImage("trippyEventItem49.jpg");
+        trippyEventItem49.setAddress("Changi Airport Terminal 3, Departure Hall, Central Immigration");
         trippyEventItem49.setEventType(eventTypes);
         trippyEventItem49.setSoftDelete(false);
-        trippyEventItem49.setEventTypeString("art_and_culture");
+        trippyEventItem49.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem49);
 
@@ -1008,10 +1041,11 @@ public class DataInitializationSessionBean {
         trippyEventItem50.setStartDate(startDate.getTime());
         trippyEventItem50.setEndDate(endDate.getTime());
         trippyEventItem50.setPrice(0.0);
-        trippyEventItem50.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/742ca9-Lan-Zhenghui_E04_930-x-550_honeycombers.jpg");
+        trippyEventItem50.setEventImage("trippyEventItem50.jpg");
+        trippyEventItem50.setAddress("9 Lock Road #03-22 | Gillman Barracks, Singapore 108937");
         trippyEventItem50.setEventType(eventTypes);
         trippyEventItem50.setSoftDelete(false);
-        trippyEventItem50.setEventTypeString("art_and_culture");
+        trippyEventItem50.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem50);
 
@@ -1028,10 +1062,11 @@ public class DataInitializationSessionBean {
         trippyEventItem51.setStartDate(startDate.getTime());
         trippyEventItem51.setEndDate(endDate.getTime());
         trippyEventItem51.setPrice(0.0);
-        trippyEventItem51.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/fdb6cf-honeycombers.jpg");
+        trippyEventItem51.setEventImage("trippyEventItem51.jpg");
+        trippyEventItem51.setAddress("9 Scotts Road, 02-17 Floor Pacific Plaza, Singapore 228210");
         trippyEventItem51.setEventType(eventTypes);
         trippyEventItem51.setSoftDelete(false);
-        trippyEventItem51.setEventTypeString("art_and_culture");
+        trippyEventItem51.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem51);
 
@@ -1051,10 +1086,11 @@ public class DataInitializationSessionBean {
         trippyEventItem52.setStartDate(startDate.getTime());
         trippyEventItem52.setEndDate(endDate.getTime());
         trippyEventItem52.setPrice(0.0);
-        trippyEventItem52.setEventImage("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_5.thumbnail.image-path1.350.197.jpg");
+        trippyEventItem52.setEventImage("trippyEventItem52.jpg");
+        trippyEventItem52.setAddress("Chinatown, Singapore");
         trippyEventItem52.setEventType(eventTypes);
         trippyEventItem52.setSoftDelete(false);
-        trippyEventItem52.setEventTypeString("art_and_culture");
+        trippyEventItem52.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem52);
 
@@ -1070,10 +1106,11 @@ public class DataInitializationSessionBean {
         trippyEventItem53.setStartDate(startDate.getTime());
         trippyEventItem53.setEndDate(endDate.getTime());
         trippyEventItem53.setPrice(0.0);
-        trippyEventItem53.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/c99760-Street-Bazaar-1-01.jpg");
+        trippyEventItem53.setEventImage("trippyEventItem53.jpg");
+        trippyEventItem53.setAddress("Along Pagoda Street, Trengganu Street, Sago Street and Smith Street");
         trippyEventItem53.setEventType(eventTypes);
         trippyEventItem53.setSoftDelete(false);
-        trippyEventItem53.setEventTypeString("art_and_culture");
+        trippyEventItem53.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem53);
 
@@ -1089,10 +1126,11 @@ public class DataInitializationSessionBean {
         trippyEventItem54.setStartDate(startDate.getTime());
         trippyEventItem54.setEndDate(endDate.getTime());
         trippyEventItem54.setPrice(0.0);
-        trippyEventItem54.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/f543bf-BalvenieCoC-7-copy.jpg");
+        trippyEventItem54.setEventImage("trippyEventItem54.jpg");
+        trippyEventItem54.setAddress("115 King George’s Avenue #01-01 Singapore 208561");
         trippyEventItem54.setEventType(eventTypes);
         trippyEventItem54.setSoftDelete(false);
-        trippyEventItem54.setEventTypeString("art_and_culture");
+        trippyEventItem54.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem54);
 
@@ -1108,10 +1146,11 @@ public class DataInitializationSessionBean {
         trippyEventItem55.setStartDate(startDate.getTime());
         trippyEventItem55.setEndDate(endDate.getTime());
         trippyEventItem55.setPrice(88.0);
-        trippyEventItem55.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/06/0d20db-eventsubmission-copy.jpg");
+        trippyEventItem55.setEventImage("trippyEventItem55.jpg");
+        trippyEventItem55.setAddress("1 Zubir Said Dr | SOTA, Singapore 227968");
         trippyEventItem55.setEventType(eventTypes);
         trippyEventItem55.setSoftDelete(false);
-        trippyEventItem55.setEventTypeString("art_and_culture");
+        trippyEventItem55.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem55);
 
@@ -1129,10 +1168,11 @@ public class DataInitializationSessionBean {
         trippyEventItem56.setStartDate(startDate.getTime());
         trippyEventItem56.setEndDate(endDate.getTime());
         trippyEventItem56.setPrice(0.0);
-        trippyEventItem56.setEventImage("http://www.visitsingapore.com/editorials/whats-happening-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co/content/item_14.thumbnail.image-path1.350.197.jpg");
+        trippyEventItem56.setEventImage("trippyEventItem56.jpg");
+        trippyEventItem56.setAddress("2 Orchard Turn B4 |ION Orchard, Singapore 238801");
         trippyEventItem56.setEventType(eventTypes);
         trippyEventItem56.setSoftDelete(false);
-        trippyEventItem56.setEventTypeString("foodie");
+        trippyEventItem56.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem56);
 
@@ -1148,10 +1188,11 @@ public class DataInitializationSessionBean {
         trippyEventItem57.setStartDate(startDate.getTime());
         trippyEventItem57.setEndDate(endDate.getTime());
         trippyEventItem57.setPrice(30.0);
-        trippyEventItem57.setEventImage("https://tgff.com.sg/assets/images/logo.png");
+        trippyEventItem57.setEventImage("trippyEventItem57.jpg");
+        trippyEventItem57.setAddress("8 Sentosa Gateway, Singapore 098269");
         trippyEventItem57.setEventType(eventTypes);
         trippyEventItem57.setSoftDelete(false);
-        trippyEventItem57.setEventTypeString("foodie");
+        trippyEventItem57.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem57);
 
@@ -1167,10 +1208,11 @@ public class DataInitializationSessionBean {
         trippyEventItem58.setStartDate(startDate.getTime());
         trippyEventItem58.setEndDate(endDate.getTime());
         trippyEventItem58.setPrice(0.0);
-        trippyEventItem58.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/a56df7-CM-Mid-Autumn-2018-Honeycombers.jpg");
+        trippyEventItem58.setEventImage("trippyEventItem58.jpg");
+        trippyEventItem58.setAddress("18A Dempsey Rd, Singapore 249677");
         trippyEventItem58.setEventType(eventTypes);
         trippyEventItem58.setSoftDelete(false);
-        trippyEventItem58.setEventTypeString("foodie");
+        trippyEventItem58.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem58);
 
@@ -1192,10 +1234,11 @@ public class DataInitializationSessionBean {
         trippyEventItem59.setStartDate(startDate.getTime());
         trippyEventItem59.setEndDate(endDate.getTime());
         trippyEventItem59.setPrice(0.0);
-        trippyEventItem59.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/7e1faf-Untitled-design-4.jpg");
+        trippyEventItem59.setEventImage("trippyEventItem59.jpg");
+        trippyEventItem59.setAddress("CoSpace Park 43 Science Park Rd, Singapore 117408");
         trippyEventItem59.setEventType(eventTypes);
         trippyEventItem59.setSoftDelete(false);
-        trippyEventItem59.setEventTypeString("foodie");
+        trippyEventItem59.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem59);
 
@@ -1211,10 +1254,11 @@ public class DataInitializationSessionBean {
         trippyEventItem60.setStartDate(startDate.getTime());
         trippyEventItem60.setEndDate(endDate.getTime());
         trippyEventItem60.setPrice(0.0);
-        trippyEventItem60.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2016/11/047d7e-2016-11-03-PHOTO-00000304-930x550.jpg");
+        trippyEventItem60.setEventImage("trippyEventItem60.jpg");
+        trippyEventItem60.setAddress("28 Stanley Street, Telok Ayer, Singapore 068737");
         trippyEventItem60.setEventType(eventTypes);
         trippyEventItem60.setSoftDelete(false);
-        trippyEventItem60.setEventTypeString("foodie");
+        trippyEventItem60.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem60);
 
@@ -1230,10 +1274,11 @@ public class DataInitializationSessionBean {
         trippyEventItem61.setStartDate(startDate.getTime());
         trippyEventItem61.setEndDate(endDate.getTime());
         trippyEventItem61.setPrice(0.0);
-        trippyEventItem61.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/1f6b10-AustrianWineDinner_Web-930x550.jpg");
+        trippyEventItem61.setEventImage("trippyEventItem61.jpg");
+        trippyEventItem61.setAddress("45 Ann Siang Rd, 02, Singapore 069719");
         trippyEventItem61.setEventType(eventTypes);
         trippyEventItem61.setSoftDelete(false);
-        trippyEventItem61.setEventTypeString("foodie");
+        trippyEventItem61.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem61);
 
@@ -1249,10 +1294,11 @@ public class DataInitializationSessionBean {
         trippyEventItem62.setStartDate(startDate.getTime());
         trippyEventItem62.setEndDate(endDate.getTime());
         trippyEventItem62.setPrice(51.0);
-        trippyEventItem62.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/03/8cf50c-1920x500_pb_alacartemenu-930x500.jpg");
+        trippyEventItem62.setEventImage("trippyEventItem62.jpg");
+        trippyEventItem62.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem62.setEventType(eventTypes);
         trippyEventItem62.setSoftDelete(false);
-        trippyEventItem62.setEventTypeString("foodie");
+        trippyEventItem62.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem62);
 
@@ -1268,10 +1314,11 @@ public class DataInitializationSessionBean {
         trippyEventItem63.setStartDate(startDate.getTime());
         trippyEventItem63.setEndDate(endDate.getTime());
         trippyEventItem63.setPrice(64.0);
-        trippyEventItem63.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/e0283d-1-min.jpg");
+        trippyEventItem63.setEventImage("trippyEventItem63.jpg");
+        trippyEventItem63.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem63.setEventType(eventTypes);
         trippyEventItem63.setSoftDelete(false);
-        trippyEventItem63.setEventTypeString("foodie");
+        trippyEventItem63.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem63);
 
@@ -1287,10 +1334,11 @@ public class DataInitializationSessionBean {
         trippyEventItem64.setStartDate(startDate.getTime());
         trippyEventItem64.setEndDate(endDate.getTime());
         trippyEventItem64.setPrice(38.0);
-        trippyEventItem64.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/cb3145-3-min.jpg");
+        trippyEventItem64.setEventImage("trippyEventItem64.jpg");
+        trippyEventItem64.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem64.setEventType(eventTypes);
         trippyEventItem64.setSoftDelete(false);
-        trippyEventItem64.setEventTypeString("foodie");
+        trippyEventItem64.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem64);
 
@@ -1306,10 +1354,11 @@ public class DataInitializationSessionBean {
         trippyEventItem65.setStartDate(startDate.getTime());
         trippyEventItem65.setEndDate(endDate.getTime());
         trippyEventItem65.setPrice(18.0);
-        trippyEventItem65.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/3b4526-4-min.jpg");
+        trippyEventItem65.setEventImage("trippyEventItem65.jpg");
+        trippyEventItem65.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem65.setEventType(eventTypes);
         trippyEventItem65.setSoftDelete(false);
-        trippyEventItem65.setEventTypeString("foodie");
+        trippyEventItem65.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem65);
 
@@ -1325,10 +1374,11 @@ public class DataInitializationSessionBean {
         trippyEventItem66.setStartDate(startDate.getTime());
         trippyEventItem66.setEndDate(endDate.getTime());
         trippyEventItem66.setPrice(34.0);
-        trippyEventItem66.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/ff7d57-zmSOAQ0Q-2.jpeg");
+        trippyEventItem66.setEventImage("trippyEventItem66.jpg");
+        trippyEventItem66.setAddress("Shangri-La Hotel, 22 Orange Grove Road, Singapore 258350");
         trippyEventItem66.setEventType(eventTypes);
         trippyEventItem66.setSoftDelete(false);
-        trippyEventItem66.setEventTypeString("foodie");
+        trippyEventItem66.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem66);
 
@@ -1344,10 +1394,11 @@ public class DataInitializationSessionBean {
         trippyEventItem67.setStartDate(startDate.getTime());
         trippyEventItem67.setEndDate(endDate.getTime());
         trippyEventItem67.setPrice(60.0);
-        trippyEventItem67.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/4ba059-2-min.jpg");
+        trippyEventItem67.setEventImage("trippyEventItem67.jpg");
+        trippyEventItem67.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem67.setEventType(eventTypes);
         trippyEventItem67.setSoftDelete(false);
-        trippyEventItem67.setEventTypeString("foodie");
+        trippyEventItem67.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem67);
 
@@ -1363,10 +1414,11 @@ public class DataInitializationSessionBean {
         trippyEventItem68.setStartDate(startDate.getTime());
         trippyEventItem68.setEndDate(endDate.getTime());
         trippyEventItem68.setPrice(12.0);
-        trippyEventItem68.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/bfce87-7-min.jpg");
+        trippyEventItem68.setEventImage("trippyEventItem68.jpg");
+        trippyEventItem68.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
         trippyEventItem68.setEventType(eventTypes);
         trippyEventItem68.setSoftDelete(false);
-        trippyEventItem68.setEventTypeString("foodie");
+        trippyEventItem68.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem68);
 
@@ -1382,10 +1434,11 @@ public class DataInitializationSessionBean {
         trippyEventItem69.setStartDate(startDate.getTime());
         trippyEventItem69.setEndDate(endDate.getTime());
         trippyEventItem69.setPrice(0.0);
-        trippyEventItem69.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/09/671f34-WhatsApp-Image-2018-09-04-at-6.18.33-PM.jpeg");
+        trippyEventItem69.setEventImage("trippyEventItem69.jpg");
+        trippyEventItem69.setAddress("VivoCity | Westgate | 313@Somerset | Katong | Raffles City");
         trippyEventItem69.setEventType(eventTypes);
         trippyEventItem69.setSoftDelete(false);
-        trippyEventItem69.setEventTypeString("foodie");
+        trippyEventItem69.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem69);
 
@@ -1401,10 +1454,11 @@ public class DataInitializationSessionBean {
         trippyEventItem70.setStartDate(startDate.getTime());
         trippyEventItem70.setEndDate(endDate.getTime());
         trippyEventItem70.setPrice(118.0);
-        trippyEventItem70.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/08/229164-AngiesOysterBar_Exterior_01-copy-930x550.jpg");
+        trippyEventItem70.setEventImage("trippyEventItem70.jpg");
+        trippyEventItem70.setAddress("Angie's Oyster Bar Level 45, 50 Raffles Place, Singapore Land Tower");
         trippyEventItem70.setEventType(eventTypes);
         trippyEventItem70.setSoftDelete(false);
-        trippyEventItem70.setEventTypeString("foodie");
+        trippyEventItem70.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem70);
 
@@ -1420,10 +1474,11 @@ public class DataInitializationSessionBean {
         trippyEventItem71.setStartDate(startDate.getTime());
         trippyEventItem71.setEndDate(endDate.getTime());
         trippyEventItem71.setPrice(500.0);
-        trippyEventItem71.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/amberlounge_honeycombers.jpeg");
+        trippyEventItem71.setEventImage("trippyEventItem71.jpg");
+        trippyEventItem71.setAddress("1 Temasek Avenue, Singapore 039192");
         trippyEventItem71.setEventType(eventTypes);
         trippyEventItem71.setSoftDelete(false);
-        trippyEventItem71.setEventTypeString("foodie");
+        trippyEventItem71.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem71);
 
@@ -1439,10 +1494,11 @@ public class DataInitializationSessionBean {
         trippyEventItem72.setStartDate(startDate.getTime());
         trippyEventItem72.setEndDate(endDate.getTime());
         trippyEventItem72.setPrice(60.0);
-        trippyEventItem72.setEventImage("https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/07/ddbc56-5-min.jpg");
+        trippyEventItem72.setEventImage("trippyEventItem72.jpg");
+        trippyEventItem72.setAddress("6 Raffles Boulevard Level 4 Marina Square, Singapore 039594");
         trippyEventItem72.setEventType(eventTypes);
         trippyEventItem72.setSoftDelete(false);
-        trippyEventItem72.setEventTypeString("foodie");
+        trippyEventItem72.setEventTypeString("Foodie");
         
 
 

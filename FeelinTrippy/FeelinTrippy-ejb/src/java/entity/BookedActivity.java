@@ -38,6 +38,7 @@ public class BookedActivity implements Serializable {
     private double price;
     private int qty;
     private boolean status;
+    private boolean isDone; //see if trip is done (to become past trip) 
     @OneToOne
     private TrippyEventItem eventItem;
     @OneToOne
@@ -46,7 +47,7 @@ public class BookedActivity implements Serializable {
     public BookedActivity(){
         
     }
-    public BookedActivity(Date bookedDate, double price, int qty, boolean status, TrippyEventItem eventItem, QRDetail qrDetail, Customer bookedBy){
+    public BookedActivity(Date bookedDate, double price, int qty, boolean status, TrippyEventItem eventItem, QRDetail qrDetail, Customer bookedBy, boolean isDone){
         this();
         this.bookedDate = bookedDate;
         this.bookedBy = bookedBy;
@@ -55,6 +56,7 @@ public class BookedActivity implements Serializable {
         this.status = status;
         this.eventItem = eventItem;
         this.qrDetail = qrDetail;
+        this.isDone = isDone;
     }
     
     public Long getbookedID() {
@@ -152,6 +154,20 @@ public class BookedActivity implements Serializable {
     @Override
     public String toString() {
         return "entity.BookedActivity[ bookedID =" + bookedID + " ]";
+    }
+
+    /**
+     * @return the isDone
+     */
+    public boolean getIsDone() {
+        return isDone;
+    }
+
+    /**
+     * @param isDone the isDone to set
+     */
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
     
 }

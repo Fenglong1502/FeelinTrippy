@@ -9,13 +9,19 @@ import etc.RandomPassword;
 import entity.BookedActivity;
 import entity.Customer;
 import entity.SavedTrip;
+import entity.TrippyEventItem;
+import entity.TrippyEventType;
+import error.CustomerAddSavedTripException;
 import error.NoResultException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -28,7 +34,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
- /*
+/*
  * @author MC
  */
 @Stateless
@@ -36,8 +42,8 @@ public class CustomerSession implements CustomerSessionLocal {
 
     @PersistenceContext
     private EntityManager em;
-    
-     @Override
+
+    @Override
     public List<Customer> retrieveAllCustomer() {
         Query q;
         q = em.createQuery("SELECT c FROM Customer c");
@@ -129,7 +135,7 @@ public class CustomerSession implements CustomerSessionLocal {
 
         if (!q.getResultList().isEmpty()) {
             Customer checkC = (Customer) q.getResultList().get(0);
-            if(checkC.getPassword().equals(c.getPassword())) {
+            if (checkC.getPassword().equals(c.getPassword())) {
                 return true;
             }
             return false;
@@ -144,12 +150,14 @@ public class CustomerSession implements CustomerSessionLocal {
         customer.setPassword(newPass);
         em.flush();
     }
+
     @Override
     public void deactivateAccount(Long cId) {
         Customer customer = em.find(Customer.class, cId);
         customer.setAccountStatus(false);
         em.flush();
     }
+
     @Override
     public void activateAccount(Long cId) {
         Customer customer = em.find(Customer.class, cId);
@@ -188,7 +196,7 @@ public class CustomerSession implements CustomerSessionLocal {
             if (!q.getResultList().isEmpty()) {
                 return (Customer) q.getResultList().get(0);
             } else {
-               return null;
+                return null;
             }
         } else {
             return null;
@@ -200,6 +208,8 @@ public class CustomerSession implements CustomerSessionLocal {
         Customer cust = em.find(Customer.class, c.getUserID());
         String recipientEmail = cust.getEmail();
         String newPassword = new RandomPassword().generateRandomPassword();
+        cust.setPassword(encryptPassword(newPassword));
+        em.flush();
 
         String msg = "Your password has been reset! Please login with the new password:\n\"" + newPassword + "\"";
         sendEmail(recipientEmail, "Reset Password", msg);
@@ -241,8 +251,6 @@ public class CustomerSession implements CustomerSessionLocal {
         }
     }
 
-    
-
     private static String encryptPassword(String password) {
         String sha1 = "";
         try {
@@ -266,6 +274,54 @@ public class CustomerSession implements CustomerSessionLocal {
         String result = formatter.toString();
         formatter.close();
         return result;
+    }
+
+    @Override
+    public void addSavedTrip(Long id, SavedTrip s) {
+        Customer c = em.find(Customer.class, id);
+        try {
+            c.addSavedTrip(s);
+            em.flush();
+        } catch (CustomerAddSavedTripException ex) {
+            Logger.getLogger(CustomerSession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c) {
+        List<SavedTrip> returnList = new ArrayList<SavedTrip>();
+        List<SavedTrip> filterList = c.getSavedTrips();
+        for (SavedTrip s : filterList) {
+            if (s.getEventItem().getEventTypeString().equals(type.getTypeName())) {
+                returnList.add(s);
+            }
+        }
+        return returnList;
+    }
+
+    @Override
+    public boolean isEventExist(TrippyEventItem item, Long id) {
+        boolean returnValue = false;
+        Customer c = em.find(Customer.class, id);
+        List<SavedTrip> savedList = c.getSavedTrips();
+        for (SavedTrip s : savedList) {
+            if (s.getEventItem().getEventID() == item.getEventID()) {
+                return true;
+            }
+        }
+        return returnValue;
+    }
+
+    @Override
+    public List<BookedActivity> getPastTripByType(TrippyEventType type, Customer c) {
+        List<BookedActivity> returnList = new ArrayList<BookedActivity>();
+        List<BookedActivity> filterList = c.getBookedActivities();
+        for (BookedActivity b : filterList) {
+            if (b.getEventItem().getEventTypeString().equals(type.getTypeName())) {
+                returnList.add(b);
+            }
+        }
+        return returnList;
     }
 
 }
