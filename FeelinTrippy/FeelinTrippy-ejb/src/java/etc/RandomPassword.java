@@ -47,6 +47,11 @@ import java.util.Random;
              return randPass.toString();
          }
      
+     public int generateOneDigit(){
+         Random randomGenerator = new Random();
+         return randomGenerator.nextInt(10);
+     }
+     
      private int getRandomNumber(int index) {
          int randomInt = 0;
          Random randomGenerator = new Random();

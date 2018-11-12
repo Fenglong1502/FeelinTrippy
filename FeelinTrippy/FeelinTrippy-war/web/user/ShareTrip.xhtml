@@ -7,42 +7,51 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
 
     <head>
         <meta charset="utf-8" />
-        <title>Register, FeelinTrippy - Creative Trip Advisor</title>
+        <title>FeelinTrippy - Share Trip</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <!-- Favicon -->
         <link rel="shortcut icon" href="../img/logo.png">
-        </link>
-        <!-- Template CSS Files -->
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >
-        </link>
-        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" >
-        </link>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" ></link>
 
+            <!-- Template CSS Files -->  </link>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" >  </link>
         <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" >
         </link>
-
         <!-- Template JS Files -->
         <script src="../js/modernizr.js"></script>
 
     </head>
 
-    <body class="double-diagonal dark portfolio-page">
-
+    <h:body class="double-diagonal dark portfolio-page">
+        <!-- Preloader Starts -->
+        <div class="preloader" id="preloader">
+            <div class="logopreloader">
+                <img src="../img/preloaders/walking-man.png" alt="logo"></img>
+            </div>
+            <div class="loader" id="loader"></div>
+        </div>
+        <!-- Preloader Ends -->
         <!-- Page Wrapper Starts -->
         <div class="wrapper">
+            <!-- Header Starts -->
             <header class="header">
                 <div class="header-inner">
                     <!-- Navbar Starts -->
                     <nav class="navbar">
                         <!-- Logo Starts -->
                         <div class="logo">
-                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.jsp">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.xhtml">
                                 <!-- Logo White Starts -->
                                 <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
                                 <!-- Logo White Ends -->
@@ -64,7 +73,7 @@ and open the template in the editor.
                         <!-- Toggle Icon for Mobile Ends -->
                         <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Main Menu Starts -->
-                            <h:form> 
+                            <h:form>
                                 <ul class="nav navbar-nav" id="main-navigation">
                                     <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
                                     <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
@@ -83,90 +92,69 @@ and open the template in the editor.
                             </h:form>
                             <!-- Main Menu Ends -->
                         </div>
-                        <!-- Search Input Starts -->
-
-                        <!-- Search Input Ends -->
                         <!-- Navigation Menu Ends -->
                     </nav>
                     <!-- Navbar Ends -->
                 </div>
-            </header>  
+            </header>
             <div class="container-fluid user-auth">
-                <section class="portfolio">
-                    <div  class="container">
-                        <!-- Logo Starts -->
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <!-- Logo Starts -->
+                   
+                    <!-- Logo Ends -->
+                    <!-- Slider Starts -->
+                    
+                    <!-- Slider Ends -->
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 
-                        <a class="visible-xs" href="filterTrip.xhtml">
-                            <img class="img-responsive mobile-logo" src="../img/logo.png" alt="logo"></img>
-                        </a>
-                        <!-- Logo Ends -->
-                        <div class="form-container" >
-                            <div>
-                                <!-- Main Heading Starts -->
-                                <div class="text-center top-text">
-                                    <h1><span>Update</span> Profile</h1>
-                                    <p></p>
-                                </div>
-                                <!-- Main Heading Ends -->
-                                <!-- Form Starts -->
-                                <div class="text-center top-text">
-                                    <h:form>
-                                        <!-- Input Field Starts -->
-                                        <div class="form-group">
-                                            <h:inputText  id="firstname" value="#{authenticationManagedBean.firstName}"  >
-                                            </h:inputText>
+                    <div class="form-container">
+                        <div>
+                            <!-- Main Heading Starts -->
+                            <div class="text-center top-text">
 
-                                        </div>
-                                        <div class="form-group">
-                                            <h:inputText  id="lastname" value="#{authenticationManagedBean.lastName}" >
-                                            </h:inputText>
-                                        </div>
-                                        <!-- Input Field Ends -->
-
-                                        <!-- Input Field Starts -->
-                                        <div class="form-group">
-                                            <h:inputSecret  id="password" value="#{authenticationManagedBean.password}">
-                                            </h:inputSecret>
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <h:selectOneMenu value="#{authenticationManagedBean.gender}">
-                                                <f:selectItem itemValue="1" itemLabel="Female" />
-                                                <f:selectItem itemValue="2" itemLabel="Male" />
-                                            </h:selectOneMenu><br/>
-                                        </div>
-                                        <div class="form-group">
-                                            <h:inputText  id="mobilenumber" value="#{authenticationManagedBean.mobileNumber}"  >
-                                            </h:inputText>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:commandButton class="custom-button" value="Update" action="#{authenticationManagedBean.update()}"></h:commandButton>
-
-                                        </div>
-                                        <!-- Submit Form Button Ends -->
-                                    </h:form>
-                                    <!-- Form Ends -->
-                                </div>
+                                <p>Enter your friend's phone number, a sharing code will be generated and send to him!</p>
                             </div>
+                            <!-- Main Heading Ends -->
+                            <!-- Form Starts -->
+                            <!--                            <form class="custom-form" method="POST" action="LoginServlet">-->
+                            <h:form>
+                                <!-- Input Field Starts -->
+                                <div class="form-group">
+                                    <h:inputText class="form-control" value="#{trippyManagedBean.phoneNum}" id="email" a:placeholder="Mobile Number" required="true">
+
+                                    </h:inputText>
+                                </div>
+                                <!-- Input Field Ends -->
+
+                                <!-- Submit Form Button Starts -->
+                                <div class="form-group">
+                                    <h:commandButton class="custom-button login" value="submit" action="#{trippyManagedBean.shareTrip()}"></h:commandButton>
+
+                                </div>
+                                <!-- Submit Form Button Ends -->
+                                <!--                            </form>-->
+                            </h:form>
+                            <!-- Form Ends -->
                         </div>
                     </div>
-                </section>
-                <!-- Copyright Text Starts -->
-                <p class="text-center copyright-text">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
-                <!-- Copyright Text Ends -->
+                    <!-- Copyright Text Starts -->
+                    <p class="text-center copyright-text">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                    <!-- Copyright Text Ends -->
+                </div>
             </div>
         </div>
-
         <!-- Wrapper Ends -->
-
         <!-- Template JS Files -->
         <script src="../js/jquery-2.2.4.min.js"></script>
         <script src="../js/plugins/jquery.easing.1.3.js"></script>
         <script src="../js/plugins/bootstrap.min.js"></script>
+        <script src="../js/plugins/jquery.filterizr.js"></script>
+        <script src="../js/plugins/jquery.magnific-popup.min.js"></script>
 
         <!-- Main JS Initialization File -->
         <script src="../js/custom.js"></script>
-    </body>
+
+    </h:body>
+
 </html>

@@ -54,6 +54,11 @@ public interface CustomerSessionLocal {
     public List<BookedActivity> getPastTripByType(TrippyEventType type, Customer c);
     public List<BookedActivity> getBookedTripByType(TrippyEventType type, Customer c);
     
+    //Sms service
+    public void shareTripsViaPhoneNumber(String message, String phoneNumber);
+    public boolean validPhoneNumber(String phoneNum);
+    public String generateSharingID(TrippyEventItem trip);
+    public TrippyEventItem eventShared(String sharingID);
     
     //For ActivityDetails Button Check
     

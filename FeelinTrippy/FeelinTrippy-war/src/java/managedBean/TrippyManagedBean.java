@@ -49,7 +49,9 @@ public class TrippyManagedBean implements Serializable {
     private int searchValue = 50;
     private TrippyEventItem selectedEventItem;
     private List<TrippyEventItem> searchEvents = new ArrayList<TrippyEventItem>();
-
+    private String phoneNum;
+    private String sharingCode;
+  
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
     @EJB
@@ -60,9 +62,9 @@ public class TrippyManagedBean implements Serializable {
     CustomerSessionLocal customerSessionLocal;
     @EJB
     BookedActivitySessionLocal bookedActivitySessionLocal;
-	  @EJB
+    @EJB
     PrizeSessionLocal prizeSessionLocal;
-	
+
     @ManagedProperty(value = "#{authenticationManagedBean}")
     private AuthenticationManagedBean authBean;
 
@@ -78,11 +80,10 @@ public class TrippyManagedBean implements Serializable {
 
     }
 
-	  public List<Prize> getPrizes(){
-      return prizeSessionLocal.getAllPrize();
+    public List<Prize> getPrizes() {
+        return prizeSessionLocal.getAllPrize();
     }
 
-	
     public String generateRandomEvent() {
         TrippyEventType searchType = trippyEventTypeSessionLocal.searchTrippyEventType("adventure");
         List<TrippyEventItem> listToFilter;
@@ -126,6 +127,7 @@ public class TrippyManagedBean implements Serializable {
             SavedTrip s = new SavedTrip();
             s.setPrice(selectedEventItem.getPrice());
             s.setEventItem(selectedEventItem);
+
             s.setSavedDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
 
             savedTripSessionLocal.createdSavedTrip(s, c);
@@ -201,7 +203,7 @@ public class TrippyManagedBean implements Serializable {
     public List<BookedActivity> getBookedByCategory(String eventType) {
         TrippyEventType type = trippyEventTypeSessionLocal.searchTrippyEventType(eventType);
         FacesContext context = FacesContext.getCurrentInstance();
-        
+
         Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
 
         return customerSessionLocal.getBookedTripByType(type, c);
@@ -230,7 +232,9 @@ public class TrippyManagedBean implements Serializable {
     public boolean checkIfTripExist() {
         FacesContext context = FacesContext.getCurrentInstance();
         Long cId = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
-        return customerSessionLocal.isEventExist(selectedEventItem, cId);
+        boolean result = customerSessionLocal.isEventExist(selectedEventItem, cId);
+
+        return result;
     }
 //    public void assignSelectedEventItem(ActionEvent event) {
 //        
@@ -238,6 +242,46 @@ public class TrippyManagedBean implements Serializable {
 //         
 //    }
 //    
+
+    public String shareTrip() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+
+        if (customerSessionLocal.validPhoneNumber(phoneNum)) {
+            String message = "You have received a shared trip from " + c.getFirstName() + " " + c.getLastName() + ". Please insert the code to add it into your saved Trip! \n'" + customerSessionLocal.generateSharingID(selectedEventItem) + "'";
+            customerSessionLocal.shareTripsViaPhoneNumber(message, phoneNum);
+        } else {
+            String message = "You have received a shared trip from " + c.getFirstName() + " " + c.getLastName() + ". Please kindly sign up with us at www.FeelinTrippy.com to check out the shared trip :)";
+            customerSessionLocal.shareTripsViaPhoneNumber(message, phoneNum);
+        }
+        phoneNum = "";
+
+        return "mySavedTrips.xhtml?faces-redirect=true";
+    }
+
+    public String addTripFromSharing() throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+       
+        TrippyEventItem eventShared = customerSessionLocal.eventShared(sharingCode);
+        
+        if(customerSessionLocal.isEventExist(eventShared,c.getUserID()) == false){
+            SavedTrip s = new SavedTrip();
+            s.setPrice(eventShared.getPrice());
+            s.setEventItem(eventShared);
+
+            s.setSavedDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+
+            savedTripSessionLocal.createdSavedTrip(s, c);
+            s = savedTripSessionLocal.getNewlyAddSavedTrip();
+            customerSessionLocal.addSavedTrip(c.getUserID(), s);
+        }
+        c = customerSessionLocal.getCustomerById(c.getUserID());
+        authBean.setLoggedInCustomer(c);
+        
+        return "mySavedTrips.xhtml?faces-redirect=true";
+    }
+    
 
     public String selectEvent(TrippyEventItem tei) {
         selectedEventItem = tei;
@@ -250,7 +294,7 @@ public class TrippyManagedBean implements Serializable {
 
         return "bookedActivityDetails.xhtml?faces-redirect=true";
     }
-    
+
     public void setEverything() {
         searchTypeStr = "everything";
     }
@@ -267,8 +311,24 @@ public class TrippyManagedBean implements Serializable {
         return searchTypeStr;
     }
 
+    public String getSharingCode() {
+        return sharingCode;
+    }
+
+    public void setSharingCode(String sharingCode) {
+        this.sharingCode = sharingCode;
+    }
+
     public void setSearchTypeStr(String searchTypeStr) {
         this.searchTypeStr = searchTypeStr;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
     public int getSearchValue() {
@@ -302,5 +362,7 @@ public class TrippyManagedBean implements Serializable {
     public void setTrippyEventTypeSessionLocal(TrippyEventTypeSessionLocal trippyEventTypeSessionLocal) {
         this.trippyEventTypeSessionLocal = trippyEventTypeSessionLocal;
     }
+
+    
 
 }

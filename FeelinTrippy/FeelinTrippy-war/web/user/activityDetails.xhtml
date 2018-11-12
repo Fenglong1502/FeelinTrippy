@@ -137,10 +137,10 @@ and open the template in the editor.
 
                                         <p>#{trippyManagedBean.selectedEventItem.eventDescription}</p>
 
-                                        <h:commandButton value="Book Trip" class="custom-button" action="#{trippyManagedBean.bookSavedTrip()}" />
-                                        <h:commandButton value="Save Trip" class="custom-button" action="#{trippyManagedBean.addSavedTrip()}" rendered="#{!trippyManagedBean.checkIfTripExist()}" />
-                                        <h:commandButton value="Remove Saved Trip" class="custom-button" action="#{trippyManagedBean.removeSavedTrip()}" rendered="#{trippyManagedBean.checkIfTripExist()}" />
-                                        <h:commandButton value="Share Trip" class="custom-button" action="mySavedTrips.xhtml?faces-redirect=true" /> 
+                                        <h:commandButton value="Book Trip" class="custom-button" action="#{trippyManagedBean.bookSavedTrip()}" /> <span class="mr-5"/>
+                                        <h:commandButton value="Save Trip" class="custom-button" action="#{trippyManagedBean.addSavedTrip()}" rendered="#{!trippyManagedBean.checkIfTripExist()}" /><span class="mr-2"/>
+                                        <h:commandButton value="Remove Saved Trip" class="custom-button" action="#{trippyManagedBean.removeSavedTrip()}" rendered="#{trippyManagedBean.checkIfTripExist()}" /><span class="mr-2"/>
+                                        <span class="ml-5"/><h:commandButton value="Share Trip" class="custom-button" action="ShareTrip.xhtml?faces-redirect=true" /> 
 
 
 

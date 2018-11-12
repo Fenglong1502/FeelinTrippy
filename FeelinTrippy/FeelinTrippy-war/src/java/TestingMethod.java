@@ -16,7 +16,7 @@ import session.CustomerSession;
 public class TestingMethod {
 
     public static void main(String[] args) {
-         SmsService.sendSms();
+//         SmsService.sendSms();
          System.out.println("Done");
     }
 

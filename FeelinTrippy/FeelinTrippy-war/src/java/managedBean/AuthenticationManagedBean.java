@@ -34,6 +34,9 @@ public class AuthenticationManagedBean implements Serializable {
     private String mobileNumber;
     private int points;
     private boolean isAdmin = false;
+    private String currentPassword;
+    private String newPassword;
+    private String confirmPassword;
 
     private Long id = -1L;
     @EJB
@@ -44,39 +47,63 @@ public class AuthenticationManagedBean implements Serializable {
     }
 
     public String login() throws NoResultException {
-            Customer u = new Customer(email, encryptPassword(password));
-            if (customerSessionLocal.Login(u) == true) {
-                if (customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false) {
-                    return "/login.xhtml";
-                } else {
-                    loggedInCustomer = customerSessionLocal.getCustomerByEmail(email);
-                    id = loggedInCustomer.getUserID();
-                    setFirstName(loggedInCustomer.getFirstName());
-                    setLastName(loggedInCustomer.getLastName());
-                    setGender(loggedInCustomer.getGender());
-                    setMobileNumber(loggedInCustomer.getMobileNumber());
-                    setPoints(loggedInCustomer.getPoints());
-                    setIsAdmin(loggedInCustomer.getIsAdmin());
-                    if (isAdmin == true) {
-                        return "/admin/adminIndex.xhtml?faces-redirect=true";
-                    } else {
-                        return "/user/filterTrip.xhtml?faces-redirect=true";
-                    }
-                }
-            } else {
-
-                email = null;
-                password = null;
-                id = -1L;
-
+        Customer u = new Customer(email, encryptPassword(password));
+        if (customerSessionLocal.Login(u) == true) {
+            if (customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false) {
                 return "/login.xhtml";
+            } else {
+                loggedInCustomer = customerSessionLocal.getCustomerByEmail(email);
+                id = loggedInCustomer.getUserID();
+                setFirstName(loggedInCustomer.getFirstName());
+                setLastName(loggedInCustomer.getLastName());
+                setGender(loggedInCustomer.getGender());
+                setMobileNumber(loggedInCustomer.getMobileNumber());
+                setPoints(loggedInCustomer.getPoints());
+                setIsAdmin(loggedInCustomer.getIsAdmin());
+                if (isAdmin == true) {
+                    return "/admin/adminIndex.xhtml?faces-redirect=true";
+                } else {
+                    return "/user/filterTrip.xhtml?faces-redirect=true";
+                }
             }
-       
+        } else {
+
+            email = null;
+            password = null;
+            id = -1L;
+
+            return "/login.xhtml";
+        }
+
     }
+
+    public String changePassword() {
+        if (currentPassword.equals("") || newPassword.equals("") || confirmPassword.equals("")) {
+            return "";
+        }
+
+        if (!newPassword.equals(confirmPassword)) {
+//            RequestContext requestContext = RequestContext.getCurrentInstance();
+//            requestContext.execute("showMyPage()");
+            return "";
+        }
+
+        if (!loggedInCustomer.getPassword().equals(encryptPassword(currentPassword))) {
+            return "";
+        }
+        
+        loggedInCustomer.setPassword(encryptPassword(newPassword));
+        customerSessionLocal.changePasword(loggedInCustomer, encryptPassword(newPassword));
+        
+        return "profile.xhtml?faces-redirect=true";
+        
+
+    }
+
     public boolean getIsAdmin() {
         return isAdmin;
     }
-    
+
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
@@ -212,6 +239,30 @@ public class AuthenticationManagedBean implements Serializable {
         String result = formatter.toString();
         formatter.close();
         return result;
+    }
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
 }

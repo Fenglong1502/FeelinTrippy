@@ -15,6 +15,7 @@ import error.CustomerAddBookedActivityException;
 import error.CustomerAddSavedTripException;
 import error.CustomerRemoveSavedTripException;
 import error.NoResultException;
+import etc.SmsService;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -375,4 +376,52 @@ public class CustomerSession implements CustomerSessionLocal {
         return returnList;
     }
 
+    @Override
+    public void shareTripsViaPhoneNumber(String message, String phoneNumber) {
+        SmsService.sendSms(message, phoneNumber);
+    }
+
+    @Override
+    public boolean validPhoneNumber(String mobileNumber) {
+        if (mobileNumber != null) {
+            Query q = em.createQuery("SELECT c FROM Customer c WHERE "
+                    + "c.mobileNumber = :mobileNumber");
+            q.setParameter("mobileNumber", mobileNumber);
+            if (!q.getResultList().isEmpty()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String generateSharingID(TrippyEventItem trip) {
+        String idStr = trip.getEventID().toString();
+        int id = trip.getEventID().intValue();
+
+        String firstChar = idStr.length() + "";
+        String middleStr = "";
+        for (int i = 0; i < (7 - idStr.length()); i++) {
+            RandomPassword rp = new RandomPassword();
+            middleStr += (rp.generateOneDigit() + "");
+        }
+
+        return (firstChar + middleStr + idStr);
+    }
+
+    @Override
+    public TrippyEventItem eventShared(String sharingID) {
+        int idLen = Integer.parseInt(sharingID.substring(0, 1));
+        String idStr = sharingID.substring(8 - idLen);
+        Long id = Long.parseLong(idStr);
+
+        Query q = em.createQuery("SELECT t FROM TrippyEventItem t WHERE "
+                + "t.eventID = :eventID");
+        q.setParameter("eventID", id);
+        
+        TrippyEventItem returnEvent = (TrippyEventItem)q.getResultList().get(0);
+        return returnEvent;
+    }
 }

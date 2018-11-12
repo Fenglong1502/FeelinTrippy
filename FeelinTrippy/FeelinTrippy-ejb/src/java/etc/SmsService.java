@@ -15,16 +15,16 @@ import com.twilio.type.PhoneNumber;
  * @author fengl
  */
 public class SmsService {
-    public static void sendSms(){
+    public static void sendSms(String messageTxt, String recipientNumber){
         String ACCOUNT_SID = "ACde9aa9442d975921d72f94e1520309a3";
         String AUTH_TOKEN = "3f929fff19041e32307c47e9942d8aab";
 
        
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-        Message message = Message.creator(new PhoneNumber("+6590025633"),
+        Message message = Message.creator(new PhoneNumber("+65"+ recipientNumber),
                 new PhoneNumber("+19375836726"),
-                "Pull, clean and build and deploy then let me know").create();
+               messageTxt).create();
 
         System.out.println(message.getSid());
         
