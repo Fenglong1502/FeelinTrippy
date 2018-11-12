@@ -109,25 +109,27 @@ and open the template in the editor.
                                 </div>
                                 <!-- Main Heading Ends -->
                                 <!-- Form Starts -->
+                                <div class="text-center top-text">
                                 <h:form enctype="multipart/form-data">
                                     <!-- Input Field Starts -->
                                     <div class="form-group-sm">
                                         <br></br>
                                         <br></br>
-                                        <h:inputText class="form-control" value="#{recommendActivityManagedBean.eventName}" id="eventName" a:placeholder="Trip Name" required="true">
-
+                                        <h:inputText class="recClass" value="#{recommendActivityManagedBean.eventName}" id="eventName" a:placeholder="Trip Name" required="true">
+                                        
                                         </h:inputText>
                                         <h:messages for="eventName"  globalOnly="true" errorStyle="color: red"/>
-                                        <br></br>
-                                        <h:inputTextarea  rows = "7" cols = "15" class="form-control" value="#{recommendActivityManagedBean.eventDescription}" id="eventDescription" a:placeholder="Trip Description" required="true">
+                                        <h6></h6>                             
+                                        <h:inputTextarea  rows = "7" cols = "15" class="recClass" value="#{recommendActivityManagedBean.eventDescription}" id="eventDescription" a:placeholder="Trip Description" required="true">
 
                                         </h:inputTextarea>
                                         <br></br>
-                                        <h:inputText   class="form-control" value="#{recommendActivityManagedBean.price}" id="price" a:placeholder="Trip Price" required="true">
+                                        <h:inputText   class="recClass" value="#{recommendActivityManagedBean.price}" id="price" a:placeholder="Trip Price" required="true">
 
                                         </h:inputText>
                                         <br></br>
-                                        <h:selectOneMenu id="eventType" value="#{recommendActivityManagedBean.eventType}">
+                                        <br></br>
+                                        <h:selectOneMenu id="eventType" value="#{recommendActivityManagedBean.eventType}" >
                                             <f:selectItem itemValue="Animal" itemLabel="Animal" />
                                             <f:selectItem itemValue="Adventure" itemLabel="Adventure" />
                                             <f:selectItem itemValue="Culture" itemLabel="Culture" />
@@ -136,13 +138,13 @@ and open the template in the editor.
                                         </h:selectOneMenu>
                                         <br></br>
                                         <br></br>
-                                        <h:inputFile value="#{recommendActivityManagedBean.file}">
+                                        <h:inputFile value="#{recommendActivityManagedBean.file}" class="menuClass">
                                             <f:passThroughAttribute name="accept" value="image/jpeg"/>
                                         </h:inputFile>
 
 
                                         <br></br>
-                                        <h:inputText class="form-control" value="#{recommendActivityManagedBean.address}" id="address" a:placeholder="Trip Address" required="true" />
+                                        <h:inputText class="recClass" value="#{recommendActivityManagedBean.address}" id="address" a:placeholder="Trip Address" required="true" />
 
                                         <br></br>
                                         <h:commandButton class="custom-button login" value="Submit Activity" action="#{recommendActivityManagedBean.save(authenticationManagedBean.loggedInCustomer)}" ></h:commandButton>
@@ -155,6 +157,7 @@ and open the template in the editor.
                                     <!-- Submit Form Button Starts -->
                                     <!-- Submit Form Button Ends -->
                                 </h:form>
+                                </div>
 
                                 <!-- Form Ends -->
                             </div>
