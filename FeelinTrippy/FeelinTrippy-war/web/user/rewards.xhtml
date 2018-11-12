@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <head>
         <meta charset="utf-8" />
@@ -31,7 +32,7 @@ and open the template in the editor.
     </head>
 
     <body class="double-diagonal dark portfolio-page">
-        <h:form>
+        <h:form id="form">
             <!-- Preloader Starts -->
             <div class="preloader" id="preloader">
                 <div class="logopreloader">
@@ -138,13 +139,16 @@ and open the template in the editor.
                                                         <p>#{o.prizeQty} left</p>
                                                         <p>#{o.prizeDescription}</p>
                                                         <button class="custom-button" onclick="redeem(#{o.prizePoint})">Redeem</button> 
+                                                        <h:commandButton style="display:none" id="redeemID" action="#{trippyManagedBean.redeem(o,authenticationManagedBean.loggedInCustomer)}"  value="click">
+                                                            <f:ajax/>
+                                                        </h:commandButton>
                                                     </div>
                                                     <!-- Caption Ends -->
                                                 </div>
                                             </div>
                                         </c:forEach>
 
-                                        <c:forEach var="o" items="#{trippyManagedBean.getPrizes()}" >
+                                        <c:forEach var="o" items="#{trippyManagedBean.getPrizeOrder(authenticationManagedBean.loggedInCustomer.userID)}" >
 
                                             <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="2">
                                                 <div class="magnific-popup-gallery">
@@ -157,7 +161,7 @@ and open the template in the editor.
                                                     <div class="caption">                   
 
                                                         <h3><h:outputText value="#{o.prizeName}" /></h3>
-                                                        
+
                                                         <p>
                                                             <h:outputText value="#{o.prizePoint}"/>
                                                         </p>
@@ -226,8 +230,15 @@ and open the template in the editor.
                 if (points >#{authenticationManagedBean.points}) {
                     alert("not enough points");
                 } else {
-
+                     alert("noooooo");
+                    var jsfCommandLink = document.getElementById("form:redeemID");
+                    alert(jsfCommandLink);
+                    jsfCommandLink.click();
+                  
                 }
+            }
+            function itemRedeem(){
+                
             }
         </script>
 

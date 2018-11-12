@@ -68,7 +68,7 @@ public class DataInitializationSessionBean {
     private void initializeData() {
         //Initialise new user
         Customer admin = new Customer("admin",encryptPassword("admin"), "Administrator", "", true, (byte) 1, "", "admin",0 , true);
-        Customer c1 = new Customer("user1", encryptPassword("password"), "John", "Tan", true, (byte) 2, "91234567", "Testing1@example.com", 0, false);
+        Customer c1 = new Customer("user1", encryptPassword("password"), "John", "Tan", true, (byte) 2, "91234567", "Testing1@example.com", 100000, false);
         Customer c2 = new Customer("user2", encryptPassword("password"), "Peter", "Lee", true, (byte) 2, "91234567", "Testing2@example.com", 0, false);
         Customer c3 = new Customer("user3", encryptPassword("password"), "Jane", "Lee", true, (byte) 1, "91234567", "Testing3@example.com", 0, false);
         Customer c4 = new Customer("user4", encryptPassword("password"), "Mary", "Sim", true, (byte) 1, "91234567", "Testing4@example.com", 0, false);

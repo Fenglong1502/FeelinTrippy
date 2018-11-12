@@ -23,8 +23,10 @@ import javax.persistence.Query;
  */
 @Stateless
 public class PrizeSession implements PrizeSessionLocal {
+
     @PersistenceContext
     private EntityManager em;
+
     @Override
     public void createPrize(Prize prize) {
         if (prize != null) {
@@ -35,6 +37,7 @@ public class PrizeSession implements PrizeSessionLocal {
             }
         }
     }
+
     @Override
     public Prize getPrizeById(Long prizeID) throws NoResultException {
         Prize prize = em.find(Prize.class, prizeID);
@@ -56,8 +59,7 @@ public class PrizeSession implements PrizeSessionLocal {
             existingPrize.setSoftDelete(prize.getSoftDelete());
             existingPrize.setPrizeImage(prize.getPrizeImage());
             existingPrize.setPrizeDescription(prize.getPrizeDescription());
-        }
-        else {
+        } else {
             throw new NoResultException("Prize not found.");
         }
     }
@@ -67,8 +69,7 @@ public class PrizeSession implements PrizeSessionLocal {
         Prize prize = em.find(Prize.class, prizeID);
         if (prize != null) {
             em.remove(prize);
-        }
-        else {
+        } else {
             throw new NoResultException("Prize not found");
         }
     }
@@ -79,7 +80,7 @@ public class PrizeSession implements PrizeSessionLocal {
         q = em.createQuery("SELECT p FROM Prize p");
         return q.getResultList();
     }
-    
+
     @Override
     public List<Prize> searchPrizeByName(String searchTerm) {
         Query q;
@@ -87,35 +88,36 @@ public class PrizeSession implements PrizeSessionLocal {
         q.setParameter("searchTerm", "%" + searchTerm.toLowerCase() + "%");
         return q.getResultList();
     }
-    
+
     @Override
     public boolean redeemPrize(Long customerID, Long prizeID, int qty) {
         Customer c = em.find(Customer.class, customerID);
         Prize toRedeem = em.find(Prize.class, prizeID);
         PrizeOrder po = null;
         //Check if customer has enough points to redeem prize and if qty customer wants to redeem is <= the amount of prize left.
-        if (c.getPoints() >= qty*toRedeem.getPrizePoint() && qty <= toRedeem.getPrizeQty()) {
-            c.setPoints(c.getPoints()-qty*toRedeem.getPrizePoint());
-            toRedeem.setPrizeQty(toRedeem.getPrizeQty()-qty);
+        if (c.getPoints() >= qty * toRedeem.getPrizePoint() && qty <= toRedeem.getPrizeQty()) {
+            c.setPoints(c.getPoints() - qty * toRedeem.getPrizePoint());
+            toRedeem.setPrizeQty(toRedeem.getPrizeQty() - qty);
             po.setCustomerID(customerID);
-            po.setPointsUsed(qty*toRedeem.getPrizePoint());
+            po.setPointsUsed(qty * toRedeem.getPrizePoint());
             po.setPrizeRedeemed(toRedeem);
             po.setQuantity(qty);
             po.setRedemptionDate(new Date());
             em.persist(po);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-        
+
     }
-    
+
     public List<PrizeOrder> getPrizeRedeemed(Long customerID) {
         Query q;
         q = em.createQuery("SELECT po FROM PrizeOrder po WHERE po.customerID = :customerID");
         q.setParameter("customerID", customerID);
         return q.getResultList();
     }
+
+   
 
 }
