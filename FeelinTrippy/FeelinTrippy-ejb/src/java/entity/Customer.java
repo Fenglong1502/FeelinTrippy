@@ -5,7 +5,9 @@
  */
 package entity;
 
+import error.CustomerAddBookedActivityException;
 import error.CustomerAddSavedTripException;
+import error.CustomerRemoveBookedActivityException;
 import error.CustomerRemoveSavedTripException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -89,7 +91,7 @@ public class Customer implements Serializable {
         }
     }
 
-    public void removeAppointment(SavedTrip savedTrip) throws CustomerRemoveSavedTripException {
+    public void removeSavedTrip(SavedTrip savedTrip) throws CustomerRemoveSavedTripException {
         if (savedTrip != null && this.getSavedTrips().contains(savedTrip)) {
             this.getSavedTrips().remove(savedTrip);
         } else {
@@ -97,6 +99,23 @@ public class Customer implements Serializable {
         }
     }
 
+    
+     public void addBookedTrip(BookedActivity bookedTrip) throws CustomerAddBookedActivityException {
+        if (bookedTrip != null && !this.getBookedActivities().contains(bookedTrip)) {
+            this.getBookedActivities().add(bookedTrip);
+        } else {
+            throw new CustomerAddBookedActivityException("Booked already added to Customer");
+        }
+    }
+
+    public void removeSavedTrip(BookedActivity bookedTrip) throws CustomerRemoveBookedActivityException {
+        if (bookedTrip != null && this.getBookedActivities().contains(bookedTrip)) {
+            this.getBookedActivities().remove(bookedTrip);
+        } else {
+            throw new CustomerRemoveBookedActivityException("BookedTrip has not been added to Customer");
+        }
+    }
+    
     public String getFirstName() {
         return firstName;
     }

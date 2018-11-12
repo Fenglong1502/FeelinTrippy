@@ -45,11 +45,15 @@ public interface CustomerSessionLocal {
     public int deductPoints(Customer c, int pointsDeducted);
     public int addPoints(Customer c, int pointsToAdd);
     
-    //Hnadling CRUD for Customer savedTrip and pastTrip
+    //Hnadling CRUD for Customer savedTrip, pastTrip and bookedActivity
     public void addSavedTrip(Long id, SavedTrip s);
+    public void removeSavedTrip(Long id, SavedTrip s);
+    public void addBookedTrip(Long id, BookedActivity b);
     public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c);
     public boolean isEventExist(TrippyEventItem item, Long id);
     public List<BookedActivity> getPastTripByType(TrippyEventType type, Customer c);
+    public List<BookedActivity> getBookedTripByType(TrippyEventType type, Customer c);
+    
     
     //For ActivityDetails Button Check
     

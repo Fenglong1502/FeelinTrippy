@@ -12,7 +12,7 @@ import entity.Customer;
 import error.NoResultException;
 import java.util.List;
 import javax.ejb.Local;
-
+;
 /**
  *
  * @author fengl
@@ -27,6 +27,8 @@ public interface BookedActivitySessionLocal {
     public void updateBookedActivity(BookedActivity b) throws NoResultException;
     public void deleteBookedActivity(Long bookedActivityID) throws NoResultException;
     
+    //Handle Booking trip function
+    public BookedActivity getNewlyAddSavedTrip();
     
     
 }

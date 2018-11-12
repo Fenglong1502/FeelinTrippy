@@ -11,7 +11,9 @@ import entity.Customer;
 import entity.SavedTrip;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
+import error.CustomerAddBookedActivityException;
 import error.CustomerAddSavedTripException;
+import error.CustomerRemoveSavedTripException;
 import error.NoResultException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -288,6 +290,17 @@ public class CustomerSession implements CustomerSessionLocal {
     }
 
     @Override
+    public void addBookedTrip(Long id, BookedActivity b) {
+        Customer c = em.find(Customer.class, id);
+        try {
+            c.addBookedTrip(b);
+            em.flush();
+        } catch (CustomerAddBookedActivityException ex) {
+            Logger.getLogger(CustomerSession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
     public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c) {
         List<SavedTrip> returnList = new ArrayList<SavedTrip>();
         List<SavedTrip> filterList = c.getSavedTrips();
@@ -318,6 +331,44 @@ public class CustomerSession implements CustomerSessionLocal {
         List<BookedActivity> filterList = c.getBookedActivities();
         for (BookedActivity b : filterList) {
             if (b.getEventItem().getEventTypeString().equals(type.getTypeName())) {
+                returnList.add(b);
+            }
+        }
+
+        filterList = returnList;
+        returnList = new ArrayList<BookedActivity>();
+        for (BookedActivity b : filterList) {
+            if (b.getIsDone() == true) {
+                returnList.add(b);
+            }
+        }
+        return returnList;
+    }
+
+    @Override
+    public void removeSavedTrip(Long id, SavedTrip s) {
+        Customer c = em.find(Customer.class, id);
+        try {
+            c.removeSavedTrip(s);
+            em.flush();
+        } catch (CustomerRemoveSavedTripException ex) {
+            Logger.getLogger(CustomerSession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public List<BookedActivity> getBookedTripByType(TrippyEventType type, Customer c) {
+        List<BookedActivity> returnList = new ArrayList<BookedActivity>();
+        List<BookedActivity> filterList = c.getBookedActivities();
+        for (BookedActivity b : filterList) {
+            if (b.getEventItem().getEventTypeString().equals(type.getTypeName())) {
+                returnList.add(b);
+            }
+        }
+
+        filterList = returnList;
+        returnList = new ArrayList<BookedActivity>();
+        for (BookedActivity b : filterList) {
+            if (b.getIsDone() == false) {
                 returnList.add(b);
             }
         }

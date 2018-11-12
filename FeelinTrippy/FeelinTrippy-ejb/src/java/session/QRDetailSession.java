@@ -21,8 +21,10 @@ import javax.persistence.Query;
  */
 @Stateless
 public class QRDetailSession implements QRDetailSessionLocal {
+
     @PersistenceContext
     private EntityManager em;
+
     @Override
     public void createQRRecord(QRDetail qr) {
         em.persist(qr);
@@ -39,41 +41,37 @@ public class QRDetailSession implements QRDetailSessionLocal {
             return new QRDetail();
         }
 
-        return (QRDetail)q.getResultList().get(0);
+        return (QRDetail) q.getResultList().get(0);
     }
 
     @Override
     public QRDetail getQRDetailByID(Long qrDetailID) throws NoResultException {
-            QRDetail qr = em.find(QRDetail.class, qrDetailID);
-             if (qr != null){
-                 return qr;
-             }
-             else{
-                 throw new NoResultException("QRDetail no found!");
-             }
+        QRDetail qr = em.find(QRDetail.class, qrDetailID);
+        if (qr != null) {
+            return qr;
+        } else {
+            throw new NoResultException("QRDetail no found!");
+        }
     }
 
     @Override
     public void deleteQRRecord(Long qrDetailID) throws NoResultException {
         QRDetail qr = em.find(QRDetail.class, qrDetailID);
-             if (qr != null){
-                 em.remove(qr);
-             }
-             else{
-                 throw new NoResultException("QRDetail no found!");
-             }
+        if (qr != null) {
+            em.remove(qr);
+        } else {
+            throw new NoResultException("QRDetail no found!");
+        }
     }
 
-    
     ///////////////////Might not need this method at all////////
     @Override
     public void updateQRRecord(QRDetail qr) throws NoResultException {
         QRDetail oldQR = em.find(QRDetail.class, qr.getQrDetailID());
-        if (oldQR != null){
+        if (oldQR != null) {
             oldQR.setBookedActivity(qr.getBookedActivity());
             oldQR.setQrText(qr.getQrText());
-        }
-        else {
+        } else {
             throw new NoResultException("QR Detail not found!");
         }
     }
@@ -82,6 +80,15 @@ public class QRDetailSession implements QRDetailSessionLocal {
     public List<QRDetail> getAllQRDetails() {
         Query q = em.createQuery("SELECT qr FROM QRDetail qr");
         return q.getResultList();
+    }
+
+    @Override
+    public QRDetail createTempQRDetails() {
+        QRDetail qr = new QRDetail();
+        em.persist(qr);
+
+        Query q = em.createQuery("SELECT q FROM QRDetail q ORDER BY q.qrDetailID DESC");
+        return (QRDetail) q.getResultList().get(0);
     }
 
     // Add business logic below. (Right-click in editor and choose
