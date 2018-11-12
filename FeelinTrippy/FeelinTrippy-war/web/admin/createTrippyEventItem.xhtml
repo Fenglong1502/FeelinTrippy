@@ -36,7 +36,7 @@
                 <!-- /.content-header -->
                 <!-- Main content -->
                 <section class="content">
-                    <h:form class="col-sm-5">
+                    <h:form enctype="multipart/form-data" class="col-sm-5">
                         <h:messages globalOnly="true" style="color: red" />
                         <div class="input-group mb-2 form-group">
                             <div class="input-group-prepend">
@@ -102,7 +102,9 @@
                                 <div class="input-group-text">Image Links</div>
 
                             </div>
-                            <h:inputText id="imageLinks" class="form-control" value="#{adminManagedBean.eventImageString}"  />
+                            <h:inputFile value="#{adminManagedBean.file}">
+                                            <f:passThroughAttribute name="accept" value="image/jpeg"/>
+                                </h:inputFile>
                         </div>
                         <h:commandButton class="btn btn-info" value="Create" action="#{adminManagedBean.createTrippyEventItem()}" title="Create Trippy Event" />
                     </h:form>
