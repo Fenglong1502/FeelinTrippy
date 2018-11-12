@@ -7,10 +7,18 @@ package managedBean;
 
 import entity.Customer;
 import entity.RecommendedActivity;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.servlet.http.Part;
 import session.RecommendedActivitySessionLocal;
+import sun.misc.IOUtils;
 
 /**
  *
@@ -30,17 +38,41 @@ public class RecommendActivityManagedBean {
     private String eventDescription;
     private float price;
     private String eventType;
-    private String imgFile;
+    private String imgFile = "Noimage.jpg";
     private String address;
     private Customer user;
+    private Part file;
 
     public String save(Customer c) {
+        
+        if (file != null) {
+            imgFile = file.getSubmittedFileName();
+            try {
+
+                InputStream bytes = file.getInputStream();
+                //Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+
+                URL ftp = new URL("ftp://houszqzb:leonleon95@houseofcasesg.website/public_html/image-upload/trippyImages/" + file.getSubmittedFileName());
+                URLConnection conn = ftp.openConnection();
+                conn.setDoOutput(true);
+                OutputStream out = conn.getOutputStream();
+                // Copy an InputStream to that OutputStream then
+                out.write(IOUtils.readFully(bytes, -1, false));
+                out.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        
+        
+        
         RecommendedActivity ra = new RecommendedActivity();
         ra.setRecName(eventName);
         ra.setRecDescription(eventDescription);
         ra.setRecPrice(price);
         ra.setEventType(eventType);
-        ra.setRecImages(eventName);
+        ra.setRecImages(imgFile);
         ra.setAddress(address);
         ra.setRecStatus(null);
         ra.setRecByCustomerID(c.getUserID());
@@ -108,5 +140,14 @@ public class RecommendActivityManagedBean {
 
     public RecommendActivityManagedBean() {
     }
+
+    public Part getFile() {
+        return file;
+    }
+
+    public void setFile(Part file) {
+        this.file = file;
+    }
+    
 
 }

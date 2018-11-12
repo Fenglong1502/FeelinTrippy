@@ -33,6 +33,7 @@ public class AuthenticationManagedBean implements Serializable {
     private byte gender;
     private String mobileNumber;
     private int points;
+    private boolean isAdmin = false;
 
     private Long id = -1L;
     @EJB
@@ -43,10 +44,6 @@ public class AuthenticationManagedBean implements Serializable {
     }
 
     public String login() throws NoResultException {
-        if (email.equals("admin") && password.equals("admin")) {
-            id = 0L;
-            return "/admin/adminIndex.xhtml?faces-redirect=true";
-        } else {
             Customer u = new Customer(email, encryptPassword(password));
             if (customerSessionLocal.Login(u) == true) {
                 if (customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false) {
@@ -59,8 +56,12 @@ public class AuthenticationManagedBean implements Serializable {
                     setGender(loggedInCustomer.getGender());
                     setMobileNumber(loggedInCustomer.getMobileNumber());
                     setPoints(loggedInCustomer.getPoints());
-
-                    return "/user/filterTrip.xhtml?faces-redirect=true";
+                    setIsAdmin(loggedInCustomer.getIsAdmin());
+                    if (isAdmin == true) {
+                        return "/admin/adminIndex.xhtml?faces-redirect=true";
+                    } else {
+                        return "/user/filterTrip.xhtml?faces-redirect=true";
+                    }
                 }
             } else {
 
@@ -70,7 +71,14 @@ public class AuthenticationManagedBean implements Serializable {
 
                 return "/login.xhtml";
             }
-        }
+       
+    }
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+    
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public int getPoints() {

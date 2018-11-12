@@ -25,4 +25,7 @@ public interface QRDetailSessionLocal {
     public void updateQRRecord(QRDetail qr) throws NoResultException;
     public List<QRDetail> getAllQRDetails();
 
+    
+    //Testing methods
+    public QRDetail createTempQRDetails();
 }

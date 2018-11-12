@@ -7,6 +7,8 @@ package managedBean;
 
 import entity.BookedActivity;
 import entity.Customer;
+import entity.QRDetail;
+import entity.Prize;
 import entity.SavedTrip;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
@@ -23,8 +25,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import session.PrizeSessionLocal;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import session.BookedActivitySessionLocal;
 import session.CustomerSessionLocal;
 import session.SavedTripSessionLocal;
 import session.TrippyEventSessionLocal;
@@ -54,7 +58,11 @@ public class TrippyManagedBean implements Serializable {
     SavedTripSessionLocal savedTripSessionLocal;
     @EJB
     CustomerSessionLocal customerSessionLocal;
-
+    @EJB
+    BookedActivitySessionLocal bookedActivitySessionLocal;
+	  @EJB
+    PrizeSessionLocal prizeSessionLocal;
+	
     @ManagedProperty(value = "#{authenticationManagedBean}")
     private AuthenticationManagedBean authBean;
 
@@ -67,9 +75,14 @@ public class TrippyManagedBean implements Serializable {
     }
 
     public TrippyManagedBean() {
-        
+
     }
 
+	  public List<Prize> getPrizes(){
+      return prizeSessionLocal.getAllPrize();
+    }
+
+	
     public String generateRandomEvent() {
         TrippyEventType searchType = trippyEventTypeSessionLocal.searchTrippyEventType("adventure");
         List<TrippyEventItem> listToFilter;
@@ -121,8 +134,52 @@ public class TrippyManagedBean implements Serializable {
         }
         c = customerSessionLocal.getCustomerById(c.getUserID());
         authBean.setLoggedInCustomer(c);
-        
+
         return "mySavedTrips.xhtml?faces-redirect=true";
+    }
+
+    public String removeSavedTrip() throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+
+        List<SavedTrip> savedTrips = c.getSavedTrips();
+        SavedTrip tripToDelete = new SavedTrip();
+        for (SavedTrip s : savedTrips) {
+            if (s.getEventItem().getEventName().equals(selectedEventItem.getEventName())) {
+                tripToDelete = s;
+            }
+        }
+        customerSessionLocal.removeSavedTrip(c.getUserID(), tripToDelete);
+        savedTripSessionLocal.deleteSavedTrip(tripToDelete.getSavedTripID());
+
+        c = customerSessionLocal.getCustomerById(c.getUserID());
+        authBean.setLoggedInCustomer(c);
+
+        return "mySavedTrips.xhtml?faces-redirect=true";
+    }
+
+    public String bookSavedTrip() throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+
+        List<BookedActivity> bookedTrips = c.getBookedActivities();
+        BookedActivity b = new BookedActivity();
+        b.setBookedBy(c);
+        b.setBookedDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+        b.setEventItem(selectedEventItem);
+        b.setIsDone(false);
+        b.setPrice(selectedEventItem.getPrice());
+        b.setQty(1);
+        b.setStatus(true); // if it is cancelled, etc
+
+        bookedActivitySessionLocal.createBookedActivity(b);
+        b = bookedActivitySessionLocal.getNewlyAddSavedTrip();
+        customerSessionLocal.addBookedTrip(c.getUserID(), b);
+
+        c = customerSessionLocal.getCustomerById(c.getUserID());
+        authBean.setLoggedInCustomer(c);
+
+        return "bookedTrips.xhtml?faces-redirect=true";
     }
 
     public List<SavedTrip> getSavedTripByCategory(String eventType) {
@@ -139,6 +196,15 @@ public class TrippyManagedBean implements Serializable {
         Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
 
         return customerSessionLocal.getPastTripByType(type, c);
+    }
+
+    public List<BookedActivity> getBookedByCategory(String eventType) {
+        TrippyEventType type = trippyEventTypeSessionLocal.searchTrippyEventType(eventType);
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+
+        return customerSessionLocal.getBookedTripByType(type, c);
     }
 
     public void changeTypeToAnimal() {
@@ -161,18 +227,30 @@ public class TrippyManagedBean implements Serializable {
         searchTypeStr = "Foodie";
     }
 
+    public boolean checkIfTripExist() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Long cId = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
+        return customerSessionLocal.isEventExist(selectedEventItem, cId);
+    }
 //    public void assignSelectedEventItem(ActionEvent event) {
 //        
 //	selectedEventItem = (TrippyEventItem)event.getComponent().getAttributes().get("event");
 //         
 //    }
 //    
+
     public String selectEvent(TrippyEventItem tei) {
         selectedEventItem = tei;
 
         return "activityDetails.xhtml?faces-redirect=true";
     }
 
+    public String selectBookedEvent(TrippyEventItem tei) {
+        selectedEventItem = tei;
+
+        return "bookedActivityDetails.xhtml?faces-redirect=true";
+    }
+    
     public void setEverything() {
         searchTypeStr = "everything";
     }

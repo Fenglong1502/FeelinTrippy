@@ -12,29 +12,29 @@ and open the template in the editor.
 
     <head>
         <meta charset="utf-8" />
-        <title>FeelinTrippy - My Past Trips</title>
+        <title>FeelinTrippy - My Booked Trips</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="../img/logo.png"></link>
-
+        <link rel="shortcut icon" href="../img/logo.png">
+        </link>
         <!-- Template CSS Files -->
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" ></link>
-        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" ></link>
-        <link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" ></link>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" ></link>
-        <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" ></link>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" >  </link>
+        <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" >  </link>
 
         <!-- Template JS Files -->
-        <script src="../js/modernizr.js">
-
-        </script>
+        <script src="../js/modernizr.js"></script>
 
     </head>
 
     <body class="double-diagonal dark portfolio-page">
         <h:form>
             <!-- Preloader Starts -->
+
+            -->
             <div class="preloader" id="preloader">
                 <div class="logopreloader">
                     <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">   </img>     </div>
@@ -50,7 +50,7 @@ and open the template in the editor.
                         <nav class="navbar">
                             <!-- Logo Starts -->
                             <div class="logo">
-                                <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.xhtml">
+                                <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.jsp">
                                     <!-- Logo White Starts -->
                                     <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
                                     <!-- Logo White Ends -->
@@ -72,7 +72,7 @@ and open the template in the editor.
                             <!-- Toggle Icon for Mobile Ends -->
                             <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                                 <!-- Main Menu Starts -->
-                              <ul class="nav navbar-nav" id="main-navigation">
+                                <ul class="nav navbar-nav" id="main-navigation">
                                         <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
                                         <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
                                         <li class="dropdown">
@@ -105,8 +105,10 @@ and open the template in the editor.
                     <div class="container">
                         <div class="text-center top-text">
                             <br><br><br></br></br></br>
-                            <h1><span>Saved</span> Trips</h1>                   
+                            <h1><span>Booked</span> Trips</h1>                   
                         </div>
+
+
                         <nav>
                             <ul class="simplefilter nav nav-pills">
                                 <!-- Filter Wrapper Items Starts -->
@@ -122,7 +124,7 @@ and open the template in the editor.
 
                         <div>
                             <div class="filtr-container">
-                                <c:forEach items="${trippyManagedBean.getSavedTripByCategory('Animals and Wildlife')}" var="saveTrip">
+                                <c:forEach items="${trippyManagedBean.getBookedByCategory('Animals and Wildlife')}" var="saveTrip">
                                     <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
 
                                         <div class="magnific-popup-gallery">
@@ -138,7 +140,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -147,7 +149,7 @@ and open the template in the editor.
 
                                     </div>
                                 </c:forEach>
-                                <c:forEach items="${trippyManagedBean.getSavedTripByCategory('Adventure')}" var="saveTrip">
+                                <c:forEach items="${trippyManagedBean.getBookedByCategory('Adventure')}" var="saveTrip">
                                     <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="2">
 
                                         <div class="magnific-popup-gallery">
@@ -163,7 +165,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -172,7 +174,7 @@ and open the template in the editor.
 
                                     </div>
                                 </c:forEach>
-                                <c:forEach items="${trippyManagedBean.getSavedTripByCategory('Music and Night Life')}" var="saveTrip">
+                                <c:forEach items="${trippyManagedBean.getBookedByCategory('Music and Night Life')}" var="saveTrip">
 
                                     <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="3">
                                         <div class="magnific-popup-gallery">
@@ -189,7 +191,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -198,7 +200,7 @@ and open the template in the editor.
 
                                     </div>
                                 </c:forEach>
-                                <c:forEach items="${trippyManagedBean.getSavedTripByCategory('Art and Culture')}" var="saveTrip">
+                                <c:forEach items="${trippyManagedBean.getBookedByCategory('Art and Culture')}" var="saveTrip">
 
                                     <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="4">
                                         <div class="magnific-popup-gallery">
@@ -214,7 +216,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -223,7 +225,7 @@ and open the template in the editor.
 
                                     </div>
                                 </c:forEach>
-                                <c:forEach items="${trippyManagedBean.getSavedTripByCategory('Foodie')}" var="saveTrip">
+                                <c:forEach items="${trippyManagedBean.getBookedByCategory('Foodie')}" var="saveTrip">
                                     <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="5">
                                         <div class="magnific-popup-gallery">
                                             <figure class="thumbnail thumbnail__portfolio">
@@ -237,7 +239,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -246,10 +248,14 @@ and open the template in the editor.
 
                                     </div>
                                 </c:forEach>
-                               
+
                             </div>
                         </div>
                     </div>
+
+
+
+
                     <!-- Container Ends -->
                 </section>
                 <!-- Portfolio Section Ends -->

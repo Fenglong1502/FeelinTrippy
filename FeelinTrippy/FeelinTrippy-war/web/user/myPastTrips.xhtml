@@ -34,7 +34,7 @@ and open the template in the editor.
         <h:form>
             <!-- Preloader Starts -->
 
-            -->
+
             <div class="preloader" id="preloader">
                 <div class="logopreloader">
                     <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">   </img>     </div>
@@ -72,14 +72,21 @@ and open the template in the editor.
                             <!-- Toggle Icon for Mobile Ends -->
                             <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                                 <!-- Main Menu Starts -->
-                                <ul class="nav navbar-nav" id="main-navigation">
-                                    <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>                               
-                                    <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
-                                    <li class="active"><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
-                                    <li><a href="recommendActivity.xhtml"><i class="fa fa-envelope"></i> Recommend Trip</a></li>
-                                    <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
-                                    <li><h:commandLink action="#{authenticationManagedBean.logout()}" ><i class="fa fa-user"></i> Log Out</h:commandLink></li>
-                                </ul>
+                                 <ul class="nav navbar-nav" id="main-navigation">
+                                        <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
+                                        <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trips
+                                                <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
+                                                <li><a href="bookedTrips.xhtml"><i class="fa fa-envelope"></i> Booked Trips</a></li>
+                                                <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="recommendActivity.xhtml"><i class="fa fa-envelope"></i> Recommend Us</a></li>
+                                        <li><h:commandLink action="#{authenticationManagedBean.logout()}" ><i class="fa fa-user"></i> Log Out</h:commandLink></li>
+                                    </ul>
                                 <!-- Main Menu Ends -->
                             </div>
                             <!-- Search Input Starts -->
@@ -131,7 +138,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -156,7 +163,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -182,7 +189,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -207,7 +214,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>
@@ -230,7 +237,7 @@ and open the template in the editor.
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription}" rendered="#{saveTrip.eventItem.eventDescription.length() lt 100}"/>
                                                     <h:outputText value="#{saveTrip.eventItem.eventDescription.substring(0,100)}...." rendered="#{saveTrip.eventItem.eventDescription.length() ge 100}"/>
                                                 </p>
-                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectEvent(saveTrip.eventItem)}">
+                                                <h:commandButton class="custom-button" value="Read More" action="#{trippyManagedBean.selectBookedEvent(saveTrip.eventItem)}">
                                                 </h:commandButton>
                                                 <!--                                                <a class="custom-button" href="activityDetails.xhtml">Read More</a>-->
                                             </div>

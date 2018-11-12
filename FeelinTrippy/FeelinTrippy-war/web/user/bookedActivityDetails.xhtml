@@ -6,37 +6,44 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <head>
+    <h:head>
         <meta charset="utf-8" />
-        <title>FeelinTrippy - My Profile</title>
+        <title>FeelinTrippy - Activity Details</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <!-- Favicon -->
         <link rel="shortcut icon" href="../img/logo.png">
         </link>
-
         <!-- Template CSS Files -->
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >   </link>
-        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" >   </link>
-        <link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" >   </link>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" >   </link>
-        <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" >   </link>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >
+        </link>
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" ></link>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" ></link>
+        <link rel="stylesheet" type="text/css" href="../css/skins/yellow.css" ></link>
 
         <!-- Template JS Files -->
         <script src="../js/modernizr.js"></script>
 
-    </head>
 
-    <h:body class="double-diagonal dark about-page">
+    </h:head>
+
+
+
+    <h:body class="double-diagonal dark portfolio-project">
         <h:form>
+
+
             <!-- Preloader Starts -->
             <div class="preloader" id="preloader">
                 <div class="logopreloader">
-                    <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">    </img>        </div>
+                    <img src="../img/preloaders/walking-man.png" height="128" width="100" alt="logo">  </img>      </div>
                 <div class="loader" id="loader"></div>
+
             </div>
+
             <!-- Preloader Ends -->
             <!-- Page Wrapper Starts -->
             <div class="wrapper">
@@ -47,7 +54,7 @@ and open the template in the editor.
                         <nav class="navbar">
                             <!-- Logo Starts -->
                             <div class="logo">
-                                <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.xhtml">
+                                <a data-toggle="collapse" data-target=".navbar-collapse.show" class="navbar-brand" href="filterTrip.jsp">
                                     <!-- Logo White Starts -->
                                     <img id="logo-light" class="logo-light" src="../img/logo.png" alt="logo-light" />
                                     <!-- Logo White Ends -->
@@ -55,7 +62,8 @@ and open the template in the editor.
                                     <img id="logo-dark" class="logo-dark" src="../img/logo.png" alt="logo-dark" />
                                     <!-- Logo Black Ends -->
                                 </a>
-                            </div>                        <!-- Logo Ends -->
+                            </div>
+                            <!-- Logo Ends -->
                             <!-- Toggle Icon for Mobile Starts -->
                             <button class="navbar-toggle navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span id="icon-toggler">
@@ -68,7 +76,7 @@ and open the template in the editor.
                             <!-- Toggle Icon for Mobile Ends -->
                             <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                                 <!-- Main Menu Starts -->
-                                 <ul class="nav navbar-nav" id="main-navigation">
+                                  <ul class="nav navbar-nav" id="main-navigation">
                                         <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
                                         <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
                                         <li class="dropdown">
@@ -89,58 +97,77 @@ and open the template in the editor.
                         </nav>
                         <!-- Navbar Ends -->
                     </div>
-                </header>   
+
+                </header>
                 <!-- Header Ends -->
 
-                <!-- About Section Starts -->
-                <section class="about">
-                    <!-- Container Starts -->
+
+                <!-- Project Starts -->
+                <section class="project">
                     <div class="container">
-                        <!-- About Content Starts -->
-                        <div class="row about-content">
-                            <div><br><br><br><br><br><br></br></br></br></br></br></br></div>
-                            <div class="col-sm-12 col-md-6 col-lg-6 about-left-side">
-                                <h3 class="title-about">#{authenticationManagedBean.firstName} #{authenticationManagedBean.lastName}</h3>
+                        <div class="row">
+                            <!-- Project Main Content Starts -->
+                            <div class="col-md-6">
+                                <div class="project-main-content">
 
-                                <hr>
-                                    <p>#{authenticationManagedBean.mobileNumber}<br></br>
-                                        #{authenticationManagedBean.email}<br> </br>
-                                        Points available to redeem: #{authenticationManagedBean.points}<br></br>
-                                        <a class="custom-button" href="pastRewards.xhtml">View Redeemed rewards</a></p>
-                                    <a class="custom-button" href="rewards.xhtml">Redeem rewards now!</a>
-                                    <a class="custom-button" href="editProfile.xhtml">Edit Profile</a>
-                                </hr>
+                                    <h:graphicImage alt="https://houseofcasesg.website/image-upload/trippyImages/#{trippyManagedBean.selectedEventItem.eventImage}" class="img-responsive" value = "https://houseofcasesg.website/image-upload/trippyImages/#{trippyManagedBean.selectedEventItem.eventImage}"/> 
+
+                                </div>
+                                <div class="project-navigation">
+                                    <nav>
+                                        <ul class="unstyled">
+                                            <li><a href="activities.xhtml"><i class="fa fa-angle-double-left"></i>Back</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
-                            <!-- Image About Us Starts -->
+                            <!-- Project Main Content Ends -->
+                            <!-- Project Details Starts -->
+                            <div class="col-md-6">
+                                <div class="project-details">
 
-                            <!-- Image About Us Ends -->
+                                    <h3><h:outputText value="#{trippyManagedBean.selectedEventItem.eventName}" /></h3>
+                                    <ul class="unstyled">
+                                        <li><i class="fa fa-user"></i><span class="detail-name">Location </span>: <span class="detail-value"><h:outputText value="#{trippyManagedBean.selectedEventItem.address}" /></span></li>
+                                        <li><i class="fa fa-calendar"></i><span class="detail-name"> Date</span>: <span class="detail-value"><h:outputText value="#{trippyManagedBean.selectedEventItem.startDate}" ><f:convertDateTime type="date" pattern="dd/MM/yyyy"/></h:outputText>  - <h:outputText value="#{trippyManagedBean.selectedEventItem.endDate}" ><f:convertDateTime type="date" pattern="dd/MM/yyyy"/></h:outputText></span></li>
+                                        <li><i class="fa fa-cogs"></i><span class="detail-name"> Price </span>: <span class="detail-value"><h:outputText value="$#{trippyManagedBean.selectedEventItem.price}0" rendered="#{trippyManagedBean.selectedEventItem.price gt 0}" /><h:outputText value="$0" rendered="#{trippyManagedBean.selectedEventItem.price le 0}" /></span></li>
+                                    </ul>
+
+                                    <hr>
+
+                                        <p>#{trippyManagedBean.selectedEventItem.eventDescription}</p>
+
+                                    </hr>
+
+                                </div>
+
+                            </div>
+                            <!-- Project Details Ends -->
                         </div>
-                        <!-- About Content Ends -->
                     </div>
-                    <!-- Container Ends -->
                 </section>
 
-
-                <!-- Logos Section Ends -->
+                <!-- Project Ends -->
                 <!-- Footer Section Starts -->
                 <footer class="footer">
                     <!-- Footer Top Area Starts -->
                     <div class="container top-footer">
+                        <div class="row">
 
-                        <!-- Footer Bottom Area Starts -->
-                        <div class="bottom-footer">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <!-- Copyright Text Starts -->
-                                    <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
-                                    <!-- Copyright Text Ends -->
+                            <!-- Footer Bottom Area Starts -->
+                            <div class="bottom-footer">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <!-- Copyright Text Starts -->
+                                        <p class="text-center">Copyright © 2018 FeelinTrippy All Rights Reserved</p>
+                                        <!-- Copyright Text Ends -->
+                                    </div>
                                 </div>
                             </div>
+                            <!-- Footer Bottom Area Ends -->
                         </div>
-                        <!-- Footer Bottom Area Ends -->
+                        <!-- Footer Top Area Ends -->
                     </div>
-                    <!-- Footer Top Area Ends -->
-
                 </footer>
                 <!-- Footer Section Ends -->
                 <!-- Back To Top Starts -->
@@ -157,11 +184,10 @@ and open the template in the editor.
         <script src="../js/jquery-2.2.4.min.js"></script>
         <script src="../js/plugins/jquery.easing.1.3.js"></script>
         <script src="../js/plugins/bootstrap.min.js"></script>
-        <script src="../js/plugins/jquery.bxslider.min.js"></script>
-        <script src="../js/plugins/jquery.magnific-popup.min.js"></script>
 
         <!-- Main JS Initialization File -->
         <script src="../js/custom.js"></script>
+
     </h:body>
 
 </html>
