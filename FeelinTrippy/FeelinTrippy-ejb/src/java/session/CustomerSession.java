@@ -90,8 +90,8 @@ public class CustomerSession implements CustomerSessionLocal {
         if (oldC != null) {
             oldC.setFirstName(c.getFirstName());
             oldC.setLastName(c.getLastName());
-            oldC.setEmail(c.getEmail());
-            oldC.setUsername(c.getUsername());
+           
+          
             oldC.setGender(c.getGender());
             oldC.setMobileNumber(c.getMobileNumber());
 
