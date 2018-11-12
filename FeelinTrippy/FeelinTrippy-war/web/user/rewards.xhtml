@@ -148,7 +148,7 @@ and open the template in the editor.
                                             </div>
                                         </c:forEach>
 
-                                        <c:forEach var="o" items="#{trippyManagedBean.getPrizeOrder(authenticationManagedBean.loggedInCustomer.userID)}" >
+                                        <c:forEach var="o" items="#{trippyManagedBean.getPrizeOrder(authenticationManagedBean.loggedInCustomer)}" >
 
                                             <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="2">
                                                 <div class="magnific-popup-gallery">
