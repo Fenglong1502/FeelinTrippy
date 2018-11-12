@@ -62,26 +62,40 @@ public class TrippyManagedBean implements Serializable {
     BookedActivitySessionLocal bookedActivitySessionLocal;
     @EJB
     PrizeSessionLocal prizeSessionLocal;
-    
+
     @ManagedProperty(value = "#{authenticationManagedBean}")
     private AuthenticationManagedBean authBean;
 
     public AuthenticationManagedBean getAuthBean() {
         return authBean;
     }
-    public List<PrizeOrder> getPrizeOrder(Customer c){
-       return prizeSessionLocal.getPrizeRedeemed(c.getUserID());
-        
+
+    public List<Prize> getPrizeOrder(Customer c) {
+        return convertToPrize(prizeSessionLocal.getPrizeRedeemed(c.getUserID()));
+
     }
-    public String redeem(Prize p, Customer c) {
-        System.out.println("hellllllllllllllllllllllllllll");
-        if(prizeSessionLocal.redeemPrize(c.getUserID(), p.getPrizeID(), 1)==true){
+
+    public List<Prize> convertToPrize(List<PrizeOrder> c) {
+        List<Prize> z = new ArrayList<>();
+        if ( z.isEmpty()) {
+            return z;
+        } else {
+            for (PrizeOrder po : c) {
+                
+                z.add(po.getPrizeRedeemed());
+
+            }
+        }
+        return z;
+    }
+
+    public String redeem(Prize p) {
+        if (prizeSessionLocal.redeemPrize(authBean.getId(), p.getPrizeID(), 1) == true) {
             return "alert('Item redeemed')";
-        }else{
+        } else {
             return "alert('Item is fully redeemed')";
         }
-        
-       
+
     }
 
     public void setAuthBean(AuthenticationManagedBean authBean) {
