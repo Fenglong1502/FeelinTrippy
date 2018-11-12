@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <head>
         <meta charset="utf-8" />
@@ -108,26 +109,74 @@ and open the template in the editor.
                     <div class="container">                    
                         <div>
                             <h:form>
-                                <ui:repeat var="o" value="#{trippyManagedBean.getPrizes()}" varStatus="prize">
-                                    <div class="col-xs-12 col-sm-4 col-md-4 filtr-item">
-                                        <div class="magnific-popup-gallery">
-                                            <!-- Thumbnail Starts -->
-                                            <figure class="thumbnail thumbnail__portfolio">
-                                                <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
-                                            </figure>
-                                            <!-- Thumbnail Ends -->
-                                            <!-- Caption Starts -->
-                                            <div class="caption">                                        
-                                                <h3>#{o.prizeName}</h3>                                        
-                                                <p>#{o.prizePoint} points</p>
-                                                <p>#{o.prizeQty} left</p>
-                                                <p>#{o.prizeDescription}</p>
-                                                <button class="custom-button" onclick="redeem(#{o.prizePoint})">Redeem</button> 
+
+                                <nav>
+                                    <ul class="simplefilter nav nav-pills">
+                                        <!-- Filter Wrapper Items Starts -->
+
+                                        <li data-filter="1">View Rewards</li>
+                                        <li data-filter="2">My Rewards</li><br><br></br></br>
+                                        <!-- Filter Wrapper Items Ends -->
+                                    </ul>
+                                </nav>
+
+                                <div>
+                                    <div class="filtr-container">
+                                        <c:forEach var="o" items="#{trippyManagedBean.getPrizes()}" >
+
+                                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="1">
+                                                <div class="magnific-popup-gallery">
+                                                    <!-- Thumbnail Starts -->
+                                                    <figure class="thumbnail thumbnail__portfolio">
+                                                        <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
+                                                    </figure>
+                                                    <!-- Thumbnail Ends -->
+                                                    <!-- Caption Starts -->
+                                                    <div class="caption">                                        
+                                                        <h3>#{o.prizeName}</h3>                                        
+                                                        <p>#{o.prizePoint} points</p>
+                                                        <p>#{o.prizeQty} left</p>
+                                                        <p>#{o.prizeDescription}</p>
+                                                        <button class="custom-button" onclick="redeem(#{o.prizePoint})">Redeem</button> 
+                                                    </div>
+                                                    <!-- Caption Ends -->
+                                                </div>
                                             </div>
-                                            <!-- Caption Ends -->
-                                        </div>
+                                        </c:forEach>
+
+                                        <c:forEach var="o" items="#{trippyManagedBean.getPrizes()}" >
+
+                                            <div class="col-xs-12 col-sm-4 col-md-4 filtr-item" data-category="2">
+                                                <div class="magnific-popup-gallery">
+                                                    <!-- Thumbnail Starts -->
+                                                    <figure class="thumbnail thumbnail__portfolio">
+                                                        <img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" alt="Gallery project" />
+                                                    </figure>
+                                                    <!-- Thumbnail Ends -->
+                                                    <!-- Caption Starts -->
+                                                    <div class="caption">                   
+
+                                                        <h3><h:outputText value="#{o.prizeName}" /></h3>
+                                                        
+                                                        <p>
+                                                            <h:outputText value="#{o.prizePoint}"/>
+                                                        </p>
+                                                        <h:commandButton class="custom-button" value="Claim " >
+                                                        </h:commandButton>
+<!--                                                        <h3>#{o.prizeName}</h3>                                        
+                                                        <p>#{o.prizePoint} points</p>
+                                                        <p>#{o.prizeQty} left</p>
+                                                        <p>#{o.prizeDescription}</p>
+                                                        <button class="custom-button" onclick="redeem(#{o.prizePoint})">Redeem</button> -->
+                                                    </div>
+                                                    <!-- Caption Ends -->
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+
                                     </div>
-                                </ui:repeat>
+                                </div>
+
                             </h:form>
                         </div>
                     </div>      <!-- Container Ends -->

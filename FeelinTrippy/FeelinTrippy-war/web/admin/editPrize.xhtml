@@ -17,7 +17,7 @@
             </f:metadata>
 
             <ui:define name="title">
-                Manage Event Type
+                Edit Prize
             </ui:define>
 
             <ui:define name="content">
@@ -72,6 +72,13 @@
                         </div>
                         <div>
                             Enter Prize Image:
+                            <h:inputFile value="#{adminManagedBean.prizeFile}">
+                                <f:passThroughAttribute name="accept" value="image/jpeg"/>
+                            </h:inputFile>
+                        </div>
+                        <div>
+                            Enter Image:
+                            
                             <h:inputFile value="#{adminManagedBean.prizeFile}">
                                 <f:passThroughAttribute name="accept" value="image/jpeg"/>
                             </h:inputFile>
