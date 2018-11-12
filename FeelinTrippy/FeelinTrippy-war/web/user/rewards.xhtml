@@ -96,10 +96,7 @@ and open the template in the editor.
                 <!-- Banner Ends -->
                 <!-- Portfolio Section Starts -->
                 <section class="portfolio">
-                    <div id="overlay" onclick="off()">
-                        <!-- add the QR code here -->
-                        <img src="https://houseofcasesg.website/image-upload/trippyImages/shaw.jpg" alt="Gallery project" style='height: 100%; width: 100%; object-fit: contain'/>
-                    </div>
+
                     <!-- Container Starts -->
                     <div class="container">                    
                         <div>
@@ -118,7 +115,7 @@ and open the template in the editor.
                                                 <p>#{o.prizePoint} points</p>
                                                 <p>#{o.prizeQty} left</p>
                                                 <p>#{o.prizeDescription}</p>
-                                                <button class="custom-button" onclick="on()">Redeem</button> 
+                                                <button class="custom-button" onclick="redeem(#{o.prizePoint})">Redeem</button> 
                                             </div>
                                             <!-- Caption Ends -->
                                         </div>
@@ -163,11 +160,18 @@ and open the template in the editor.
         <script>
             function on() {
                 document.getElementById("overlay").style.display = "block";
-               
+
             }
 
             function off() {
                 document.getElementById("overlay").style.display = "none";
+            }
+            function redeem(points) {
+                if (points >#{authenticationManagedBean.points}) {
+                    alert("not enough points");
+                }else{
+                    
+                    }
             }
         </script>
 
