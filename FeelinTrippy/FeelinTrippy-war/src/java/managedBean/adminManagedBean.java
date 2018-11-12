@@ -382,6 +382,27 @@ public class adminManagedBean {
     }
 
     public String updatePrize() throws ParseException {
+        
+        if (prizeFile != null) {
+            prizeImageFile = prizeFile.getSubmittedFileName();
+            try {
+
+                InputStream bytes = prizeFile.getInputStream();
+                //Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+
+                URL ftp = new URL("ftp://houszqzb:leonleon95@houseofcasesg.website/public_html/image-upload/trippyImages/" + prizeFile.getSubmittedFileName());
+                URLConnection conn = ftp.openConnection();
+                conn.setDoOutput(true);
+                OutputStream out = conn.getOutputStream();
+                // Copy an InputStream to that OutputStream then
+                out.write(IOUtils.readFully(bytes, -1, false));
+                out.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        
         System.out.println("Entering updating prize");
         System.out.println("Prize name: " + getPrizeName());
         Prize toUpdate = new Prize();
@@ -395,18 +416,8 @@ public class adminManagedBean {
         } else {
             toUpdate.setSoftDelete(false);
         }
-
-//        if(getSoftDeleteString().equals("true"))
-//            toUpdate.setSoftDelete((Boolean) true);
-//        else
-//            toUpdate.setSoftDelete((Boolean) false);
-//        //toUpdate.setSoftDelete(getSoftDelete());
-        toUpdate.setPrizeImage(getPrizeImage());
-        try {
-            prizeSessionLocal.updatePrize(toUpdate);
-        } catch (Exception e) {
-
-        }
+        toUpdate.setPrizeImage(prizeImageFile);
+        prizeSessionLocal.updatePrize(toUpdate);
         return "managePrize.xhtml?faces-redirect=true";
     }
 
