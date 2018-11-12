@@ -9,6 +9,12 @@ import entity.Customer;
 import entity.Prize;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -22,10 +28,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.NoResultException;
+import javax.servlet.http.Part;
 import session.CustomerSessionLocal;
 import session.PrizeSessionLocal;
 import session.TrippyEventSessionLocal;
 import session.TrippyEventTypeSessionLocal;
+import sun.misc.IOUtils;
 
 /**
  *
@@ -34,21 +42,7 @@ import session.TrippyEventTypeSessionLocal;
 @ManagedBean
 @RequestScoped
 public class adminManagedBean {
-
-    /**
-     * @return the selectedPrize
-     */
-    public Prize getSelectedPrize() {
-        return selectedPrize;
-    }
-
-    /**
-     * @param selectedPrize the selectedPrize to set
-     */
-    public void setSelectedPrize(Prize selectedPrize) {
-        this.selectedPrize = selectedPrize;
-    }
-
+       
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
 
@@ -92,6 +86,9 @@ public class adminManagedBean {
     private String prizeImage;
     private List<String> prizeStringArray;
     private List<String> prizeImageStringArray;
+    private String imgFile = "Noimage.jpg";
+    private Part prizeFile;
+    private String prizeImageFile = "Noimage.jpg";
 
     private List<TrippyEventItem> listOfTrippyEvent;
     private List<TrippyEventType> eventType;
@@ -414,6 +411,27 @@ public class adminManagedBean {
     }
 
     public String createPrize() throws ParseException {
+
+        if (prizeFile != null) {
+            prizeImageFile = prizeFile.getSubmittedFileName();
+            try {
+
+                InputStream bytes = prizeFile.getInputStream();
+                //Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+
+                URL ftp = new URL("ftp://houszqzb:leonleon95@houseofcasesg.website/public_html/image-upload/trippyImages/" + prizeFile.getSubmittedFileName());
+                URLConnection conn = ftp.openConnection();
+                conn.setDoOutput(true);
+                OutputStream out = conn.getOutputStream();
+                // Copy an InputStream to that OutputStream then
+                out.write(IOUtils.readFully(bytes, -1, false));
+                out.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        
         System.out.println("Entering creating prize");
         Prize toCreate = new Prize();
         toCreate.setPrizeName(getPrizeName());
@@ -421,14 +439,7 @@ public class adminManagedBean {
         toCreate.setPrizeQty(getPrizeQty());
         toCreate.setPrizeDescription(getPrizeDescription());
         toCreate.setSoftDelete(false);
-
-//        count = 0;
-//        eventImageStringArray.clear();
-//        while (count <= eventImage.size() - 1) {
-//            eventImageStringArray.add(eventImage.get(count));
-//            count++;
-//        }
-        toCreate.setPrizeImage(prizeImage);
+        toCreate.setPrizeImage(prizeImageFile);
         prizeSessionLocal.createPrize(toCreate);
 
         return "managePrize.xhtml?faces-redirect=true";
@@ -946,5 +957,61 @@ public class adminManagedBean {
      */
     public void setListOfPrize(List<Prize> listOfPrize) {
         this.listOfPrize = listOfPrize;
+    }
+    
+    /**
+     * @return the imgFile
+     */
+    public String getImgFile() {
+        return imgFile;
+    }
+
+    /**
+     * @param imgFile the imgFile to set
+     */
+    public void setImgFile(String imgFile) {
+        this.imgFile = imgFile;
+    }
+
+    /**
+     * @return the file
+     */
+    public Part getPrizeFile() {
+        return prizeFile;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setPrizeFile(Part prizeFile) {
+        this.prizeFile = prizeFile;
+    }
+
+    /**
+     * @return the selectedPrize
+     */
+    public Prize getSelectedPrize() {
+        return selectedPrize;
+    }
+
+    /**
+     * @param selectedPrize the selectedPrize to set
+     */
+    public void setSelectedPrize(Prize selectedPrize) {
+        this.selectedPrize = selectedPrize;
+    }
+    
+    /**
+     * @return the prizeImageFile
+     */
+    public String getPrizeImageFile() {
+        return prizeImageFile;
+    }
+
+    /**
+     * @param prizeImageFile the prizeImageFile to set
+     */
+    public void setPrizeImageFile(String prizeImageFile) {
+        this.prizeImageFile = prizeImageFile;
     }
 }

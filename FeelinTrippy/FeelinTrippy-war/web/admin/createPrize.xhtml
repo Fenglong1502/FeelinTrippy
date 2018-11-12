@@ -35,7 +35,7 @@
                 <!-- /.content-header -->
                 <!-- Main content -->
                 <section class="content">
-                    <h:form class="col-sm-5">
+                    <h:form enctype="multipart/form-data">
                         <div>
                             Enter Prize Name:
                             <h:inputText value="#{adminManagedBean.prizeName}" required="true" />
@@ -55,9 +55,12 @@
                         </div>
                          <div>
                             Enter Image:
-                            <h:inputText value="#{adminManagedBean.prizeImage}" required="true" />
+                            
+                            <h:inputFile value="#{adminManagedBean.prizeFile}">
+                                <f:passThroughAttribute name="accept" value="image/jpeg"/>
+                            </h:inputFile>
                         </div>
-
+                        <br></br>
                         <h:commandButton value="submit" action="#{adminManagedBean.createPrize}" class="btn btn-info" />
 
                     </h:form>
