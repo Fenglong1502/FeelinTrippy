@@ -26,6 +26,7 @@ public interface BookedActivitySessionLocal {
     public List<BookedActivity> getAllBookedActivities();
     public void updateBookedActivity(BookedActivity b) throws NoResultException;
     public void deleteBookedActivity(Long bookedActivityID) throws NoResultException;
+    public BookedActivity getNewlyAddBookedActivity();
     
     
     

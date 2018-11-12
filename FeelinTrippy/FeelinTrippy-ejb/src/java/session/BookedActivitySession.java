@@ -82,6 +82,12 @@ public class BookedActivitySession implements BookedActivitySessionLocal {
         }
         em.remove(b);
     }
+    
+    @Override
+    public BookedActivity getNewlyAddBookedActivity() {
+        Query q = em.createQuery("SELECT b FROM BookedActivity b ORDER BY b.bookedID DESC");
+        return (BookedActivity) q.getResultList().get(0);
+    }
 
 
 }

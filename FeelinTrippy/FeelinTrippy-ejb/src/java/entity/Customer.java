@@ -5,12 +5,12 @@
  */
 package entity;
 
+import error.CustomerAddBookedActivityException;
 import error.CustomerAddSavedTripException;
 import error.CustomerRemoveSavedTripException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -86,6 +86,14 @@ public class Customer implements Serializable {
             this.getSavedTrips().add(savedTrip);
         } else {
             throw new CustomerAddSavedTripException("SavedTrip already added to Customer");
+        }
+    }
+    
+    public void addBookedActivity(BookedActivity bookedActivity) throws CustomerAddBookedActivityException {
+        if (bookedActivity != null && !this.getBookedActivities().contains(bookedActivity)) {
+            this.getBookedActivities().add(bookedActivity);
+        } else {
+            throw new CustomerAddBookedActivityException("BookedActivity already added to Customer");
         }
     }
 

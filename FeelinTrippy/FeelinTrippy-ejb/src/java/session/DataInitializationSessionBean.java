@@ -5,11 +5,13 @@
  */
 package session;
 
+import entity.BookedActivity;
 import entity.Customer;
 import entity.Prize;
 import entity.SavedTrip;
 import entity.TrippyEventItem;
 import entity.TrippyEventType;
+import error.CustomerAddBookedActivityException;
 import error.CustomerAddSavedTripException;
 import error.NoResultException;
 import java.io.UnsupportedEncodingException;
@@ -50,6 +52,8 @@ public class DataInitializationSessionBean {
     private SavedTripSessionLocal savedTripSessionLocal;
     @EJB
     private PrizeSessionLocal prizeSessionLocal;
+    @EJB
+    private BookedActivitySessionLocal bookedActivitySessionLocal;
 
     @PostConstruct
     public void postConstruct() {
@@ -1539,14 +1543,89 @@ public class DataInitializationSessionBean {
             savedTrip3.setCustomer(newC1); 
             savedTripSessionLocal.createdSavedTrip(savedTrip3);
             newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
+            
+            //init test data for BookedActivity
+            BookedActivity bt1 = new BookedActivity();
+            startDate.set(2018, Calendar.SEPTEMBER, 20); //should be current date. 
+            bt1.setBookedDate(startDate.getTime());
+            bt1.setBookedBy(newC1);
+            bt1.setPrice(12.0);
+            bt1.setQty(1);
+            bt1.setStatus(true);
+            bt1.setIsDone(true); 
+            bt1.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("HAPPY HOUR JUST GOT HAPPIER"));
+            bookedActivitySessionLocal.createBookedActivity(bt1);
+            newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
+            
+            BookedActivity bt2 = new BookedActivity();
+            startDate.set(2018, Calendar.SEPTEMBER, 20); //should be current date. 
+            bt2.setBookedDate(startDate.getTime());
+            bt2.setBookedBy(newC1);
+            bt2.setPrice(34.0); 
+            bt2.setQty(1);
+            bt2.setStatus(true);
+            bt2.setIsDone(true); 
+            bt2.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("A PROVENANCE-LED GASTRONOMIC EXPERIENCE"));
+            bookedActivitySessionLocal.createBookedActivity(bt2);
+            newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
+            
+            BookedActivity bt3 = new BookedActivity();
+            startDate.set(2018, Calendar.SEPTEMBER, 29); //should be current date. 
+            bt3.setBookedDate(startDate.getTime());
+            bt3.setBookedBy(newC1);
+            bt3.setPrice(58.0); 
+            bt3.setQty(1);
+            bt3.setStatus(true);
+            bt3.setIsDone(false); 
+            bt3.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Halloween Horror Nights 8"));
+            bookedActivitySessionLocal.createBookedActivity(bt3);
+            newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
+            
+            BookedActivity bt4 = new BookedActivity();
+            startDate.set(2018, Calendar.SEPTEMBER, 29); //should be current date. 
+            bt4.setBookedDate(startDate.getTime());
+            bt4.setBookedBy(newC1);
+            bt4.setPrice(69.0); 
+            bt4.setQty(1);
+            bt4.setStatus(true);
+            bt4.setIsDone(true); 
+            bt4.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Night Safari Wallaby Trail"));
+            bookedActivitySessionLocal.createBookedActivity(bt4);
+            newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
+            
+            BookedActivity bt5 = new BookedActivity();
+            startDate.set(2018, Calendar.SEPTEMBER, 27); //should be current date. 
+            bt5.setBookedDate(startDate.getTime());
+            bt5.setBookedBy(newC1);
+            bt5.setPrice(15.0); 
+            bt5.setQty(1);
+            bt5.setStatus(false);
+            bt5.setIsDone(false); 
+            bt5.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Snow City Singapore"));
+            bookedActivitySessionLocal.createBookedActivity(bt5);
+            newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
+            
+            BookedActivity bt6 = new BookedActivity();
+            startDate.set(2018, Calendar.SEPTEMBER, 27); //should be current date. 
+            bt6.setBookedDate(startDate.getTime());
+            bt6.setBookedBy(newC1);
+            bt6.setPrice(0.0); 
+            bt6.setQty(1);
+            bt6.setStatus(true);
+            bt6.setIsDone(true); 
+            bt6.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("STREET 2"));
+            bookedActivitySessionLocal.createBookedActivity(bt5);
+            newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
                                
         } catch (NoResultException ex) {
             Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CustomerAddSavedTripException ex) {
             Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CustomerAddBookedActivityException ex) {
+            Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+            //init prize
             Prize prize1 = new Prize();
             prize1.setPrizeName("MCDONALD $5 VOUCHER");
             prize1.setPrizeQty(100);
@@ -1595,12 +1674,12 @@ public class DataInitializationSessionBean {
             Prize prize6 = new Prize();
             prize6.setPrizeName("OGAWA MASSAGER");
             prize6.setPrizeQty(10);
-            prize6.setPrizeDescription("OGAWA Handhel Body Massager. For use at anytime, anywhere. Multi Functional Massager. Convenient Design.");
+            prize6.setPrizeDescription("OGAWA Handheld Body Massager. For use at anytime, anywhere. Multi Functional Massager. Convenient Design.");
             prize6.setPrizePoint(10000);
             prize6.setPrizeImage("massage.jpg");
             prize6.setSoftDelete(false);
             prizeSessionLocal.createPrize(prize6);
-
+                      
     }
 
     private static String encryptPassword(String password) {
