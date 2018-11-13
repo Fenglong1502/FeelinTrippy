@@ -7,6 +7,8 @@ package managedBean;
 
 import entity.Customer;
 import error.NoResultException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -16,6 +18,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 import session.CustomerSessionLocal;
 
 /**
@@ -46,10 +50,17 @@ public class AuthenticationManagedBean implements Serializable {
     public AuthenticationManagedBean() {
     }
 
-    public String login() throws NoResultException {
+    public String login() throws NoResultException, IOException {
         Customer u = new Customer(email, encryptPassword(password));
+
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        PrintWriter out = response.getWriter();
+
         if (customerSessionLocal.Login(u) == true) {
             if (customerSessionLocal.getCustomerByEmail(email).isAccountStatus() == false) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Your account has been banned! Please contact the administrator!');");
+                out.println("</script>");
                 return "/login.xhtml";
             } else {
                 loggedInCustomer = customerSessionLocal.getCustomerByEmail(email);
@@ -71,7 +82,9 @@ public class AuthenticationManagedBean implements Serializable {
             email = null;
             password = null;
             id = -1L;
-
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User or password incorrect');");
+            out.println("</script>");
             return "/login.xhtml";
         }
 
@@ -91,12 +104,11 @@ public class AuthenticationManagedBean implements Serializable {
         if (!loggedInCustomer.getPassword().equals(encryptPassword(currentPassword))) {
             return "";
         }
-        
+
         loggedInCustomer.setPassword(encryptPassword(newPassword));
         customerSessionLocal.changePasword(loggedInCustomer, encryptPassword(newPassword));
-        
+
         return "profile.xhtml?faces-redirect=true";
-        
 
     }
 
@@ -133,7 +145,7 @@ public class AuthenticationManagedBean implements Serializable {
     public String update() {
         loggedInCustomer.setFirstName(firstName);
         loggedInCustomer.setLastName(lastName);
-     
+
         loggedInCustomer.setMobileNumber(mobileNumber);
         loggedInCustomer.setGender(gender);
         try {

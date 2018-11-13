@@ -39,7 +39,7 @@ and open the template in the editor.
 
         <h:form id="form">
 
-            -->
+         
 
             <!-- Preloader Starts -->
             <div class="preloader" id="preloader">
@@ -113,10 +113,12 @@ and open the template in the editor.
                 <!--<form method="POST" action="ActivityServlet" >-->
 
                 <div class="slidecontainer" >
-                    <h:inputText value="#{trippyManagedBean.searchValue}" a:type="range" a:max="200" a:min="1" a:name="myRange" class="slider" id="myRange" /> 
 
-                    <!--<input type="range" max="100" min="1" value="50" name="myRange" class="slider" id="myRange" />-->
-                    <h3 style="text-align: center">$<h:outputText id="demo" value="#{trippyManagedBean.searchValue}" /> <span id="demo"></span></h3>
+                    <input type="range" max="200" min="0" value="100" name="myRange" class="slider" id="myRange" />
+                    <h3 style="text-align: center">$ <span id="demo"></span></h3>
+
+
+
                 </div>
 
                 <div class="text-center" style="margin-top: 30px">
@@ -124,16 +126,15 @@ and open the template in the editor.
                 </div>
 
                 <script>
-                    var slider = document.getElementById("form:myRange");
-                    var output = document.getElementById("form:demo");
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("demo");
 
                     output.innerHTML = slider.value;
                     slider.oninput = function () {
                         output.innerHTML = this.value;
-                        
-//                        var jsfCommandLink = document.getElementById("form:valueLink");
-//                        jsfCommandLink.click();
-                    }
+                    };
+
+
                 </script>
 
                 <div class="row services-box">
@@ -166,7 +167,9 @@ and open the template in the editor.
                         <f:ajax/>
                     </h:commandButton>
 
-
+                    <h:commandButton style="display:none" id="submitLink" action="#{trippyManagedBean.generateRandomEvent()}" 
+                                     value="click">
+                    </h:commandButton>
 
                     <a id="btn1" class="first-page-button" href="#btn1" onclick="invokeAnimalButton()">Animals!</a>
                     <!--Adventure Animals and Wild Life-->
@@ -176,8 +179,8 @@ and open the template in the editor.
                     <a id="btn5" class="fifth-page-button" href="#btn5" onclick="invokeMusicButton())">Nightowl!</a>
                 </div>                
                 <div class ="text-center">
-                    <h:commandButton class="trippy-button" value="Trippy!" action="#{trippyManagedBean.generateRandomEvent()}" />
-
+                    <a class="trippy-button" onclick="invokeSubmitButton()" >Trippy!</a>
+                    <h:inputHidden id="y" value="#{trippyManagedBean.searchValue}" />
                     <!--<button class="trippy-button" type="submit" > Trippy! </button>-->
                 </div>
 
@@ -224,8 +227,11 @@ and open the template in the editor.
                 jsfCommandLink.click();
             }
 
-
-
+            function invokeSubmitButton() {
+                document.getElementById("form:y").value = document.getElementById("myRange").value;
+                var jsfCommandLink = document.getElementById("form:submitLink");
+                jsfCommandLink.click();
+            }
 
             /*
              function testing(click){

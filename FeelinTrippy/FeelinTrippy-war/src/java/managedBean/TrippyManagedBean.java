@@ -50,7 +50,7 @@ public class TrippyManagedBean implements Serializable {
      * Creates a new instance of TrippyManagedBean
      */
     private String searchTypeStr = "";
-    private int searchValue = 100;
+    private int searchValue;
     private TrippyEventItem selectedEventItem;
     private List<TrippyEventItem> searchEvents = new ArrayList<TrippyEventItem>();
     private String phoneNum;
@@ -127,26 +127,30 @@ public class TrippyManagedBean implements Serializable {
     public String redeem(Prize p) throws IOException, NoResultException {
         FacesContext context = FacesContext.getCurrentInstance();
         Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
         PrintWriter out = response.getWriter();
         if (p.getPrizePoint() > c.getPoints()) {
 
             out.println("<script type=\"text/javascript\">");
             out.println("alert('You do not have enough points');");
             out.println("</script>");
+
+            return "/rewards.xhtml";
         } else {
             boolean result = prizeSessionLocal.redeemPrize(c.getUserID(), p.getPrizeID(), 1);
             if (result == true) {
                 customerSessionLocal.deductPoints(c, p.getPrizePoint());
                 c = customerSessionLocal.getCustomerById(c.getUserID());
                 authBean.setLoggedInCustomer(c);
+                return "rewards.xhtml?faces-redirect=true";
             } else {
+
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('The reward is out of stock');");
                 out.println("</script>");
+                return "/rewards.xhtml";
             }
         }
-        return "rewards.xhtml?faces-redirect=true";
     }
 
     public TrippyManagedBean() {
