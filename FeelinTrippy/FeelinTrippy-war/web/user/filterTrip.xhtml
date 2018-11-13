@@ -81,21 +81,21 @@ and open the template in the editor.
                             <!-- Toggle Icon for Mobile Ends -->
                             <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                                 <!-- Main Menu Starts -->
-                               <ul class="nav navbar-nav" id="main-navigation">
-                                        <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
-                                        <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trips
-                                                <span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
-                                                <li><a href="bookedTrips.xhtml"><i class="fa fa-envelope"></i> Booked Trips</a></li>
-                                                <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="recommendActivity.xhtml"><i class="fa fa-envelope"></i> Recommend Us</a></li>
-                                        <li><h:commandLink action="#{authenticationManagedBean.logout()}" ><i class="fa fa-user"></i> Log Out</h:commandLink></li>
-                                    </ul>
+                                <ul class="nav navbar-nav" id="main-navigation">
+                                    <li><a href="filterTrip.xhtml"><i class="fa fa-home"></i> Home</a></li>
+                                    <li><a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a></li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trips
+                                            <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="mySavedTrips.xhtml"><i class="fa fa-envelope"></i> Saved Trips</a></li>
+                                            <li><a href="bookedTrips.xhtml"><i class="fa fa-envelope"></i> Booked Trips</a></li>
+                                            <li><a href="myPastTrips.xhtml"><i class="fa fa-envelope"></i> Past Trips</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="recommendActivity.xhtml"><i class="fa fa-envelope"></i> Recommend Us</a></li>
+                                    <li><h:commandLink action="#{authenticationManagedBean.logout()}" ><i class="fa fa-user"></i> Log Out</h:commandLink></li>
+                                </ul>
                                 <!-- Main Menu Ends -->
                             </div>
                             <!-- Navigation Menu Ends -->
@@ -113,22 +113,26 @@ and open the template in the editor.
                 <!--<form method="POST" action="ActivityServlet" >-->
 
                 <div class="slidecontainer" >
-                    <h:inputText value="#{trippyManagedBean.searchValue}" a:type="range" a:max="100" a:min="1" a:name="myRange" class="slider" id="myRange" /> 
+                    <h:inputText value="#{trippyManagedBean.searchValue}" a:type="range" a:max="200" a:min="1" a:name="myRange" class="slider" id="myRange" /> 
 
                     <!--<input type="range" max="100" min="1" value="50" name="myRange" class="slider" id="myRange" />-->
-                    <h3 style="text-align: center">$<h:outputText value="#{trippyManagedBean.searchValue}" /> <span id="demo"></span></h3>
+                    <h3 style="text-align: center">$<h:outputText id="demo" value="#{trippyManagedBean.searchValue}" /> <span id="demo"></span></h3>
                 </div>
-
+             
                 <div class="text-center" style="margin-top: 30px">
                     <h3>Type Of Activities</h3>
                 </div>
 
                 <script>
-                    var slider = document.getElementById("myRange");
-                    var output = document.getElementById("demo");
+                    var slider = document.getElementById("form:myRange");
+                    var output = document.getElementById("form:demo");
+                    
                     output.innerHTML = slider.value;
                     slider.oninput = function () {
                         output.innerHTML = this.value;
+                        
+//                        var jsfCommandLink = document.getElementById("form:valueLink");
+//                        jsfCommandLink.click();
                     }
                 </script>
 

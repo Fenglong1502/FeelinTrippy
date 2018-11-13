@@ -100,12 +100,12 @@ and open the template in the editor.
                         <div class="row about-content">
                             <div><br><br><br><br><br><br></br></br></br></br></br></br></div>
                             <div class="col-sm-12 col-md-6 col-lg-6 about-left-side">
-                                <h3 class="title-about">#{authenticationManagedBean.firstName} #{authenticationManagedBean.lastName}</h3>
+                                <h3 class="title-about">#{authenticationManagedBean.loggedInCustomer.firstName} #{authenticationManagedBean.loggedInCustomer.lastName}</h3>
 
                                 <hr>
-                                    <p>#{authenticationManagedBean.mobileNumber}<br></br>
-                                        #{authenticationManagedBean.email}<br> </br>
-                                        Points available to redeem: #{authenticationManagedBean.points}<br></br>
+                                    <p>#{authenticationManagedBean.loggedInCustomer.mobileNumber}<br></br>
+                                        #{authenticationManagedBean.loggedInCustomer.email}<br> </br>
+                                        Points available to redeem: #{authenticationManagedBean.loggedInCustomer.points}<br></br>
                                         <a class="custom-button" href="pastRewards.xhtml">View Redeemed rewards</a></p>
                                     <a class="custom-button" href="rewards.xhtml">Redeem rewards now!</a>
                                     <a class="custom-button" href="editProfile.xhtml">Edit Profile</a>

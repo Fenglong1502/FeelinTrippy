@@ -44,6 +44,7 @@ public class Customer implements Serializable {
     private String email;
     private int points;
     private boolean isAdmin;
+    
 
     @Temporal(TemporalType.DATE)
     private Date dateCreated;
