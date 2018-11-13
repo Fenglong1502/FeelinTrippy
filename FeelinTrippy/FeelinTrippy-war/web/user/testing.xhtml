@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <h:form id="form">
+            <h:commandButton style="display:none" id="animalLink" action="filterTrip.xhtml?faces-redirect=true" 
+                             value="click">
+                <f:ajax/>
+            </h:commandButton>
+
+            <div id="paypal-button"></div>
+            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+            <script>
+                paypal.Button.render({
+                    // Configure environment
+                    env: 'sandbox',
+                    client: {
+                        sandbox: 'AT75mpfVLXmLpRYZDk7HSzUsk9bV-NX1NA3qoW1rChE6DH90GLBYgipUGGsxDY_qUcv0v_ZtojFGEl_P',
+                        production: 'AdvBxLACTsil3XndW00-jR46rhrOEkO1wR9d6wSZyvlyYk2htPl08rVmIGVFab2BySUfKXnDOOB9RoLI'
+                    },
+                    // Customize button (optional)
+                    locale: 'en_US',
+                    style: {
+                        size: 'small',
+                        color: 'gold',
+                        shape: 'pill',
+                    },
+                    // Set up a payment
+                    payment: function (data, actions) {
+                        return actions.payment.create({
+                            transactions: [{
+                                    amount: {
+                                        total: '#{trippyManagedBean.searchValue}',
+                                        currency: 'SGD',
+                                        details: {
+                                            subtotal: '#{trippyManagedBean.searchValue}'
+                                        }
+                                    },
+                                    description: 'The payment transaction description.',
+                                    custom: '90048630024435',
+                                    //invoice_number: '12345', Insert a unique invoice number
+                                    payment_options: {
+                                        allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
+                                    },
+                                    soft_descriptor: 'ECHI5786786',
+                                    item_list: {
+                                        items: [
+                                            {
+                                                name: 'Voucher',
+                                                description: 'Voucher',
+                                                quantity: '1',
+                                                price: '#{trippyManagedBean.searchValue}',
+
+                                                currency: 'SGD'
+
+                                            }]
+                                    }
+                                }],
+                            note_to_payer: 'Contact us for any questions on your order.'
+                        });
+                    },
+                    // Execute the payment
+                    onAuthorize: function (data, actions) {
+                        return actions.payment.execute().then(function () {
+                            // Show a confirmation message to the buyer
+                            window.alert('Thank you for your purchase!');
+                            var jsfCommandLink = document.getElementById("form:animalLink");
+                            jsfCommandLink.click();
+                        });
+                    }
+                }, '#paypal-button');
+
+            </script>
+        </h:form>
+    </h:body>
+</html>
