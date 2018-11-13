@@ -42,6 +42,20 @@ import sun.misc.IOUtils;
 @ManagedBean
 @RequestScoped
 public class adminManagedBean {
+
+    /**
+     * @return the file
+     */
+    public Part getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(Part file) {
+        this.file = file;
+    }
        
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
@@ -89,6 +103,7 @@ public class adminManagedBean {
     private String imgFile = "Noimage.jpg";
     private Part prizeFile;
     private String prizeImageFile = "Noimage.jpg";
+    private Part file;
 
     private List<TrippyEventItem> listOfTrippyEvent;
     private List<TrippyEventType> eventType;
@@ -182,10 +197,29 @@ public class adminManagedBean {
 //            System.out.println("found nothing for type!");
             setEventTypeString("");
         }
-//        System.out.println("Event type: " + eventType);
-        toUpdate.setEventImage(getEventImage());
+//      get image uploaded
+        if (file != null) {
+            imgFile = file.getSubmittedFileName();
+            try {
+
+                InputStream bytes = file.getInputStream();
+                //Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+
+                URL ftp = new URL("ftp://houszqzb:leonleon95@houseofcasesg.website/public_html/image-upload/trippyImages/" + file.getSubmittedFileName());
+                URLConnection conn = ftp.openConnection();
+                conn.setDoOutput(true);
+                OutputStream out = conn.getOutputStream();
+                // Copy an InputStream to that OutputStream then
+                out.write(IOUtils.readFully(bytes, -1, false));
+                out.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+
+        toUpdate.setEventImage(imgFile);
         toUpdate.setEventTypeString(getEventTypeString());
-        toUpdate.setEventImage(getEventImageString());
         toUpdate.setEventType(getEventType());
         trippyEventSessionLocal.updateTrippyEvent(toUpdate);
         setListOfTrippyEvent(trippyEventSessionLocal.retrieveAllEvents());
@@ -241,8 +275,27 @@ public class adminManagedBean {
 //            eventImageStringArray.add(eventImage.get(count));
 //            count++;
 //        }
+            if (file != null) {
+            imgFile = file.getSubmittedFileName();
+            try {
 
-            toCreate.setEventImage(getEventImageString());
+                InputStream bytes = file.getInputStream();
+                //Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+
+                URL ftp = new URL("ftp://houszqzb:leonleon95@houseofcasesg.website/public_html/image-upload/trippyImages/" + file.getSubmittedFileName());
+                URLConnection conn = ftp.openConnection();
+                conn.setDoOutput(true);
+                OutputStream out = conn.getOutputStream();
+                // Copy an InputStream to that OutputStream then
+                out.write(IOUtils.readFully(bytes, -1, false));
+                out.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+
+            toCreate.setEventImage(imgFile);
             toCreate.setEventTypeString(getEventTypeString());
             toCreate.setEventType(getEventType());
 
@@ -382,6 +435,27 @@ public class adminManagedBean {
     }
 
     public String updatePrize() throws ParseException {
+        
+        if (prizeFile != null) {
+            prizeImageFile = prizeFile.getSubmittedFileName();
+            try {
+
+                InputStream bytes = prizeFile.getInputStream();
+                //Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+
+                URL ftp = new URL("ftp://houszqzb:leonleon95@houseofcasesg.website/public_html/image-upload/trippyImages/" + prizeFile.getSubmittedFileName());
+                URLConnection conn = ftp.openConnection();
+                conn.setDoOutput(true);
+                OutputStream out = conn.getOutputStream();
+                // Copy an InputStream to that OutputStream then
+                out.write(IOUtils.readFully(bytes, -1, false));
+                out.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        
         System.out.println("Entering updating prize");
         System.out.println("Prize name: " + getPrizeName());
         Prize toUpdate = new Prize();
@@ -396,12 +470,33 @@ public class adminManagedBean {
             toUpdate.setSoftDelete(false);
         }
 
+        if (prizeFile != null) {
+            prizeImageFile = prizeFile.getSubmittedFileName();
+            try {
+
+                InputStream bytes = prizeFile.getInputStream();
+                //Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+
+                URL ftp = new URL("ftp://houszqzb:leonleon95@houseofcasesg.website/public_html/image-upload/trippyImages/" + prizeFile.getSubmittedFileName());
+                URLConnection conn = ftp.openConnection();
+                conn.setDoOutput(true);
+                OutputStream out = conn.getOutputStream();
+                // Copy an InputStream to that OutputStream then
+                out.write(IOUtils.readFully(bytes, -1, false));
+                out.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        
+
 //        if(getSoftDeleteString().equals("true"))
 //            toUpdate.setSoftDelete((Boolean) true);
 //        else
 //            toUpdate.setSoftDelete((Boolean) false);
 //        //toUpdate.setSoftDelete(getSoftDelete());
-        toUpdate.setPrizeImage(getPrizeImage());
+        toUpdate.setPrizeImage(prizeImageFile);
         try {
             prizeSessionLocal.updatePrize(toUpdate);
         } catch (Exception e) {

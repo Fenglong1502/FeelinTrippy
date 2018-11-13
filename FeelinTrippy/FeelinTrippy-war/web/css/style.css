@@ -96,6 +96,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.recClass{
+    width: 50%;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: none;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    text-align: left;   
+}
+
+.menuClass{
+    display: block;
+    margin: 0 auto;
+}
+
 .first-page-button{
     font-family: Impact, Charcoal, sans-serif;
     background-color: rgb(201, 26, 26); 
@@ -109,7 +125,7 @@ body {
     font-size: 25px;
     height: 80%;
     width:18%;
-    background-image: url(../img/backgrounds/everything.jpg);
+    background-image: url(../img/backgrounds/animal.jpg);
     background-size: 100% 100%;
 }
 

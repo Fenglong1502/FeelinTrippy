@@ -15,9 +15,9 @@ and open the template in the editor.
 
     <ui:define name="content">
 
-        <h:form id="form">
+        <h:form enctype="multipart/form-data" id="form">
             <h:dataTable id="trippyEventTable" class="table table-hover table-light" var="trippyEvent"
-                         value="#{adminManagedBean.listOfTrippyEvent}">
+                         value="#{adminManagedBean.listOfTrippyEvent}" >
 
                 <h:column rowHeader="eventID">
                     <f:facet name="header">Event ID</f:facet>
@@ -42,7 +42,6 @@ and open the template in the editor.
                 </h:column>
 
             </h:dataTable> 
-
             <div class="modal fade" id="manageTrippyEventModal" tabindex="-1" role="dialog" aria-labelledby="manageTrippyEventModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -91,7 +90,9 @@ and open the template in the editor.
                             </div>
                             <div class="form-group eventImageString">
                                 <label for="eventImageString" class="col-form-label">Image:</label>
-                                <h:inputText class="form-control" id="eventImageString" value="#{adminManagedBean.eventImageString}" />
+                                <h:inputFile value="#{adminManagedBean.file}">
+                                            <f:passThroughAttribute name="accept" value="image/jpeg"/>
+                                </h:inputFile>
                             </div>
                             <div class="form-group address">
                                 <label for="address" class="col-form-label">Address:</label>
@@ -201,11 +202,19 @@ and open the template in the editor.
             });
         </script>
         <script>
-            $(document).ready(function () {
+           
                 $('#trippyEventTable').DataTable({
-                    "scrollX": true
+
+                    'scrollX': true,
+                    'paging': true,
+                    'lengthChange': false,
+                    'pageLength': 5, //5 entries per page
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
                 });
-            });
+         
         </script>
     </ui:define>
 </ui:composition>

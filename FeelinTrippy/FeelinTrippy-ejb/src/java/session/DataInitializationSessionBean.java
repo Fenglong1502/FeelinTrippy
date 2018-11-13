@@ -67,12 +67,13 @@ public class DataInitializationSessionBean {
 
     private void initializeData() {
         //Initialise new user
-        Customer admin = new Customer("admin",encryptPassword("admin"), "Administrator", "", true, (byte) 1, "", "admin",0 , true);
-        Customer c1 = new Customer("user1", encryptPassword("password"), "John", "Tan", true, (byte) 2, "91234567", "Testing1@example.com", 0, false);
-        Customer c2 = new Customer("user2", encryptPassword("password"), "Peter", "Lee", true, (byte) 2, "91234567", "Testing2@example.com", 0, false);
-        Customer c3 = new Customer("user3", encryptPassword("password"), "Jane", "Lee", true, (byte) 1, "91234567", "Testing3@example.com", 0, false);
-        Customer c4 = new Customer("user4", encryptPassword("password"), "Mary", "Sim", true, (byte) 1, "91234567", "Testing4@example.com", 0, false);
-        Customer c5 = new Customer("user5", encryptPassword("password"), "Victor", "Lim", true, (byte) 2, "91234567", "Testing5@example.com", 0, false);
+        Customer admin = new Customer("admin", encryptPassword("admin"), "Administrator", "", true, (byte) 1, "", "admin", 0, true);
+        Customer c1 = new Customer("user1", encryptPassword("password"), "Chee Siang", "Ng", true, (byte) 2, "98261304", "E0032155@u.nus.edu", 5530, false);
+        Customer c2 = new Customer("user2", encryptPassword("password"), "Feng Long", "Lim", true, (byte) 2, "98315536", "zell1502@hotmail.com", 1254370, false);
+        Customer c3 = new Customer("user3", encryptPassword("password"), "Dian Cong", "Lim", true, (byte) 2, "94308808", "congx2@hotmail.com", 5450, false);
+        Customer c4 = new Customer("user4", encryptPassword("password"), "Jinhao", "Wu", true, (byte) 2, "81985902", "e0053071@u.nus.edu", 4870, false);
+        Customer c5 = new Customer("user5", encryptPassword("password"), "Derek", "Chan", true, (byte) 2, "82005886", "derekchan@u.nus.edu", 8780, false);
+        Customer c6 = new Customer("user6", encryptPassword("123"), "Meng Chuan", "Gai", true, (byte) 2, "90025633", "gaimc24@hotmail.com", 8710, false);
 
         customerSessionLocal.createCustomer(admin);
         customerSessionLocal.createCustomer(c1);
@@ -80,6 +81,7 @@ public class DataInitializationSessionBean {
         customerSessionLocal.createCustomer(c3);
         customerSessionLocal.createCustomer(c4);
         customerSessionLocal.createCustomer(c5);
+        customerSessionLocal.createCustomer(c6);
 
         // Declaring the variables to be used in initialising data
         Calendar startDate = Calendar.getInstance();
@@ -127,25 +129,85 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1);
 
-        startDate.set(2018, Calendar.AUGUST, 4);
-        endDate.set(2018, Calendar.NOVEMBER, 10);
         eventTypes.clear();
         eventTypes.add(animals_and_wildlife);
 
         TrippyEventItem trippyEventItem2 = new TrippyEventItem();
-        trippyEventItem2.setEventName("Paws for a Good Cause: Pet Adoption Drive");
-        trippyEventItem2.setEventDescription("");
-        trippyEventItem2.setPoint(0L); 
-        trippyEventItem2.setStartDate(startDate.getTime());
-        trippyEventItem2.setEndDate(endDate.getTime());
+        trippyEventItem2.setEventName("The Animal Resort");
+        trippyEventItem2.setEventDescription("Hidden among the farmways at Seletar is The Animal Resort. Step inside this rustic getaway and be transported into a different time. A gaggle of geese wander around freely while chickens peck away at the ground. ");
+        trippyEventItem2.setPoint(0L);
         trippyEventItem2.setPrice(0.0);
         trippyEventItem2.setEventImage("trippyEventItem2.jpg");
-        trippyEventItem2.setAddress("31 Ocean Way, Singapore 098375");
+        trippyEventItem2.setAddress("81 Seletar West Farmway 5, Singapore 798058");
         trippyEventItem2.setEventType(eventTypes);
         trippyEventItem2.setSoftDelete(false);
         trippyEventItem2.setEventTypeString("Animals and Wildlife");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem2);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem73 = new TrippyEventItem();
+        trippyEventItem73.setEventName("Farmart Centre Singapore");
+        trippyEventItem73.setEventDescription("Surrounded by lush greenery & rustic charm, Farmart Centre is the ideal location for relaxation and casual dining.");
+        trippyEventItem73.setPoint(0L);
+        trippyEventItem73.setPrice(0.0);
+        trippyEventItem73.setEventImage("trippyEventItem73.jpg");
+        trippyEventItem73.setAddress("67 Sungei Tengah Road, Singapore 699008");
+        trippyEventItem73.setEventType(eventTypes);
+        trippyEventItem73.setSoftDelete(false);
+        trippyEventItem73.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem73);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem74 = new TrippyEventItem();
+        trippyEventItem74.setEventName("The Live Turtle & Tortoise Museum");
+        trippyEventItem74.setEventDescription("Found within Chinese Garden at Jurong, the Live Turtle and Tortoise Museum is a mini, private ‘zoo’ dedicated to turtles and tortoises. Its walled garden is home to more than 1,600 live animals and it is listed in the Guinness Book of World Records as having the largest collection of tortoise and turtle items.");
+        trippyEventItem74.setPoint(0L);
+        trippyEventItem74.setPrice(0.0);
+        trippyEventItem74.setEventImage("trippyEventItem74.jpg");
+        trippyEventItem74.setAddress("Chinese Garden");
+        trippyEventItem74.setEventType(eventTypes);
+        trippyEventItem74.setSoftDelete(false);
+        trippyEventItem74.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem74);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem75 = new TrippyEventItem();
+        trippyEventItem75.setEventName("S.E.A Aquarium");
+        trippyEventItem75.setEventDescription("Enter and explore the marine realm of S.E.A. Aquarium, home to more than 100,000 marine animals of over 1,000 species, across 50 different habitats, each one as fascinating as the next. It's a marine life experience you won’t forget.");
+        trippyEventItem75.setPoint(0L);
+        trippyEventItem75.setPrice(34.0);
+        trippyEventItem75.setEventImage("trippyEventItem75.jpg");
+        trippyEventItem75.setAddress("8 Sentosa Gateway, Sentosa Island, Singapore 098269");
+        trippyEventItem75.setEventType(eventTypes);
+        trippyEventItem75.setSoftDelete(false);
+        trippyEventItem75.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem75);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem76 = new TrippyEventItem();
+        trippyEventItem76.setEventName("S.E.A Aquarium");
+        trippyEventItem76.setEventDescription("Happenstance Cafe is a cosy cafe at which you can bond with your fur-kid. It's one of the cafes designed to accommodate pets; there's a special pasta menu just for your dogs, which offers customisable pasta (starts from $6.50) for them.");
+        trippyEventItem76.setPoint(0L);
+        trippyEventItem76.setPrice(15.0);
+        trippyEventItem76.setEventImage("trippyEventItem75.jpg");
+        trippyEventItem76.setAddress("35 Opal Cres, Singapore 328425");
+        trippyEventItem76.setEventType(eventTypes);
+        trippyEventItem76.setSoftDelete(false);
+        trippyEventItem76.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem76);
 
         startDate.set(2018, Calendar.JULY, 1);
         endDate.set(2018, Calendar.DECEMBER, 31);
@@ -167,8 +229,167 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem3);
 
-        // Initialising the events for adventure
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
 
+        TrippyEventItem trippyEventItem500 = new TrippyEventItem();
+        trippyEventItem500.setEventName("I.N.U. Cafe");
+        trippyEventItem500.setEventDescription("The previously known Paw Pet-radise has been bought over and rebranded to I.N.U (photo above is old). We have yet to visit but from the photos, there seems to be an improvement to the decor. They have menus for both humans and pets.");
+        trippyEventItem500.setPoint(0L);
+        trippyEventItem500.setPrice(15.0);
+        trippyEventItem500.setEventImage("trippyEventItem500.jpg");
+        trippyEventItem500.setAddress("530 Balestier Road Monville Mansion #01-07");
+        trippyEventItem500.setEventType(eventTypes);
+        trippyEventItem500.setSoftDelete(false);
+        trippyEventItem500.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem500);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem501 = new TrippyEventItem();
+        trippyEventItem501.setEventName("Canine Cafe");
+        trippyEventItem501.setEventDescription("Opened by Canine Wellness & Rehab Centre, Canine Cafe is located right at their second hydrotherapy centre. After your dog’s swim session, hang out here and indulge in their pasta and burgers. Do make a reservation before heading down as seating is very limited.");
+        trippyEventItem501.setPoint(0L);
+        trippyEventItem501.setPrice(15.0);
+        trippyEventItem501.setEventImage("trippyEventItem501.jpg");
+        trippyEventItem501.setAddress("12 Jalan Gelenggang, Singapore 578192");
+        trippyEventItem501.setEventType(eventTypes);
+        trippyEventItem501.setSoftDelete(false);
+        trippyEventItem501.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem501);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem502 = new TrippyEventItem();
+        trippyEventItem502.setEventName("The Cat Cafe");
+        trippyEventItem502.setEventDescription("Fancy petting a furry friend while enjoying your coffee? Our humble place is pack with many furry friends. Check them out!");
+        trippyEventItem502.setPoint(0L);
+        trippyEventItem502.setPrice(15.0);
+        trippyEventItem502.setEventImage("trippyEventItem502.jpg");
+        trippyEventItem502.setAddress("241B Victoria Street Level 3");
+        trippyEventItem502.setEventType(eventTypes);
+        trippyEventItem502.setSoftDelete(false);
+        trippyEventItem502.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem502);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem503 = new TrippyEventItem();
+        trippyEventItem503.setEventName("Aquarium Iwarna");
+        trippyEventItem503.setEventDescription("Accessible only by car, Aquarium Iwarna (from $10.50/hour) is pretty off the grid. That said, this also means it’s a lot less crowded - which is ideal for an activity that requires peace of mind and patience.");
+        trippyEventItem503.setPoint(0L);
+        trippyEventItem503.setPrice(14.0);
+        trippyEventItem503.setEventImage("trippyEventItem503.jpg");
+        trippyEventItem503.setAddress("70 Pasir Ris Farmway 3, Singapore 518234");
+        trippyEventItem503.setEventType(eventTypes);
+        trippyEventItem503.setSoftDelete(false);
+        trippyEventItem503.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem503);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem504 = new TrippyEventItem();
+        trippyEventItem504.setEventName("Neko No Niwa");
+        trippyEventItem504.setEventDescription("Neko No Niwa is the pioneer that sparked off a slew of copycat (pun intended) cat cafes. The cosy shophouse space houses a clowder of adorable kitties – all lovingly rescued by owners Sue Lynn and Sam.");
+        trippyEventItem504.setPoint(0L);
+        trippyEventItem504.setPrice(12.0);
+        trippyEventItem504.setEventImage("trippyEventItem504.jpg");
+        trippyEventItem504.setAddress("54A Boat Quay (Level 2), Singapore 049843");
+        trippyEventItem504.setEventType(eventTypes);
+        trippyEventItem504.setSoftDelete(false);
+        trippyEventItem504.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem504);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem505 = new TrippyEventItem();
+        trippyEventItem505.setEventName("Qian Hu Fishing");
+        trippyEventItem505.setEventDescription("Reminisce the good old kampong days.  Remember when families got together and children were out playing and enjoyed netting fishes from the canals and streams?  Bring your kids down to Qian Hu and let them experience the same excitement and joy of catching their own fishes, bringing them home and caring for them.");
+        trippyEventItem505.setPoint(0L);
+        trippyEventItem505.setPrice(6.0);
+        trippyEventItem505.setEventImage("trippyEventItem505.jpg");
+        trippyEventItem505.setAddress("No. 71 Jalan Lekar Singapore 698950");
+        trippyEventItem505.setEventType(eventTypes);
+        trippyEventItem505.setSoftDelete(false);
+        trippyEventItem505.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem505);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem506 = new TrippyEventItem();
+        trippyEventItem506.setEventName("Ah Hua Fishing");
+        trippyEventItem506.setEventDescription("Located in another secluded area of singapore, prawning at Ah Hua Fishing (from $12/hour) is made more enjoyable thanks to its quiet surroundings and fresh air, away from all distractions.");
+        trippyEventItem506.setPoint(0L);
+        trippyEventItem506.setPrice(20.0);
+        trippyEventItem506.setEventImage("trippyEventItem506.jpg");
+        trippyEventItem506.setAddress("10 Neo Tiew Lane 2, Singapore 718813");
+        trippyEventItem506.setEventType(eventTypes);
+        trippyEventItem506.setSoftDelete(false);
+        trippyEventItem506.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem506);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem507 = new TrippyEventItem();
+        trippyEventItem507.setEventName("Butterfly Park & Insect Kingdom");
+        trippyEventItem507.setEventDescription("Surrounded with lush tropical greenery, Butterfly Park & Insect Kingdom showcases the stunning beauties of mother nature. With a great variety of fluttering butterflies and exotic insects, this tamed wilderness is sure to delight you.");
+        trippyEventItem507.setPoint(0L);
+        trippyEventItem507.setPrice(20.0);
+        trippyEventItem507.setEventImage("trippyEventItem507.jpg");
+        trippyEventItem507.setAddress("51 Imbiah Rd, Singapore 099702");
+        trippyEventItem507.setEventType(eventTypes);
+        trippyEventItem507.setSoftDelete(false);
+        trippyEventItem507.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem507);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem508 = new TrippyEventItem();
+        trippyEventItem508.setEventName("Jurong Bird Park");
+        trippyEventItem508.setEventDescription("Asia’s largest bird park, offering a 20.2-hectare hillside haven for close to 3,500 birds across 400 species, of which 20 per cent are threatened. The bird park is famed for its large and immersive walk-in aviaries such as Lory Loft, Jungle Jewels and the recently revamped Waterfall Aviary. Other unique exhibits include Penguin Coast and Pelican Cove. Jurong Bird Park sees approximately 850,000 visitors annually.");
+        trippyEventItem508.setPoint(0L);
+        trippyEventItem508.setPrice(30.0);
+        trippyEventItem508.setEventImage("trippyEventItem508.jpg");
+        trippyEventItem508.setAddress("2 Jurong Hill, Singapore 628925");
+        trippyEventItem508.setEventType(eventTypes);
+        trippyEventItem508.setSoftDelete(false);
+        trippyEventItem508.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem508);
+
+        eventTypes.clear();
+        eventTypes.add(animals_and_wildlife);
+
+        TrippyEventItem trippyEventItem509 = new TrippyEventItem();
+        trippyEventItem509.setEventName("Horse City");
+        trippyEventItem509.setEventDescription("Horseback riding can accommodate both the benefits and unique positive emotions. Enjoy the company of the animal the opportunity to everyone - from the beginner to the experienced and child rider. Suitable for people of all physical health. Will help reduce stress, improve the physical condition of the body and soul, will give you courage and strength.");
+        trippyEventItem509.setPoint(0L);
+        trippyEventItem509.setPrice(50.0);
+        trippyEventItem509.setEventImage("trippyEventItem509.jpg");
+        trippyEventItem509.setAddress("100 Turf Club Road Singapore 287992");
+        trippyEventItem509.setEventType(eventTypes);
+        trippyEventItem509.setSoftDelete(false);
+        trippyEventItem509.setEventTypeString("Animals and Wildlife");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem509);
+
+        // Initialising the events for adventure
         startDate.set(2018, Calendar.SEPTEMBER, 1);
         endDate.set(2018, Calendar.SEPTEMBER, 16);
         eventTypes.clear();
@@ -707,25 +928,285 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem33);
 
-        startDate.set(2018, Calendar.AUGUST, 3);
-        endDate.set(2018, Calendar.OCTOBER, 19);
+        startDate.set(2018, Calendar.NOVEMBER, 9);
+        endDate.set(2018, Calendar.NOVEMBER, 17);
         eventTypes.clear();
         eventTypes.add(music_and_night_life);
 
-        TrippyEventItem trippyEventItem34 = new TrippyEventItem();
-        trippyEventItem34.setEventName("TGIF Music Station");
-        trippyEventItem34.setEventDescription("Presented by the Singapore Chinese Cultural Centre, the TGIF Music Station gathers an exciting line-up of homegrown artistes and rising talents from our local music scene performing live to start up your weekend revelries.\nThe series of music performances will be held on every 1st and 3rd Friday of the month, with free admission for all.\n Special lunch time pop-up performances will also be happening at Tanjong Pagar Centre.\nRefer to the website for exact details of each performance.");
-        trippyEventItem34.setPoint(0L);
-        trippyEventItem34.setStartDate(startDate.getTime());
-        trippyEventItem34.setEndDate(endDate.getTime());
-        trippyEventItem34.setPrice(0.0);
-        trippyEventItem34.setEventImage("trippyEventItem34.jpg");
-        trippyEventItem34.setAddress("1 Straits Boulevard, Singapore 018906");
-        trippyEventItem34.setEventType(eventTypes);
-        trippyEventItem34.setSoftDelete(false);
-        trippyEventItem34.setEventTypeString("Music and Night Life");
+        TrippyEventItem trippyEventItem1000 = new TrippyEventItem();
+        trippyEventItem1000.setEventName("Indie festival Neon Lights");
+        trippyEventItem1000.setEventDescription("It’s set to be bigger than its 2016 run with an eclectic mix of art and music featuring international and local alternative stars carved from the indie cosmos.");
+        trippyEventItem1000.setPoint(0L);
+        trippyEventItem1000.setStartDate(startDate.getTime());
+        trippyEventItem1000.setEndDate(endDate.getTime());
+        trippyEventItem1000.setPrice(0.0);
+        trippyEventItem1000.setEventImage("trippyEventItem1000.jpg");
+        trippyEventItem1000.setAddress("River Valley Rd, Singapore 179037");
+        trippyEventItem1000.setEventType(eventTypes);
+        trippyEventItem1000.setSoftDelete(false);
+        trippyEventItem1000.setEventTypeString("Night Life");
 
-        trippyEventSessionLocal.createTrippyEvent(trippyEventItem34);
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1000);
+
+        startDate.set(2018, Calendar.NOVEMBER, 9);
+        endDate.set(2018, Calendar.NOVEMBER, 17);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1001 = new TrippyEventItem();
+        trippyEventItem1001.setEventName("LuLu’s Lounge");
+        trippyEventItem1001.setEventDescription("Inspired by the back alley clubs of New York in the 60's, LuLu's Lounge is the antithesis of the mega-club experience, with its blinding lights and deafening music.");
+        trippyEventItem1001.setPoint(0L);
+        trippyEventItem1001.setStartDate(startDate.getTime());
+        trippyEventItem1001.setEndDate(endDate.getTime());
+        trippyEventItem1001.setPrice(0.0);
+        trippyEventItem1001.setEventImage("trippyEventItem1001.jpg");
+        trippyEventItem1001.setAddress("Pan Pacific Singapore 7 Raffles Blvd Singapore 039595 ");
+        trippyEventItem1001.setEventType(eventTypes);
+        trippyEventItem1001.setSoftDelete(false);
+        trippyEventItem1001.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1001);
+
+        startDate.set(2018, Calendar.NOVEMBER, 10);
+        endDate.set(2019, Calendar.JANUARY, 1);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1002 = new TrippyEventItem();
+        trippyEventItem1002.setEventName("Christmas on a Great Street");
+        trippyEventItem1002.setEventDescription("Witness Orchard Road transform into a shopping belt with over-street light decorations and experiential pop-ups, during the weeks leading up to Christmas. ");
+        trippyEventItem1002.setPoint(0L);
+        trippyEventItem1002.setStartDate(startDate.getTime());
+        trippyEventItem1002.setEndDate(endDate.getTime());
+        trippyEventItem1002.setPrice(0.0);
+        trippyEventItem1002.setEventImage("trippyEventItem1002.jpg");
+        trippyEventItem1002.setAddress("Orchard Road, Singapore 238895");
+        trippyEventItem1002.setEventType(eventTypes);
+        trippyEventItem1002.setSoftDelete(false);
+        trippyEventItem1002.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1002);
+
+        startDate.set(2018, Calendar.NOVEMBER, 14);
+        endDate.set(2018, Calendar.DECEMBER, 31);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1003 = new TrippyEventItem();
+        trippyEventItem1003.setEventName("Guards at the Taj");
+        trippyEventItem1003.setEventDescription("This dark comedy’s witty humour and whirlwind of emotions won it the Obie Award for Best New Play in 2016. ");
+        trippyEventItem1003.setPoint(0L);
+        trippyEventItem1003.setStartDate(startDate.getTime());
+        trippyEventItem1003.setEndDate(endDate.getTime());
+        trippyEventItem1003.setPrice(45.0);
+        trippyEventItem1003.setEventImage("trippyEventItem1003.jpg");
+        trippyEventItem1003.setAddress("KC Arts Centre, 20 Merbau Road");
+        trippyEventItem1003.setEventType(eventTypes);
+        trippyEventItem1003.setSoftDelete(false);
+        trippyEventItem1003.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1003);
+
+        startDate.set(2018, Calendar.DECEMBER, 1);
+        endDate.set(2018, Calendar.DECEMBER, 1);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1004 = new TrippyEventItem();
+        trippyEventItem1004.setEventName("2018 ZoukOut");
+        trippyEventItem1004.setEventDescription("FOR ONE NIGHT ONLY. 16 HOURS. 4PM – 8AM. 30,000 GUESTS. FROM SUNSET TO SUNRISE. THE WORLD’S BIGGEST NAMES.");
+        trippyEventItem1004.setPoint(0L);
+        trippyEventItem1004.setStartDate(startDate.getTime());
+        trippyEventItem1004.setEndDate(endDate.getTime());
+        trippyEventItem1004.setPrice(158.0);
+        trippyEventItem1004.setEventImage("trippyEventItem1004.jpg");
+        trippyEventItem1004.setAddress("Siloso Beach, SENTOSA");
+        trippyEventItem1004.setEventType(eventTypes);
+        trippyEventItem1004.setSoftDelete(false);
+        trippyEventItem1004.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1004);
+
+        startDate.set(2018, Calendar.DECEMBER, 1);
+        endDate.set(2018, Calendar.DECEMBER, 1);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1005 = new TrippyEventItem();
+        trippyEventItem1005.setEventName("MAMBO JAMBO BEACH PARTY");
+        trippyEventItem1005.setEventDescription("This will be an afternoon of nostalgia, where alumni of Zouk pioneers and a new generation of Zouk guest DJs and residents gather for one night only to celebrate 18 years of ZoukOut. ");
+        trippyEventItem1005.setPoint(0L);
+        trippyEventItem1005.setStartDate(startDate.getTime());
+        trippyEventItem1005.setEndDate(endDate.getTime());
+        trippyEventItem1005.setPrice(55.0);
+        trippyEventItem1005.setEventImage("trippyEventItem1005.jpg");
+        trippyEventItem1005.setAddress("AJ Hackett, Siloso Beach, SENTOSA");
+        trippyEventItem1005.setEventType(eventTypes);
+        trippyEventItem1005.setSoftDelete(false);
+        trippyEventItem1005.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1005);
+
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1006 = new TrippyEventItem();
+        trippyEventItem1006.setEventName("The Comedy Club (Asia)");
+        trippyEventItem1006.setEventDescription("Aptly named “Talk Cock Comedy”, these weekly open mic sessions where comedian-wannabes try their hands at making you laugh by talking cock with you take place on Wednesdays at Blu Jaz Café. ");
+        trippyEventItem1006.setPoint(0L);
+        trippyEventItem1006.setPrice(15.0);
+        trippyEventItem1006.setEventImage("trippyEventItem1006.jpg");
+        trippyEventItem1006.setAddress("No. 11 Bali Lane, Blu Jaz Café, Historic Kampong Glam, Singapore 189848");
+        trippyEventItem1006.setEventType(eventTypes);
+        trippyEventItem1006.setSoftDelete(false);
+        trippyEventItem1006.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1006);
+
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1007 = new TrippyEventItem();
+        trippyEventItem1007.setEventName("Function");
+        trippyEventItem1007.setEventDescription("Function is a night at Canvas that harks back to a simpler time when people just wanted to dance, smile and have fun on a night out.");
+        trippyEventItem1007.setPoint(0L);
+        trippyEventItem1007.setPrice(20.0);
+        trippyEventItem1007.setEventImage("trippyEventItem1007.jpg");
+        trippyEventItem1007.setAddress("20 Upper Circular Road #B1-01/02/03/04/05/06 The Riverwalk Singapore 058416");
+        trippyEventItem1007.setEventType(eventTypes);
+        trippyEventItem1007.setSoftDelete(false);
+        trippyEventItem1007.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1007);
+
+        startDate.set(2018, Calendar.DECEMBER, 12);
+        endDate.set(2018, Calendar.DECEMBER, 12);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1008 = new TrippyEventItem();
+        trippyEventItem1008.setEventName("Bulletproof presents Ghetto with Matthew");
+        trippyEventItem1008.setEventDescription("This isn't a night for kids, this is for the straight-up bulletproof because Ghetto and Matthew will blow them minds with every drop as they deliver the Hip Hop, Pop and Electro swag that will leave believers with an Empire sized state of mind.  ");
+        trippyEventItem1008.setPoint(0L);
+        trippyEventItem1008.setStartDate(startDate.getTime());
+        trippyEventItem1008.setEndDate(endDate.getTime());
+        trippyEventItem1008.setPrice(33.0);
+        trippyEventItem1008.setEventImage("trippyEventItem1008.jpg");
+        trippyEventItem1008.setAddress("17 Jiak Kim Street Singapore 169420");
+        trippyEventItem1008.setEventType(eventTypes);
+        trippyEventItem1008.setSoftDelete(false);
+        trippyEventItem1008.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1008);
+
+        startDate.set(2018, Calendar.DECEMBER, 12);
+        endDate.set(2018, Calendar.DECEMBER, 12);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1009 = new TrippyEventItem();
+        trippyEventItem1009.setEventName("Disco to Funk");
+        trippyEventItem1009.setEventDescription("Falling through the wuthering heights of the 90s mostly unscathed, Ginette Chittick and Terrence Tan aka jinmart present to you an eclectic collection of indie rock music of their teenhood.");
+        trippyEventItem1009.setPoint(0L);
+        trippyEventItem1009.setStartDate(startDate.getTime());
+        trippyEventItem1009.setEndDate(endDate.getTime());
+        trippyEventItem1009.setPrice(0.0);
+        trippyEventItem1009.setEventImage("trippyEventItem1009.jpg");
+        trippyEventItem1009.setAddress("20 Upper Circular Road #B1-01/02/03/04/05/06 The Riverwalk Singapore 058416");
+        trippyEventItem1009.setEventType(eventTypes);
+        trippyEventItem1009.setSoftDelete(false);
+        trippyEventItem1009.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1009);
+
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1010 = new TrippyEventItem();
+        trippyEventItem1010.setEventName("TurNup Thursdays - Ladies Night");
+        trippyEventItem1010.setEventDescription("TurNup Thursdays deepens the bassline and tweak the trills to complement a beat-heavy night with free-flow vodka mixes for the ladies from 10pm - 1am.");
+        trippyEventItem1010.setPoint(0L);
+        trippyEventItem1010.setPrice(20.0);
+        trippyEventItem1010.setEventImage("trippyEventItem1010.jpg");
+        trippyEventItem1010.setAddress("20 Upper Circular Road #B1-01/02/03/04/05/06 The Riverwalk Singapore 058416");
+        trippyEventItem1010.setEventType(eventTypes);
+        trippyEventItem1010.setSoftDelete(false);
+        trippyEventItem1010.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1010);
+
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1011 = new TrippyEventItem();
+        trippyEventItem1011.setEventName("Crane Dance at Sentosa Resort");
+        trippyEventItem1011.setEventDescription("Falling through the wuthering heights of the 90s mostly unscathed, Ginette Chittick and Terrence Tan aka jinmart present to you an eclectic collection of indie rock music of their teenhood.");
+        trippyEventItem1011.setPoint(0L);
+        trippyEventItem1011.setPrice(0.0);
+        trippyEventItem1011.setEventImage("trippyEventItem1011.jpg");
+        trippyEventItem1011.setAddress("Sentosa");
+        trippyEventItem1011.setEventType(eventTypes);
+        trippyEventItem1011.setSoftDelete(false);
+        trippyEventItem1011.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1011);
+
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1012 = new TrippyEventItem();
+        trippyEventItem1012.setEventName("ATTICA NIGHTCLUB");
+        trippyEventItem1012.setEventDescription("Variety is the soul of Attica - the hottest club at Clarke Quay. Its two levels with different characteristics attract party-goers in different ways.");
+        trippyEventItem1012.setPoint(0L);
+        trippyEventItem1012.setPrice(30.0);
+        trippyEventItem1012.setEventImage("trippyEventItem1012.jpg");
+        trippyEventItem1012.setAddress("3A River Valley Road, #01- 03 Clarke Quay Singapore 179020");
+        trippyEventItem1012.setEventType(eventTypes);
+        trippyEventItem1012.setSoftDelete(false);
+        trippyEventItem1012.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1012);
+
+        startDate.set(2018, Calendar.DECEMBER, 22);
+        endDate.set(2019, Calendar.MARCH, 24);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1013 = new TrippyEventItem();
+        trippyEventItem1013.setEventName("PRUDENTIAL MARINA BAY CARNIVAL");
+        trippyEventItem1013.setEventDescription("Are you ready for some fun, carnival-goers? This year, we are bringing in more thrilling rides from Europe! Stay tuned for more information!");
+        trippyEventItem1013.setPoint(0L);
+        trippyEventItem1013.setStartDate(startDate.getTime());
+        trippyEventItem1013.setEndDate(endDate.getTime());
+        trippyEventItem1013.setPrice(0.0);
+        trippyEventItem1013.setEventImage("trippyEventItem1013.jpg");
+        trippyEventItem1013.setAddress("12A Bayfront Ave, Singapore 018970");
+        trippyEventItem1013.setEventType(eventTypes);
+        trippyEventItem1013.setSoftDelete(false);
+        trippyEventItem1013.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1013);
+
+        startDate.set(2018, Calendar.DECEMBER, 07);
+        endDate.set(2018, Calendar.DECEMBER, 07);
+        eventTypes.clear();
+        eventTypes.add(music_and_night_life);
+
+        TrippyEventItem trippyEventItem1014 = new TrippyEventItem();
+        trippyEventItem1014.setEventName("SWG Christmas Party");
+        trippyEventItem1014.setEventDescription("The annual SWG Christmas Party is just around the corner! Book your space now and hope to see you on Friday 7 December 2018 from 7.30pm");
+        trippyEventItem1014.setPoint(0L);
+        trippyEventItem1014.setStartDate(startDate.getTime());
+        trippyEventItem1014.setEndDate(endDate.getTime());
+        trippyEventItem1014.setPrice(0.0);
+        trippyEventItem1014.setEventImage("trippyEventItem1014.jpg");
+        trippyEventItem1014.setAddress("Hollandse Club 22 Camden Park Singapore, 299814");
+        trippyEventItem1014.setEventType(eventTypes);
+        trippyEventItem1014.setSoftDelete(false);
+        trippyEventItem1014.setEventTypeString("Night Life");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem1014);
 
         // Initialising the events for art and culture
         startDate.set(2018, Calendar.SEPTEMBER, 6);
@@ -768,20 +1249,20 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem36);
 
-        startDate.set(2018, Calendar.JANUARY, 26);
-        endDate.set(2019, Calendar.SEPTEMBER, 30);
+        startDate.set(2018, Calendar.NOVEMBER, 13);
+        endDate.set(2019, Calendar.NOVEMBER, 14);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem37 = new TrippyEventItem();
-        trippyEventItem37.setEventName("DISINI by Gillman Barracks & Chan + Hori");
-        trippyEventItem37.setEventDescription("DISINI, an inaugural site-specific visual arts festival, comprising a series of public programmes, outdoor sculptures and murals by home-grown, regional and international artists. It celebrates rich heritage of Gillman Barracks as a former military barracks and its current role as Asia’s leading contemporary arts cluster. Highlights include captivating outdoor artworks located across various spaces within the precinct. There will be a multi-functional artist-designed pavilion where a series of exciting and stimulating programmes will take place, with curatorial-led showcases to capture visitors’ attention.");
+        trippyEventItem37.setEventName("COLDPLAY: A HEAD FULL OF DREAMS");
+        trippyEventItem37.setEventDescription("One of the world’s biggest bands share their story, in their own words, for the first time. Charting Coldplay’s incredible journey from the backrooms of Camden pubs to stadium-filling superstardom, it is the definitive Coldplay film. ");
         trippyEventItem37.setPoint(0L);
         trippyEventItem37.setStartDate(startDate.getTime());
         trippyEventItem37.setEndDate(endDate.getTime());
-        trippyEventItem37.setPrice(0.0);
+        trippyEventItem37.setPrice(13.5);
         trippyEventItem37.setEventImage("trippyEventItem37.jpg");
-        trippyEventItem37.setAddress("9 Lock Rd, Singapore 108937");
+        trippyEventItem37.setAddress("6001 Beach Road, #05-00, Golden Mile Tower, Singapore 199589");
         trippyEventItem37.setEventType(eventTypes);
         trippyEventItem37.setSoftDelete(false);
         trippyEventItem37.setEventTypeString("Art and Culture");
@@ -808,20 +1289,20 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem38);
 
-        startDate.set(2018, Calendar.AUGUST, 1);
-        endDate.set(2018, Calendar.OCTOBER, 29);
+        startDate.set(2018, Calendar.NOVEMBER, 15);
+        endDate.set(2018, Calendar.NOVEMBER, 15);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem39 = new TrippyEventItem();
-        trippyEventItem39.setEventName("The Nanyang Space Tour Exhibition");
-        trippyEventItem39.setEventDescription("Over 30 stunning artworks by award-winning artist Tan Ruirong will be on display at Pan Pacific Singapore. Tan combines western painting techniques and strong oriental hues that resemble Chinese calligraphy, allowing viewers to appreciate beauty of Chinese characters. Admire his series of Nanyang style paintings on display, exploring space, lines and colours.");
+        trippyEventItem39.setEventName("Familiar Favourites: tales of Love");
+        trippyEventItem39.setEventDescription("Four Korngold scores painting films of love and honour are the musical inspiration for his violin concerto, to be told this night by 2015 Singapore Violin Competition prize winner Richard Lin.");
         trippyEventItem39.setPoint(0L);
         trippyEventItem39.setStartDate(startDate.getTime());
         trippyEventItem39.setEndDate(endDate.getTime());
-        trippyEventItem39.setPrice(0.0);
+        trippyEventItem39.setPrice(15.0);
         trippyEventItem39.setEventImage("trippyEventItem39.jpg");
-        trippyEventItem39.setAddress("Pan Pacific Singapore, 7 Raffles Boulevard Level 2, Singapore 039595");
+        trippyEventItem39.setAddress("Esplanade Concert Hall");
         trippyEventItem39.setEventType(eventTypes);
         trippyEventItem39.setSoftDelete(false);
         trippyEventItem39.setEventTypeString("Art and Culture");
@@ -848,20 +1329,20 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem40);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 1);
-        endDate.set(2018, Calendar.OCTOBER, 19);
+        startDate.set(2018, Calendar.NOVEMBER, 15);
+        endDate.set(2018, Calendar.NOVEMBER, 15);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem41 = new TrippyEventItem();
-        trippyEventItem41.setEventName("Law of the Land: Highlights of Singapore's Constitutional Documents");
-        trippyEventItem41.setEventDescription("This exhibition introduces the rich history of Singapore’s constitutional development from its founding as a British settlement in 1819 to its emergence as a sovereign republic in 1965. Discover rare constitutional documents from the library and archives, each capturing a key moment in Singapore’s legal history and journey to independence.");
+        trippyEventItem41.setEventName("ARTSCIENCE LATE: TAO DANCE THEATRE");
+        trippyEventItem41.setEventDescription("In the opening week of Minimalism: Space. Light. Object, Beijing-based TAO Dance Theatre presents Weight x 3, a trio of contemporary dance pieces set to the music of American composer Steve Reich.");
         trippyEventItem41.setPoint(0L);
         trippyEventItem41.setStartDate(startDate.getTime());
         trippyEventItem41.setEndDate(endDate.getTime());
         trippyEventItem41.setPrice(0.0);
         trippyEventItem41.setEventImage("trippyEventItem41.jpg");
-        trippyEventItem41.setAddress("1 St Andrew's Rd, Singapore 178957");
+        trippyEventItem41.setAddress("ARTSCIENCE MUSEUM Expression Gallery, Level 4");
         trippyEventItem41.setEventType(eventTypes);
         trippyEventItem41.setSoftDelete(false);
         trippyEventItem41.setEventTypeString("Art and Culture");
@@ -908,341 +1389,310 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem43);
 
-        startDate.set(2018, Calendar.JUNE, 27);
-        endDate.set(2018, Calendar.SEPTEMBER, 2018);
+        startDate.set(2018, Calendar.NOVEMBER, 15);
+        endDate.set(2018, Calendar.NOVEMBER, 15);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem44 = new TrippyEventItem();
-        trippyEventItem44.setEventName("The Lion King");
-        trippyEventItem44.setEventDescription("More than 95 million people around the world have watched The Lion King and now, this well-loved musical has returned to Marina Bay Sands. Winner of over 70 major international theatre awards, this celebrated musical brings together one of the most innovative and creative teams on Broadway. Brilliantly re-imagined by acclaimed director Julie Taymor, Disney’s beloved film is transformed into a spectacular showcase that will redefine the theatrical experience. The Lion King also features some of world’s most recognisable music, composed by multi-award winning artists Elton John and Tim Rice.  ");
+        trippyEventItem44.setEventName("Sentosa Island Lights");
+        trippyEventItem44.setEventDescription("Island Lights dazzles Sentosa’s night scene with interactive day-to-night art installations by local artists, located along Palawan Beach.");
         trippyEventItem44.setPoint(0L);
         trippyEventItem44.setStartDate(startDate.getTime());
         trippyEventItem44.setEndDate(endDate.getTime());
-        trippyEventItem44.setPrice(65.0);
+        trippyEventItem44.setPrice(0.0);
         trippyEventItem44.setEventImage("trippyEventItem44.jpg");
-        trippyEventItem44.setAddress("10 Bayfront Ave, Singapore 018956");
+        trippyEventItem44.setAddress("Sentosa, Palawan Beach");
         trippyEventItem44.setEventType(eventTypes);
         trippyEventItem44.setSoftDelete(false);
         trippyEventItem44.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem44);
 
-        startDate.set(2018, Calendar.JULY, 21);
-        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        startDate.set(2018, Calendar.NOVEMBER, 17);
+        endDate.set(2018, Calendar.NOVEMBER, 17);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem45 = new TrippyEventItem();
-        trippyEventItem45.setEventName("Trees of Life Exhibition: Knowledge In Material");
-        trippyEventItem45.setEventDescription("NTU Centre for Contemporary Art Singapore is embarking on an inquiry into natural materials, exploring the knowledge they embody as biological forms as well as within social, geopolitical, and historical contexts. Trees of Life – Knowledge in Material is part of the Centre’s long-term research cluster CLIMATES. HABITATS. ENVIRONMENTS.\n"
-                + "This exhibition focuses on four plants deeply rooted in Asia: indigo, lacquer, rattan, and mulberry. The works trace the ongoing involvement with the highlighted plants in the artistic practices of Manish Nai with indigo, Phi Phi Oanh with lacquer, Sopheap Pich with rattan, and Liang Shaoji and Vivian Xu with mulberry silk. While the featured installations serve as a starting point to uncover the materiality of the chosen plants, the study of their natural and cultural DNA allows further exploration into their biological processes and diverse usages.");
+        trippyEventItem45.setEventName("WHAT IS CONTEMPORARY ART");
+        trippyEventItem45.setEventDescription("What makes a work of art a work of art? Is contemporary art defined by particular boundaries or characteristics? What does it mean to look at an image in context? How do contexts provide images and objects with meaning? Just as artists and designers create something within a particular context, viewers of art and design enter the work through their own. This talk presents frameworks and examples through which images and objects can be examined analytically and discusses how culture, material, narrative and site contribute to the meanings of work.");
         trippyEventItem45.setPoint(0L);
         trippyEventItem45.setStartDate(startDate.getTime());
         trippyEventItem45.setEndDate(endDate.getTime());
-        trippyEventItem45.setPrice(0.0);
+        trippyEventItem45.setPrice(100.0);
         trippyEventItem45.setEventImage("trippyEventItem45.jpg");
-        trippyEventItem45.setAddress("Block 43 Malan Road, Gillman Barracks, 109443");
+        trippyEventItem45.setAddress("1 McNally St, LASELLE Singapore 187940");
         trippyEventItem45.setEventType(eventTypes);
         trippyEventItem45.setSoftDelete(false);
         trippyEventItem45.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem45);
 
-        startDate.set(2017, Calendar.AUGUST, 17);
-        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        startDate.set(2018, Calendar.NOVEMBER, 19);
+        endDate.set(2018, Calendar.NOVEMBER, 19);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem46 = new TrippyEventItem();
-        trippyEventItem46.setEventName("A.I Ready @ Science Centre Singapore");
-        trippyEventItem46.setEventDescription("Jointly organised by the Agency for Science, Technology & Research (A*STAR) and Science Centre Singapore, A.I Ready @ Science Centre Singapore invites any and everyone who loves to inquire, imagine and invent to explore the latest scientific developments. This year’s theme of A.I. You Ready explores artificial intelligence and how machines can learn like humans.\n"
-                + "This September, head to the Science Centre Singapore to find out how to be A.I. ready. Learning coding, meet the creator of Singapore’s first digital influencer, our favourite chatbot, Bus Uncle. Gather the fam and work together to complete A.I. tasks, games and activities in the A.I. You Ready gallery trail and redeem a special token.\n"
-                + "Be sure to check out the other impressive science events happening across Singapore including Maker Faire at Our Tampines Hub, Star Lecture on The Language of Life at Mediacorp, Science Buskers at Plaza Singapura, Science Shows at Science Centre Singapore and X-Periment at one-north.");
+        trippyEventItem46.setEventName("Jordan Rudess - Bach To Rock: A Musician's Journey Tour Singapore");
+        trippyEventItem46.setEventDescription("Voted “Best Keyboardist of All Time” (Music Radar Magazine), Rudess’ solo concert will travel through his fascinating musical journey – how a young Juilliard piano prodigy destined for a classical music career evolved into a keyboard rock star phenomenon.");
         trippyEventItem46.setPoint(0L);
         trippyEventItem46.setStartDate(startDate.getTime());
         trippyEventItem46.setEndDate(endDate.getTime());
-        trippyEventItem46.setPrice(0.0);
+        trippyEventItem46.setPrice(68.0);
         trippyEventItem46.setEventImage("trippyEventItem46.jpg");
-        trippyEventItem46.setAddress("15 Science Centre Rd, Singapore 609081");
+        trippyEventItem46.setAddress("50 Kent Ridge Crescent, National University of Singapore, Singapore 119279");
         trippyEventItem46.setEventType(eventTypes);
         trippyEventItem46.setSoftDelete(false);
         trippyEventItem46.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem46);
 
-        startDate.set(2018, Calendar.AUGUST, 25);
-        endDate.set(2018, Calendar.SEPTEMBER, 23);
+        startDate.set(2018, Calendar.NOVEMBER, 20);
+        endDate.set(2018, Calendar.NOVEMBER, 20);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem47 = new TrippyEventItem();
-        trippyEventItem47.setEventName("FX HARSONO | REMINISCENCE");
-        trippyEventItem47.setEventDescription("Seminal Indonesian artist FX Harsono presents ‘Reminiscence’, the artist’s longstanding major project that investigates the genocide and mass graves of ethnic Chinese-Indonesians in Java, Indonesia from 1947 to 1949. Part documentary and part commemoration, the exhibition will see a new series of drawings alongside two major installations that confronts the truth of this history.");
+        trippyEventItem47.setEventName("In an Instant: Curator Tour");
+        trippyEventItem47.setEventDescription("Delve deeper into the story of Polaroid photography with our curator, Priscilla Chua, in an exclusive after-hours tour of the gallery.");
         trippyEventItem47.setPoint(0L);
         trippyEventItem47.setStartDate(startDate.getTime());
         trippyEventItem47.setEndDate(endDate.getTime());
-        trippyEventItem47.setPrice(0.0);
+        trippyEventItem47.setPrice(20.0);
         trippyEventItem47.setEventImage("trippyEventItem47.jpg");
-        trippyEventItem47.setAddress("5 Lock Road #01-06, Singapore 108933");
+        trippyEventItem47.setAddress("93 Stamford Rd, Singapore 178897");
         trippyEventItem47.setEventType(eventTypes);
         trippyEventItem47.setSoftDelete(false);
         trippyEventItem47.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem47);
 
-        startDate.set(2018, Calendar.AUGUST, 30);
-        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        startDate.set(2018, Calendar.NOVEMBER, 22);
+        endDate.set(2018, Calendar.NOVEMBER, 22);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem48 = new TrippyEventItem();
-        trippyEventItem48.setEventName("Vivocity and Disney Tsum Tsum Mid-Autumn Festival of Love");
-        trippyEventItem48.setEventDescription("This Mid-Autumn, VivoCity and The Walt Disney Company Southeast Asia invite all Singaporeans to come together to celebrate the love of family and friends and a month long of Disney magic under the stars with their Disney Tsum Tsum Mid-Autumn Celebration of Love campaign. Held from 30 August to 30 September 2018 at VivoCity Sky Park Level 3, this Mid-Autumn celebration is a visual spectacle and a sight to behold, where over 2,000 Tsum Tsum themed lanterns will light up the night sky. As one of Asia’s largest lantern installations, guests can expect nights of revelry and festivities with their favourite Disney and Disney-Pixar Tsum Tsum characters.");
+        trippyEventItem48.setEventName("DVORAK: CELLO CONCERTO");
+        trippyEventItem48.setEventDescription(" Ng Pei-Sian stars in the masterly Cello Concerto by Dvořák, music of magisterial demeanour and melodic magnificence. Bulgarian conductor Pavel Baleff returns to conduct this irresistible concert offering that also includes the ever-popular New World Symphony");
         trippyEventItem48.setPoint(0L);
         trippyEventItem48.setStartDate(startDate.getTime());
         trippyEventItem48.setEndDate(endDate.getTime());
-        trippyEventItem48.setPrice(0.0);
+        trippyEventItem48.setPrice(15.0);
         trippyEventItem48.setEventImage("trippyEventItem48.jpg");
-        trippyEventItem48.setAddress("1 Harbourfront Walk | VivoCity SkyPark@Level 3, Singapore 098585");
+        trippyEventItem48.setAddress("Esplanade Drive, Esplanade Concert Hall");
         trippyEventItem48.setEventType(eventTypes);
         trippyEventItem48.setSoftDelete(false);
         trippyEventItem48.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem48);
 
-        startDate.set(2018, Calendar.AUGUST, 31);
-        endDate.set(2018, Calendar.OCTOBER, 7);
+        startDate.set(2018, Calendar.NOVEMBER, 15);
+        endDate.set(2019, Calendar.JANUARY, 5);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem49 = new TrippyEventItem();
-        trippyEventItem49.setEventName("Indonesia: Land of Treasures Exhibition");
-        trippyEventItem49.setEventDescription("The Land of Treasures Exhibition features majestic large-scale displays capturing the beauty and essence of cities and islands of Indonesia, right at Changi Airport. Featuring iconic landscapes from Labuan Bajo, Surabaya and more, come experience the ever-intriguing charm of Indonesia as you foray into local culture and adventures, all in one place!\n"
-                + "Key highlights of the exhibition:\n"
-                + "• Come face-to-face with a replica Komodo Dragon at Labuan Bajo, home to the Komodo National Park Cave, the only remaining natural habitat where the endangered Komodo Dragon still runs wild;\n"
-                + "• Check out the spectacular landscapes of Belitung through interactive binoculars at a look-out point high above the exhibition;\n"
-                + "• Be inspired by the ancient bells of the world’s largest Buddhist temple and UNESCO World Heritage-listed Borobudur Temple in Yogyakarta;\n"
-                + "• Round up your visit at the Instagram-worthy swing floating above crystal clear waters, against the backdrop of an amazing Lombok sunset.");
+        trippyEventItem49.setEventName("Marie & The Nutcracker - An immersive theatrical dining experience");
+        trippyEventItem49.setEventDescription("This holiday season, join Marie and The Nutcracker as the toys come to life to challenge the Mouse king and his army for the key to the Kingdom of Sweets. Delight in a 4 course interactive dinner inspired by cuisines from Nuremberg and E.T.A. Hoffman's The Nutcracker. Discover the magical world of Marie's imagination, if and only if you look hard enough.");
         trippyEventItem49.setPoint(0L);
         trippyEventItem49.setStartDate(startDate.getTime());
         trippyEventItem49.setEndDate(endDate.getTime());
-        trippyEventItem49.setPrice(0.0);
+        trippyEventItem49.setPrice(98.0);
         trippyEventItem49.setEventImage("trippyEventItem49.jpg");
-        trippyEventItem49.setAddress("Changi Airport Terminal 3, Departure Hall, Central Immigration");
+        trippyEventItem49.setAddress("Secret venue to be disclosed");
         trippyEventItem49.setEventType(eventTypes);
         trippyEventItem49.setSoftDelete(false);
         trippyEventItem49.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem49);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 2);
-        endDate.set(2018, Calendar.NOVEMBER, 11);
+        startDate.set(2018, Calendar.NOVEMBER, 15);
+        endDate.set(2018, Calendar.NOVEMBER, 17);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem50 = new TrippyEventItem();
-        trippyEventItem50.setEventName("Crossfades and Drawn Forms: Golnaz Fathi and Lan ZhengHui");
-        trippyEventItem50.setEventDescription("Reinterpreting traditional art forms, Iranian artist Golnaz Fathi’s free abstractions of the written word coalesce with Chinese Lan Zhenghui’s monumental ink landscapes at Pearl Lam Galleries. A phenomenal transpiration of the essence of art making, the artists conflate Eastern and Western ideals, cementing their place at the forefront of Asian contemporary art.");
+        trippyEventItem50.setEventName("liTHE 2018");
+        trippyEventItem50.setEventDescription("liTHE 2018 is the annual showcase of T.H.E Second Company featuring 12 dancers; from the highly watchable versatility of the senior artists, to emerging young talent amongst its apprentices and trainee dancers. Three talented Singaporean choreographers, Anthea Seah, Goh Shou Yi and Marcus headline the event from 2017 – 2019 with their original creations. With the success of their premiere in last year's edition, liTHE 2018 is set to be an event you cannot miss this November!");
         trippyEventItem50.setPoint(0L);
         trippyEventItem50.setStartDate(startDate.getTime());
         trippyEventItem50.setEndDate(endDate.getTime());
-        trippyEventItem50.setPrice(0.0);
+        trippyEventItem50.setPrice(28.0);
         trippyEventItem50.setEventImage("trippyEventItem50.jpg");
-        trippyEventItem50.setAddress("9 Lock Road #03-22 | Gillman Barracks, Singapore 108937");
+        trippyEventItem50.setAddress("School of the Arts (SOTA), Studio Theatre");
         trippyEventItem50.setEventType(eventTypes);
         trippyEventItem50.setSoftDelete(false);
         trippyEventItem50.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem50);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 6);
-        endDate.set(2018, Calendar.OCTOBER, 28);
+        startDate.set(2018, Calendar.NOVEMBER, 15);
+        endDate.set(2018, Calendar.DECEMBER, 30);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem51 = new TrippyEventItem();
-        trippyEventItem51.setEventName("STREET 2");
-        trippyEventItem51.setEventDescription("To celebrate its first year in Singapore, Mazel Galerie presents Street2 a group show featuring new works from Mazel Galerie’s established and upcoming street artists: stencil artists ill, C215, and MONK, street-pop artist Laurina Paperina, muralist NOIR, and multi-media street artist Fidia Falaschetti.\n"
-                + "Each artist will have a message of their own to share with the audience. From MONK’s camouflage series, bringing awareness to endangered animals, to iLL’s stencil works showcasing some of today’s social contradictions, and C215 colourful animal portraits.");
+        trippyEventItem51.setEventName("MIND over MATTER");
+        trippyEventItem51.setEventDescription("Mazel Galerie Singapore is honoured to present renowned multi-disciplinary French artist Lionel Sabatté's first solo exhibition in Singapore & Asia: MIND over MATTER. It is a showcase of the artist's latest creations in painting, drawing and sculpture through his use and exploration of mysterious and mystical materials.");
         trippyEventItem51.setPoint(0L);
         trippyEventItem51.setStartDate(startDate.getTime());
         trippyEventItem51.setEndDate(endDate.getTime());
         trippyEventItem51.setPrice(0.0);
         trippyEventItem51.setEventImage("trippyEventItem51.jpg");
-        trippyEventItem51.setAddress("9 Scotts Road, 02-17 Floor Pacific Plaza, Singapore 228210");
+        trippyEventItem51.setAddress("Mazel Galerie Singapore, Pacific Plaza, 9 Scotts Road #02-14/17, Singapore 228210");
         trippyEventItem51.setEventType(eventTypes);
         trippyEventItem51.setSoftDelete(false);
         trippyEventItem51.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem51);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 8);
-        endDate.set(2018, Calendar.OCTOBER, 8);
+        startDate.set(2018, Calendar.NOVEMBER, 15);
+        endDate.set(2018, Calendar.NOVEMBER, 17);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem52 = new TrippyEventItem();
-        trippyEventItem52.setEventName("Mid-Autumn Festival Light-Up");
-        trippyEventItem52.setEventDescription("Singaporeans celebrate the Mid-Autumn Festival by rolling\n"
-                + " out lanterns in a flurry of forms and mooncakes (sweet\n"
-                + " traditional pastries) in a multitude of flavours and textures.\n"
-                + " Come admire the moon at its brightest, along with the deluge \n"
-                + "of decorations that will enliven Chinatown.");
+        trippyEventItem52.setEventName("The Old Woman and the Ox");
+        trippyEventItem52.setEventDescription("The Old Woman and the Ox (2017) is a play written by 20-year-old playwright, Isaiah Christopher Lee, which explores the entangled currents of fear, guilt, loss and love.");
         trippyEventItem52.setPoint(0L);
         trippyEventItem52.setStartDate(startDate.getTime());
         trippyEventItem52.setEndDate(endDate.getTime());
-        trippyEventItem52.setPrice(0.0);
+        trippyEventItem52.setPrice(35.0);
         trippyEventItem52.setEventImage("trippyEventItem52.jpg");
-        trippyEventItem52.setAddress("Chinatown, Singapore");
+        trippyEventItem52.setAddress("3615 Jalan Bukit Merah, Singapore 159461");
         trippyEventItem52.setEventType(eventTypes);
         trippyEventItem52.setSoftDelete(false);
         trippyEventItem52.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem52);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 7);
-        endDate.set(2018, Calendar.SEPTEMBER, 24);
+        startDate.set(2018, Calendar.NOVEMBER, 16);
+        endDate.set(2018, Calendar.NOVEMBER, 18);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem53 = new TrippyEventItem();
-        trippyEventItem53.setEventName("Chinatown Mid-Autumn Festival 2018");
-        trippyEventItem53.setEventDescription("More than 200 Street vendors offering a wide array of festive must haves and treats like mooncake, tea, and decorative ornaments.");
+        trippyEventItem53.setEventName("Affordable Art Fair Singapore Autumn Edition 201");
+        trippyEventItem53.setEventDescription("The Affordable Art Fair, the leading showcase for affordable contemporary art, returns from 16 – 18 November 2018. All set to turn the city pink for its ninth Autumn Edition, the fair will be offering a fresh plethora of local, regional and international talents featuring over 75 galleries.");
         trippyEventItem53.setPoint(0L);
         trippyEventItem53.setStartDate(startDate.getTime());
         trippyEventItem53.setEndDate(endDate.getTime());
-        trippyEventItem53.setPrice(0.0);
+        trippyEventItem53.setPrice(20.0);
         trippyEventItem53.setEventImage("trippyEventItem53.jpg");
-        trippyEventItem53.setAddress("Along Pagoda Street, Trengganu Street, Sago Street and Smith Street");
+        trippyEventItem53.setAddress("1 Republic Blvd, Singapore 038975");
         trippyEventItem53.setEventType(eventTypes);
         trippyEventItem53.setSoftDelete(false);
         trippyEventItem53.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem53);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 7);
-        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        startDate.set(2018, Calendar.NOVEMBER, 16);
+        endDate.set(2018, Calendar.NOVEMBER, 18);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem54 = new TrippyEventItem();
-        trippyEventItem54.setEventName("The Balvenie House of Craft");
-        trippyEventItem54.setEventDescription("Specially curated by craft purveyors The General Company, The Balvenie House of Craft is a first-ever pop-up event showcasing local craftsmen and artisans. The open house comprises showcases and installations, hands-on craft workshops, supper club dinners, open bar and complimentary whisky tasting, film screenings and community talks. Notable participating craftsmen include marquage painter Cherin Sim, embroidery artist Teresa Lim, hand-lettering artist Ewe Jin Tee, floral artist Josephine Lau, among many others.");
+        trippyEventItem54.setEventName("Asian Youth Theatre Festival 2018");
+        trippyEventItem54.setEventDescription("The festival concept is driven by the desire to share ideas, methodology and pedagogical approaches with youths around the region, to enlighten, challenge and empower them, with the ultimate aim of progressing the theatrical and artistic landscape within the region.");
         trippyEventItem54.setPoint(0L);
         trippyEventItem54.setStartDate(startDate.getTime());
         trippyEventItem54.setEndDate(endDate.getTime());
         trippyEventItem54.setPrice(0.0);
         trippyEventItem54.setEventImage("trippyEventItem54.jpg");
-        trippyEventItem54.setAddress("115 King George’s Avenue #01-01 Singapore 208561");
+        trippyEventItem54.setAddress("9 Woodlands Avenue 9, Republic Polytechnic, Singapore 738964");
         trippyEventItem54.setEventType(eventTypes);
         trippyEventItem54.setSoftDelete(false);
         trippyEventItem54.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem54);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 18);
-        endDate.set(2018, Calendar.SEPTEMBER, 22);
+        startDate.set(2018, Calendar.NOVEMBER, 16);
+        endDate.set(2018, Calendar.NOVEMBER, 25);
         eventTypes.clear();
         eventTypes.add(art_and_culture);
 
         TrippyEventItem trippyEventItem55 = new TrippyEventItem();
-        trippyEventItem55.setEventName("Shakespeare's Globe Tour: Iconic Plays and Audience's Choice Performances");
-        trippyEventItem55.setEventDescription("Shakespeare’s Globe is returning to Singapore this 18 – 22 September with three iconic plays – Twelfth Night, The Merchant Of Venice and The Taming Of The Shrew – and Audience Choice shows. The Audience Choice show is a first for Shakespeare’s Globe where the audience can choose what they want to watch. During the last two shows on 22nd September, the company of eight actors will let the audience vote between the three plays, just like how theatre companies would go on tour back in Shakespeare’s days.");
+        trippyEventItem55.setEventName("Kalaa Utsavam - Indian Festival of Arts");
+        trippyEventItem55.setEventDescription("Kalaa Utsavam – Indian Festival of Arts is an annual festival that celebrates Indian arts during the festive period of Deepavali. Launched in 2002 as a three-day festival, Kalaa Utsavam has since grown into a 10-day festival that presents a spectrum of classical to contemporary works by artists from the Indian subcontinent, the Indian diaspora and Singapore.");
         trippyEventItem55.setPoint(0L);
         trippyEventItem55.setStartDate(startDate.getTime());
         trippyEventItem55.setEndDate(endDate.getTime());
-        trippyEventItem55.setPrice(88.0);
+        trippyEventItem55.setPrice(20.0);
         trippyEventItem55.setEventImage("trippyEventItem55.jpg");
-        trippyEventItem55.setAddress("1 Zubir Said Dr | SOTA, Singapore 227968");
+        trippyEventItem55.setAddress("Esplanade - Theatres on the Bay");
         trippyEventItem55.setEventType(eventTypes);
         trippyEventItem55.setSoftDelete(false);
         trippyEventItem55.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem55);
 
-        // Initialising the events for foodie
-        startDate.set(2018, Calendar.SEPTEMBER, 21);
-        endDate.set(2018, Calendar.SEPTEMBER, 23);
+        startDate.set(2018, Calendar.NOVEMBER, 16);
+        endDate.set(2018, Calendar.NOVEMBER, 25);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem56 = new TrippyEventItem();
-        trippyEventItem56.setEventName("Singapore Tea Festival");
-        trippyEventItem56.setEventDescription("With overwhelming support at last year’s debut of Singapore Tea Festival (STF), the second edition of STF will be back this September! Proudly organised by teapasar, the first global omni-channel marketplace featuring local and international tea brands, this year’s STF will be held from 21st – 23rd September at Basement 4, ION Orchard.\n"
-                + "This year’s STF is bigger and better with 28 exciting tea and tea-related brands, and 3 days worth of educational and engaging workshops to look forward to! From TIMELESS CLASSICS featuring single-origin tea merchants such as Tea Chapter and Parchmen Academy, to MODERN BLENDS by many of Singapore’s very own tea brands with interesting blends inspired by local flavours such as Durian Tea (SUCRE) and Nyonya Kaya (The 1872 Clipper Tea Co.); to Botanically Cold Brewed (TM) Sparkling Teas (Gryphon Tea), and even 100% compostable tea pods that are also compatible with Nespresso® machines (A.muse Projects). This year’s STF will also feature INTERNATIONAL FLAVOURS such as Matcha soft serve (Matchaya), and teas direct from Japan (Ito En) and Indonesia (Bali Organic Tea). There will also be LIFESTYLE-related merchandise – from quirky tea illustrations by Troops On Print, to hand-crafted ceramics by Euphoramics and &Natural.");
+        trippyEventItem56.setEventName("NP Arts Fiesta 2018 Presents The Wizard of Oz");
+        trippyEventItem56.setEventDescription("Featuring an all-student cast, ensemble and a live orchestra, this musical is an enchanting revision of the all-time classic by L. Frank Baum, containing beloved songs like Over The Rainbow, We're Off To See The Wizard, and Follow the Yellow Brick Road. Directed by Warren Baumgart Jr. (Wag The Dog Theatre) and starring NP's very own singing sensation Andrea Jane Leopoldo Rojas (Year 3 School of Life Sciences & Chemical Technology) as Dorothy, this 1987 Royal Shakespeare Company adaptation of the musical extravaganza promises a tale of enchantment, wizardry and fun for the whole family. Don't miss your chance to rediscover the story of Oz in this fantastic musical treat at the Esplanade Theatre!");
         trippyEventItem56.setPoint(0L);
         trippyEventItem56.setStartDate(startDate.getTime());
         trippyEventItem56.setEndDate(endDate.getTime());
         trippyEventItem56.setPrice(0.0);
         trippyEventItem56.setEventImage("trippyEventItem56.jpg");
-        trippyEventItem56.setAddress("2 Orchard Turn B4 |ION Orchard, Singapore 238801");
+        trippyEventItem56.setAddress("1 Esplanade Dr, Singapore 038981");
         trippyEventItem56.setEventType(eventTypes);
         trippyEventItem56.setSoftDelete(false);
-        trippyEventItem56.setEventTypeString("Foodie");
+        trippyEventItem56.setEventTypeString("Art and Culture");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem56);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 27);
-        endDate.set(2018, Calendar.SEPTEMBER, 30);
+        // Initialising the events for foodie
+
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem57 = new TrippyEventItem();
-        trippyEventItem57.setEventName("The GREAT Food Festival");
-        trippyEventItem57.setEventDescription("Check out this one-stop gastronomic platform to indulge in the most delectable offerings with our celebrity chefs and patissiers. Be inspired by live demonstrations and perhaps pick up some tricks of the trade from hands-on masterclasses.");
+        trippyEventItem57.setEventName("Sungei Road Laksa");
+        trippyEventItem57.setEventDescription("Among the list of heritage hawker food stalls in Singapore, Sungei Road Laksa is well known among laksa lovers, and it has an interesting story behind it and how they obtained their recipe from a customer who then disappeared. The stall has been serving laksa for decades in the same way – the curry is cooked in an aluminum curry pot over charcoal. At peak times the line at Sungei Road Laksa can stretch across the food court, although luckily the line goes pretty fast as they only serve one dish with no variations.");
         trippyEventItem57.setPoint(0L);
-        trippyEventItem57.setStartDate(startDate.getTime());
-        trippyEventItem57.setEndDate(endDate.getTime());
-        trippyEventItem57.setPrice(30.0);
+        trippyEventItem57.setPrice(3.0);
         trippyEventItem57.setEventImage("trippyEventItem57.jpg");
-        trippyEventItem57.setAddress("8 Sentosa Gateway, Singapore 098269");
+        trippyEventItem57.setAddress("#01-27 Jln Berseh, 100, Singapore 200027");
         trippyEventItem57.setEventType(eventTypes);
         trippyEventItem57.setSoftDelete(false);
         trippyEventItem57.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem57);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 20);
-        endDate.set(2018, Calendar.SEPTEMBER, 21);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem58 = new TrippyEventItem();
-        trippyEventItem58.setEventName("COMO Marketplace - Mid-Autumn Festival 2018");
-        trippyEventItem58.setEventDescription("Join us for an evening of traditional treats and a family-friendly lantern parade at COMO Dempsey. Be treated to handcrafted mooncakes and artisan tea in the lush garden, and end the beautiful evening with a lantern parade and a stroll around Dempsey under the moonlight. Be sure to bring your best lantern for a chance to bag the ‘Best Lantern of the Night’ prize.");
+        trippyEventItem58.setEventName("Outram Park Ya Hua Rou Gu Cha");
+        trippyEventItem58.setEventDescription("Ya Hua Bak Kut Teh has its humble beginnings in Outram Park estate, one of the first HDB estates in Singapore.");
         trippyEventItem58.setPoint(0L);
-        trippyEventItem58.setStartDate(startDate.getTime());
-        trippyEventItem58.setEndDate(endDate.getTime());
-        trippyEventItem58.setPrice(0.0);
+        trippyEventItem58.setPrice(7.0);
         trippyEventItem58.setEventImage("trippyEventItem58.jpg");
-        trippyEventItem58.setAddress("18A Dempsey Rd, Singapore 249677");
+        trippyEventItem58.setAddress("7 Keppel Rd, PSA Tanjong Pagar Complex, 089053");
         trippyEventItem58.setEventType(eventTypes);
         trippyEventItem58.setSoftDelete(false);
         trippyEventItem58.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem58);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 26);
-        endDate.set(2018, Calendar.SEPTEMBER, 27);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem59 = new TrippyEventItem();
-        trippyEventItem59.setEventName("Food of the Future Festival - Asia's first Experimental Food Event");
-        trippyEventItem59.setEventDescription("Asia’s FIRST Experiential Food Event – Taste, Feel & Learn about the Future of Food.\n"
-                + "\n"
-                + "Immerse yourself in the future of food with a curated marketplace, hands-on experience zones & empowering speaker keynotes thoughtfully put together to fill up your well-deserved Saturday!\n"
-                + "\n"
-                + "There will be workshops for kids and parents for a hands-on experience such as building your own hydroponic farm and sustainable beekeeping.\n"
-                + "\n"
-                + "On top of that, there will also be a vibrant marketplace for you to taste and buy some futures foods home!");
+        trippyEventItem59.setEventName("Nam Sing Hokkien Fried Mee");
+        trippyEventItem59.setEventDescription("Nam Sing Fried Hokkien Mee at Old Airport Road FC is one of the legendary hawkers who has been frying this dish for over 50 years!");
         trippyEventItem59.setPoint(0L);
-        trippyEventItem59.setStartDate(startDate.getTime());
-        trippyEventItem59.setEndDate(endDate.getTime());
-        trippyEventItem59.setPrice(0.0);
+        trippyEventItem59.setPrice(4.0);
         trippyEventItem59.setEventImage("trippyEventItem59.jpg");
-        trippyEventItem59.setAddress("CoSpace Park 43 Science Park Rd, Singapore 117408");
+        trippyEventItem59.setAddress("51 Old Airport Road, #01-32, Old Airport Road Food Centre, Singapore 390051");
         trippyEventItem59.setEventType(eventTypes);
         trippyEventItem59.setSoftDelete(false);
         trippyEventItem59.setEventTypeString("Foodie");
@@ -1269,20 +1719,16 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem60);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 26);
-        endDate.set(2018, Calendar.SEPTEMBER, 27);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem61 = new TrippyEventItem();
-        trippyEventItem61.setEventName("Austrian Wine Dinner at P.S Cafe");
-        trippyEventItem61.setEventDescription("Immerse yourself in the future of food with a curated marketplace, hands-on experience zones & empowering speaker keynotes thoughtfully put together to fill up your well-deserved Saturday!");
+        trippyEventItem61.setEventName("Tian Tian Hainanese Chicken Rice");
+        trippyEventItem61.setEventDescription("Tian Tian has been voted as the best chicken rice hawker stall in Singapore by local foodies. Anthony Bourdain, an American celebrity chef, host of Travel Channel’s culinary, has reported that “Chicken rice is so fragrant and delicious that it can be eaten on its own”.");
         trippyEventItem61.setPoint(0L);
-        trippyEventItem61.setStartDate(startDate.getTime());
-        trippyEventItem61.setEndDate(endDate.getTime());
-        trippyEventItem61.setPrice(0.0);
+        trippyEventItem61.setPrice(5.0);
         trippyEventItem61.setEventImage("trippyEventItem61.jpg");
-        trippyEventItem61.setAddress("45 Ann Siang Rd, 02, Singapore 069719");
+        trippyEventItem61.setAddress("1 Kadayanallur St, 10/11 Maxwell Food Centre, Singapore 069184");
         trippyEventItem61.setEventType(eventTypes);
         trippyEventItem61.setSoftDelete(false);
         trippyEventItem61.setEventTypeString("Foodie");
@@ -1309,20 +1755,16 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem62);
 
-        startDate.set(2018, Calendar.JULY, 25);
-        endDate.set(2018, Calendar.SEPTEMBER, 6);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem63 = new TrippyEventItem();
-        trippyEventItem63.setEventName("Marina Mandarin's Mid-Autumn Delights");
-        trippyEventItem63.setEventDescription("There will be workshops for kids and parents for a hands-on experience such as building your own hydroponic farm and sustainable beekeeping.");
+        trippyEventItem63.setEventName("Hup Hong Chicken Rice");
+        trippyEventItem63.setEventDescription("Located at Yuhua Village Market & Food Centre, this place is well known in the neighborhood for their roasted chicken rice. The chicken had a firm silky texture, and the sauce was nice and garlicky.");
         trippyEventItem63.setPoint(0L);
-        trippyEventItem63.setStartDate(startDate.getTime());
-        trippyEventItem63.setEndDate(endDate.getTime());
-        trippyEventItem63.setPrice(64.0);
+        trippyEventItem63.setPrice(3.0);
         trippyEventItem63.setEventImage("trippyEventItem63.jpg");
-        trippyEventItem63.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
+        trippyEventItem63.setAddress("Yuhua Village Market & Food Centre, 254 Jurong East Street 24");
         trippyEventItem63.setEventType(eventTypes);
         trippyEventItem63.setSoftDelete(false);
         trippyEventItem63.setEventTypeString("Foodie");
@@ -1349,277 +1791,321 @@ public class DataInitializationSessionBean {
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem64);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 1);
-        endDate.set(2018, Calendar.SEPTEMBER, 30);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem65 = new TrippyEventItem();
-        trippyEventItem65.setEventName("MARGARITA MADNESS");
-        trippyEventItem65.setEventDescription("On top of that, there will also be a vibrant marketplace for you to taste and buy some futures foods home!");
+        trippyEventItem65.setEventName("HILL STREET CHAR KWAY TEOW");
+        trippyEventItem65.setEventDescription("Coming to Singapore’s fried kway teow, Hill Street Char Kway Teow is often the first name to pop up in people’s mind. This food stall made its fame since it was located at Hill Street.");
         trippyEventItem65.setPoint(0L);
-        trippyEventItem65.setStartDate(startDate.getTime());
-        trippyEventItem65.setEndDate(endDate.getTime());
-        trippyEventItem65.setPrice(18.0);
+        trippyEventItem65.setPrice(4.0);
         trippyEventItem65.setEventImage("trippyEventItem65.jpg");
-        trippyEventItem65.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
+        trippyEventItem65.setAddress("16 Bedok South Rd, #01-41, Singapore 460016");
         trippyEventItem65.setEventType(eventTypes);
         trippyEventItem65.setSoftDelete(false);
         trippyEventItem65.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem65);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 10);
-        endDate.set(2018, Calendar.SEPTEMBER, 14);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem66 = new TrippyEventItem();
-        trippyEventItem66.setEventName("A PROVENANCE-LED GASTRONOMIC EXPERIENCE");
-        trippyEventItem66.setEventDescription("An Exclusive Four Hands Collaboration at Origin Grill featuring Winner of MasterChef Brazil Professionals 2017 Pablo Oazen & Heidi Flanagan. Guest Chef Pablo and hosting Chef de Cuisine Heidi Flanagan will present an exclusive 5-day gourmet collaboration at Origin Grill. Focusing on provenance, both chefs will create a gastronomic fare featuring curated, unique and quality-driven ingredients sourced from local and regional producers as well as from Brazil.");
+        trippyEventItem66.setEventName("Song Zhou Luo Bo Gao");
+        trippyEventItem66.setEventDescription("Song Zhou fried carrot cake was tasteful and the soft texture of the radish made the carrot cake kind of alluring to the taste buds. May not be the best fried carrot cake but 30 over years of experience in frying the fried carrot cake and the queue could be a good endorsement of their standard.");
         trippyEventItem66.setPoint(0L);
-        trippyEventItem66.setStartDate(startDate.getTime());
-        trippyEventItem66.setEndDate(endDate.getTime());
-        trippyEventItem66.setPrice(34.0);
+        trippyEventItem66.setPrice(4.0);
         trippyEventItem66.setEventImage("trippyEventItem66.jpg");
-        trippyEventItem66.setAddress("Shangri-La Hotel, 22 Orange Grove Road, Singapore 258350");
+        trippyEventItem66.setAddress("207 New Upper Changi Rd, Singapore 460207");
         trippyEventItem66.setEventType(eventTypes);
         trippyEventItem66.setSoftDelete(false);
         trippyEventItem66.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem66);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 11);
-        endDate.set(2018, Calendar.SEPTEMBER, 17);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem67 = new TrippyEventItem();
-        trippyEventItem67.setEventName("REV UP YOUR APPETITE THIS RACE SEASON AT AQUAMARINE");
-        trippyEventItem67.setEventDescription("Go full speed ahead with AquaMarine’s buffet, featuring international specials like the Australian Slow-roasted OP Beef Rib with Chimichurri, the Sicilian Whitefish En Papillote, and the Moroccan Leg of Lamb Shawarma with Pita or Flat Bread.​");
+        trippyEventItem67.setEventName("Hill Street Tai Hwa Pork Noodle");
+        trippyEventItem67.setEventDescription("Hill Street Tai Hwa Pork Noodle at Crawford Lane has been hailed as Singapore’s best Bak Chor Mee for good reason. Having snagged a Michelin Star last year, they have once again wowed us by retaining the prestigious accolade in the inaugural guide this year.");
         trippyEventItem67.setPoint(0L);
-        trippyEventItem67.setStartDate(startDate.getTime());
-        trippyEventItem67.setEndDate(endDate.getTime());
-        trippyEventItem67.setPrice(60.0);
+        trippyEventItem67.setPrice(8.0);
         trippyEventItem67.setEventImage("trippyEventItem67.jpg");
-        trippyEventItem67.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
+        trippyEventItem67.setAddress("Block 466 Crawford Lane #01-12 Singapore 190465");
         trippyEventItem67.setEventType(eventTypes);
         trippyEventItem67.setSoftDelete(false);
         trippyEventItem67.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem67);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 11);
-        endDate.set(2018, Calendar.SEPTEMBER, 17);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem68 = new TrippyEventItem();
-        trippyEventItem68.setEventName("HAPPY HOUR JUST GOT HAPPIER");
-        trippyEventItem68.setEventDescription("With happy hour extended to 12 noon to 8pm, you can now get a midday pick-me-up with our variety of house pours at only $12++ per drink at the Atrium Lounge!");
+        trippyEventItem68.setEventName("Yong Xiang Xing Tou Foo");
+        trippyEventItem68.setEventDescription("Located at the fantastic food court at the People’s Park Food Centre in Chinatown, Yong Xiang Xing Tou Foo is one of the most legendary yong tau foo hawker stalls of Singapore. For the entire time the stall is open, there’s a line that snakes around through the tables, everyone waiting for their mid-afternoon tofu snack.");
         trippyEventItem68.setPoint(0L);
-        trippyEventItem68.setStartDate(startDate.getTime());
-        trippyEventItem68.setEndDate(endDate.getTime());
-        trippyEventItem68.setPrice(12.0);
+        trippyEventItem68.setPrice(4.0);
         trippyEventItem68.setEventImage("trippyEventItem68.jpg");
-        trippyEventItem68.setAddress("6 Raffles Boulevard Level 5 Marina Square, Singapore 039594");
+        trippyEventItem68.setAddress("32 New Market Rd, 01-1084 People’s Park Food Centre, Singapore 050032");
         trippyEventItem68.setEventType(eventTypes);
         trippyEventItem68.setSoftDelete(false);
         trippyEventItem68.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem68);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 13);
-        endDate.set(2018, Calendar.OCTOBER, 23);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem69 = new TrippyEventItem();
-        trippyEventItem69.setEventName("CELEBRATE OKTOBERFEST THE AUTHENTIC GERMAN WAY AT BROTZEIT!");
-        trippyEventItem69.setEventDescription("Everyone’s favourite German festival is just around the corner, and Brotzeit’s got heaps of fun-filled activities, traditional entertainment, food and booze lined up for you this Oktoberfest!");
+        trippyEventItem69.setEventName("Daisy's Dream Kitchen");
+        trippyEventItem69.setEventDescription("The tradition of enjoying simple yet hearty delicacies, brings everyone closer across the varying cultures, is passed down to the next generation. Here in Daisy’s Dream Kitchen, it exudes the charm of the good old days of Singapore Kampong spirit where it’s an inspiration for their mouth-watering Peranakan dishes and other local delicacies creation.");
         trippyEventItem69.setPoint(0L);
-        trippyEventItem69.setStartDate(startDate.getTime());
-        trippyEventItem69.setEndDate(endDate.getTime());
-        trippyEventItem69.setPrice(0.0);
+        trippyEventItem69.setPrice(12.5);
         trippyEventItem69.setEventImage("trippyEventItem69.jpg");
-        trippyEventItem69.setAddress("VivoCity | Westgate | 313@Somerset | Katong | Raffles City");
+        trippyEventItem69.setAddress("Block 517 West Coast Road #01-571 S120517, Singapore 120517");
         trippyEventItem69.setEventType(eventTypes);
         trippyEventItem69.setSoftDelete(false);
         trippyEventItem69.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem69);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 14);
-        endDate.set(2018, Calendar.SEPTEMBER, 16);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem70 = new TrippyEventItem();
-        trippyEventItem70.setEventName("THE LANDMARK CIRCUIT: GLOBAL PITSTOPS");
-        trippyEventItem70.setEventDescription("As Marina Bay becomes the Mediterranean Sea, transport yourself to the glitz and glamour of Monaco at the lavish Oyster Festival. With the décor and mouthwatering delights inspired by the decadent French Riviera hot spot, guests can fuel up on an ‘All You Can Eat’ dinner of seafood favourites from Angie’s signature Oysters to pots of Mussels & Clams.");
+        trippyEventItem70.setEventName("Sinar Pagi Nasi Padang");
+        trippyEventItem70.setEventDescription("Located at Geylang Serai Food Centre, one of the main Malay and Indonesian hawker food courts in Singapore, is Sinar Pagi Nasi Padang, a well known stall that serves Nasi Padang.");
         trippyEventItem70.setPoint(0L);
-        trippyEventItem70.setStartDate(startDate.getTime());
-        trippyEventItem70.setEndDate(endDate.getTime());
-        trippyEventItem70.setPrice(118.0);
+        trippyEventItem70.setPrice(4.0);
         trippyEventItem70.setEventImage("trippyEventItem70.jpg");
-        trippyEventItem70.setAddress("Angie's Oyster Bar Level 45, 50 Raffles Place, Singapore Land Tower");
+        trippyEventItem70.setAddress("#02-137, Geylang Serai Market & Food Centre");
         trippyEventItem70.setEventType(eventTypes);
         trippyEventItem70.setSoftDelete(false);
         trippyEventItem70.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem70);
 
-        startDate.set(2018, Calendar.SEPTEMBER, 15);
-        endDate.set(2018, Calendar.SEPTEMBER, 16);
         eventTypes.clear();
         eventTypes.add(foodie);
 
         TrippyEventItem trippyEventItem71 = new TrippyEventItem();
-        trippyEventItem71.setEventName("AMBER LOUNGE SINGAPORE GRAND PRIX VIP PARTY 2018");
-        trippyEventItem71.setEventDescription("The exotic island of Singapore, home to Formula 1’s first ever night race is one of Amber Lounge’s most provocative and glamorous destinations. A celebrity and F1 driver hotspot, Amber Lounge Singapore merges the euphoric party spirit of the West with the splendour of the Orient.");
+        trippyEventItem71.setEventName("Singapore Zam Zam Murtabak");
+        trippyEventItem71.setEventDescription("Having been around since 1908, Singapore Zam Zam is one of the most well known names in Singapore when it comes to murtabak.");
         trippyEventItem71.setPoint(0L);
-        trippyEventItem71.setStartDate(startDate.getTime());
-        trippyEventItem71.setEndDate(endDate.getTime());
-        trippyEventItem71.setPrice(500.0);
+        trippyEventItem71.setPrice(8.0);
         trippyEventItem71.setEventImage("trippyEventItem71.jpg");
-        trippyEventItem71.setAddress("1 Temasek Avenue, Singapore 039192");
+        trippyEventItem71.setAddress("697-699 North Bridge Rd, Singapore 198675");
         trippyEventItem71.setEventType(eventTypes);
         trippyEventItem71.setSoftDelete(false);
         trippyEventItem71.setEventTypeString("Foodie");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem71);
 
-        startDate.set(2018, Calendar.OCTOBER, 1);
-        endDate.set(2018, Calendar.OCTOBER, 30);
         eventTypes.clear();
         eventTypes.add(foodie);
 
-        TrippyEventItem trippyEventItem72 = new TrippyEventItem();
-        trippyEventItem72.setEventName("PERANAKAN DELIGHTS");
-        trippyEventItem72.setEventDescription("This October, indulge in hearty Peranakan fare at AquaMarine! Blending Chinese ingredients with Malay or Indonesian spices, succulent highlights include Udang Karang Goreng Assam*, Nyonya Spiced Ayam Shawarma with Lotus Bun, Salmon Fillet coated with Otah-Otah Mousse, and Nyonya Itek Sioh.");
-        trippyEventItem72.setPoint(0L);
-        trippyEventItem72.setStartDate(startDate.getTime());
-        trippyEventItem72.setEndDate(endDate.getTime());
-        trippyEventItem72.setPrice(60.0);
-        trippyEventItem72.setEventImage("trippyEventItem72.jpg");
-        trippyEventItem72.setAddress("6 Raffles Boulevard Level 4 Marina Square, Singapore 039594");
-        trippyEventItem72.setEventType(eventTypes);
-        trippyEventItem72.setSoftDelete(false);
-        trippyEventItem72.setEventTypeString("Foodie");
-        
+        TrippyEventItem trippyEventItem510 = new TrippyEventItem();
+        trippyEventItem510.setEventName("Newton Hawker Centre");
+        trippyEventItem510.setEventDescription("Newton Food Centre is another popular eating spot that can satisfy your cravings for hawker food. And with close to 100 stalls, it’s no wonder this food centre got chosen to be featured in Crazy Rich Asians.");
+        trippyEventItem510.setPoint(0L);
+        trippyEventItem510.setPrice(5.0);
+        trippyEventItem510.setEventImage("trippyEventItem510.jpg");
+        trippyEventItem510.setAddress("500 Clemenceau Avenue North, Newton Food Centre, Singapore 229495");
+        trippyEventItem510.setEventType(eventTypes);
+        trippyEventItem510.setSoftDelete(false);
+        trippyEventItem510.setEventTypeString("Foodie");
 
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem510);
 
-        trippyEventSessionLocal.createTrippyEvent(trippyEventItem72);
+        eventTypes.clear();
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem511 = new TrippyEventItem();
+        trippyEventItem511.setEventName("Lola's Cafe");
+        trippyEventItem511.setEventDescription("Newton Food Centre is another popular eating spot that can satisfy your cravings for hawker food. And with close to 100 stalls, it’s no wonder this food centre got chosen to be featured in Crazy Rich Asians.");
+        trippyEventItem511.setPoint(0L);
+        trippyEventItem511.setPrice(20.0);
+        trippyEventItem511.setEventImage("trippyEventItem511.jpg");
+        trippyEventItem511.setAddress("500 Clemenceau Avenue North, Newton Food Centre, Singapore 229495");
+        trippyEventItem511.setEventType(eventTypes);
+        trippyEventItem511.setSoftDelete(false);
+        trippyEventItem511.setEventTypeString("Foodie");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem511);
+
+        eventTypes.clear();
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem512 = new TrippyEventItem();
+        trippyEventItem512.setEventName("Swee Choon Dim Sum");
+        trippyEventItem512.setEventDescription("Swee Choon Tim Sum Restaurant is a well-known and an established local restaurant where people from all walks of life have come to enjoy dim sum for almost 55 years.");
+        trippyEventItem512.setPoint(0L);
+        trippyEventItem512.setPrice(15.0);
+        trippyEventItem512.setEventImage("trippyEventItem512.jpg");
+        trippyEventItem512.setAddress("183/185/187/189/191 Jalan Besar Singapore 208882");
+        trippyEventItem512.setEventType(eventTypes);
+        trippyEventItem512.setSoftDelete(false);
+        trippyEventItem512.setEventTypeString("Foodie");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem512);
+
+        eventTypes.clear();
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem513 = new TrippyEventItem();
+        trippyEventItem513.setEventName("Wen Dao Shi Dim Sum");
+        trippyEventItem513.setEventDescription("126 Dim Sum Wen Dao Shi 揾到食 started serving dim sum at 126 Sims Avenue in 1985. The Boon Keng outlet - 1086 Serangoon Road - was opened in 2012.");
+        trippyEventItem513.setPoint(0L);
+        trippyEventItem513.setPrice(15.0);
+        trippyEventItem513.setEventImage("trippyEventItem513.jpg");
+        trippyEventItem513.setAddress("126 Sims Avenue Singapore 387449");
+        trippyEventItem513.setEventType(eventTypes);
+        trippyEventItem513.setSoftDelete(false);
+        trippyEventItem513.setEventTypeString("Foodie");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem513);
+
+        eventTypes.clear();
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem514 = new TrippyEventItem();
+        trippyEventItem514.setEventName("Scissors Cut Curry Rice");
+        trippyEventItem514.setEventDescription("Beach Road Scissors Cut Curry Rice 美芝律剪刀剪咖喱饭 was one of the pioneers of Scissor Cut Curry Rice, somewhat like your chye png stall with ingredients cut up for easier consumption, drenched with various gooey sauces.");
+        trippyEventItem514.setPoint(0L);
+        trippyEventItem514.setPrice(5.0);
+        trippyEventItem514.setEventImage("trippyEventItem514.jpg");
+        trippyEventItem514.setAddress("229 Jln Besar, Singapore 208905");
+        trippyEventItem514.setEventType(eventTypes);
+        trippyEventItem514.setSoftDelete(false);
+        trippyEventItem514.setEventTypeString("Foodie");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem514);
+
+        eventTypes.clear();
+        eventTypes.add(foodie);
+
+        TrippyEventItem trippyEventItem515 = new TrippyEventItem();
+        trippyEventItem515.setEventName("Ng Ah Sio Pork Ribs Soup");
+        trippyEventItem515.setEventDescription("Established since the 1950s, Ng Ah Sio Pork Ribs Soup Eating House has long been recognized as one of the best bak kut teh places in Singapore. This famous eating house has a loyal following for its Teochew-style bak kut teh. Besides its signature bak kut teh, Ng Ah Sio also serves a selection of pig-related dishes such as blanched pig liver, blanched pig kidney, pig tail, braised pig intestine, braised pig skin and braised pig trotter.");
+        trippyEventItem515.setPoint(0L);
+        trippyEventItem515.setPrice(10.0);
+        trippyEventItem515.setEventImage("trippyEventItem515.jpg");
+        trippyEventItem515.setAddress("208 Rangoon Road, Singapore 218453");
+        trippyEventItem515.setEventType(eventTypes);
+        trippyEventItem515.setSoftDelete(false);
+        trippyEventItem515.setEventTypeString("Foodie");
+
+        trippyEventSessionLocal.createTrippyEvent(trippyEventItem515);
 
         try {
-            
-            
+
             //adding saved trips and past trips to c1
-            Customer newC1 = customerSessionLocal.getCustomerByEmail("Testing1@example.com");
+            Customer newC1 = customerSessionLocal.getCustomerByEmail("congx2@hotmail.com");
 
             SavedTrip savedTrip1 = new SavedTrip();
             startDate.set(2018, Calendar.SEPTEMBER, 15); //should be current date. 
             savedTrip1.setSavedDate(startDate.getTime());
-            savedTrip1.setPrice(60.0);
-            savedTrip1.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("PERANAKAN DELIGHTS")); 
+            savedTrip1.setPrice(85.0);
+            savedTrip1.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Wildfire Expeditions"));
             savedTrip1.setCustomer(newC1);
             savedTripSessionLocal.createdSavedTrip(savedTrip1);
-            
-           
+
             newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
-            
+
             SavedTrip savedTrip2 = new SavedTrip();
             startDate.set(2018, Calendar.SEPTEMBER, 15); //should be current date. 
             savedTrip2.setSavedDate(startDate.getTime());
-            savedTrip2.setPrice(500.0);
-            savedTrip2.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("HAPPY HOUR JUST GOT HAPPIER"));
+            savedTrip2.setPrice(30.0);
+            savedTrip2.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Jurong Bird Park"));
             savedTrip2.setCustomer(newC1);
             savedTripSessionLocal.createdSavedTrip(savedTrip2);
             newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
-            
-            
+
             SavedTrip savedTrip3 = new SavedTrip();
             startDate.set(2018, Calendar.SEPTEMBER, 15); //should be current date. 
             savedTrip3.setSavedDate(startDate.getTime());
-            savedTrip3.setPrice(118.0); //should get from TrippyEvent.getPrice
-            savedTrip3.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("MARGARITA MADNESS"));
-            savedTrip3.setCustomer(newC1); 
+            savedTrip3.setPrice(50.0); //should get from TrippyEvent.getPrice
+            savedTrip3.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Forest Adventure"));
+            savedTrip3.setCustomer(newC1);
             savedTripSessionLocal.createdSavedTrip(savedTrip3);
             newC1.addSavedTrip(savedTripSessionLocal.getNewlyAddSavedTrip());
-            
+
             //init test data for BookedActivity
+            
             BookedActivity bt1 = new BookedActivity();
             startDate.set(2018, Calendar.SEPTEMBER, 20); //should be current date. 
             bt1.setBookedDate(startDate.getTime());
             bt1.setBookedBy(newC1);
-            bt1.setPrice(12.0);
+            bt1.setPrice(20.0);
             bt1.setQty(1);
             bt1.setStatus(true);
-            bt1.setIsDone(true); 
-            bt1.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("HAPPY HOUR JUST GOT HAPPIER"));
+            bt1.setIsDone(true);
+            bt1.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Ah Hua Fishing"));
             bookedActivitySessionLocal.createBookedActivity(bt1);
             newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
-            
+
             BookedActivity bt2 = new BookedActivity();
             startDate.set(2018, Calendar.SEPTEMBER, 20); //should be current date. 
             bt2.setBookedDate(startDate.getTime());
             bt2.setBookedBy(newC1);
-            bt2.setPrice(34.0); 
+            bt2.setPrice(0.0);
             bt2.setQty(1);
             bt2.setStatus(true);
-            bt2.setIsDone(true); 
-            bt2.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("A PROVENANCE-LED GASTRONOMIC EXPERIENCE"));
+            bt2.setIsDone(true);
+            bt2.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Food Rebel Fridays"));
             bookedActivitySessionLocal.createBookedActivity(bt2);
             newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
-            
+
             BookedActivity bt3 = new BookedActivity();
             startDate.set(2018, Calendar.SEPTEMBER, 29); //should be current date. 
             bt3.setBookedDate(startDate.getTime());
             bt3.setBookedBy(newC1);
-            bt3.setPrice(58.0); 
+            bt3.setPrice(21.9);
             bt3.setQty(1);
             bt3.setStatus(true);
-            bt3.setIsDone(false); 
-            bt3.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Halloween Horror Nights 8"));
+            bt3.setIsDone(false);
+            bt3.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Lost SG"));
             bookedActivitySessionLocal.createBookedActivity(bt3);
             newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
-            
+
             BookedActivity bt4 = new BookedActivity();
             startDate.set(2018, Calendar.SEPTEMBER, 29); //should be current date. 
             bt4.setBookedDate(startDate.getTime());
             bt4.setBookedBy(newC1);
-            bt4.setPrice(69.0); 
+            bt4.setPrice(69.0);
             bt4.setQty(1);
             bt4.setStatus(true);
-            bt4.setIsDone(true); 
+            bt4.setIsDone(true);
             bt4.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Night Safari Wallaby Trail"));
             bookedActivitySessionLocal.createBookedActivity(bt4);
             newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
-            
+
             BookedActivity bt5 = new BookedActivity();
             startDate.set(2018, Calendar.SEPTEMBER, 27); //should be current date. 
             bt5.setBookedDate(startDate.getTime());
             bt5.setBookedBy(newC1);
-            bt5.setPrice(15.0); 
+            bt5.setPrice(15.0);
             bt5.setQty(1);
             bt5.setStatus(false);
-            bt5.setIsDone(false); 
+            bt5.setIsDone(false);
             bt5.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("Snow City Singapore"));
             bookedActivitySessionLocal.createBookedActivity(bt5);
             newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
-            
+
             BookedActivity bt6 = new BookedActivity();
             startDate.set(2018, Calendar.SEPTEMBER, 27); //should be current date. 
             bt6.setBookedDate(startDate.getTime());
             bt6.setBookedBy(newC1);
-            bt6.setPrice(0.0); 
+            bt6.setPrice(77.0);
             bt6.setQty(1);
             bt6.setStatus(true);
-            bt6.setIsDone(true); 
-            bt6.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("STREET 2"));
+            bt6.setIsDone(true);
+            bt6.setEventItem(trippyEventSessionLocal.retrieveEventByEventName("AJ Hackett Sentosa"));
             bookedActivitySessionLocal.createBookedActivity(bt5);
             newC1.addBookedActivity(bookedActivitySessionLocal.getNewlyAddBookedActivity());
-                               
+
         } catch (NoResultException ex) {
             Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CustomerAddSavedTripException ex) {
@@ -1627,62 +2113,62 @@ public class DataInitializationSessionBean {
         } catch (CustomerAddBookedActivityException ex) {
             Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-            //init prize
-            Prize prize1 = new Prize();
-            prize1.setPrizeName("MCDONALD $5 VOUCHER");
-            prize1.setPrizeQty(100);
-            prize1.setPrizeDescription("Put some yummy in your friends’ tummies! Surprise your loved ones with McDonald’s Gift Certificates. It’s the perfect gift for any occasion.");
-            prize1.setPrizePoint(500);
-            prize1.setPrizeImage("mcdonald.jpg");
-            prize1.setSoftDelete(false);
-            prizeSessionLocal.createPrize(prize1);
-            
-            Prize prize2 = new Prize();
-            prize2.setPrizeName("SHAW $10 VOUCHER");
-            prize2.setPrizeQty(100);
-            prize2.setPrizeDescription("Enjoy greater savings with Shaw Theatres movie vouchers!");
-            prize2.setPrizePoint(1000);
-            prize2.setPrizeImage("shaw.jpg");
-            prize2.setSoftDelete(false);
-            prizeSessionLocal.createPrize(prize2);
-            
-            Prize prize3 = new Prize();
-            prize3.setPrizeName("SAFRA $10 VOUCHER");
-            prize3.setPrizeQty(100);
-            prize3.setPrizeDescription("Enjoy greater savings with SAFRA voucher at participating SAFRA club merchants!");
-            prize3.setPrizePoint(1000);
-            prize3.setPrizeImage("safra.jpg");
-            prize3.setSoftDelete(false);
-            prizeSessionLocal.createPrize(prize3);
-            
-            Prize prize4 = new Prize();
-            prize4.setPrizeName("THERMAL FLASK");
-            prize4.setPrizeQty(100);
-            prize4.setPrizeDescription("ENDO Japan New Double Stainless Steel Vacuumised Bottle / 480ml / CX-5117. Heat Retention up to 6 hours!");
-            prize4.setPrizePoint(2000);
-            prize4.setPrizeImage("bottle.jpg");
-            prize4.setSoftDelete(false);
-            prizeSessionLocal.createPrize(prize4);
-            
-            Prize prize5 = new Prize();
-            prize5.setPrizeName("TRAVEL PILLOW");
-            prize5.setPrizeQty(100);
-            prize5.setPrizeDescription("OGAWA Plush Touch - Luxurious Travel Pillow with MEMORY FOAM Cushioning");
-            prize5.setPrizePoint(2000);
-            prize5.setPrizeImage("pillow.jpg");
-            prize5.setSoftDelete(false);
-            prizeSessionLocal.createPrize(prize5);
-            
-            Prize prize6 = new Prize();
-            prize6.setPrizeName("OGAWA MASSAGER");
-            prize6.setPrizeQty(10);
-            prize6.setPrizeDescription("OGAWA Handheld Body Massager. For use at anytime, anywhere. Multi Functional Massager. Convenient Design.");
-            prize6.setPrizePoint(10000);
-            prize6.setPrizeImage("massage.jpg");
-            prize6.setSoftDelete(false);
-            prizeSessionLocal.createPrize(prize6);
-                      
+
+        //init prize
+        Prize prize1 = new Prize();
+        prize1.setPrizeName("MCDONALD $5 VOUCHER");
+        prize1.setPrizeQty(100);
+        prize1.setPrizeDescription("Put some yummy in your friends’ tummies! Surprise your loved ones with McDonald’s Gift Certificates. It’s the perfect gift for any occasion.");
+        prize1.setPrizePoint(500);
+        prize1.setPrizeImage("mcdonald.jpg");
+        prize1.setSoftDelete(false);
+        prizeSessionLocal.createPrize(prize1);
+
+        Prize prize2 = new Prize();
+        prize2.setPrizeName("SHAW $10 VOUCHER");
+        prize2.setPrizeQty(100);
+        prize2.setPrizeDescription("Enjoy greater savings with Shaw Theatres movie vouchers!");
+        prize2.setPrizePoint(1000);
+        prize2.setPrizeImage("shaw.jpg");
+        prize2.setSoftDelete(false);
+        prizeSessionLocal.createPrize(prize2);
+
+        Prize prize3 = new Prize();
+        prize3.setPrizeName("SAFRA $10 VOUCHER");
+        prize3.setPrizeQty(100);
+        prize3.setPrizeDescription("Enjoy greater savings with SAFRA voucher at participating SAFRA club merchants!");
+        prize3.setPrizePoint(1000);
+        prize3.setPrizeImage("safra.jpg");
+        prize3.setSoftDelete(false);
+        prizeSessionLocal.createPrize(prize3);
+
+        Prize prize4 = new Prize();
+        prize4.setPrizeName("THERMAL FLASK");
+        prize4.setPrizeQty(100);
+        prize4.setPrizeDescription("ENDO Japan New Double Stainless Steel Vacuumised Bottle / 480ml / CX-5117. Heat Retention up to 6 hours!");
+        prize4.setPrizePoint(2000);
+        prize4.setPrizeImage("bottle.jpg");
+        prize4.setSoftDelete(false);
+        prizeSessionLocal.createPrize(prize4);
+
+        Prize prize5 = new Prize();
+        prize5.setPrizeName("TRAVEL PILLOW");
+        prize5.setPrizeQty(100);
+        prize5.setPrizeDescription("OGAWA Plush Touch - Luxurious Travel Pillow with MEMORY FOAM Cushioning");
+        prize5.setPrizePoint(2000);
+        prize5.setPrizeImage("pillow.jpg");
+        prize5.setSoftDelete(false);
+        prizeSessionLocal.createPrize(prize5);
+
+        Prize prize6 = new Prize();
+        prize6.setPrizeName("OGAWA MASSAGER");
+        prize6.setPrizeQty(10);
+        prize6.setPrizeDescription("OGAWA Handheld Body Massager. For use at anytime, anywhere. Multi Functional Massager. Convenient Design.");
+        prize6.setPrizePoint(10000);
+        prize6.setPrizeImage("massage.jpg");
+        prize6.setSoftDelete(false);
+        prizeSessionLocal.createPrize(prize6);
+
     }
 
     private static String encryptPassword(String password) {
