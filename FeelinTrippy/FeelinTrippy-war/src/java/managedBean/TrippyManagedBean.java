@@ -70,30 +70,22 @@ public class TrippyManagedBean implements Serializable {
         return authBean;
     }
 
-    public List<Prize> getPrizeOrder(Customer c) {
-        return convertToPrize(prizeSessionLocal.getPrizeRedeemed(c.getUserID()));
+    public List<PrizeOrder> getPrizeOrder(Customer c) {
+        return prizeSessionLocal.getPrizeRedeemed(c.getUserID());
 
-    }
-
-    public List<Prize> convertToPrize(List<PrizeOrder> c) {
-        List<Prize> z = new ArrayList<>();
-        if ( z.isEmpty()) {
-            return z;
-        } else {
-            for (PrizeOrder po : c) {
-                
-                z.add(po.getPrizeRedeemed());
-
-            }
-        }
-        return z;
     }
 
     public String redeem(Prize p) {
         if (prizeSessionLocal.redeemPrize(authBean.getId(), p.getPrizeID(), 1) == true) {
-            return "alert('Item redeemed')";
+            try {
+                customerSessionLocal.deductPoints(authBean.getLoggedInCustomer(), p.getPrizePoint());
+                authBean.setPoints(customerSessionLocal.getCustomerById(authBean.getLoggedInCustomer().getUserID()).getPoints());
+            } catch (NoResultException e) {
+
+            }
+            return "alert('#')";
         } else {
-            return "alert('Item is fully redeemed')";
+            return "alert('#')";
         }
 
     }

@@ -109,8 +109,9 @@ and open the template in the editor.
                     <!-- Container Starts -->
                     <div class="container">                    
                         <div>
-
-
+                            <div class="text-center top-text">
+                                <span><h4>You have #{authenticationManagedBean.points} points</h4></span>
+                            </div>
                             <nav>
                                 <ul class="simplefilter nav nav-pills">
                                     <!-- Filter Wrapper Items Starts -->
@@ -154,24 +155,29 @@ and open the template in the editor.
                                             <div class="magnific-popup-gallery">
                                                 <!-- Thumbnail Starts -->
                                                 <figure class="thumbnail thumbnail__portfolio">
-                                                    <img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" alt="Gallery project" />
+                                                    <img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeRedeemed.prizeImage}" alt="Gallery project" />
                                                 </figure>
                                                 <!-- Thumbnail Ends -->
                                                 <!-- Caption Starts -->
                                                 <div class="caption">                   
 
-                                                    <h3><h:outputText value="#{o.prizeName}" /></h3>
+                                                    <h3><h:outputText value="#{o.prizeRedeemed.prizeName}" /></h3>
 
                                                     <p>
-                                                        <h:outputText value="#{o.prizePoint}"/>
+                                                        <h:outputText value="#{o.prizeRedeemed.prizePoint}"/>
+                                                    </p>
+                                                    <p>
+                                                        <h:outputText value="#{o.prizeRedeemed.prizePoint} points"/>
+                                                    </p>
+                                                    <p>
+                                                        <h:outputText value="#{o.redemptionDate}" ><f:convertDateTime type="date" pattern="dd-MM-yyyy"/></h:outputText>
                                                     </p>
                                                     <h:commandButton class="custom-button" value="Claim " >
                                                     </h:commandButton>
-<!--                                                        <h3>#{o.prizeName}</h3>                                        
-                                                    <p>#{o.prizePoint} points</p>
-                                                    <p>#{o.prizeQty} left</p>
-                                                    <p>#{o.prizeDescription}</p>
-                                                    <button class="custom-button" onclick="redeem(#{o.prizePoint})">Redeem</button> -->
+
+
+
+
                                                 </div>
                                                 <!-- Caption Ends -->
                                             </div>
@@ -226,7 +232,8 @@ and open the template in the editor.
             function off() {
                 document.getElementById("overlay").style.display = "none";
             }
-            function redeem(points) {
+            function redeem(points,value) {
+             
                 if (points >#{authenticationManagedBean.points}) {
                     alert("not enough points");
                 } else {
