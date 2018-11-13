@@ -118,7 +118,7 @@ and open the template in the editor.
                     <!--<input type="range" max="100" min="1" value="50" name="myRange" class="slider" id="myRange" />-->
                     <h3 style="text-align: center">$<h:outputText id="demo" value="#{trippyManagedBean.searchValue}" /> <span id="demo"></span></h3>
                 </div>
-             
+
                 <div class="text-center" style="margin-top: 30px">
                     <h3>Type Of Activities</h3>
                 </div>
@@ -126,7 +126,7 @@ and open the template in the editor.
                 <script>
                     var slider = document.getElementById("form:myRange");
                     var output = document.getElementById("form:demo");
-                    
+
                     output.innerHTML = slider.value;
                     slider.oninput = function () {
                         output.innerHTML = this.value;

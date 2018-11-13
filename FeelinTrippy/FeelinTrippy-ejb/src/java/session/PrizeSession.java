@@ -8,6 +8,8 @@ package session;
 import entity.Customer;
 import entity.Prize;
 import entity.PrizeOrder;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -101,7 +103,7 @@ public class PrizeSession implements PrizeSessionLocal {
             po.setPointsUsed(toRedeem.getPrizePoint());
             po.setPrizeRedeemed(toRedeem);
             po.setQuantity(qty);
-            po.setRedemptionDate(new Date());
+            po.setRedemptionDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
             em.persist(po);
             return true;
         } else {
@@ -125,4 +127,10 @@ public class PrizeSession implements PrizeSessionLocal {
 
     }
 
+    @Override
+        public PrizeOrder getPrizeOrderByID(Long poID){
+            PrizeOrder po =  em.find(PrizeOrder.class, poID);
+            return po;
+        }
+    
 }
