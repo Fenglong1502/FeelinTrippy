@@ -61,9 +61,9 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" datawidget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
-
-
-                            
+                            <h:form>
+                            <h:commandButton class="btn btn-danger" action="#{authenticationManagedBean.logout()}" value="Logout" />
+                            </h:form>
                             <li class="nav-item" >
 
                                 <a href="#{request.contextPath}/admin/createTrippyEventType.xhtml" class="nav-link" >
