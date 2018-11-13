@@ -35,7 +35,7 @@ and open the template in the editor.
                 </h:column>              
 
                 <h:column>
-                    <h:button value="Edit" outcome="editTrippyEventType.xhtml">
+                    <h:button value="Edit" class="btn btn-info" outcome="editTrippyEventType.xhtml">
                         <f:param name="typeID" value="#{types.typeID}" />
                     </h:button>
                     <h:commandButton value="Recover" class="btn btn-success" action="#{adminManagedBean.recoverType()}" rendered="#{types.softDelete == true}">

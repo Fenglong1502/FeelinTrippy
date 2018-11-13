@@ -36,25 +36,40 @@
                 <!-- Main content -->
                 <section class="content">
                     <h:form enctype="multipart/form-data">
-                        <div>
-                            Enter Prize Name:
+                                                <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Prize Name</div>
+
+                            </div>
                             <h:inputText value="#{adminManagedBean.prizeName}" required="true" />
                         </div>
-                        <div>
-                            Enter Description:
+                                                <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Description</div>
+
+                            </div>
                             <h:inputText value="#{adminManagedBean.prizeDescription}" required="true" />
                         </div>
                      
-                        <div>
-                            Enter Prize Point:
+                                                <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Prize Point</div>
+
+                            </div>
                             <h:inputText value="#{adminManagedBean.prizePoint}" required="true" />
                         </div>
-                        <div>
-                            Enter Quantity:
+                                                <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Quantity</div>
+
+                            </div>
                             <h:inputText value="#{adminManagedBean.prizeQty}" required="true" />
                         </div>
-                         <div>
-                            Enter Image:
+                                                 <div class="input-group mb-2 form-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Image</div>
+
+                            </div>
                             
                             <h:inputFile value="#{adminManagedBean.prizeFile}">
                                 <f:passThroughAttribute name="accept" value="image/jpeg"/>
