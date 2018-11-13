@@ -130,7 +130,7 @@ and open the template in the editor.
                                             <div class="magnific-popup-gallery">
                                                 <!-- Thumbnail Starts -->
                                                 <figure class="thumbnail thumbnail__portfolio">
-                                                    <a class="image-wrap" href="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" data-gal="magnific-pop-up[gallery]" title="Gallery project"><img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
+                                                    <img src="https://houseofcasesg.website/image-upload/trippyImages/#{o.prizeImage}" alt="Gallery project" />
                                                 </figure>
                                                 <!-- Thumbnail Ends -->
                                                 <!-- Caption Starts -->
@@ -139,7 +139,7 @@ and open the template in the editor.
                                                     <p>#{o.prizePoint} points</p>
                                                     <p>#{o.prizeQty} left</p>
                                                     <p>#{o.prizeDescription}</p>
-                                                    <button class="custom-button" onclick="redeem(#{o.prizePoint})">Redeem</button> 
+                                                    <button class="custom-button" onclick="redeem(#{o.prizePoint},#{o.prizeID})">Redeem</button> 
                                                     <h:commandButton style="display:none" id="redeemID" action="#{trippyManagedBean.redeem(o)}"  value="click">
                                                         <f:ajax/>
                                                     </h:commandButton>
@@ -172,11 +172,10 @@ and open the template in the editor.
                                                     <p>
                                                         <h:outputText value="#{o.redemptionDate}" ><f:convertDateTime type="date" pattern="dd-MM-yyyy"/></h:outputText>
                                                     </p>
-                                                    <h:commandButton class="custom-button" value="Claim " >
+                                                    <h:commandButton class="custom-button" value="Claim" action="#{trippyManagedBean.claim(o.prizeOrderID)}">
                                                     </h:commandButton>
 
-
-
+                                                 
 
                                                 </div>
                                                 <!-- Caption Ends -->
@@ -232,10 +231,11 @@ and open the template in the editor.
             function off() {
                 document.getElementById("overlay").style.display = "none";
             }
-            function redeem(points,value) {
-             
+            function redeem(points, value) {
+                alert(value);
                 if (points >#{authenticationManagedBean.points}) {
                     alert("not enough points");
+
                 } else {
                     alert("noooooo");
                     var jsfCommandLink = document.getElementById("form1:redeemID");

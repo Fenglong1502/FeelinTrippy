@@ -96,10 +96,9 @@ public class PrizeSession implements PrizeSessionLocal {
         PrizeOrder po = new PrizeOrder();
         //Check if customer has enough points to redeem prize and if qty customer wants to redeem is <= the amount of prize left.
         if (qty <= toRedeem.getPrizeQty()) {
-            c.setPoints(c.getPoints() - qty * toRedeem.getPrizePoint());
             toRedeem.setPrizeQty(toRedeem.getPrizeQty() - qty);
             po.setCustomerID(customerID);
-            po.setPointsUsed(qty * toRedeem.getPrizePoint());
+            po.setPointsUsed(toRedeem.getPrizePoint());
             po.setPrizeRedeemed(toRedeem);
             po.setQuantity(qty);
             po.setRedemptionDate(new Date());
@@ -117,6 +116,13 @@ public class PrizeSession implements PrizeSessionLocal {
         q = em.createQuery("SELECT po FROM PrizeOrder po WHERE po.customerID = :customerID");
         q.setParameter("customerID", customerID);
         return q.getResultList();
+    }
+
+    @Override
+    public void claimPrize(Long POid) {
+       PrizeOrder po =  em.find(PrizeOrder.class, POid);
+       em.remove(po);
+
     }
 
 }

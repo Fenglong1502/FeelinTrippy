@@ -69,7 +69,14 @@ public class TrippyManagedBean implements Serializable {
     public AuthenticationManagedBean getAuthBean() {
         return authBean;
     }
-
+    
+    public void claim(Long POid){
+        
+        prizeSessionLocal.claimPrize(POid);
+        
+        
+        
+    }
     public List<PrizeOrder> getPrizeOrder(Customer c) {
         return prizeSessionLocal.getPrizeRedeemed(c.getUserID());
 
@@ -77,9 +84,14 @@ public class TrippyManagedBean implements Serializable {
 
     public String redeem(Prize p) {
         if (prizeSessionLocal.redeemPrize(authBean.getId(), p.getPrizeID(), 1) == true) {
+            System.out.println(p.getPrizeName());
             try {
+                System.out.println(p.getPrizeName());
+
                 customerSessionLocal.deductPoints(authBean.getLoggedInCustomer(), p.getPrizePoint());
                 authBean.setPoints(customerSessionLocal.getCustomerById(authBean.getLoggedInCustomer().getUserID()).getPoints());
+                System.out.println(p.getPrizeName());
+
             } catch (NoResultException e) {
 
             }
