@@ -49,7 +49,8 @@ public class TrippyManagedBean implements Serializable {
     private List<TrippyEventItem> searchEvents = new ArrayList<TrippyEventItem>();
     private String phoneNum;
     private String sharingCode;
-
+    
+    
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
     @EJB
@@ -69,8 +70,12 @@ public class TrippyManagedBean implements Serializable {
     public AuthenticationManagedBean getAuthBean() {
         return authBean;
     }
-    
-    public void claim(Long POid){
+
+    public void setAuthBean(AuthenticationManagedBean authBean) {
+        this.authBean = authBean;
+    }
+
+	public void claim(Long POid){
         
         prizeSessionLocal.claimPrize(POid);
         
@@ -101,11 +106,7 @@ public class TrippyManagedBean implements Serializable {
         }
 
     }
-
-    public void setAuthBean(AuthenticationManagedBean authBean) {
-        this.authBean = authBean;
-    }
-
+	
     public TrippyManagedBean() {
 
     }
@@ -116,8 +117,8 @@ public class TrippyManagedBean implements Serializable {
 
     public String generateRandomEvent() {
         TrippyEventType searchType = trippyEventTypeSessionLocal.searchTrippyEventType("adventure");
-        List<TrippyEventItem> listToFilter;
-
+        List<TrippyEventItem> listToFilter = null;
+        
         if (searchTypeStr.equals("")) {
             listToFilter = trippyEventSessionLocal.searchEventListByPrice((double) searchValue);
         } else {
@@ -207,6 +208,10 @@ public class TrippyManagedBean implements Serializable {
         bookedActivitySessionLocal.createBookedActivity(b);
         b = bookedActivitySessionLocal.getNewlyAddSavedTrip();
         customerSessionLocal.addBookedTrip(c.getUserID(), b);
+        
+        if(selectedEventItem.getPrice() > 0){
+            customerSessionLocal.addPoints(c, (int)Math.round(selectedEventItem.getPrice()));
+        }
 
         c = customerSessionLocal.getCustomerById(c.getUserID());
         authBean.setLoggedInCustomer(c);
@@ -292,10 +297,10 @@ public class TrippyManagedBean implements Serializable {
     public String addTripFromSharing() throws NoResultException {
         FacesContext context = FacesContext.getCurrentInstance();
         Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
-
+       
         TrippyEventItem eventShared = customerSessionLocal.eventShared(sharingCode);
-
-        if (customerSessionLocal.isEventExist(eventShared, c.getUserID()) == false) {
+        
+        if(customerSessionLocal.isEventExist(eventShared,c.getUserID()) == false){
             SavedTrip s = new SavedTrip();
             s.setPrice(eventShared.getPrice());
             s.setEventItem(eventShared);
@@ -308,9 +313,10 @@ public class TrippyManagedBean implements Serializable {
         }
         c = customerSessionLocal.getCustomerById(c.getUserID());
         authBean.setLoggedInCustomer(c);
-
+        
         return "mySavedTrips.xhtml?faces-redirect=true";
     }
+    
 
     public String selectEvent(TrippyEventItem tei) {
         selectedEventItem = tei;
@@ -323,6 +329,13 @@ public class TrippyManagedBean implements Serializable {
 
         return "bookedActivityDetails.xhtml?faces-redirect=true";
     }
+    
+      public String selectPastEvent(TrippyEventItem tei) {
+        selectedEventItem = tei;
+
+        return "pastActivityDetails.xhtml?faces-redirect=true";
+    }
+
 
     public void setEverything() {
         searchTypeStr = "everything";
@@ -391,5 +404,7 @@ public class TrippyManagedBean implements Serializable {
     public void setTrippyEventTypeSessionLocal(TrippyEventTypeSessionLocal trippyEventTypeSessionLocal) {
         this.trippyEventTypeSessionLocal = trippyEventTypeSessionLocal;
     }
+
+    
 
 }
