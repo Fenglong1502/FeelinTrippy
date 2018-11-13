@@ -197,11 +197,11 @@ public class DataInitializationSessionBean {
         eventTypes.add(animals_and_wildlife);
 
         TrippyEventItem trippyEventItem76 = new TrippyEventItem();
-        trippyEventItem76.setEventName("S.E.A Aquarium");
+        trippyEventItem76.setEventName("Happenstance Cafe");
         trippyEventItem76.setEventDescription("Happenstance Cafe is a cosy cafe at which you can bond with your fur-kid. It's one of the cafes designed to accommodate pets; there's a special pasta menu just for your dogs, which offers customisable pasta (starts from $6.50) for them.");
         trippyEventItem76.setPoint(0L);
         trippyEventItem76.setPrice(15.0);
-        trippyEventItem76.setEventImage("trippyEventItem75.jpg");
+        trippyEventItem76.setEventImage("trippyEventItem76.jpg");
         trippyEventItem76.setAddress("35 Opal Cres, Singapore 328425");
         trippyEventItem76.setEventType(eventTypes);
         trippyEventItem76.setSoftDelete(false);
@@ -944,7 +944,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1000.setAddress("River Valley Rd, Singapore 179037");
         trippyEventItem1000.setEventType(eventTypes);
         trippyEventItem1000.setSoftDelete(false);
-        trippyEventItem1000.setEventTypeString("Night Life");
+        trippyEventItem1000.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1000);
 
@@ -964,7 +964,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1001.setAddress("Pan Pacific Singapore 7 Raffles Blvd Singapore 039595 ");
         trippyEventItem1001.setEventType(eventTypes);
         trippyEventItem1001.setSoftDelete(false);
-        trippyEventItem1001.setEventTypeString("Night Life");
+        trippyEventItem1001.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1001);
 
@@ -984,7 +984,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1002.setAddress("Orchard Road, Singapore 238895");
         trippyEventItem1002.setEventType(eventTypes);
         trippyEventItem1002.setSoftDelete(false);
-        trippyEventItem1002.setEventTypeString("Night Life");
+        trippyEventItem1002.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1002);
 
@@ -1004,7 +1004,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1003.setAddress("KC Arts Centre, 20 Merbau Road");
         trippyEventItem1003.setEventType(eventTypes);
         trippyEventItem1003.setSoftDelete(false);
-        trippyEventItem1003.setEventTypeString("Night Life");
+        trippyEventItem1003.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1003);
 
@@ -1024,7 +1024,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1004.setAddress("Siloso Beach, SENTOSA");
         trippyEventItem1004.setEventType(eventTypes);
         trippyEventItem1004.setSoftDelete(false);
-        trippyEventItem1004.setEventTypeString("Night Life");
+        trippyEventItem1004.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1004);
 
@@ -1044,7 +1044,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1005.setAddress("AJ Hackett, Siloso Beach, SENTOSA");
         trippyEventItem1005.setEventType(eventTypes);
         trippyEventItem1005.setSoftDelete(false);
-        trippyEventItem1005.setEventTypeString("Night Life");
+        trippyEventItem1005.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1005);
 
@@ -1060,7 +1060,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1006.setAddress("No. 11 Bali Lane, Blu Jaz Café, Historic Kampong Glam, Singapore 189848");
         trippyEventItem1006.setEventType(eventTypes);
         trippyEventItem1006.setSoftDelete(false);
-        trippyEventItem1006.setEventTypeString("Night Life");
+        trippyEventItem1006.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1006);
 
@@ -1076,7 +1076,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1007.setAddress("20 Upper Circular Road #B1-01/02/03/04/05/06 The Riverwalk Singapore 058416");
         trippyEventItem1007.setEventType(eventTypes);
         trippyEventItem1007.setSoftDelete(false);
-        trippyEventItem1007.setEventTypeString("Night Life");
+        trippyEventItem1007.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1007);
 
@@ -1096,7 +1096,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1008.setAddress("17 Jiak Kim Street Singapore 169420");
         trippyEventItem1008.setEventType(eventTypes);
         trippyEventItem1008.setSoftDelete(false);
-        trippyEventItem1008.setEventTypeString("Night Life");
+        trippyEventItem1008.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1008);
 
@@ -1116,7 +1116,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1009.setAddress("20 Upper Circular Road #B1-01/02/03/04/05/06 The Riverwalk Singapore 058416");
         trippyEventItem1009.setEventType(eventTypes);
         trippyEventItem1009.setSoftDelete(false);
-        trippyEventItem1009.setEventTypeString("Night Life");
+        trippyEventItem1009.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1009);
 
@@ -1132,7 +1132,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1010.setAddress("20 Upper Circular Road #B1-01/02/03/04/05/06 The Riverwalk Singapore 058416");
         trippyEventItem1010.setEventType(eventTypes);
         trippyEventItem1010.setSoftDelete(false);
-        trippyEventItem1010.setEventTypeString("Night Life");
+        trippyEventItem1010.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1010);
 
@@ -1148,7 +1148,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1011.setAddress("Sentosa");
         trippyEventItem1011.setEventType(eventTypes);
         trippyEventItem1011.setSoftDelete(false);
-        trippyEventItem1011.setEventTypeString("Night Life");
+        trippyEventItem1011.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1011);
 
@@ -1164,7 +1164,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1012.setAddress("3A River Valley Road, #01- 03 Clarke Quay Singapore 179020");
         trippyEventItem1012.setEventType(eventTypes);
         trippyEventItem1012.setSoftDelete(false);
-        trippyEventItem1012.setEventTypeString("Night Life");
+        trippyEventItem1012.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1012);
 
@@ -1184,7 +1184,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1013.setAddress("12A Bayfront Ave, Singapore 018970");
         trippyEventItem1013.setEventType(eventTypes);
         trippyEventItem1013.setSoftDelete(false);
-        trippyEventItem1013.setEventTypeString("Night Life");
+        trippyEventItem1013.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1013);
 
@@ -1204,7 +1204,7 @@ public class DataInitializationSessionBean {
         trippyEventItem1014.setAddress("Hollandse Club 22 Camden Park Singapore, 299814");
         trippyEventItem1014.setEventType(eventTypes);
         trippyEventItem1014.setSoftDelete(false);
-        trippyEventItem1014.setEventTypeString("Night Life");
+        trippyEventItem1014.setEventTypeString("Music and Night Life");
 
         trippyEventSessionLocal.createTrippyEvent(trippyEventItem1014);
 
