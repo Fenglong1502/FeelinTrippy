@@ -49,6 +49,7 @@ public interface CustomerSessionLocal {
     public void addSavedTrip(Long id, SavedTrip s);
     public void removeSavedTrip(Long id, SavedTrip s);
     public void addBookedTrip(Long id, BookedActivity b);
+       public void removeBookedTrip(Long id, TrippyEventItem t);
     public List<SavedTrip> getSavedTripByType(TrippyEventType type, Customer c);
     public boolean isEventExist(TrippyEventItem item, Long id);
     public List<BookedActivity> getPastTripByType(TrippyEventType type, Customer c);

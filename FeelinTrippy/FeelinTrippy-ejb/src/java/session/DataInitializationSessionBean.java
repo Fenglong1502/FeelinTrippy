@@ -69,7 +69,7 @@ public class DataInitializationSessionBean {
         //Initialise new user
         Customer admin = new Customer("admin", encryptPassword("admin"), "Administrator", "", true, (byte) 1, "", "admin", 0, true);
         Customer c1 = new Customer("user1", encryptPassword("password"), "Chee Siang", "Ng", true, (byte) 2, "98261304", "E0032155@u.nus.edu", 5530, false);
-        Customer c2 = new Customer("user2", encryptPassword("password"), "Feng Long", "Lim", true, (byte) 2, "98315536", "zell1502@hotmail.com", 1254370, false);
+        Customer c2 = new Customer("user2", encryptPassword("password"), "Feng Long", "Lim", true, (byte) 2, "91234567", "zell1502@hotmail.com", 1254370, false);
         Customer c3 = new Customer("user3", encryptPassword("password"), "Dian Cong", "Lim", true, (byte) 2, "94308808", "congx2@hotmail.com", 5450, false);
         Customer c4 = new Customer("user4", encryptPassword("password"), "Jinhao", "Wu", true, (byte) 2, "81985902", "e0053071@u.nus.edu", 4870, false);
         Customer c5 = new Customer("user5", encryptPassword("password"), "Derek", "Chan", true, (byte) 2, "82005886", "derekchan@u.nus.edu", 8780, false);

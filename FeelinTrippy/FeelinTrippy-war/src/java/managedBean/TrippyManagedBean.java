@@ -63,6 +63,11 @@ public class TrippyManagedBean implements Serializable {
     private Date tempDate;
     private int tempPoint;
 
+    private String tempEventName;
+    private String tempEventDescription;
+    private String tempEventAddress;
+    private double tempEventPrice;
+
     @EJB
     TrippyEventSessionLocal trippyEventSessionLocal;
     @EJB
@@ -340,6 +345,23 @@ public class TrippyManagedBean implements Serializable {
         return "mySavedTrips.xhtml?faces-redirect=true";
     }
 
+    public String usePass() throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
+
+        tempEventName = selectedEventItem.getEventName();
+        tempEventPrice = selectedEventItem.getPrice();
+        tempEventAddress = selectedEventItem.getAddress();
+
+        customerSessionLocal.removeBookedTrip(c.getUserID(), selectedEventItem);
+
+        c = customerSessionLocal.getCustomerById(c.getUserID());
+        authBean.setLoggedInCustomer(c);
+
+        return "usePass.xhtml?faces-redirect=true";
+
+    }
+
     public String addTripFromSharing() throws NoResultException {
         FacesContext context = FacesContext.getCurrentInstance();
         Customer c = (Customer) context.getApplication().createValueBinding("#{authenticationManagedBean.loggedInCustomer}").getValue(context);
@@ -479,6 +501,38 @@ public class TrippyManagedBean implements Serializable {
 
     public void setTempPoint(int tempPoint) {
         this.tempPoint = tempPoint;
+    }
+
+    public String getTempEventName() {
+        return tempEventName;
+    }
+
+    public void setTempEventName(String tempEventName) {
+        this.tempEventName = tempEventName;
+    }
+
+    public String getTempEventDescription() {
+        return tempEventDescription;
+    }
+
+    public void setTempEventDescription(String tempEventDescription) {
+        this.tempEventDescription = tempEventDescription;
+    }
+
+    public String getTempEventAddress() {
+        return tempEventAddress;
+    }
+
+    public void setTempEventAddress(String tempEventAddress) {
+        this.tempEventAddress = tempEventAddress;
+    }
+
+    public double getTempEventPrice() {
+        return tempEventPrice;
+    }
+
+    public void setTempEventPrice(double tempEventPrice) {
+        this.tempEventPrice = tempEventPrice;
     }
 
 }

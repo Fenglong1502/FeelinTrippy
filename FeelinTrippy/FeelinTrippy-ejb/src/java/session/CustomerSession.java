@@ -424,4 +424,19 @@ public class CustomerSession implements CustomerSessionLocal {
         TrippyEventItem returnEvent = (TrippyEventItem)q.getResultList().get(0);
         return returnEvent;
     }
+    
+     public void removeBookedTrip(Long id, TrippyEventItem t){
+         Customer c = em.find(Customer.class, id);
+         List<BookedActivity> bList = c.getBookedActivities();
+         BookedActivity toBeDeleted = new BookedActivity();
+         for(BookedActivity b: bList){
+             if(b.getEventItem().getEventID() == t.getEventID()){
+                 toBeDeleted = b;
+             }
+         }
+         
+         c.getBookedActivities().remove(toBeDeleted);
+         em.flush();
+     }
+    
 }
