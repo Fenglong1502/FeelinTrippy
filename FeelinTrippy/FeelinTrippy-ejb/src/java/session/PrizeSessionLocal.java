@@ -35,4 +35,6 @@ public interface PrizeSessionLocal {
     public Prize getPrizeById(Long prizeID) throws NoResultException;
 
     public void claimPrize(Long POid);
+    
+    public PrizeOrder getPrizeOrderByID(Long poID);
 }

@@ -9,6 +9,7 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
@@ -110,13 +111,13 @@ and open the template in the editor.
                     <div class="container">                    
                         <div>
                             <div class="text-center top-text">
-                                <span><h4>You have #{authenticationManagedBean.points} points</h4></span>
+                                <span><h4>You have #{authenticationManagedBean.loggedInCustomer.points} points</h4></span>
                             </div>
                             <nav>
-                                <ul class="simplefilter nav nav-pills">
+                                <ul class="simplefilter tabs nav nav-pills">
                                     <!-- Filter Wrapper Items Starts -->
 
-                                    <li data-filter="1">View Rewards</li>
+                                    <li data-filter="1" class='selected'>View Rewards</li>
                                     <li data-filter="2">My Rewards</li><br><br></br></br>
                                     <!-- Filter Wrapper Items Ends -->
                                 </ul>
@@ -139,9 +140,8 @@ and open the template in the editor.
                                                     <p>#{o.prizePoint} points</p>
                                                     <p>#{o.prizeQty} left</p>
                                                     <p>#{o.prizeDescription}</p>
-                                                    <button class="custom-button" onclick="redeem(#{o.prizePoint},#{o.prizeID})">Redeem</button> 
-                                                    <h:commandButton style="display:none" id="redeemID" action="#{trippyManagedBean.redeem(o)}"  value="click">
-                                                        <f:ajax/>
+
+                                                    <h:commandButton  class="custom-button" value="Claim" action="#{trippyManagedBean.redeem(o)}" >
                                                     </h:commandButton>
                                                 </div>
                                                 <!-- Caption Ends -->
@@ -164,18 +164,12 @@ and open the template in the editor.
                                                     <h3><h:outputText value="#{o.prizeRedeemed.prizeName}" /></h3>
 
                                                     <p>
-                                                        <h:outputText value="#{o.prizeRedeemed.prizePoint}"/>
-                                                    </p>
-                                                    <p>
                                                         <h:outputText value="#{o.prizeRedeemed.prizePoint} points"/>
                                                     </p>
                                                     <p>
-                                                        <h:outputText value="#{o.redemptionDate}" ><f:convertDateTime type="date" pattern="dd-MM-yyyy"/></h:outputText>
-                                                    </p>
-                                                    <h:commandButton class="custom-button" value="Claim" action="#{trippyManagedBean.claim(o.prizeOrderID)}">
-                                                    </h:commandButton>
-
-                                                 
+                                                        <h:outputText value="Redeemed on:"/> <h:outputText value="#{o.redemptionDate}" ><f:convertDateTime type="date" pattern="dd-MM-yyyy"/></h:outputText>
+                                                    </p> 
+                                                    <h:commandButton class="custom-button" value="Claim" action="#{trippyManagedBean.claim(o.prizeOrderID)}" />
 
                                                 </div>
                                                 <!-- Caption Ends -->
@@ -231,16 +225,13 @@ and open the template in the editor.
             function off() {
                 document.getElementById("overlay").style.display = "none";
             }
-            function redeem(points, value) {
-                alert(value);
-                if (points >#{authenticationManagedBean.points}) {
-                    alert("not enough points");
+            function redeem(points) {
+                if (points >#{authenticationManagedBean.loggedInCustomer.points}) {
+                    alert("You do not have enough points");
 
                 } else {
-                    alert("noooooo");
                     var jsfCommandLink = document.getElementById("form1:redeemID");
                     jsfCommandLink.click();
-
                 }
             }
             function itemRedeem() {

@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <head>
         <meta charset="utf-8" />
@@ -90,41 +91,37 @@ and open the template in the editor.
                         <!-- Navbar Ends -->
                     </div>
                 </header>   
-                <!-- Header Ends -->
 
-                <!-- About Section Starts -->
-                <section class="about">
-                    <!-- Container Starts -->
+
+
+                <!-- Banner Ends -->
+                <!-- Project Starts -->
+                <section class="project">
                     <div class="container">
-                        <!-- About Content Starts -->
-                        <div class="row about-content">
-                            <div><br><br><br><br><br><br></br></br></br></br></br></br></div>
-                            <div class="col-sm-12 col-md-6 col-lg-6 about-left-side">
-                                <h3 class="title-about">#{authenticationManagedBean.loggedInCustomer.firstName} #{authenticationManagedBean.loggedInCustomer.lastName}</h3>
-
-                                <hr>
-                                    <p>#{authenticationManagedBean.loggedInCustomer.mobileNumber}<br></br>
-                                        #{authenticationManagedBean.loggedInCustomer.email}<br> </br>
-                                        Points available to redeem: #{authenticationManagedBean.loggedInCustomer.points}<br></br>
-                                    </p>
-                                    <a class="custom-button" href="rewards.xhtml">View Rewards</a>
-                                    <a class="custom-button" href="editProfile.xhtml">Edit Profile</a>
-                                    <a class="custom-button" href="sharingCode.xhtml">Use Sharing Code</a>
-                                    <a class="custom-button" href="changePassword.xhtml">Change Password</a>
-                                </hr>
+                        <div class="row">
+                            <!-- Project Main Content Starts -->
+                            <div class="col-md-6">
+                                <div class="project-main-content">
+                                    <img class="img-responsive" src="../img/qrCode.png" alt="image"/>
+                                </div>
                             </div>
-                            <!-- Image About Us Starts -->
-
-                            <!-- Image About Us Ends -->
+                            <!-- Project Main Content Ends -->
+                            <!-- Project Details Starts -->
+                            <div class="col-md-6">
+                                <div class="project-details">
+                                    <h3>#{trippyManagedBean.tempName}</h3>
+                                    <ul class="unstyled">
+                                        <li><i class="fa fa-rouble"></i><span class="detail-name"> Points Used </span>: <span class="detail-value">#{trippyManagedBean.tempPoint}</span></li>
+                                        <li><i class="fa fa-calendar"></i><span class="detail-name"> Redeemed Date </span>: <span class="detail-value"><h:outputText value="#{trippyManagedBean.tempDate}"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/> </h:outputText></span></li>
+                                    </ul>
+                                    <a class="custom-button" href="rewards.xhtml">Return</a>
+                                </div>
+                            </div>
+                            <!-- Project Details Ends -->
                         </div>
-                        <!-- About Content Ends -->
                     </div>
-                    <!-- Container Ends -->
                 </section>
 
-
-                <!-- Logos Section Ends -->
-                <!-- Footer Section Starts -->
                 <footer class="footer">
                     <!-- Footer Top Area Starts -->
                     <div class="container top-footer">
