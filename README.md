@@ -11,5 +11,5 @@ Setting up:
   5. Add the respective files found in the folder 'jar_files' into the libraries.
   
   
-Prof, if got problem, drop us a message on Facebook :D
+
 
