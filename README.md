@@ -18,6 +18,8 @@ Feelin Trippy is an award-winning project, designed as part of the curriculum fo
 - **Reward System:** Integrates a reward system for user bookings.
 - **Payment System:** Facilitates trip bookings through an integrated payment system.
 - **Shareable Trips:** Allows users to share trip details with peers and family.
+- **SMS Alerts:** Provides an SMS service using Twilio to notify customers upon sign-up or when sharing trip details.
+- **Email Alerts:** Integrates an SMTP email service to alert customers on different activities like sign-up and trip sharing.
 
 ## 🌐 Modules
 - **FeelinTrippy-ejb:** This module serves as the JavaBean backend, handling the logic and computations of the application.
